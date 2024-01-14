@@ -14,9 +14,15 @@ def parse_html(text):
     return clean_text
 
 
-def scrape_19thnews(url):
-    html_doc = requests.get(url).content
+def get_soup(url):
+    html_doc = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}).content
     soup = BeautifulSoup(html_doc, "html.parser")
+
+    return soup
+
+
+def scrape_19thnews(url):
+    soup = get_soup(url)
     article = soup.find(id="article-data")
 
     content = article.get_text()
@@ -30,8 +36,7 @@ def scrape_19thnews(url):
 
 
 def scrape_rt(url):
-    html_doc = requests.get(url).content
-    soup = BeautifulSoup(html_doc, "html.parser")
+    soup = get_soup(url)
     article = soup.find(class_="article__text")
 
     content = ""
@@ -44,13 +49,37 @@ def scrape_rt(url):
 
 
 def scrape_newsmax(url):
-    html_doc = requests.get(url).content
-    soup = BeautifulSoup(html_doc, "html.parser")
+    soup = get_soup(url)
     article = soup.find(id="mainArticleDiv")
 
     content = ""
     for p in article.find_all("p"):
-        content += p.get_text()
+        p_text = p.get_text().replace("\n", "")
+        if "|" in p_text:
+            break
+        content += p_text
+
+    return content
+
+
+def scrape_newsweek(url):
+    soup = get_soup(url)
+    article = soup.find(class_="article-body")
+
+    content = ""
+    for p in article.find_all("p"):
+        p_text = p.get_text()
+        content += p_text
+
+    return content
+
+
+# url is redirected to https://scrippsnews.com/
+def scrape_newsy(url):
+    soup = get_soup(url)
+    article = soup.find(class_="story-transcript")
+
+    content = article.get_text()
 
     return content
 
@@ -59,15 +88,24 @@ def scrape_content(row):
     url = row["article_url"]
 
     content = None
-    if url.startswith("https://19thnews.org"):
-        print(f"scraping {url}...")
-        content = scrape_19thnews(url)
-    elif url.startswith("https://www.rt.com"):
-        print(f"scraping {url}...")
-        content = scrape_rt(url)
-    elif url.startswith("https://www.newsmax.com"):
-        print(f"scraping {url}...")
-        content = scrape_newsmax(url)
+    try:
+        if url.startswith("https://19thnews.org"):
+            print(f"scraping {url}...")
+            content = scrape_19thnews(url)
+        elif url.startswith("https://www.rt.com"):
+            print(f"scraping {url}...")
+            content = scrape_rt(url)
+        elif url.startswith("https://www.newsmax.com"):
+            print(f"scraping {url}...")
+            content = scrape_newsmax(url)
+        elif url.startswith("https://www.newsweek.com"):
+            print(f"scraping {url}...")
+            content = scrape_newsweek(url)
+        elif url.startswith("https://www.newsy.com"):
+            print(f"scraping {url}...")
+            content = scrape_newsy(url)
+    except Exception as exception:
+        print(f"failed, {exception}")
 
     return content
 
@@ -75,9 +113,9 @@ def scrape_content(row):
 df["content"] = df.apply(scrape_content, axis=1)
 print(df.head())
 
-df.to_csv("scraped_2.csv", index=False)
+df.to_csv("scraped_3.csv", index=False)
 
-# scrape_newsmax("")
+# scrape_newsy("")
 
 # fix newsmax
 
