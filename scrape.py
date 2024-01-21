@@ -150,6 +150,29 @@ def scrape_pbs(url):
     return content
 
 
+def scrape_pjmedia(url):
+    soup = get_soup(url)
+    article = soup.find(class_="post-body")
+
+    content = ""
+    for p in article.find_all("p", class_=None):
+        p_text = p.get_text(strip=True)
+        content += p_text
+
+    return content
+
+
+def scrape_politico(url):
+    soup = get_soup(url)
+
+    content = ""
+    for p in soup.find_all("p", class_="story-text__paragraph"):
+        p_text = p.get_text(strip=True)
+        content += p_text
+
+    return content
+
+
 def scrape_content(row):
     url = row["article_url"]
 
@@ -185,18 +208,25 @@ def scrape_content(row):
         elif url.startswith("https://www.pbs.org"):
             print(f"scraping {url}...")
             content = scrape_pbs(url)
+        elif url.startswith("https://www.pjmedia.org"):
+            print(f"scraping {url}...")
+            content = scrape_pjmedia(url)
+        elif url.startswith("https://www.politico.org"):
+            print(f"scraping {url}...")
+            content = scrape_politico(url)
     except Exception as exception:
         print(f"failed, {exception}")
 
     return content
 
 
-df["content"] = df.apply(scrape_content, axis=1)
-print(df.head())
+# df["content"] = df.apply(scrape_content, axis=1)
+# print(df.head())
 
-df.to_csv("scraped_4.csv", index=False)
+# df.to_csv("scraped_5.csv", index=False)
 
-# scrape_newsmax("")
+# scrape_politico("")
+# pjmedia and politico not tested
 
 
 # newsnation: This site is currently unavailable to visitors from the European Economic Area while we work to ensure your data is protected in accordance with applicable EU laws.
