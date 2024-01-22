@@ -173,61 +173,69 @@ def scrape_politico(url):
     return content
 
 
+def scrape_politicususa(url):
+    soup = get_soup(url)
+    article = soup.find(class_="textcontent")
+
+    content = ""
+    for p in article.find_all("p", class_=None):
+        parent_attrs = p.find_parent().attrs
+        if not parent_attrs:
+            p_text = p.get_text(strip=True)
+            content += p_text
+
+    return content
+
+
+def scrape_politifact(url):
+    soup = get_soup(url)
+    article = soup.find(class_="m-textblock")
+
+    content = ""
+    for p in article.find_all("p", class_=None):
+        if not p.find("strong"):  # for the related story stuff at the bottom
+            p_text = p.get_text(strip=True)
+            content += p_text
+
+    return content
+
+
+def scrape_popsugar(url):
+    soup = get_soup(url)
+    article = soup.find(class_="content")
+
+    content = ""
+    for p in article.find_all("p", class_=None):
+        p_text = p.get_text(strip=True)
+        content += p_text
+
+    return content
+
+
 def scrape_content(row):
     url = row["article_url"]
-
+    outlet = url.split("/")[2].split(".")[-2]
     content = None
+
     try:
-        if url.startswith("https://19thnews.org"):
-            print(f"scraping {url}...")
-            content = scrape_19thnews(url)
-        elif url.startswith("https://www.rt.com"):
-            print(f"scraping {url}...")
-            content = scrape_rt(url)
-        elif url.startswith("https://www.newsmax.com"):
-            print(f"scraping {url}...")
-            content = scrape_newsmax(url)
-        elif url.startswith("https://www.newsweek.com"):
-            print(f"scraping {url}...")
-            content = scrape_newsweek(url)
-        elif url.startswith("https://www.newsy.com"):
-            print(f"scraping {url}...")
-            content = scrape_newsy(url)
-        elif url.startswith("https://www.nj.com"):
-            print(f"scraping {url}...")
-            content = scrape_nj(url)
-        elif url.startswith("https://www.npr.org"):
-            print(f"scraping {url}...")
-            content = scrape_npr(url)
-        elif url.startswith("https://occupydemocrats.com"):
-            print(f"scraping {url}...")
-            content = scrape_occupy_democrats(url)
-        elif url.startswith("https://www.palmerreport.com"):
-            print(f"scraping {url}...")
-            content = scrape_palmer_report(url)
-        elif url.startswith("https://www.pbs.org"):
-            print(f"scraping {url}...")
-            content = scrape_pbs(url)
-        elif url.startswith("https://www.pjmedia.org"):
-            print(f"scraping {url}...")
-            content = scrape_pjmedia(url)
-        elif url.startswith("https://www.politico.org"):
-            print(f"scraping {url}...")
-            content = scrape_politico(url)
+        print(f"scraping {url}...")
+        content = globals()[f"scrape_{outlet}"](url)
+    except KeyError:
+        pass
     except Exception as exception:
         print(f"failed, {exception}")
 
     return content
 
 
-# df["content"] = df.apply(scrape_content, axis=1)
-# print(df.head())
+df["content"] = df.apply(scrape_content, axis=1)
+print(df.head())
 
-# df.to_csv("scraped_5.csv", index=False)
+df.to_csv("scraped_5.csv", index=False)
 
-# scrape_politico("")
-# pjmedia and politico not tested
+# scrape_popsugar("")
 
+# content not tested: pjmedia, politico, politicususa, politifact, popsugar
 
 # newsnation: This site is currently unavailable to visitors from the European Economic Area while we work to ensure your data is protected in accordance with applicable EU laws.
 # oann: page not found
