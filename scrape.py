@@ -212,6 +212,7 @@ def scrape_popsugar(url):
     return content
 
 
+# TODO - only print per outlet
 def scrape_content(row):
     url = row["article_url"]
     outlet = url.split("/")[2].split(".")[-2]
@@ -221,6 +222,7 @@ def scrape_content(row):
         print(f"scraping {url}...")
         content = globals()[f"scrape_{outlet}"](url)
     except KeyError:
+        # print(f"KeyError for {url}")
         pass
     except Exception as exception:
         print(f"failed, {exception}")
@@ -236,6 +238,9 @@ df.to_csv("scraped_5.csv", index=False)
 # scrape_popsugar("")
 
 # content not tested: pjmedia, politico, politicususa, politifact, popsugar
+# some are missing from scrape_5, check
+
+# rt: sometimes max retries
 
 # newsnation: This site is currently unavailable to visitors from the European Economic Area while we work to ensure your data is protected in accordance with applicable EU laws.
 # oann: page not found
