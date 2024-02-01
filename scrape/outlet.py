@@ -2,16 +2,14 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+regex = re.compile(".*rticle|story|content|post.*")
+# regex = re.compile(".*rticle|story|content|post|ssrcss|body|text|Afg.*")
+
+# elitedaily = Afg
 
 class Outlet:
     def __init__(self) -> None:
         pass
-
-
-def scrape_outlet(url):
-    outlet = url.split("/")[2].split(".")[-2]
-
-    return globals()[f"scrape_{outlet}"](url)
 
 
 def parse_html(text):
@@ -21,18 +19,22 @@ def parse_html(text):
 
 
 def get_soup(url):
-    html_doc = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}).content
+    html_doc = requests.get(
+        url, headers={"User-Agent": "Mozilla/5.0"}, timeout=5
+    ).content
     soup = BeautifulSoup(html_doc, "html.parser")
 
     return soup
 
 
-def uniform_scrape(url, classname):
+def uniform_scrape(url):
     soup = get_soup(url)
-    article = soup.find(class_=classname)
+    article = soup.find(class_=regex)
+
+    if not article:
+        article = soup.find(id=regex)
 
     content = ""
-    # for p in article.find_all("p", class_=None):
     for p in article.find_all("p"):
         p_text = p.get_text(strip=True)
         content += p_text
@@ -41,3 +43,5 @@ def uniform_scrape(url, classname):
 
 
 # TODO - basically try and build functions that works on most outlets
+# TODO - find a way to clean noisy text
+# TODO - add a timeout function for 443 max retries, save some time

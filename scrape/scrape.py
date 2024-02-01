@@ -1,5 +1,6 @@
 import pandas as pd
 import functions
+import outlet
 
 df = pd.read_csv("../dataset/BAT/ad_fontes/articles_sorted_by_outlet_occurences.csv")
 # print(df.head())
@@ -11,8 +12,9 @@ def scrape_content(row):
     content = None
 
     try:
-        print(f"scraping {url}...")
-        content = functions.scrape_outlet(url)
+        print(f"scraping {row.index} {url}...")
+        # content = functions.scrape_outlet(url)
+        content = outlet.uniform_scrape(url)
     except KeyError:
         # print(f"KeyError for {url}")
         pass
@@ -25,7 +27,10 @@ def scrape_content(row):
 df["content"] = df.apply(scrape_content, axis=1)
 print(f"{df["content"].count()} rows of articles text are scraped")
 
-df.to_csv("scraped_7.csv", index=False)
+df.to_csv("scraped_uniform_test_2.csv", index=False)
+# lots of mistakes on this
+
+# df.to_csv("scraped_7.csv", index=False)
 # 525 rows of articles text are scraped
 
 # functions.scrape_stream("")
