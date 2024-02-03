@@ -5,7 +5,20 @@ import re
 regex = re.compile(".*rticle|story|content|post.*")
 # regex = re.compile(".*rticle|story|content|post|ssrcss|body|text|Afg.*")
 
+REGEX = [
+    r"article.*ody",
+    r"article__story",
+    r"*-content",
+    r"mainArticleDiv",
+    r"story-transcript",
+    r"story.*text",
+    r"body-text",
+    r"post-body",
+    r"single-post",
+    r"content",
+]
 # elitedaily = Afg
+
 
 class Outlet:
     def __init__(self) -> None:
@@ -29,16 +42,31 @@ def get_soup(url):
 
 def uniform_scrape(url):
     soup = get_soup(url)
-    article = soup.find(class_=regex)
+
+    article = soup.find("article")
 
     if not article:
-        article = soup.find(id=regex)
+        for regex in REGEX:
+            regex = re.compile(regex)
+            article = soup.find(class_=regex)
+
+            if not article:
+                article = soup.find(id=regex)
+
+            if article:
+                break
 
     content = ""
-    for p in article.find_all("p"):
+    for p in article.find_all("p", class_=None):
         p_text = p.get_text(strip=True)
         content += p_text
 
+    if not content:
+        for p in article.find_all("p"):
+            p_text = p.get_text(strip=True)
+            content += p_text
+
+    print(content)
     return content
 
 

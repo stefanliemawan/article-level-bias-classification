@@ -12,28 +12,33 @@ def scrape_content(row):
     content = None
 
     try:
-        print(f"scraping {row.index} {url}...")
+        print(f"\nscraping {row.name} {url}...\n")
         # content = functions.scrape_outlet(url)
         content = outlet.uniform_scrape(url)
     except KeyError:
         # print(f"KeyError for {url}")
         pass
     except Exception as exception:
-        print(f"{url} failed, {exception}")
+        print(f"\n{url} failed, {exception}\n")
 
     return content
 
 
+df = (
+    df.groupby("outlet").first().sort_values(by=["outlet_story_count"], ascending=False)
+)
 df["content"] = df.apply(scrape_content, axis=1)
-print(f"{df["content"].count()} rows of articles text are scraped")
+# print(f"{df["content"].count()} rows of articles text are scraped")
 
-df.to_csv("scraped_uniform_test_2.csv", index=False)
+df.to_csv("scraped_per_outlet_1.csv", index=False)
+# df.to_csv("scraped_uniform_test_2.csv", index=False)
 # lots of mistakes on this
 
 # df.to_csv("scraped_7.csv", index=False)
 # 525 rows of articles text are scraped
 
 # functions.scrape_stream("")
+
 
 # content not tested: pjmedia, politico, politicususa, politifact, popsugar, prageru, qz, rawstory, reason, newsandguts, defensenews, stream
 
