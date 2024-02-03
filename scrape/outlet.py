@@ -8,14 +8,20 @@ regex = re.compile(".*rticle|story|content|post.*")
 REGEX = [
     r"article.*ody",
     r"article__story",
-    r"*-content",
+    r"body-description",
     r"mainArticleDiv",
     r"story-transcript",
-    r"story.*text",
     r"body-text",
+    r"body-content",
     r"post-body",
     r"single-post",
+    r"story.*text",
+    r"Afg.*",
+    r"ssrcss",
+    r"wsw",
+    r".*-content",
     r"content",
+    r"body",
 ]
 # elitedaily = Afg
 
@@ -45,21 +51,24 @@ def uniform_scrape(url):
 
     article = soup.find("article")
 
-    if not article:
+    if not article or len(article) < 10:
         for regex in REGEX:
+            print(regex)
             regex = re.compile(regex)
             article = soup.find(class_=regex)
 
             if not article:
                 article = soup.find(id=regex)
-
-            if article:
+            elif not article:
+                article = soup.find(itemprop=regex)
+            else:
                 break
 
     content = ""
-    for p in article.find_all("p", class_=None):
-        p_text = p.get_text(strip=True)
-        content += p_text
+    for p in article.find_all("p"):
+        if not p.find("strong"):
+            p_text = p.get_text(strip=True)
+            content += p_text
 
     if not content:
         for p in article.find_all("p"):

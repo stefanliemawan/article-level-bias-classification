@@ -28,16 +28,18 @@ df = (
     df.groupby("outlet").first().sort_values(by=["outlet_story_count"], ascending=False)
 )
 df["content"] = df.apply(scrape_content, axis=1)
-# print(f"{df["content"].count()} rows of articles text are scraped")
+print(f"{df["content"].count()} rows of articles text are scraped")
 
-df.to_csv("scraped_per_outlet_1.csv", index=False)
+df.to_csv("scraped_per_outlet_3.csv", index=False)
+
 # df.to_csv("scraped_uniform_test_2.csv", index=False)
 # lots of mistakes on this
 
 # df.to_csv("scraped_7.csv", index=False)
 # 525 rows of articles text are scraped
 
-# functions.scrape_stream("")
+# test_url = "https://www.bloomberg.com/news/articles/2021-05-13/israel-says-air-ground-troops-attacking-in-gaza-strip"
+# outlet.uniform_scrape(test_url)
 
 
 # content not tested: pjmedia, politico, politicususa, politifact, popsugar, prageru, qz, rawstory, reason, newsandguts, defensenews, stream
