@@ -2,28 +2,40 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-regex = re.compile(".*rticle|story|content|post.*")
-# regex = re.compile(".*rticle|story|content|post|ssrcss|body|text|Afg.*")
 
-REGEX = [
+REGEX_STRINGS = [
     r"article.*ody",
-    r"article__story",
-    r"body-description",
-    r"mainArticleDiv",
+    r"article__text",
+    r"article-content",
+    r"full-article",
+    r"tds-content",
+    r"td-post-content",
+    r"entry-content",
+    r"story[-]?text",
+    r"Afg.*",
+    r"ssrcss",
+    r"^wsw$",
+    r"story-body.*",
+    r"story_column",
+    r".*-page-content",
     r"story-transcript",
+    r"body-description",
     r"body-text",
     r"body-content",
     r"post-body",
     r"single-post",
-    r"story.*text",
-    r"Afg.*",
-    r"ssrcss",
-    r"wsw",
+    r"^article$",
+    r".*-article",
     r".*-content",
+    r".*_content",
+    r"article",
     r"content",
     r"body",
 ]
-# elitedaily = Afg
+
+REGEX_COUNT = {key: 0 for key in REGEX_STRINGS}
+REGEX_COUNT["<article>"] = 0
+REGEX_COUNT["is this even used"] = 0
 
 
 class Outlet:
@@ -46,39 +58,103 @@ def get_soup(url):
     return soup
 
 
+def find_article(soup: BeautifulSoup, regex):
+    article = None
+
+    articles = soup.find_all(class_=regex)
+
+    if articles:
+        article = max(articles, key=lambda x: len(x.get_text()))
+
+    if not (article and len(article.get_text()) > 50):
+        articles = soup.find_all(id=regex)
+        if articles:
+            article = max(articles, key=lambda x: len(x.get_text()))
+
+    if not (article and len(article.get_text()) > 50):
+        articles = soup.find_all(itemprop=regex)
+        if articles:
+            article = max(articles, key=lambda x: len(x.get_text()))
+
+    return article
+
+
 def uniform_scrape(url):
     soup = get_soup(url)
 
-    article = soup.find("article")
+    for regex_string in REGEX_STRINGS:
+        print(regex_string)
+        regex = re.compile(regex_string)
+        article = find_article(soup, regex)
 
-    if not article or len(article) < 10:
-        for regex in REGEX:
-            print(regex)
-            regex = re.compile(regex)
-            article = soup.find(class_=regex)
+        if article and len(article.get_text()) > 50:
+            break
+        else:
+            article = None
 
-            if not article:
-                article = soup.find(id=regex)
-            elif not article:
-                article = soup.find(itemprop=regex)
-            else:
-                break
+    if article:
+        REGEX_COUNT[regex_string] += 1
+    else:
+        article = soup.find("article")
+        REGEX_COUNT["<article>"] += 1
 
     content = ""
     for p in article.find_all("p"):
-        if not p.find("strong"):
-            p_text = p.get_text(strip=True)
-            content += p_text
+        try:
+            parent_class = p.find_parent().attrs["class"][0]
+        except:
+            parent_class = None
+        if not (
+            parent_class
+            and (
+                "meta" in parent_class
+                or "promo" in parent_class
+                or "share" in parent_class
+                or "footer" in parent_class
+                or "credit" in parent_class
+                or "response_content" in parent_class
+                or "author" in parent_class
+            )
+        ):
+            if not p.find(["strong", "em"]):
+                p_text = p.get_text(strip=True)
+                content += p_text
 
-    if not content:
+    if (not content or len(content) < 150) or url.startswith(
+        "https://beforeitsnews.com/"
+    ):
+        content = ""
         for p in article.find_all("p"):
-            p_text = p.get_text(strip=True)
-            content += p_text
+            try:
+                parent_class = p.find_parent().attrs["class"][0]
+            except:
+                parent_class = None
+            if not (
+                parent_class
+                and (
+                    "meta" in parent_class
+                    or "promo" in parent_class
+                    or "share" in parent_class
+                    or "footer" in parent_class
+                    or "credit" in parent_class
+                    or "response_content" in parent_class
+                    or "author" in parent_class
+                )
+            ):
+                p_text = p.get_text(strip=True)
+                content += p_text
+        REGEX_COUNT["is this even used"] += 1
+
+    # TODO - tidy up later
 
     print(content)
+    print()
+    print(REGEX_COUNT)
+
     return content
 
 
 # TODO - basically try and build functions that works on most outlets
 # TODO - find a way to clean noisy text
 # TODO - add a timeout function for 443 max retries, save some time
+# TODO - style = p.find_parent().attrs["style"][0], inline style and keyword MORE: https://www.thecollegefix.com/professor-defends-teaching-students-to-question-covid-19-propaganda-as-nyu-investigation-continues/
