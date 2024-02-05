@@ -4,10 +4,18 @@ import re
 
 
 REGEX_STRINGS = [
-    r"article.*ody",
-    r"article__text",
     r"article-content",
+    r"c-blog-post__content",
+    r"cbn-text-formatted",
+    r"RichTextStoryBody",
+    r"a-content",
+    r"article-restofcontent",
+    r"node__content",
+    r"content-core",
+    r"article__text",
+    r"article__blocks",
     r"full-article",
+    r"article-output",
     r"tds-content",
     r"td-post-content",
     r"entry-content",
@@ -15,19 +23,27 @@ REGEX_STRINGS = [
     r"Afg.*",
     r"ssrcss",
     r"^wsw$",
+    r"story-two",
+    r"article.*ody",
+    r"mvp-content-main",
+    r".*rticle_content",
     r"story-body.*",
     r"story_column",
     r".*-page-content",
     r"story-transcript",
+    r"the_content_wrapper",
     r"body-description",
     r"body-text",
     r"body-content",
     r"post-body",
-    r"single-post",
+    r"<article>",
+    r"^single-post$",
+    r"^body$",
     r"^article$",
-    r".*-article",
+    r"^content$",
     r".*-content",
     r".*_content",
+    r".*-article",
     r"article",
     r"content",
     r"body",
@@ -61,20 +77,17 @@ def get_soup(url):
 def find_article(soup: BeautifulSoup, regex):
     article = None
 
-    articles = soup.find_all(class_=regex)
+    attrs = [{"class": regex}, {"id": regex}, {"itemprop": regex}]
 
-    if articles:
-        article = max(articles, key=lambda x: len(x.get_text()))
+    for attr in attrs:
+        article = soup.find(attrs=attr)
+        if not (article and len(article.get_text()) > 100):
+            articles = soup.find_all(class_=regex)
+            if articles:
+                article = max(articles, key=lambda x: len(x.get_text()))
 
-    if not (article and len(article.get_text()) > 50):
-        articles = soup.find_all(id=regex)
-        if articles:
-            article = max(articles, key=lambda x: len(x.get_text()))
-
-    if not (article and len(article.get_text()) > 50):
-        articles = soup.find_all(itemprop=regex)
-        if articles:
-            article = max(articles, key=lambda x: len(x.get_text()))
+        if article and len(article.get_text()) > 100:
+            break
 
     return article
 
@@ -84,26 +97,31 @@ def uniform_scrape(url):
 
     for regex_string in REGEX_STRINGS:
         print(regex_string)
-        regex = re.compile(regex_string)
-        article = find_article(soup, regex)
+        if regex_string == r"<article>":
+            article = soup.find("article")
+            REGEX_COUNT["<article>"] += 1
+        else:
+            regex = re.compile(regex_string)
+            article = find_article(soup, regex)
 
-        if article and len(article.get_text()) > 50:
+        if article and len(article.get_text()) > 100:
+            REGEX_COUNT[regex_string] += 1
             break
         else:
             article = None
 
-    if article:
-        REGEX_COUNT[regex_string] += 1
-    else:
-        article = soup.find("article")
-        REGEX_COUNT["<article>"] += 1
+    # if not article:
+    #     article = soup.find("article")
+    #     REGEX_COUNT["<article>"] += 1
 
     content = ""
     for p in article.find_all("p"):
+        parent_attrs = p.find_parent().attrs
         try:
-            parent_class = p.find_parent().attrs["class"][0]
+            parent_class = parent_attrs["class"][0]
         except:
             parent_class = None
+
         if not (
             parent_class
             and (
@@ -114,21 +132,37 @@ def uniform_scrape(url):
                 or "credit" in parent_class
                 or "response_content" in parent_class
                 or "author" in parent_class
+                or "menu__link" in parent_class
+                or "topper-hgroup" in parent_class
+                or "tease" in parent_class
+                or "donate" in parent_class
+                or "comment" in parent_class
+                or "newsletter" in parent_class
             )
         ):
-            if not p.find(["strong", "em"]):
-                p_text = p.get_text(strip=True)
-                content += p_text
 
-    if (not content or len(content) < 150) or url.startswith(
-        "https://beforeitsnews.com/"
+            if p.find("strong"):
+                p.strong.decompose()
+            if p.find("em"):
+                p.em.decompose()
+            p_text = p.get_text(strip=True)
+            content += p_text
+
+    if (
+        (not content or len(content) < 150)
+        or url.startswith("https://beforeitsnews.com/")
+        or url.startswith("https://www.billboard.com/")
     ):
         content = ""
         for p in article.find_all("p"):
+            parent_attrs = p.find_parent().attrs
+            print(parent_attrs, p.get_text())
+
             try:
-                parent_class = p.find_parent().attrs["class"][0]
+                parent_class = parent_attrs["class"][0]
             except:
                 parent_class = None
+
             if not (
                 parent_class
                 and (
@@ -139,6 +173,12 @@ def uniform_scrape(url):
                     or "credit" in parent_class
                     or "response_content" in parent_class
                     or "author" in parent_class
+                    or "menu__link" in parent_class
+                    or "topper-hgroup" in parent_class
+                    or "tease" in parent_class
+                    or "donate" in parent_class
+                    or "comment" in parent_class
+                    or "newsletter" in parent_class
                 )
             ):
                 p_text = p.get_text(strip=True)
@@ -154,7 +194,6 @@ def uniform_scrape(url):
     return content
 
 
-# TODO - basically try and build functions that works on most outlets
 # TODO - find a way to clean noisy text
 # TODO - add a timeout function for 443 max retries, save some time
-# TODO - style = p.find_parent().attrs["style"][0], inline style and keyword MORE: https://www.thecollegefix.com/professor-defends-teaching-students-to-question-covid-19-propaganda-as-nyu-investigation-continues/
+# TODO - use regex for parent_class

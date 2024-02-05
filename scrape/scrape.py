@@ -24,26 +24,36 @@ def scrape_content(row):
     return content
 
 
-df = (
-    df.groupby("outlet").first().sort_values(by=["outlet_story_count"], ascending=False)
-)
-df["content"] = df.apply(scrape_content, axis=1)
-print(f"{df["content"].count()} out of {len(df)} rows of articles text are scraped")
-
-df.to_csv("scraped_per_outlet_8.csv", index=False)
-
-# {'article.*ody': 96, 'article__text': 3, 'article-content': 15, 'full-article': 4, 'tds-content': 1, 'td-post-content': 2, 'entry-content': 31, 'story[-]?text': 2, 'Afg.*': 2, 'ssrcss': 1, '^wsw$': 0, 'story-body.*': 1, 'story_column': 1, '.*-page-content': 2, 'story-transcript': 1, 'body-description': 4, 'body-text': 2, 'body-content': 2, 'post-body': 8, 'single-post': 28, '^article$': 5, '.*-article': 12, '.*-content': 43, '.*_content': 7, 'article': 3, 'content': 3, 'body': 1, '<article>': 33, 'is this even used': 29}
-# 282 out of 320 rows of articles text are scraped
-
+# df = (
+#     df.groupby("outlet").first().sort_values(by=["outlet_story_count"], ascending=False)
+# )
 # df["content"] = df.apply(scrape_content, axis=1)
 # print(f"{df["content"].count()} out of {len(df)} rows of articles text are scraped")
-# df.to_csv("scraped_uniform_test_2.csv", index=False)
 
+# df.to_csv("scraped_per_outlet_10.csv", index=False)
+
+# {'article-content': 32, 'article__text': 4, 'article__blocks': 1, 'full-article': 4, 'article-output': 1, 'tds-content': 1, 'td-post-content': 3, 'entry-content': 38, 'story[-]?text': 2, 'Afg.*': 2, 'ssrcss': 1, '^wsw$': 0, 'story-two': 1, 'article.*ody': 68, '.*rticle_content': 1, 'story-body.*': 1, 'story_column': 1, '.*-page-content': 2, 'story-transcript': 1, 'body-description': 4, 'body-text': 2, 'body-content': 2, 'post-body': 8, 'the_content_wrapper': 1, 'mvp-content-main': 1, 'single-post': 26, '^body$': 3, '^article$': 2, '^content$': 26, '.*-content': 29, '.*_content': 5, '.*-article': 1, 'article': 2, 'content': 3, 'body': 1, '<article>': 35, 'is this even used': 21}
+# 282 out of 320 rows of articles text are scraped
+
+
+# scraped_per_outlet_9
+# {'article.*ody': 96, 'article__text': 3, 'article-content': 14, 'full-article': 4, 'tds-content': 1, 'td-post-content': 2, 'entry-content': 32, 'story[-]?text': 2, 'Afg.*': 2, 'ssrcss': 1, '^wsw$': 0, 'story-body.*': 1, 'story_column': 1, '.*-page-content': 2, 'story-transcript': 1, 'body-description': 4, 'body-text': 2, 'body-content': 2, 'post-body': 8, 'the_content_wrapper': 1, 'mvp-content-main': 1, 'single-post': 26, '^body$': 2, '^article$': 4, '^content$': 27, '.*-article': 9, '.*-content': 21, '.*_content': 5, 'article': 2, 'content': 3, 'body': 1, '<article>': 33, 'is this even used': 33}
+# 282 out of 320 rows of articles text are scraped
+
+df["content"] = df.apply(scrape_content, axis=1)
+print(f"{df["content"].count()} out of {len(df)} rows of articles text are scraped")
+df.to_csv("scraped_uniform_test_4.csv", index=False)
+
+# scraped_uniform_test_3
+# {'article-content': 738, 'article__text': 57, 'article__blocks': 24, 'full-article': 67, 'article-output': 25, 'tds-content': 25, 'td-post-content': 63, 'entry-content': 815, 'story[-]?text': 50, 'Afg.*': 41, 'ssrcss': 25, '^wsw$': 0, 'story-two': 25, 'article.*ody': 1405, '.*rticle_content': 23, 'story-body.*': 17, 'story_column': 20, '.*-page-content': 46, 'story-transcript': 25, 'body-description': 97, 'body-text': 28, 'body-content': 40, 'post-body': 174, 'the_content_wrapper': 16, 'mvp-content-main': 16, 'single-post': 468, '^body$': 57, '^article$': 69, '^content$': 380, '.*-content': 537, '.*_content': 64, '.*-article': 11, 'article': 42, 'content': 51, 'body': 3, '<article>': 697, 'is this even used': 435}
+# 5595 out of 6345 rows of articles text are scraped
+
+# scraped_uniform_test_2
 # {'article.*ody': 2065, 'single-post': 1317, 'full-article': 91, 'tds-content': 0, 'body-description': 97, 'body-text': 29, 'body-content': 25, 'post-body': 152, 'story.*text': 267, 'Afg.*': 38, 'ssrcss': 25, 'wsw': 28, 'story-transcript': 25, '.*-content': 1192, '.*_content': 115, 'content': 122, 'body': 89, 'article': 590}
 # 5754 out of 6345 rows of articles text are scraped
 
 
-# test_url = "https://www.propublica.org/article/tax-funded-forest-institute-in-oregon-misled-public-may-have-broken-state-law-audit-finds"
+# test_url = "https://news.yahoo.com/italy-imposes-tough-virus-curbs-112234669.html"
 # outlet.uniform_scrape(test_url)
 
 
@@ -53,13 +63,43 @@ df.to_csv("scraped_per_outlet_8.csv", index=False)
 
 # rt: sometimes max retries
 
-# newsnation: This site is currently unavailable to visitors from the European Economic Area while we work to ensure your data is protected in accordance with applicable EU laws.
+# abcnews: page unavailable
+# ajc: unavailable in europe (GDPR)
+# axios: enable javascript to continue
+# baltimoresun: paywall
+# billoreilly: not available in the country
+# bizjournals: Request unsuccessful. Incapsula incident ID: 770001240051159111-56456275709533957
+# bloomberg: are you a robot
+# bringmethenews: need js and disable adblocker
+# cato: no soup
+# cfo: default to home
+# chron: access denied
+# cnsnews: not found, default to home
+# dissenter: 404
+# financialbuzz: not found
+# ft: locked by paywall
+# hillreporter: 404
+# houstonchronicle: access denied
+# judicialwatch: access limited
+# laconiadailysun: unavailable 451
+# meidastouch: 404
+# nationalreview: javascript website
+# newsday: not found
+# newsnation: site unavailable for european
+# news.yahoo: no soup
+# nysun: page not found
 # oann: page not found
 # ozy: page not found
+# post-gazette: timeout
 # quillette: paywall locked
-# newsday: not found
-# baltimoresun: paywall
-# ajc: unavailable in europe (GDPR)
-# judicialwatch: access limited
+# realclearpolitics: js and adblocker
+# reuters: no soup
+# seattlepi: access denied
 # sfchronicle: access denied
-# hillreporter: 404
+# sfgate: no robots
+# sputniknews: not private ssl error
+# thegrio: default to google.com
+# the hill: access denied
+# wsj: no soup
+# wvgazzettemail: unavailable in the EU
+# zerohedge: article is archived or 404
