@@ -156,7 +156,6 @@ def uniform_scrape(url):
         content = ""
         for p in article.find_all("p"):
             parent_attrs = p.find_parent().attrs
-            print(parent_attrs, p.get_text())
 
             try:
                 parent_class = parent_attrs["class"][0]
