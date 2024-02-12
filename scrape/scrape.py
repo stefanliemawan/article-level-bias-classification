@@ -1,7 +1,7 @@
 import pandas as pd
 import outlet
 
-df = pd.read_csv("../dataset/BAT/ad_fontes/articles_sorted_by_outlet_occurences.csv")
+df = pd.read_csv("../articles_sorted_by_outlet_occurences.csv")
 # print(df.head())
 
 

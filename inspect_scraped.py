@@ -3,17 +3,17 @@ import pandas as pd
 
 
 def merge_df():
-    df = pd.read_csv("scrape/scraped_uniform_test_4.csv", index_col=0)
+    df = pd.read_csv("cleaned_dataset/scrape/scraped_uniform_test_4.csv", index_col=0)
 
     scraped_7_df = pd.read_csv("scrape/scraped_7.csv", index_col=0)
 
     df[df.isnull()] = scraped_7_df
 
-    df.to_csv("scraped_merged.csv")
+    df.to_csv("cleaned_dataset/scraped_merged.csv")
 
 
 def clean_df():
-    df = pd.read_csv("scraped_merged.csv", index_col=0)
+    df = pd.read_csv("cleaned_dataset/scraped_merged.csv", index_col=0)
     df = df[df["content"].notna()]
 
     # invalid content but notna
@@ -27,9 +27,7 @@ def clean_df():
     )  # theres a solution for this one, update if rescraped
 
     df.reset_index(inplace=True)
-    df.to_csv("scraped_merged_clean_v1.csv")
-
-    # [5358 rows x 8 columns]
+    df.to_csv("cleaned_dataset/scraped_merged_clean_v1.csv")
 
 
 def delete_noise(row):
@@ -51,11 +49,11 @@ def delete_noise(row):
 
 
 def clean_content():
-    df = pd.read_csv("scraped_merged_clean_v1.csv", index_col=0)
+    df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v1.csv", index_col=0)
 
     df["content"] = df.apply(delete_noise, axis=1)
 
-    df.to_csv("scraped_merged_clean_v2.csv")
+    df.to_csv("cleaned_dataset/scraped_merged_clean_v2.csv")
 
 
 # merge_df()
