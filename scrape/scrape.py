@@ -1,5 +1,4 @@
 import pandas as pd
-import functions
 import outlet
 
 df = pd.read_csv("../dataset/BAT/ad_fontes/articles_sorted_by_outlet_occurences.csv")
@@ -13,7 +12,6 @@ def scrape_content(row):
 
     try:
         print(f"\nscraping {row.name} {url}...\n")
-        # content = functions.scrape_outlet(url)
         content = outlet.uniform_scrape(url)
     except KeyError:
         # print(f"KeyError for {url}")
@@ -32,37 +30,26 @@ def scrape_content(row):
 
 # df.to_csv("scraped_per_outlet_10.csv", index=False)
 
+# scraped_per_outlet_10 (I think)
 # {'article-content': 32, 'article__text': 4, 'article__blocks': 1, 'full-article': 4, 'article-output': 1, 'tds-content': 1, 'td-post-content': 3, 'entry-content': 38, 'story[-]?text': 2, 'Afg.*': 2, 'ssrcss': 1, '^wsw$': 0, 'story-two': 1, 'article.*ody': 68, '.*rticle_content': 1, 'story-body.*': 1, 'story_column': 1, '.*-page-content': 2, 'story-transcript': 1, 'body-description': 4, 'body-text': 2, 'body-content': 2, 'post-body': 8, 'the_content_wrapper': 1, 'mvp-content-main': 1, 'single-post': 26, '^body$': 3, '^article$': 2, '^content$': 26, '.*-content': 29, '.*_content': 5, '.*-article': 1, 'article': 2, 'content': 3, 'body': 1, '<article>': 35, 'is this even used': 21}
 # 282 out of 320 rows of articles text are scraped
 
 
-# scraped_per_outlet_9
-# {'article.*ody': 96, 'article__text': 3, 'article-content': 14, 'full-article': 4, 'tds-content': 1, 'td-post-content': 2, 'entry-content': 32, 'story[-]?text': 2, 'Afg.*': 2, 'ssrcss': 1, '^wsw$': 0, 'story-body.*': 1, 'story_column': 1, '.*-page-content': 2, 'story-transcript': 1, 'body-description': 4, 'body-text': 2, 'body-content': 2, 'post-body': 8, 'the_content_wrapper': 1, 'mvp-content-main': 1, 'single-post': 26, '^body$': 2, '^article$': 4, '^content$': 27, '.*-article': 9, '.*-content': 21, '.*_content': 5, 'article': 2, 'content': 3, 'body': 1, '<article>': 33, 'is this even used': 33}
-# 282 out of 320 rows of articles text are scraped
+# df["content"] = df.apply(scrape_content, axis=1)
+# print(f"{df["content"].count()} out of {len(df)} rows of articles text are scraped")
+# df.to_csv("scraped_uniform_4.csv", index=False)
 
-df["content"] = df.apply(scrape_content, axis=1)
-print(f"{df["content"].count()} out of {len(df)} rows of articles text are scraped")
-df.to_csv("scraped_uniform_test_4.csv", index=False)
-
-# scraped_uniform_test_4
+# scraped_uniform_4
 # {'article-content': 741, 'c-blog-post__content': 25, 'cbn-text-formatted': 24, 'RichTextStoryBody': 30, 'a-content': 187, 'article-restofcontent': 17, 'node__content': 46, 'content-core': 8, 'article__text': 33, 'article__blocks': 24, 'full-article': 42, 'article-output': 24, 'tds-content': 25, 'td-post-content': 63, 'entry-content': 817, 'story[-]?text': 50, 'Afg.*': 41, 'ssrcss': 25, '^wsw$': 0, 'story-two': 25, 'article.*ody': 1364, 'mvp-content-main': 16, '.*rticle_content': 24, 'story-body.*': 17, 'story_column': 20, '.*-page-content': 25, 'story-transcript': 25, 'the_content_wrapper': 16, 'body-description': 84, 'body-text': 29, 'body-content': 40, 'post-body': 174, '<article>': 3280, '^single-post$': 63, '^body$': 30, '^article$': 3, '^content$': 36, '.*-content': 203, '.*_content': 32, '.*-article': 0, 'article': 0, 'content': 26, 'body': 2, 'is this even used': 462}
 # 5594 out of 6345 rows of articles text are scraped
 
-# scraped_uniform_test_3
-# {'article-content': 738, 'article__text': 57, 'article__blocks': 24, 'full-article': 67, 'article-output': 25, 'tds-content': 25, 'td-post-content': 63, 'entry-content': 815, 'story[-]?text': 50, 'Afg.*': 41, 'ssrcss': 25, '^wsw$': 0, 'story-two': 25, 'article.*ody': 1405, '.*rticle_content': 23, 'story-body.*': 17, 'story_column': 20, '.*-page-content': 46, 'story-transcript': 25, 'body-description': 97, 'body-text': 28, 'body-content': 40, 'post-body': 174, 'the_content_wrapper': 16, 'mvp-content-main': 16, 'single-post': 468, '^body$': 57, '^article$': 69, '^content$': 380, '.*-content': 537, '.*_content': 64, '.*-article': 11, 'article': 42, 'content': 51, 'body': 3, '<article>': 697, 'is this even used': 435}
-# 5595 out of 6345 rows of articles text are scraped
-
-# scraped_uniform_test_2
-# {'article.*ody': 2065, 'single-post': 1317, 'full-article': 91, 'tds-content': 0, 'body-description': 97, 'body-text': 29, 'body-content': 25, 'post-body': 152, 'story.*text': 267, 'Afg.*': 38, 'ssrcss': 25, 'wsw': 28, 'story-transcript': 25, '.*-content': 1192, '.*_content': 115, 'content': 122, 'body': 89, 'article': 590}
-# 5754 out of 6345 rows of articles text are scraped
-
-
-# test_url = "https://news.yahoo.com/italy-imposes-tough-virus-curbs-112234669.html"
+# test_url = (
+#     "https://www.libertynation.com/meghan-and-harry-racism-and-media-behind-megxit/"
+# )
 # outlet.uniform_scrape(test_url)
 
-
-# {'article.*ody': 46, 'article__story': 0, 'mainArticleDiv': 0, 'story-transcript': 0, 'full-article': 1, 'tds-content': 1, 'body-description': 8, 'body-text': 1, 'body-content': 0, 'post-body': 7, 'single-post': 71, 'story.*text': 12, 'Afg.*': 1, 'ssrcss': 1, 'wsw': 1, '.*-content': 39, '.*_content': 12, 'body': 112, 'article': 58}
-# 276 out of 320 rows of articles text are scraped
+# TODO - new compatibility (not yet applied and scraped)
+# libertynation
 
 
 # rt: sometimes max retries

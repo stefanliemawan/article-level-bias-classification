@@ -24,6 +24,7 @@ REGEX_STRINGS = [
     r"ssrcss",
     r"^wsw$",
     r"story-two",
+    r"et_pb_module et_pb_post_content et_pb_post_content_0_tb_body",  # new
     r"article.*ody",
     r"mvp-content-main",
     r".*rticle_content",

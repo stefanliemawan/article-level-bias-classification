@@ -36,6 +36,8 @@ def delete_noise(row):
     for index, sentence in enumerate(sentences.copy()):
         if "Link Copied" in sentence:
             sentences[index] = sentence[11:]
+        if "Already a subscriber?" in sentence:
+            sentences.pop(index)
         if re.match(r"[Cc]opyright.*\d{4}", sentence):
             return ". ".join(sentences[:index])
 
