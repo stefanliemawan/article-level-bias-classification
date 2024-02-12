@@ -21,6 +21,10 @@ def clean_df():
     df.drop(df[df["outlet"].str.startswith("quillette")].index, inplace=True)
     df.drop(df[df["outlet"].str.startswith("www.newsday")].index, inplace=True)
     df.drop(df[df["outlet"].str.startswith("www.oann")].index, inplace=True)
+    df.drop(df[df["outlet"].str.startswith("www.financialbuzz")].index, inplace=True)
+    df.drop(
+        df[df["outlet"].str.startswith("www.libertynation")].index, inplace=True
+    )  # theres a solution for this one, update if rescraped
 
     df.reset_index(inplace=True)
     df.to_csv("scraped_merged_clean_v1.csv")
@@ -55,5 +59,5 @@ def clean_content():
 
 
 # merge_df()
-# clean_df()
+clean_df()
 clean_content()
