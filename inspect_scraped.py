@@ -59,3 +59,13 @@ def clean_content():
 # merge_df()
 clean_df()
 clean_content()
+
+
+# MORE TEXT TO DELETE:
+
+# AT SENTENCE BEGINNING
+# "About this rating"
+# "Forgot Your Password?New to?SubscribePrint subscriber?Activateyour online access"
+# "This video can not be played"
+# "NewsNews|Dec 30, 2020csackariason@aspentimes. comShow CaptionsHide Captions" - email is different, use regex here
+# "Join the 3,900+ MTFP members who believe in the power of independent news. This quality reporting was made possible due in part to your contribution.  Thank you for supporting in-depth journalism in Montana. Sign up to get our reporting sent straight to your inbox every weekday morning. "

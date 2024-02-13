@@ -1,6 +1,5 @@
 import pandas as pd
 from transformers import AutoTokenizer
-from sklearn.linear_model import LinearRegression
 
 from transformers import TrainingArguments, Trainer
 from datasets import Dataset
@@ -8,28 +7,17 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from sklearn.metrics import root_mean_squared_error
 import numpy as np
 
-df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
-# [5274 rows x 9 columns]
 
-df["labels"] = df["reliability_score"]
-# df["features"] = df["content"]
-df["features"] = df["title"] + ". " + df["content"]
+def train_model(model_name):
+    tokeniser = AutoTokenizer.from_pretrained(model_name)
+    tokeniser.add_tokens("[TS]")  # title start
+    tokeniser.add_tokens("[TE]")  # title end
 
-dataset = Dataset.from_pandas(df[["features", "labels"]], preserve_index=False)
-dataset = dataset.train_test_split(test_size=0.2)
-
-tokeniser = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-
-tokenised_datasets = dataset.map(
-    lambda x: tokeniser(x["features"], padding="max_length", truncation=True),
-    batched=True,
-)
-
-
-def distilbert():
-    model = AutoModelForSequenceClassification.from_pretrained(
-        "distilbert-base-uncased", num_labels=1
+    tokenised_datasets = dataset.map(
+        lambda x: tokeniser(x["features"], padding="max_length", truncation=True),
+        batched=True,
     )
+    model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1)
 
     def compute_metrics(eval_pred):
         predictions, labels = eval_pred
@@ -58,7 +46,20 @@ def distilbert():
     trainer.train()
 
 
-distilbert()
+# df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
+df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2_hand_edited.csv", index_col=0)
+# [5274 rows x 9 columns]
+
+df["labels"] = df["reliability_score"]
+df["features"] = df["content"]
+# df["features"] = "[TS] " + df["title"] + " [TE] " + df["content"]
+
+dataset = Dataset.from_pandas(df[["features", "labels"]], preserve_index=False)
+dataset = dataset.train_test_split(test_size=0.2)
+
+train_model("bert-base-uncased")
+
+# seems better with just content without title?
 
 
 # title + ". " text, distilbert-base-uncased

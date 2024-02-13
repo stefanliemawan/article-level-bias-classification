@@ -49,6 +49,7 @@ def scrape_content(row):
 # outlet.uniform_scrape(test_url)
 
 # TODO - new compatibility (not yet applied and scraped)
+# TODO - scrape without filtering <strong> and <em>, clean the noises after
 # libertynation
 
 
