@@ -14,7 +14,7 @@ def merge_df():
 
 def clean_df():
     df = pd.read_csv("cleaned_dataset/scraped_merged.csv", index_col=0)
-    df = df[df["content"].notna()]
+    df.dropna(subset=["content"], inplace=True)
 
     # invalid content but notna
     df.drop(df[df["outlet"].str.startswith("hillreporter")].index, inplace=True)
@@ -35,9 +35,19 @@ def delete_noise(row):
 
     sentences = content.split(".")
 
+    noisy_texts = [
+        "Link Copied",
+        "About this rating",
+        "Forgot Your Password?New to?SubscribePrint subscriber?Activateyour online access",
+        "This video can not be played",
+    ]
+
     for index, sentence in enumerate(sentences.copy()):
-        if "Link Copied" in sentence:
-            sentences[index] = sentence[11:]
+        for noisy_text in noisy_texts:
+            if noisy_text in sentence:
+                sentences[index] = sentence[len(noisy_text) :]
+                if len(sentences[index]) == 0:
+                    return None
         if "Already a subscriber?" in sentence:
             sentences.pop(index)
         if re.match(r"[Cc]opyright.*\d{4}", sentence):
@@ -53,6 +63,8 @@ def clean_content():
 
     df["content"] = df.apply(delete_noise, axis=1)
 
+    df.dropna(subset=["content"], inplace=True)
+
     df.to_csv("cleaned_dataset/scraped_merged_clean_v2.csv")
 
 
@@ -64,8 +76,5 @@ clean_content()
 # MORE TEXT TO DELETE:
 
 # AT SENTENCE BEGINNING
-# "About this rating"
-# "Forgot Your Password?New to?SubscribePrint subscriber?Activateyour online access"
-# "This video can not be played"
 # "NewsNews|Dec 30, 2020csackariason@aspentimes. comShow CaptionsHide Captions" - email is different, use regex here
-# "Join the 3,900+ MTFP members who believe in the power of independent news. This quality reporting was made possible due in part to your contribution.  Thank you for supporting in-depth journalism in Montana. Sign up to get our reporting sent straight to your inbox every weekday morning. "
+# "Join the 3,900+ MTFP members who believe in the power of independent news. This quality reporting was made possible due in part to your contribution.  Thank you for supporting in-depth journalism in Montana. Sign up to get our reporting sent straight to your inbox every weekday morning.",
