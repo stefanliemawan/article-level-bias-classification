@@ -33,7 +33,12 @@ def clean_df():
 def delete_noise(row):
     content = row["content"].replace("\n", "")
 
-    sentences = content.split(".")
+    sentences = content.split(". ")
+
+    if sentences[0].startswith(
+        "Join the 3,900+ MTFP members who believe in the power of independent news"
+    ):
+        sentences = sentences[3:]
 
     noisy_texts = [
         "Link Copied",
@@ -43,6 +48,12 @@ def delete_noise(row):
     ]
 
     for index, sentence in enumerate(sentences.copy()):
+        if sentence.startswith("NewsNews|"):
+            sentences[index] = re.sub(
+                r"NewsNews\|\w{3} \d{1,2}, \d{4}\S*@\S*\.com(?:Show CaptionsHide Captions)?",
+                "",
+                sentence,
+            )
         for noisy_text in noisy_texts:
             if noisy_text in sentence:
                 sentences[index] = sentence[len(noisy_text) :]
@@ -71,10 +82,3 @@ def clean_content():
 # merge_df()
 clean_df()
 clean_content()
-
-
-# MORE TEXT TO DELETE:
-
-# AT SENTENCE BEGINNING
-# "NewsNews|Dec 30, 2020csackariason@aspentimes. comShow CaptionsHide Captions" - email is different, use regex here
-# "Join the 3,900+ MTFP members who believe in the power of independent news. This quality reporting was made possible due in part to your contribution.  Thank you for supporting in-depth journalism in Montana. Sign up to get our reporting sent straight to your inbox every weekday morning.",
