@@ -1,7 +1,7 @@
 import pandas as pd
 from transformers import AutoTokenizer
 from imblearn.over_sampling import SMOTE
-
+import re
 from peft import get_peft_model, LoraConfig, TaskType
 from transformers import (
     TrainingArguments,
@@ -17,8 +17,19 @@ from sklearn.metrics import (
     recall_score,
     f1_score,
 )
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# import nltk
+# nltk.download("stopwords")
+# nltk.download("punkt")
+# nltk.download("wordnet")
 
 import numpy as np
+
+LEMMATIZER = WordNetLemmatizer()
+STOP_WORDS = set(stopwords.words("english"))
 
 
 def compute_rmse(eval_pred):
@@ -28,7 +39,52 @@ def compute_rmse(eval_pred):
     return {"rmse": rmse}
 
 
+def compute_metrics_classification(pred):
+    labels = pred.label_ids.flatten().tolist()
+    preds = pred.predictions.argmax(-1)
+
+    accuracy = accuracy_score(labels, preds)
+    precision = precision_score(labels, preds, average="weighted", zero_division=1)
+    recall = recall_score(labels, preds, average="weighted", zero_division=1)
+    f1 = f1_score(labels, preds, average="weighted", zero_division=1)
+
+    return {
+        "accuracy": accuracy,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+    }
+
+
+def print_class_distribution(dataset):
+    for key, dataset_dict in dataset.items():
+        print(key)
+        labels = dataset_dict["labels"]
+        class_distribution = np.bincount(labels)
+
+        for class_idx, count in enumerate(class_distribution):
+            print(f"Class {class_idx}: {count} samples")
+        print()
+
+
+def preprocess_content(row):
+    content = row["content"]
+    content = re.sub(r"[\.\?\!\,\:\;\"]", "", content)
+    tokenised_content = word_tokenize(content)
+
+    lemmatized_content = [LEMMATIZER.lemmatize(token) for token in tokenised_content]
+
+    preprocessed_content = [
+        word for word in lemmatized_content if word not in STOP_WORDS
+    ]
+    preprocessed_content = " ".join(preprocessed_content)
+    # print(preprocessed_content)
+
+    return preprocessed_content
+
+
 def create_dataset(df, class_ranges=[], regression=False):
+    df["content"] = df.apply(preprocess_content, axis=1)
     df["features"] = df["title"] + ". " + df["content"]
 
     if regression is True:
@@ -55,35 +111,6 @@ def create_dataset(df, class_ranges=[], regression=False):
     )
 
     return dataset
-
-
-def compute_metrics_classification(pred):
-    labels = pred.label_ids.flatten().tolist()
-    preds = pred.predictions.argmax(-1)
-
-    accuracy = accuracy_score(labels, preds)
-    precision = precision_score(labels, preds, average="weighted", zero_division=1)
-    recall = recall_score(labels, preds, average="weighted", zero_division=1)
-    f1 = f1_score(labels, preds, average="weighted", zero_division=1)
-
-    return {
-        "accuracy": accuracy,
-        "precision": precision,
-        "recall": recall,
-        "f1": f1,
-    }
-
-
-def print_class_distribution(dataset):
-
-    for key, dataset_dict in dataset.items():
-        print(key)
-        labels = dataset_dict["labels"]
-        class_distribution = np.bincount(labels)
-
-        for class_idx, count in enumerate(class_distribution):
-            print(f"Class {class_idx}: {count} samples")
-        print()
 
 
 def tokenise_dataset(dataset, model_name, oversampling=False):
@@ -118,6 +145,8 @@ def tokenise_dataset(dataset, model_name, oversampling=False):
                 "valid": tokenised_dataset["valid"],
             }
         )
+
+    print(tokeniser.decode(tokenised_dataset["train"]["input_ids"][0]))
 
     return tokenised_dataset
 
@@ -226,9 +255,9 @@ df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
 
 # TODO - pick a dedicated, balanced, test set
 
-train_regression(df, "distilbert-base-uncased")
+# train_regression(df, "distilbert-base-uncased")
 # train_classification(df, "distilbert-base-uncased")
-# train_classification_with_oversampling(df, "distilbert-base-uncased")
+train_classification_with_oversampling(df, "distilbert-base-uncased")
 
 # train_peft(df, "FacebookAI/roberta-base")
 
@@ -239,8 +268,14 @@ train_regression(df, "distilbert-base-uncased")
 # v2 classification 3 classes, title + ". " text, distilbert-base-uncased
 # {'eval_loss': 0.9777273535728455, 'eval_accuracy': 0.6261859582542695, 'eval_precision': 0.6238839421180123, 'eval_recall': 0.6261859582542695, 'eval_f1': 0.6178878872528192, 'eval_runtime': 22.3146, 'eval_samples_per_second': 23.617, 'eval_steps_per_second': 2.958, 'epoch': 3.0}
 
+# v2 classification 3 classes, title + ". " text, distilbert-base-uncased, preprocessed text (lemma and stop words gone)
+# {'eval_loss': 0.825508713722229, 'eval_accuracy': 0.6717267552182163, 'eval_precision': 0.6753208471113097, 'eval_recall': 0.6717267552182163, 'eval_f1': 0.667779770031748, 'eval_runtime': 20.8621, 'eval_samples_per_second': 25.261, 'eval_steps_per_second': 3.164, 'epoch': 3.0}
+
 # v2 classification_with_oversampling 3 classes, title + ". " text, distilbert-base-uncased
 # {'eval_loss': 1.0841343402862549, 'eval_accuracy': 0.6793168880455408, 'eval_precision': 0.6717309618347154, 'eval_recall': 0.6793168880455408, 'eval_f1': 0.6699090288605012, 'eval_runtime': 20.7939, 'eval_samples_per_second': 25.344, 'eval_steps_per_second': 3.174, 'epoch': 3.0}
+
+# v2 classification_with_oversampling 3 classes, title + ". " text, distilbert-base-uncased,preprocessed text (lemma and stop words gone)
+# {'eval_loss': 0.9315553903579712, 'eval_accuracy': 0.6774193548387096, 'eval_precision': 0.6712804232196997, 'eval_recall': 0.6774193548387096, 'eval_f1': 0.6688576898245505, 'eval_runtime': 20.9084, 'eval_samples_per_second': 25.205, 'eval_steps_per_second': 3.157, 'epoch': 3.0}
 
 # v2 classification (peft) 3 classes, title + ". " text, roberta-base
 # {'eval_loss': 0.28613439202308655, 'eval_accuracy': 0.4857685009487666, 'eval_precision': 0.7502025355652453, 'eval_recall': 0.4857685009487666, 'eval_f1': 0.3176417273126035, 'eval_runtime': 37.9815, 'eval_samples_per_second': 13.875, 'eval_steps_per_second': 1.738, 'epoch': 3.0}
