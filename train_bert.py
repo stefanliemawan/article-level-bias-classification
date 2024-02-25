@@ -6,7 +6,6 @@ from peft import get_peft_model, LoraConfig, TaskType
 from transformers import (
     TrainingArguments,
     Trainer,
-    AutoModelForSeq2SeqLM,
     AutoTokenizer,
     AutoModelForSequenceClassification,
 )
@@ -75,21 +74,32 @@ def compute_metrics_classification(pred):
     }
 
 
+def print_class_distribution(dataset):
+
+    for key, dataset_dict in dataset.items():
+        print(key)
+        labels = dataset_dict["labels"]
+        class_distribution = np.bincount(labels)
+
+        for class_idx, count in enumerate(class_distribution):
+            print(f"Class {class_idx}: {count} samples")
+        print()
+
+
 def tokenise_dataset(dataset, model_name, oversampling=False):
     tokeniser = AutoTokenizer.from_pretrained(model_name)
 
-    tokenised_dataset = dataset.map(
-        lambda x: tokeniser(
-            x["features"], padding="max_length", truncation=True, max_length=512
-        ),
-        batched=True,
-    )
     # tokenised_dataset = dataset.map(
     #     lambda x: tokeniser(
-    #         x["features"], padding="max_length", truncation=True
+    #         x["features"], padding="max_length", truncation=True, max_length=512
     #     ),
     #     batched=True,
     # )
+
+    tokenised_dataset = dataset.map(
+        lambda x: tokeniser(x["features"], padding="max_length", truncation=True),
+        batched=True,
+    )
 
     if oversampling:
         smote = SMOTE(random_state=42)
@@ -98,11 +108,6 @@ def tokenise_dataset(dataset, model_name, oversampling=False):
         y_train = np.asarray(tokenised_dataset["train"]["labels"])
 
         features_oversampled, labels_oversampled = smote.fit_resample(x_train, y_train)
-
-        class_distribution = np.bincount(labels_oversampled)
-
-        for class_idx, count in enumerate(class_distribution):
-            print(f"Class {class_idx}: {count} samples")
 
         tokenised_dataset = DatasetDict(
             {
@@ -113,8 +118,6 @@ def tokenise_dataset(dataset, model_name, oversampling=False):
                 "valid": tokenised_dataset["valid"],
             }
         )
-
-    print(tokenised_dataset)
 
     return tokenised_dataset
 
@@ -154,7 +157,7 @@ def train(
 
 def train_regression(df, model_name="distilbert-base-uncased"):
     dataset = create_dataset(df, regression=True)
-    tokenised_dataset = tokenise_dataset(dataset, model_name, oversampling=True)
+    tokenised_dataset = tokenise_dataset(dataset, model_name)
 
     model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1)
 
@@ -165,6 +168,8 @@ def train_classification(df, model_name="distilbert-base-uncased"):
     class_ranges = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
     dataset = create_dataset(df, class_ranges)
     tokenised_dataset = tokenise_dataset(dataset, model_name)
+
+    print_class_distribution(tokenised_dataset)
 
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name, num_labels=len(class_ranges)
@@ -177,6 +182,8 @@ def train_classification_with_oversampling(df, model_name="distilbert-base-uncas
     class_ranges = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
     dataset = create_dataset(df, class_ranges)
     tokenised_dataset = tokenise_dataset(dataset, model_name, oversampling=True)
+
+    print_class_distribution(tokenised_dataset)
 
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name, num_labels=len(class_ranges)
@@ -219,7 +226,7 @@ df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
 
 # TODO - pick a dedicated, balanced, test set
 
-# train_regression(df, "distilbert-base-uncased")
+train_regression(df, "distilbert-base-uncased")
 # train_classification(df, "distilbert-base-uncased")
 # train_classification_with_oversampling(df, "distilbert-base-uncased")
 
@@ -227,8 +234,7 @@ df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
 
 
 # v2 regression, title + ". " text, distilbert-base-uncased
-# {'eval_loss': 36.518577575683594, 'eval_rmse': 6.043060302734375, 'eval_runtime': 25.704, 'eval_samples_per_second': 25.638, 'eval_steps_per_second': 3.229, 'epoch': 3.0}
-# {'eval_loss': 47.13957977294922, 'eval_rmse': 6.865826606750488, 'eval_runtime': 20.4186, 'eval_samples_per_second': 25.81, 'eval_steps_per_second': 3.232, 'epoch': 3.0}
+# {'eval_loss': 38.86741256713867, 'eval_rmse': 6.234373092651367, 'eval_runtime': 24.2838, 'eval_samples_per_second': 21.702, 'eval_steps_per_second': 2.718, 'epoch': 3.0}
 
 # v2 classification 3 classes, title + ". " text, distilbert-base-uncased
 # {'eval_loss': 0.9777273535728455, 'eval_accuracy': 0.6261859582542695, 'eval_precision': 0.6238839421180123, 'eval_recall': 0.6261859582542695, 'eval_f1': 0.6178878872528192, 'eval_runtime': 22.3146, 'eval_samples_per_second': 23.617, 'eval_steps_per_second': 2.958, 'epoch': 3.0}
