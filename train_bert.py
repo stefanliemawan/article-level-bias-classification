@@ -1,6 +1,7 @@
 import pandas as pd
 from transformers import AutoTokenizer
 from imblearn.over_sampling import SMOTE
+import torch
 import re
 from peft import get_peft_model, LoraConfig, TaskType
 from transformers import (
@@ -21,15 +22,34 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-# import nltk
-# nltk.download("stopwords")
-# nltk.download("punkt")
-# nltk.download("wordnet")
-
+from sklearn.utils.class_weight import compute_class_weight
 import numpy as np
 
-LEMMATIZER = WordNetLemmatizer()
+LEMMATISER = WordNetLemmatizer()
 STOP_WORDS = set(stopwords.words("english"))
+
+SEED = 42
+# CLASS_WEIGHTS = [2.53631554, 0.7314468, 0.80738019]
+CLASS_WEIGHTS = [2.57981651, 0.72812015, 0.80711825]  # train only
+
+
+# y = df["labels"]
+# x = compute_class_weight(class_weight="balanced", classes=np.unique(y), y=y)
+# print(x)
+
+
+class CustomTrainer(Trainer):
+    def compute_loss(self, model, inputs, return_outputs=False):
+        labels = inputs.pop("labels")
+        outputs = model(**inputs)
+
+        logits = outputs.get("logits")
+        loss_fct = torch.nn.CrossEntropyLoss(weight=torch.tensor(CLASS_WEIGHTS)).to(
+            "mps"
+        )
+        loss = loss_fct(logits.view(-1, self.model.config.num_labels), labels.view(-1))
+
+        return (loss, outputs) if return_outputs else loss
 
 
 def compute_rmse(eval_pred):
@@ -69,23 +89,22 @@ def print_class_distribution(dataset):
 
 def preprocess_content(row):
     content = row["content"]
-    content = re.sub(r"[\.\?\!\,\:\;\"]", "", content)
+    # content = re.sub(r"[\.\?\!\,\:\;\"]", "", content)
     tokenised_content = word_tokenize(content)
 
-    lemmatized_content = [LEMMATIZER.lemmatize(token) for token in tokenised_content]
+    lemmatised_content = [LEMMATISER.lemmatize(token) for token in tokenised_content]
 
     preprocessed_content = [
-        word for word in lemmatized_content if word not in STOP_WORDS
+        word for word in lemmatised_content if word not in STOP_WORDS
     ]
     preprocessed_content = " ".join(preprocessed_content)
-    # print(preprocessed_content)
 
     return preprocessed_content
 
 
 def create_dataset(df, class_ranges=[], regression=False):
-    df["content"] = df.apply(preprocess_content, axis=1)
     df["features"] = df["title"] + ". " + df["content"]
+    # df["features"] = df["content"]
 
     if regression is True:
         df["labels"] = df["reliability_score"]
@@ -99,8 +118,9 @@ def create_dataset(df, class_ranges=[], regression=False):
         df["labels"] = df["reliability_score"].apply(map_to_class)
 
     dataset = Dataset.from_pandas(df[["features", "labels"]], preserve_index=False)
-    dataset = dataset.train_test_split(test_size=0.2)
-    test_valid_dataset = dataset["test"].train_test_split(test_size=0.5)
+    dataset = dataset.train_test_split(test_size=0.2, seed=SEED)
+
+    test_valid_dataset = dataset["test"].train_test_split(test_size=0.5, seed=SEED)
 
     dataset = DatasetDict(
         {
@@ -116,20 +136,13 @@ def create_dataset(df, class_ranges=[], regression=False):
 def tokenise_dataset(dataset, model_name, oversampling=False):
     tokeniser = AutoTokenizer.from_pretrained(model_name)
 
-    # tokenised_dataset = dataset.map(
-    #     lambda x: tokeniser(
-    #         x["features"], padding="max_length", truncation=True, max_length=512
-    #     ),
-    #     batched=True,
-    # )
-
     tokenised_dataset = dataset.map(
         lambda x: tokeniser(x["features"], padding="max_length", truncation=True),
         batched=True,
     )
 
     if oversampling:
-        smote = SMOTE(random_state=42)
+        smote = SMOTE(random_state=SEED)
 
         x_train = np.asarray(tokenised_dataset["train"]["input_ids"])
         y_train = np.asarray(tokenised_dataset["train"]["labels"])
@@ -177,6 +190,13 @@ def train(
         eval_dataset=tokenised_dataset["valid"],
         compute_metrics=compute_metrics,
     )
+    # trainer = CustomTrainer(
+    #     model=model,
+    #     args=training_args,
+    #     train_dataset=tokenised_dataset["train"],
+    #     eval_dataset=tokenised_dataset["valid"],
+    #     compute_metrics=compute_metrics,
+    # )
 
     trainer.train()
 
@@ -194,6 +214,8 @@ def train_regression(df, model_name="distilbert-base-uncased"):
 
 
 def train_classification(df, model_name="distilbert-base-uncased"):
+    df["content"] = df.apply(preprocess_content, axis=1)
+
     class_ranges = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
     dataset = create_dataset(df, class_ranges)
     tokenised_dataset = tokenise_dataset(dataset, model_name)
@@ -208,6 +230,8 @@ def train_classification(df, model_name="distilbert-base-uncased"):
 
 
 def train_classification_with_oversampling(df, model_name="distilbert-base-uncased"):
+    df["content"] = df.apply(preprocess_content, axis=1)
+
     class_ranges = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
     dataset = create_dataset(df, class_ranges)
     tokenised_dataset = tokenise_dataset(dataset, model_name, oversampling=True)
@@ -218,17 +242,17 @@ def train_classification_with_oversampling(df, model_name="distilbert-base-uncas
         model_name, num_labels=len(class_ranges)
     )
 
-    train(
-        tokenised_dataset,
-        model,
-        epoch=3,
-    )
+    train(tokenised_dataset, model, epoch=3)
 
 
 def train_peft(df, model_name="FacebookAI/roberta-base"):
+    df["content"] = df.apply(preprocess_content, axis=1)
+
     class_ranges = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
     dataset = create_dataset(df, class_ranges)
     tokenised_dataset = tokenise_dataset(dataset, model_name)
+
+    print_class_distribution(tokenised_dataset)
 
     peft_config = LoraConfig(
         task_type=TaskType.SEQ_CLS,
@@ -256,29 +280,24 @@ df = pd.read_csv("cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
 # TODO - pick a dedicated, balanced, test set
 
 # train_regression(df, "distilbert-base-uncased")
-# train_classification(df, "distilbert-base-uncased")
-train_classification_with_oversampling(df, "distilbert-base-uncased")
-
-# train_peft(df, "FacebookAI/roberta-base")
+train_classification(df, "distilbert-base-uncased")
+# train_classification_with_oversampling(df, "distilbert-base-uncased")
 
 
-# v2 regression, title + ". " text, distilbert-base-uncased
-# {'eval_loss': 38.86741256713867, 'eval_rmse': 6.234373092651367, 'eval_runtime': 24.2838, 'eval_samples_per_second': 21.702, 'eval_steps_per_second': 2.718, 'epoch': 3.0}
+# v2 regression, title + ". " content, distilbert-base-uncased, preprocessed text (lemma and stop words gone)
+# {'eval_loss': 39.483707427978516, 'eval_rmse': 6.283606052398682, 'eval_runtime': 23.8558, 'eval_samples_per_second': 22.091, 'eval_steps_per_second': 2.767, 'epoch': 3.0}
 
-# v2 classification 3 classes, title + ". " text, distilbert-base-uncased
-# {'eval_loss': 0.9777273535728455, 'eval_accuracy': 0.6261859582542695, 'eval_precision': 0.6238839421180123, 'eval_recall': 0.6261859582542695, 'eval_f1': 0.6178878872528192, 'eval_runtime': 22.3146, 'eval_samples_per_second': 23.617, 'eval_steps_per_second': 2.958, 'epoch': 3.0}
-
-# v2 classification 3 classes, title + ". " text, distilbert-base-uncased, preprocessed text (lemma and stop words gone)
+# v2 classification 3 classes, title + ". " content, distilbert-base-uncased, preprocessed text (lemma and stop words gone)
 # {'eval_loss': 0.825508713722229, 'eval_accuracy': 0.6717267552182163, 'eval_precision': 0.6753208471113097, 'eval_recall': 0.6717267552182163, 'eval_f1': 0.667779770031748, 'eval_runtime': 20.8621, 'eval_samples_per_second': 25.261, 'eval_steps_per_second': 3.164, 'epoch': 3.0}
 
-# v2 classification_with_oversampling 3 classes, title + ". " text, distilbert-base-uncased
-# {'eval_loss': 1.0841343402862549, 'eval_accuracy': 0.6793168880455408, 'eval_precision': 0.6717309618347154, 'eval_recall': 0.6793168880455408, 'eval_f1': 0.6699090288605012, 'eval_runtime': 20.7939, 'eval_samples_per_second': 25.344, 'eval_steps_per_second': 3.174, 'epoch': 3.0}
+# v2 classification 3 classes, content only, distilbert-base-uncased, preprocessed text (lemma and stop words gone)
+# {'eval_loss': 0.8318021893501282, 'eval_accuracy': 0.681214421252372, 'eval_precision': 0.6873372214160806, 'eval_recall': 0.681214421252372, 'eval_f1': 0.6802339141881031, 'eval_runtime': 21.7416, 'eval_samples_per_second': 24.239, 'eval_steps_per_second': 3.036, 'epoch': 3.0}
 
-# v2 classification_with_oversampling 3 classes, title + ". " text, distilbert-base-uncased,preprocessed text (lemma and stop words gone)
-# {'eval_loss': 0.9315553903579712, 'eval_accuracy': 0.6774193548387096, 'eval_precision': 0.6712804232196997, 'eval_recall': 0.6774193548387096, 'eval_f1': 0.6688576898245505, 'eval_runtime': 20.9084, 'eval_samples_per_second': 25.205, 'eval_steps_per_second': 3.157, 'epoch': 3.0}
+# v2 classification 3 classes, title + ". " content, distilbert-base-uncased, preprocessed text (lemma and stop words gone), weighted loss
+# {'eval_loss': 0.9086113572120667, 'eval_accuracy': 0.683111954459203, 'eval_precision': 0.6884837573495253, 'eval_recall': 0.683111954459203, 'eval_f1': 0.6854369304488173, 'eval_runtime': 21.0092, 'eval_samples_per_second': 25.084, 'eval_steps_per_second': 3.141, 'epoch': 3.0}
 
-# v2 classification (peft) 3 classes, title + ". " text, roberta-base
-# {'eval_loss': 0.28613439202308655, 'eval_accuracy': 0.4857685009487666, 'eval_precision': 0.7502025355652453, 'eval_recall': 0.4857685009487666, 'eval_f1': 0.3176417273126035, 'eval_runtime': 37.9815, 'eval_samples_per_second': 13.875, 'eval_steps_per_second': 1.738, 'epoch': 3.0}
+# v2 classification_with_oversampling 3 classes, title + ". " content, distilbert-base-uncased,preprocessed text (lemma and stop words gone)
+# {'eval_loss': 0.8091003894805908, 'eval_accuracy': 0.7058823529411765, 'eval_precision': 0.7039783724648657, 'eval_recall': 0.7058823529411765, 'eval_f1': 0.6958079783637592, 'eval_runtime': 21.6961, 'eval_samples_per_second': 24.29, 'eval_steps_per_second': 3.042, 'epoch': 3.0}
 
 # LR RMSE: 424249227.8148557
 
