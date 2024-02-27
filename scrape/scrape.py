@@ -43,7 +43,9 @@ def scrape_content(row):
 # {'article-content': 741, 'c-blog-post__content': 25, 'cbn-text-formatted': 24, 'RichTextStoryBody': 30, 'a-content': 187, 'article-restofcontent': 17, 'node__content': 46, 'content-core': 8, 'article__text': 33, 'article__blocks': 24, 'full-article': 42, 'article-output': 24, 'tds-content': 25, 'td-post-content': 63, 'entry-content': 817, 'story[-]?text': 50, 'Afg.*': 41, 'ssrcss': 25, '^wsw$': 0, 'story-two': 25, 'article.*ody': 1364, 'mvp-content-main': 16, '.*rticle_content': 24, 'story-body.*': 17, 'story_column': 20, '.*-page-content': 25, 'story-transcript': 25, 'the_content_wrapper': 16, 'body-description': 84, 'body-text': 29, 'body-content': 40, 'post-body': 174, '<article>': 3280, '^single-post$': 63, '^body$': 30, '^article$': 3, '^content$': 36, '.*-content': 203, '.*_content': 32, '.*-article': 0, 'article': 0, 'content': 26, 'body': 2, 'is this even used': 462}
 # 5594 out of 6345 rows of articles text are scraped
 
-test_url = "https://truthout.org/articles/twitter-forces-ann-coulter-to-delete-tweet-praising-kyle-rittenhouse/"
+test_url = (
+    "https://www.thenation.com/article/politics/anne-applebaum-twilight-democracy/"
+)
 outlet.uniform_scrape(test_url)
 
 # TODO - new compatibility (not yet applied and scraped)
