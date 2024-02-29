@@ -148,7 +148,7 @@ def tokenise_dataset(dataset, tokeniser, oversampling=False, seed=None):
             }
         )
 
-    print(tokeniser.decode(tokenised_dataset["train"]["input_ids"][0]))
+    # print(tokeniser.decode(tokenised_dataset["train"]["input_ids"][0]))
 
     return tokenised_dataset
 
@@ -158,6 +158,7 @@ def train(
     model,
     compute_metrics=compute_metrics_classification,
     epoch=3,
+    batch_size=8,
     class_weights=[],
 ):
 
@@ -165,8 +166,8 @@ def train(
         output_dir="test_trainer",
         logging_strategy="epoch",
         evaluation_strategy="epoch",
-        per_device_train_batch_size=8,
-        per_device_eval_batch_size=8,
+        per_device_train_batch_size=batch_size,
+        per_device_eval_batch_size=batch_size,
         num_train_epochs=epoch,
         save_total_limit=2,
         save_strategy="no",

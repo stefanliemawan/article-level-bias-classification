@@ -11,7 +11,6 @@ import numpy as np
 import functions
 
 SEED = 42
-
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
 
@@ -30,7 +29,12 @@ def train_regression(df, model_name="distilbert-base-uncased", epoch=3):
     )
 
 
-def train_classification(df, model_name="distilbert-base-uncased", epoch=3):
+def train_classification(
+    df,
+    model_name="distilbert-base-uncased",
+    epoch=3,
+    batch_size=8,
+):
     df["content"] = df.apply(functions.preprocess_content, axis=1)
 
     dataset = functions.create_dataset(df, CLASS_RANGES, seed=SEED)
@@ -50,7 +54,13 @@ def train_classification(df, model_name="distilbert-base-uncased", epoch=3):
         model_name, num_labels=len(CLASS_RANGES)
     )
 
-    functions.train(tokenised_dataset, model, epoch=epoch, class_weights=class_weights)
+    functions.train(
+        tokenised_dataset,
+        model,
+        epoch=epoch,
+        batch_size=batch_size,
+        class_weights=class_weights,
+    )
 
 
 def train_classification_with_oversampling(
@@ -110,7 +120,8 @@ df = pd.read_csv("../cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
 # TODO - pick a dedicated, balanced, test set
 
 # train_regression(df, "distilbert-base-uncased")
-train_classification(df, "distilbert-base-uncased", epoch=3)
+# train_classification(df, "distilbert-base-uncased", epoch=4)
+train_classification(df, "allenai/longformer-base-4096", epoch=3, batch_size=1)
 # train_classification_with_oversampling(df, "distilbert-base-uncased")
 
 
@@ -139,3 +150,5 @@ train_classification(df, "distilbert-base-uncased", epoch=3)
 # contains. Here, the values range from 0 (least reliable, contains inaccurate/fabricated info) to 64 (most reliable, original fact reporting). (in samples max 58.67)
 
 # TODO - combine outlet and article reliability score
+
+# loss naik setelah 4 epoch, 4 best?
