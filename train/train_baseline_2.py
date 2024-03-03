@@ -1,15 +1,10 @@
-import pandas as pd
-from transformers import AutoTokenizer
-from peft import get_peft_model, LoraConfig, TaskType
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification,
-)
-
-from datasets import Dataset, DatasetDict
-from sklearn.utils.class_weight import compute_class_weight
-import numpy as np
 import functions
+import numpy as np
+import pandas as pd
+from datasets import Dataset, DatasetDict
+from peft import LoraConfig, TaskType, get_peft_model
+from sklearn.utils.class_weight import compute_class_weight
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
@@ -55,8 +50,8 @@ model = AutoModelForSequenceClassification.from_pretrained(
     MODEL_NAME, num_labels=len(CLASS_RANGES)
 )
 
-functions.train(tokenised_dataset, model, epoch=3)
+functions.train(tokenised_dataset, model, epoch=3, class_weights=class_weights)
 
 
-# v2 classification 3 classes, title + ". " content, distilbert-base-uncased, preprocessed text (lemma and stop words gone), weighted loss
-# {'eval_loss': 0.7332867383956909, 'eval_accuracy': 0.7185534591194969, 'eval_precision': 0.7185534591194969, 'eval_recall': 0.7185534591194969, 'eval_f1': 0.7185534591194969, 'eval_runtime': 27.3762, 'eval_samples_per_second': 23.232, 'eval_steps_per_second': 2.922, 'epoch': 3.0}
+# v2 train-test-valid classification 3 classes, title + ". " content, distilbert-base-uncased, preprocessed text (lemma and stop words gone), weighted loss
+# {'eval_loss': 0.8578395247459412, 'eval_accuracy': 0.6776729559748428, 'eval_precision': 0.6795493125424996, 'eval_recall': 0.6776729559748428, 'eval_f1': 0.6776522593187786, 'eval_runtime': 25.6869, 'eval_samples_per_second': 24.76, 'eval_steps_per_second': 3.114, 'epoch': 3.0}

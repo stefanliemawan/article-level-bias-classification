@@ -1,14 +1,9 @@
-import pandas as pd
-from transformers import AutoTokenizer
-from peft import get_peft_model, LoraConfig, TaskType
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification,
-)
-
-from sklearn.utils.class_weight import compute_class_weight
-import numpy as np
 import functions
+import numpy as np
+import pandas as pd
+from peft import LoraConfig, TaskType, get_peft_model
+from sklearn.utils.class_weight import compute_class_weight
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
