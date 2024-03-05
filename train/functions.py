@@ -14,7 +14,7 @@ from sklearn.metrics import (
     recall_score,
     root_mean_squared_error,
 )
-from transformers import Trainer, TrainingArguments
+from transformers import Trainer, TrainingArguments, default_data_collator
 
 LEMMATISER = WordNetLemmatizer()
 STOP_WORDS = set(stopwords.words("english"))
@@ -183,6 +183,7 @@ def train(
             compute_metrics=compute_metrics,
         )
     else:
+
         global CLASS_WEIGHTS
         CLASS_WEIGHTS = class_weights
         print(f"class_weights: {CLASS_WEIGHTS}")
@@ -193,6 +194,7 @@ def train(
             train_dataset=tokenised_dataset["train"],
             eval_dataset=tokenised_dataset["valid"],
             compute_metrics=compute_metrics,
+            data_collator=default_data_collator,
         )
 
     trainer.train()

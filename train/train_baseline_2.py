@@ -15,13 +15,9 @@ train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
-train_df["content"] = train_df.apply(functions.preprocess_content, axis=1)
-test_df["content"] = test_df.apply(functions.preprocess_content, axis=1)
-valid_df["content"] = valid_df.apply(functions.preprocess_content, axis=1)
-
-train_df["labels"] = train_df["reliability_score"]
-test_df["labels"] = test_df["reliability_score"]
-valid_df["labels"] = valid_df["reliability_score"]
+train_df["features"] = train_df.apply(functions.preprocess_content, axis=1)
+test_df["features"] = test_df.apply(functions.preprocess_content, axis=1)
+valid_df["features"] = valid_df.apply(functions.preprocess_content, axis=1)
 
 
 train_dataset = Dataset.from_pandas(
@@ -39,9 +35,11 @@ dataset = DatasetDict(
 )
 
 train_labels = train_dataset["labels"]
-class_weights = compute_class_weight(
-    class_weight="balanced", classes=np.unique(train_labels), y=train_labels
-)
+class_weights = np.asarray(
+    compute_class_weight(
+        class_weight="balanced", classes=np.unique(train_labels), y=train_labels
+    )
+).astype(np.float32)
 
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser, seed=SEED)
