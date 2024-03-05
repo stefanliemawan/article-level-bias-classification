@@ -1,23 +1,20 @@
-from imblearn.over_sampling import SMOTE
-import torch
-from transformers import (
-    TrainingArguments,
-    Trainer,
-)
-from datasets import Dataset, DatasetDict
-from sklearn.metrics import (
-    root_mean_squared_error,
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-)
-from nltk.stem import WordNetLemmatizer
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+import re
 
 import numpy as np
-
+import torch
+from datasets import Dataset, DatasetDict
+from imblearn.over_sampling import SMOTE
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    root_mean_squared_error,
+)
+from transformers import Trainer, TrainingArguments
 
 LEMMATISER = WordNetLemmatizer()
 STOP_WORDS = set(stopwords.words("english"))
@@ -81,6 +78,7 @@ def print_class_distribution(dataset):
 def preprocess_content(row):
     content = row["content"]
     # content = re.sub(r"[\.\?\!\,\:\;\"]", "", content)
+    content = re.sub(r"[\?\!\,\:\;\"]", "", content)
     tokenised_content = word_tokenize(content)
 
     lemmatised_content = [LEMMATISER.lemmatize(token) for token in tokenised_content]
@@ -124,9 +122,11 @@ def create_dataset(df, class_ranges=[], regression=False, seed=None):
     return dataset
 
 
-def tokenise_dataset(dataset, tokeniser, oversampling=False, seed=None):
+def tokenise_dataset(
+    dataset, tokeniser, oversampling=False, seed=None, truncation=True
+):
     tokenised_dataset = dataset.map(
-        lambda x: tokeniser(x["features"], padding="max_length", truncation=True),
+        lambda x: tokeniser(x["features"], padding="max_length", truncation=truncation),
         batched=True,
     )
 
