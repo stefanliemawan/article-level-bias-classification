@@ -28,7 +28,7 @@ CLASS_WEIGHTS = []
 
 class CustomTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False):
-        labels = inputs.pop("labels")
+        labels = inputs.pop("label")
         outputs = model(**inputs)
 
         logits = outputs.get("logits")
@@ -67,7 +67,7 @@ def compute_metrics_classification(pred):
 def print_class_distribution(dataset):
     for key, dataset_dict in dataset.items():
         print(key)
-        labels = dataset_dict["labels"]
+        labels = dataset_dict["label"]
         class_distribution = np.bincount(labels)
 
         for class_idx, count in enumerate(class_distribution):
@@ -96,7 +96,7 @@ def create_dataset(df, class_ranges=[], regression=False, seed=None):
     # df["features"] = df["content"]
 
     if regression is True:
-        df["labels"] = df["reliability_score"]
+        df["label"] = df["reliability_score"]
     else:
 
         def map_to_class(score):
@@ -104,9 +104,9 @@ def create_dataset(df, class_ranges=[], regression=False, seed=None):
                 if start <= score <= end:
                     return i
 
-        df["labels"] = df["reliability_score"].apply(map_to_class)
+        df["label"] = df["reliability_score"].apply(map_to_class)
 
-    dataset = Dataset.from_pandas(df[["features", "labels"]], preserve_index=False)
+    dataset = Dataset.from_pandas(df[["features", "label"]], preserve_index=False)
     dataset = dataset.train_test_split(test_size=0.2, seed=seed)
 
     test_valid_dataset = dataset["test"].train_test_split(test_size=0.5, seed=seed)
@@ -134,14 +134,14 @@ def tokenise_dataset(
         smote = SMOTE(random_state=seed)
 
         x_train = np.asarray(tokenised_dataset["train"]["input_ids"])
-        y_train = np.asarray(tokenised_dataset["train"]["labels"])
+        y_train = np.asarray(tokenised_dataset["train"]["label"])
 
         features_oversampled, labels_oversampled = smote.fit_resample(x_train, y_train)
 
         tokenised_dataset = DatasetDict(
             {
                 "train": Dataset.from_dict(
-                    {"input_ids": features_oversampled, "labels": labels_oversampled}
+                    {"input_ids": features_oversampled, "label": labels_oversampled}
                 ),
                 "test": tokenised_dataset["test"],
                 "valid": tokenised_dataset["valid"],

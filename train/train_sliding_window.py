@@ -39,20 +39,18 @@ test_df["features"] = test_df.apply(functions.preprocess_content, axis=1)
 valid_df["features"] = valid_df.apply(functions.preprocess_content, axis=1)
 
 train_dataset = Dataset.from_pandas(
-    train_df[["features", "labels"]], preserve_index=False
+    train_df[["features", "label"]], preserve_index=False
 )
-test_dataset = Dataset.from_pandas(
-    test_df[["features", "labels"]], preserve_index=False
-)
+test_dataset = Dataset.from_pandas(test_df[["features", "label"]], preserve_index=False)
 valid_dataset = Dataset.from_pandas(
-    valid_df[["features", "labels"]], preserve_index=False
+    valid_df[["features", "label"]], preserve_index=False
 )
 
 dataset = DatasetDict(
     {"train": train_dataset, "test": test_dataset, "valid": valid_dataset}
 )
 
-train_labels = train_df["labels"].values
+train_labels = train_df["label"].values
 class_weights = np.asarray(
     compute_class_weight(
         class_weight="balanced", classes=np.unique(train_labels), y=train_labels
@@ -73,6 +71,12 @@ tokenised_dataset = dataset.map(
     ),
 )
 
+tokenised_dataset.set_format(
+    "pt",
+    columns=["input_ids", "attention_mask", "overflow_to_sample_mapping"],
+    output_all_columns=True,
+)
+
 print(tokenised_dataset)
 
 functions.print_class_distribution(tokenised_dataset)
@@ -84,7 +88,7 @@ model = AutoModelForSequenceClassification.from_pretrained(
 
 class CustomTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False):
-        labels = inputs.pop("labels")
+        labels = inputs.pop("label")
         outputs = model(**inputs)
 
         logits = outputs.get("logits")
@@ -97,7 +101,6 @@ class CustomTrainer(Trainer):
 
 
 def torch_default_data_collator(features):
-    print("aha")
     if not isinstance(features[0], Mapping):
         features = [vars(f) for f in features]
     first = features[0]
@@ -113,15 +116,15 @@ def torch_default_data_collator(features):
             else first["label"]
         )
         dtype = torch.long if isinstance(label, int) else torch.float
-        batch["labels"] = torch.tensor([f["label"] for f in features], dtype=dtype)
+        batch["label"] = torch.tensor([f["label"] for f in features], dtype=dtype)
     elif "label_ids" in first and first["label_ids"] is not None:
         if isinstance(first["label_ids"], torch.Tensor):
-            batch["labels"] = torch.stack([f["label_ids"] for f in features])
+            batch["label"] = torch.stack([f["label_ids"] for f in features])
         else:
             dtype = (
                 torch.long if isinstance(first["label_ids"][0], int) else torch.float
             )
-            batch["labels"] = torch.tensor(
+            batch["label"] = torch.tensor(
                 [f["label_ids"] for f in features], dtype=dtype
             )
 
@@ -134,12 +137,17 @@ def torch_default_data_collator(features):
                 batch[k] = torch.stack([f[k] for f in features])
             elif isinstance(v, np.ndarray):
                 batch[k] = torch.tensor(np.stack([f[k] for f in features]))
+            elif isinstance(v, list):
+                features = torch.tensor(features)
+                batch[k] = torch.stack([f[k] for f in features])
             else:
-                print(k)
-                print(v)
                 batch[k] = torch.tensor([f[k] for f in features])
 
     return batch
+
+
+# RuntimeError: stack expects each tensor to be equal size, but got [3, 256] at entry 0 and [1, 256] at entry 1
+# some rows have 3 chunks, some have 5 chunks, not sure how to handle
 
 
 training_args = TrainingArguments(
@@ -172,4 +180,4 @@ trainer.train()
 test = trainer.evaluate(eval_dataset=tokenised_dataset["test"])
 print(test)
 
-# error, something with data_collator? need to do some aggregating? idk
+# TODO - handle the aggregation, some functions within Trainer or data collator?

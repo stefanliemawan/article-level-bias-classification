@@ -21,20 +21,18 @@ valid_df["features"] = valid_df.apply(functions.preprocess_content, axis=1)
 
 
 train_dataset = Dataset.from_pandas(
-    train_df[["features", "labels"]], preserve_index=False
+    train_df[["features", "label"]], preserve_index=False
 )
-test_dataset = Dataset.from_pandas(
-    test_df[["features", "labels"]], preserve_index=False
-)
+test_dataset = Dataset.from_pandas(test_df[["features", "label"]], preserve_index=False)
 valid_dataset = Dataset.from_pandas(
-    valid_df[["features", "labels"]], preserve_index=False
+    valid_df[["features", "label"]], preserve_index=False
 )
 
 dataset = DatasetDict(
     {"train": train_dataset, "test": test_dataset, "valid": valid_dataset}
 )
 
-train_labels = train_dataset["labels"]
+train_labels = train_dataset["label"]
 class_weights = np.asarray(
     compute_class_weight(
         class_weight="balanced", classes=np.unique(train_labels), y=train_labels

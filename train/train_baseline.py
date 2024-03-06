@@ -34,7 +34,7 @@ def train_classification(
 
     dataset = functions.create_dataset(df, CLASS_RANGES, seed=SEED)
 
-    train_labels = dataset["train"]["labels"]
+    train_labels = dataset["train"]["label"]
     class_weights = compute_class_weight(
         class_weight="balanced", classes=np.unique(train_labels), y=train_labels
     )
