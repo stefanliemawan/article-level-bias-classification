@@ -1,11 +1,11 @@
 import os
 from collections.abc import Mapping
 
-import functions
 import numpy as np
 import pandas as pd
 import torch
 import torch.nn.functional as torch_f
+import utils.functions as functions
 from belt_nlp.bert_with_pooling import BertClassifierWithPooling
 from datasets import Dataset, DatasetDict
 from sklearn.utils.class_weight import compute_class_weight

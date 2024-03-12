@@ -20,9 +20,9 @@ def map_to_class(score):
 
 
 df["features"] = df["title"] + ". " + df["content"]
-df["label"] = df["reliability_score"].apply(map_to_class)
+df["labels"] = df["reliability_score"].apply(map_to_class)
 
-grouped_df = df.groupby(["label", "outlet"])
+grouped_df = df.groupby(["labels", "outlet"])
 
 
 train_data, test_data, valid_data = [], [], []
@@ -67,15 +67,15 @@ valid_set.to_csv("dataset/valid.csv")
 
 print("TRAIN")
 print(train_set.shape)
-print(train_set["label"].value_counts())
+print(train_set["labels"].value_counts())
 # print(train_set["outlet"].value_counts(normalize=True))
 
 print("TEST")
 print(test_set.shape)
-print(test_set["label"].value_counts())
+print(test_set["labels"].value_counts())
 # print(test_set["outlet"].value_counts(normalize=True))
 
 print("VALID")
 print(valid_set.shape)
-print(valid_set["label"].value_counts())
+print(valid_set["labels"].value_counts())
 # print(valid_set["outlet"].value_counts(normalize=True))

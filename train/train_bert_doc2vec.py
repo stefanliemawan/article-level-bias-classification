@@ -1,6 +1,6 @@
 import os
 
-import functions
+import train.utils.functions as functions
 import gensim
 import nltk
 import numpy as np
