@@ -1,28 +1,38 @@
+import argparse
 import os
-from collections.abc import Mapping
 
-import numpy as np
 import pandas as pd
 import torch
-import torch.nn.functional as torch_f
 from custom_trainer.sliding_window_trainer import SlidingWindowTrainer
 from datasets import Dataset, DatasetDict
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import f1_score, precision_score, recall_score
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from utils import functions
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-ws", "--windowsize", help="Window Size")
+parser.add_argument("-s", "--stride", help="Stride")
+parser.add_argument("-mc", "--maxchunks", help="Max Chunks")
+parser.add_argument("-m", "--model", help="Model")
+
+args = parser.parse_args()
+
+
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
-MODEL_NAME = "distilbert-base-uncased"
+MODEL_NAME = args.model if args.model else "distilbert-base-uncased"
 
-# WINDOW_SIZE = 512
-# STRIDE = 256
-WINDOW_SIZE = 512
-STRIDE = 0
-MAX_CHUNKS = 5  # out of memory even with chunks 2, maybe something is wrong
+WINDOW_SIZE = args.windowsize if args.windowsize else 512
+STRIDE = args.stride if args.stride else 0
+MAX_CHUNKS = args.maxchunks if args.maxchunks else 2
+
+print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
+print(f"MODEL: {MODEL_NAME}")
+
+# out of memory with 512, 0, 3
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
@@ -129,3 +139,6 @@ functions.train(
     trainer_class=SlidingWindowTrainer,
     data_collator=collate_fn_pooled_tokens,
 )
+
+# 512-0-2, title + "." + content, distilbert-base-uncased
+# {'eval_loss': 0.7728666663169861, 'eval_precision': 0.7158542738232089, 'eval_recall': 0.7169811320754716, 'eval_f1': 0.7158839634457171, 'eval_runtime': 51.7485, 'eval_samples_per_second': 12.29, 'eval_steps_per_second': 1.546, 'epoch': 3.0}
