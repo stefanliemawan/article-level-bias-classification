@@ -25,9 +25,9 @@ CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
 MODEL_NAME = args.model if args.model else "distilbert-base-uncased"
 
-WINDOW_SIZE = args.windowsize if args.windowsize else 512
-STRIDE = args.stride if args.stride else 0
-MAX_CHUNKS = args.maxchunks if args.maxchunks else 2
+WINDOW_SIZE = int(args.windowsize) if args.windowsize else 512
+STRIDE = int(args.stride) if args.stride else 0
+MAX_CHUNKS = int(args.maxchunks) if args.maxchunks else 2
 
 print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
 print(f"MODEL: {MODEL_NAME}")
@@ -64,8 +64,9 @@ def tokenise_dataset(x):
 
     features_words = tokeniser.tokenize(features)
 
-    if len(features_words) > WINDOW_SIZE * MAX_CHUNKS:
-        features_words = features_words[: WINDOW_SIZE * MAX_CHUNKS]
+    max_len = int(WINDOW_SIZE) * int(MAX_CHUNKS)
+    if len(features_words) > max_len:
+        features_words = features_words[:max_len]
         features = tokeniser.decode(
             tokeniser.convert_tokens_to_ids(features_words), skip_special_tokens=True
         )
