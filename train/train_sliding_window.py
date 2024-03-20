@@ -143,3 +143,8 @@ functions.train(
 
 # 512-0-2, title + "." + content, distilbert-base-uncased
 # {'eval_loss': 0.7728666663169861, 'eval_precision': 0.7158542738232089, 'eval_recall': 0.7169811320754716, 'eval_f1': 0.7158839634457171, 'eval_runtime': 51.7485, 'eval_samples_per_second': 12.29, 'eval_steps_per_second': 1.546, 'epoch': 3.0}
+
+
+
+# 512-0-5, title + "." + content, distilbert-base-uncased
+# {'eval_loss': 0.7613411545753479, 'eval_precision': 0.7114559339296948, 'eval_recall': 0.7091194968553459, 'eval_f1': 0.7093012602260368, 'eval_runtime': 653.704, 'eval_samples_per_second': 0.973, 'eval_steps_per_second': 0.122, 'epoch': 3.0}

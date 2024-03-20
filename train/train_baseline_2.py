@@ -9,6 +9,7 @@ SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
 MODEL_NAME = "distilbert-base-uncased"
+# MODEL_NAME = "bert-base-uncased"
 # MODEL_NAME = "google/bigbird-pegasus-large-pubmed"
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
@@ -31,6 +32,8 @@ functions.print_class_distribution(tokenised_dataset)
 model = AutoModelForSequenceClassification.from_pretrained(
     MODEL_NAME, num_labels=len(CLASS_RANGES)
 )
+model = model.to("mps")
+
 
 functions.train(tokenised_dataset, model, epoch=3)
 
