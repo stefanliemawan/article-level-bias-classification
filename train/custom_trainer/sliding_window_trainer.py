@@ -30,7 +30,7 @@ class SlidingWindowTrainer(Trainer):
             input_ids_combined.extend(x.tolist())
 
         input_ids_combined_tensors = torch.stack(
-            [torch.tensor(x) for x in input_ids_combined]
+            [torch.tensor(x).to(self.model.device) for x in input_ids_combined]
         )
 
         attention_mask_combined = []
@@ -38,7 +38,7 @@ class SlidingWindowTrainer(Trainer):
             attention_mask_combined.extend(x.tolist())
 
         attention_mask_combined_tensors = torch.stack(
-            [torch.tensor(x) for x in attention_mask_combined]
+            [torch.tensor(x).to(self.model.device) for x in attention_mask_combined]
         )
 
         outputs = model(input_ids_combined_tensors, attention_mask_combined_tensors)
@@ -50,7 +50,9 @@ class SlidingWindowTrainer(Trainer):
             [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
         )
 
-        loss_fct = torch.nn.CrossEntropyLoss(weight=torch.tensor(self.class_weights))
+        loss_fct = torch.nn.CrossEntropyLoss(
+            weight=torch.tensor(self.class_weights).to(self.model.device)
+        )
         loss = loss_fct(
             pooled_logits.view(-1, self.model.config.num_labels), labels.view(-1)
         )

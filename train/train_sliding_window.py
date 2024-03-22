@@ -1,5 +1,6 @@
 import argparse
 import os
+import platform
 
 import pandas as pd
 import torch
@@ -29,7 +30,11 @@ WINDOW_SIZE = int(args.windowsize) if args.windowsize else 512
 STRIDE = int(args.stride) if args.stride else 0
 MAX_CHUNKS = int(args.maxchunks) if args.maxchunks else 2
 
-print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
+BATCH_SIZE = 8
+
+print(
+    f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}, BATCH_SIZE: {BATCH_SIZE}"
+)
 print(f"MODEL: {MODEL_NAME}")
 
 # out of memory with 512, 0, 3
@@ -98,6 +103,12 @@ functions.print_class_distribution(tokenised_dataset)
 model = AutoModelForSequenceClassification.from_pretrained(
     MODEL_NAME, num_labels=len(CLASS_RANGES)
 )
+if platform.system() == "Darwin":
+    model = model.to("mps")
+elif torch.cuda.is_available():
+    model = model.to("cuda")
+else:
+    model = model.to("cpu")
 
 
 def collate_fn_pooled_tokens(features):
@@ -114,12 +125,10 @@ def collate_fn_pooled_tokens(features):
     return batch
 
 
+# check this?, bert is significantly lower than distilbert for some reason
 def compute_metrics_test(pred):
     labels = pred.label_ids.flatten().tolist()
     preds = pred.predictions.argmax(-1)
-
-    print(len(labels))
-    print(len(preds))
 
     precision = precision_score(labels, preds, average="weighted", zero_division=1)
     recall = recall_score(labels, preds, average="weighted", zero_division=1)
@@ -136,15 +145,20 @@ functions.train(
     tokenised_dataset,
     model,
     epoch=3,
-    batch_size=64,
+    batch_size=BATCH_SIZE,
     compute_metrics=compute_metrics_test,
     trainer_class=SlidingWindowTrainer,
     data_collator=collate_fn_pooled_tokens,
 )
 
-# 512-0-2, title + "." + content, distilbert-base-uncased
-# {'eval_loss': 0.7728666663169861, 'eval_precision': 0.7158542738232089, 'eval_recall': 0.7169811320754716, 'eval_f1': 0.7158839634457171, 'eval_runtime': 51.7485, 'eval_samples_per_second': 12.29, 'eval_steps_per_second': 1.546, 'epoch': 3.0}
+# 512-0-2, title + "." + content, distilbert-base-uncased, mean pooling
+# {'eval_loss': 0.7615396976470947, 'eval_precision': 0.7054318202676083, 'eval_recall': 0.7044025157232704, 'eval_f1': 0.7038882317040644, 'eval_runtime': 2.0838, 'eval_samples_per_second': 305.217, 'eval_steps_per_second': 38.392, 'epoch': 3.0}
 
-
-# 512-0-5, title + "." + content, distilbert-base-uncased
+# 512-0-5, title + "." + content, distilbert-base-uncased, mean pooling
 # {'eval_loss': 0.7613411545753479, 'eval_precision': 0.7114559339296948, 'eval_recall': 0.7091194968553459, 'eval_f1': 0.7093012602260368, 'eval_runtime': 653.704, 'eval_samples_per_second': 0.973, 'eval_steps_per_second': 0.122, 'epoch': 3.0}
+
+# 512-128-3, title + "." + content, distilbert-base-uncased, mean pooling
+# {'eval_loss': 0.7468533515930176, 'eval_precision': 0.7139872308746571, 'eval_recall': 0.7122641509433962, 'eval_f1': 0.7116785211153052, 'eval_runtime': 797.7862, 'eval_samples_per_second': 0.797, 'eval_steps_per_second': 0.1, 'epoch': 3.0}
+
+# 512-128-3, title + "." + content, bert-base-uncased, mean pooling
+# {'eval_loss': 0.9941141605377197, 'eval_precision': 0.6383857268610628, 'eval_recall': 0.4811320754716981, 'eval_f1': 0.35640246016125765, 'eval_runtime': 4.2604, 'eval_samples_per_second': 149.281, 'eval_steps_per_second': 18.778, 'epoch': 3.0}
