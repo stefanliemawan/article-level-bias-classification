@@ -4,7 +4,6 @@
 #SBATCH --time=20:00:00
 #SBATCH -A intro_vsc36378
 #SBATCH -M genius
-#SBATCH --output=outputs/.
 
 cp -r $VSC_DATA $VSC_SCRATCH
 cd $VSC_SCRATCH

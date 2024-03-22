@@ -1,2 +1,2 @@
 windowsize, stride, maxchunks, model
-512, 128, 3, bert-base-uncased
+512, 128, 3, distilbert-base-uncased

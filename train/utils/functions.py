@@ -1,10 +1,6 @@
 import re
 
 import nltk
-
-nltk.download("stopwords")
-nltk.download("wordnet")
-
 import numpy as np
 from custom_trainer.standard_trainer import StandardTrainer
 from datasets import Dataset, DatasetDict
@@ -14,6 +10,10 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from transformers import TrainingArguments, default_data_collator
+
+# nltk.download("stopwords")
+# nltk.download("wordnet")
+
 
 LEMMATISER = WordNetLemmatizer()
 STOP_WORDS = set(stopwords.words("english"))
@@ -66,13 +66,13 @@ def preprocess_content(row):
 def create_dataset(train_df, test_df, valid_df):
 
     train_dataset = Dataset.from_pandas(
-        train_df[["features", "labels"]], preserve_index=False
+        train_df[["features", "labels", "title", "content"]], preserve_index=False
     )
     test_dataset = Dataset.from_pandas(
-        test_df[["features", "labels"]], preserve_index=False
+        test_df[["features", "labels", "title", "content"]], preserve_index=False
     )
     valid_dataset = Dataset.from_pandas(
-        valid_df[["features", "labels"]], preserve_index=False
+        valid_df[["features", "labels", "title", "content"]], preserve_index=False
     )
 
     dataset = DatasetDict(
