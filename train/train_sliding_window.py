@@ -136,6 +136,7 @@ functions.train(
     tokenised_dataset,
     model,
     epoch=3,
+    batch_size=64,
     compute_metrics=compute_metrics_test,
     trainer_class=SlidingWindowTrainer,
     data_collator=collate_fn_pooled_tokens,
@@ -143,7 +144,6 @@ functions.train(
 
 # 512-0-2, title + "." + content, distilbert-base-uncased
 # {'eval_loss': 0.7728666663169861, 'eval_precision': 0.7158542738232089, 'eval_recall': 0.7169811320754716, 'eval_f1': 0.7158839634457171, 'eval_runtime': 51.7485, 'eval_samples_per_second': 12.29, 'eval_steps_per_second': 1.546, 'epoch': 3.0}
-
 
 
 # 512-0-5, title + "." + content, distilbert-base-uncased
