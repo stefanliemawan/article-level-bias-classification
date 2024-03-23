@@ -43,10 +43,6 @@ train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
-train_df["features"] = train_df.apply(functions.preprocess_content, axis=1)
-test_df["features"] = test_df.apply(functions.preprocess_content, axis=1)
-valid_df["features"] = valid_df.apply(functions.preprocess_content, axis=1)
-
 train_dataset = Dataset.from_pandas(
     train_df[["features", "labels"]], preserve_index=False
 )
@@ -144,7 +140,7 @@ def compute_metrics_test(pred):
 functions.train(
     tokenised_dataset,
     model,
-    epoch=3,
+    epoch=5,
     batch_size=BATCH_SIZE,
     compute_metrics=compute_metrics_test,
     trainer_class=SlidingWindowTrainer,
@@ -160,5 +156,11 @@ functions.train(
 # 512-128-3, title + "." + content, distilbert-base-uncased, mean pooling
 # {'eval_loss': 0.7468533515930176, 'eval_precision': 0.7139872308746571, 'eval_recall': 0.7122641509433962, 'eval_f1': 0.7116785211153052, 'eval_runtime': 797.7862, 'eval_samples_per_second': 0.797, 'eval_steps_per_second': 0.1, 'epoch': 3.0}
 
+# 512-0-2, title + "." + content, bert-base-uncased, mean pooling
+# {'eval_loss': 1.0668894052505493, 'eval_precision': 0.6903830741260983, 'eval_recall': 0.6855345911949685, 'eval_f1': 0.6867447311342364, 'eval_runtime': 3.9405, 'eval_samples_per_second': 161.401, 'eval_steps_per_second': 20.302, 'epoch': 5.0}
+
 # 512-128-3, title + "." + content, bert-base-uncased, mean pooling
 # {'eval_loss': 0.9941141605377197, 'eval_precision': 0.6383857268610628, 'eval_recall': 0.4811320754716981, 'eval_f1': 0.35640246016125765, 'eval_runtime': 4.2604, 'eval_samples_per_second': 149.281, 'eval_steps_per_second': 18.778, 'epoch': 3.0}
+
+# 512-128-3, title + "." + content, bert-base-uncased, mean pooling
+# {'eval_loss': 1.3030740022659302, 'eval_precision': 0.722740737298317, 'eval_recall': 0.7216981132075472, 'eval_f1': 0.7211264330676727, 'eval_runtime': 5.3687, 'eval_samples_per_second': 118.464, 'eval_steps_per_second': 14.901, 'epoch': 5.0}
