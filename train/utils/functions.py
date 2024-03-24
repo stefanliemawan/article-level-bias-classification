@@ -64,15 +64,17 @@ def preprocess_content(row):
 
 
 def create_dataset(train_df, test_df, valid_df):
-
     train_dataset = Dataset.from_pandas(
-        train_df[["features", "labels", "title", "content"]], preserve_index=False
+        train_df[["features", "labels"]],
+        preserve_index=False,
     )
     test_dataset = Dataset.from_pandas(
-        test_df[["features", "labels", "title", "content"]], preserve_index=False
+        test_df[["features", "labels"]],
+        preserve_index=False,
     )
     valid_dataset = Dataset.from_pandas(
-        valid_df[["features", "labels", "title", "content"]], preserve_index=False
+        valid_df[["features", "labels"]],
+        preserve_index=False,
     )
 
     dataset = DatasetDict(

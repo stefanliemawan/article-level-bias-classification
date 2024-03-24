@@ -59,3 +59,4 @@ model.fit(x_train, y_train, epochs=3)
 preds = model.predict_classes(x_test)
 
 # have to use cuda? ew
+# whats belt again? i dont remember

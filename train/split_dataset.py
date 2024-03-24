@@ -19,7 +19,19 @@ def map_to_class(score):
             return i
 
 
-df["features"] = df["title"] + ". " + df["content"]
+def preprocess_outlet(outlet):
+    if "www." in outlet:
+        outlet = outlet[5:]
+    if ".org" in outlet or ".com" in outlet:
+        outlet = outlet[:-4]
+
+    return outlet
+
+
+df["outlet"] = df["outlet"].apply(preprocess_outlet)
+
+df["title_content"] = df["title"] + ". " + df["content"]
+df["outlet_title_content"] = df["outlet"] + ". " + df["title"] + ". " + df["content"]
 df["labels"] = df["reliability_score"].apply(map_to_class)
 
 grouped_df = df.groupby(["labels", "outlet"])

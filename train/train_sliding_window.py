@@ -43,19 +43,11 @@ train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
-train_dataset = Dataset.from_pandas(
-    train_df[["features", "labels"]], preserve_index=False
-)
-test_dataset = Dataset.from_pandas(
-    test_df[["features", "labels"]], preserve_index=False
-)
-valid_dataset = Dataset.from_pandas(
-    valid_df[["features", "labels"]], preserve_index=False
-)
+train_df["features"] = train_df["outlet_title_content"]
+test_df["features"] = test_df["outlet_title_content"]
+valid_df["features"] = valid_df["outlet_title_content"]
 
-dataset = DatasetDict(
-    {"train": train_dataset, "test": test_dataset, "valid": valid_dataset}
-)
+dataset = functions.create_dataset(train_df, test_df, valid_df)
 
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 
@@ -140,7 +132,7 @@ def compute_metrics_test(pred):
 functions.train(
     tokenised_dataset,
     model,
-    epoch=5,
+    epoch=4,
     batch_size=BATCH_SIZE,
     compute_metrics=compute_metrics_test,
     trainer_class=SlidingWindowTrainer,

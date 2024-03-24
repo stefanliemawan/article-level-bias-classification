@@ -17,6 +17,10 @@ train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
+train_df["features"] = train_df["outlet_title_content"]
+test_df["features"] = test_df["outlet_title_content"]
+valid_df["features"] = valid_df["outlet_title_content"]
+
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser, seed=SEED)
@@ -34,4 +38,4 @@ elif torch.cuda.is_available():
 else:
     model = model.to("cpu")
 
-functions.train(tokenised_dataset, model, epoch=3)
+functions.train(tokenised_dataset, model, epoch=4)
