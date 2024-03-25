@@ -18,21 +18,17 @@ test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
 bias_lexicon = pd.read_csv("dataset/bias_lexicon.csv")
-bias_lexicon = bias_lexicon["words"].values
+bias_lexicon = bias_lexicon["words"].tolist()
 
-train_df["features"] = (
-    train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
-)
-test_df["features"] = (
-    test_df["outlet"] + ". " + test_df["title"] + ". " + test_df["content"]
-)
-valid_df["features"] = (
-    valid_df["outlet"] + ". " + valid_df["title"] + ". " + valid_df["content"]
-)
 
+train_df, test_df, valid_df = functions.generate_title_content_features(
+    train_df, test_df, valid_df
+)
+# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(train_df, test_df, valid_df)
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
+# tokeniser.add_tokens(bias_lexicon)
 tokeniser.add_special_tokens({"additional_special_tokens": ["[BIAS]"]})
 
 model = AutoModelForSequenceClassification.from_pretrained(
@@ -81,6 +77,3 @@ functions.print_class_distribution(tokenised_dataset)
 
 
 functions.train(tokenised_dataset, model, epoch=4)
-
-# v2 bert-base-uncased, no preprocessing, title + "." + content, [BIAS] after biased words
-# {'eval_loss': 0.8706805109977722, 'eval_accuracy': 0.7327044025157232, 'eval_precision': 0.7294909633137111, 'eval_recall': 0.7327044025157232, 'eval_f1': 0.729644622536337, 'eval_runtime': 2.4436, 'eval_samples_per_second': 260.268, 'eval_steps_per_second': 32.738, 'epoch': 4.0}

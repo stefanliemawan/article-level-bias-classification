@@ -21,7 +21,7 @@ def map_to_class(score):
 
 def preprocess_outlet(outlet):
     if "www." in outlet:
-        outlet = outlet[5:]
+        outlet = outlet[4:]
     if ".org" in outlet or ".com" in outlet:
         outlet = outlet[:-4]
 
@@ -67,9 +67,9 @@ test_set = pd.concat(test_data)
 valid_set = pd.concat(valid_data)
 
 # Shuffle the datasets to ensure randomness
-train_set = train_set.sample(frac=1, random_state=42).reset_index(drop=True)
-test_set = test_set.sample(frac=1, random_state=42).reset_index(drop=True)
-valid_set = valid_set.sample(frac=1, random_state=42).reset_index(drop=True)
+train_set = train_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
+test_set = test_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
+valid_set = valid_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
 train_set.to_csv("dataset/train.csv")
 test_set.to_csv("dataset/test.csv")

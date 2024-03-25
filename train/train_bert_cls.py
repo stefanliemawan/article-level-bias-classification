@@ -30,15 +30,11 @@ train_df = train_df.head(100)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
-train_df["features"] = (
-    train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
+
+train_df, test_df, valid_df = functions.generate_title_content_features(
+    train_df, test_df, valid_df
 )
-test_df["features"] = (
-    test_df["outlet"] + ". " + test_df["title"] + ". " + test_df["content"]
-)
-valid_df["features"] = (
-    valid_df["outlet"] + ". " + valid_df["title"] + ". " + valid_df["content"]
-)
+# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(train_df, test_df, valid_df)
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 

@@ -63,6 +63,32 @@ def preprocess_content(row):
     return preprocessed_content
 
 
+def generate_title_content_features(train_df, test_df, valid_df):
+    train_df["features"] = train_df["title"] + ". " + train_df["content"]
+    test_df["features"] = test_df["title"] + ". " + test_df["content"]
+    valid_df["features"] = valid_df["title"] + ". " + valid_df["content"]
+
+    print("features: title + content")
+
+    return train_df, test_df, valid_df
+
+
+def generate_outlet_title_content_features(train_df, test_df, valid_df):
+
+    train_df["features"] = (
+        train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
+    )
+    test_df["features"] = (
+        test_df["outlet"] + ". " + test_df["title"] + ". " + test_df["content"]
+    )
+    valid_df["features"] = (
+        valid_df["outlet"] + ". " + valid_df["title"] + ". " + valid_df["content"]
+    )
+    print("features: outlet + title + content")
+
+    return train_df, test_df, valid_df
+
+
 def create_dataset(train_df, test_df, valid_df):
     train_dataset = Dataset.from_pandas(
         train_df[["features", "labels"]],

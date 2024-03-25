@@ -5,7 +5,6 @@ import platform
 import pandas as pd
 import torch
 from custom_trainer.sliding_window_trainer import SlidingWindowTrainer
-from datasets import Dataset, DatasetDict
 from sklearn.metrics import f1_score, precision_score, recall_score
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from utils import functions
@@ -40,19 +39,14 @@ print(f"MODEL: {MODEL_NAME}")
 # out of memory with 512, 0, 3
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
-train_df = train_df.head(100)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
-train_df["features"] = (
-    train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
+
+train_df, test_df, valid_df = functions.generate_title_content_features(
+    train_df, test_df, valid_df
 )
-test_df["features"] = (
-    test_df["outlet"] + ". " + test_df["title"] + ". " + test_df["content"]
-)
-valid_df["features"] = (
-    valid_df["outlet"] + ". " + valid_df["title"] + ". " + valid_df["content"]
-)
+# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(train_df, test_df, valid_df)
 
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
@@ -146,21 +140,3 @@ functions.train(
     trainer_class=SlidingWindowTrainer,
     data_collator=collate_fn_pooled_tokens,
 )
-
-# 512-0-2, title + "." + content, distilbert-base-uncased, mean pooling
-# {'eval_loss': 0.7615396976470947, 'eval_precision': 0.7054318202676083, 'eval_recall': 0.7044025157232704, 'eval_f1': 0.7038882317040644, 'eval_runtime': 2.0838, 'eval_samples_per_second': 305.217, 'eval_steps_per_second': 38.392, 'epoch': 3.0}
-
-# 512-0-5, title + "." + content, distilbert-base-uncased, mean pooling
-# {'eval_loss': 0.7613411545753479, 'eval_precision': 0.7114559339296948, 'eval_recall': 0.7091194968553459, 'eval_f1': 0.7093012602260368, 'eval_runtime': 653.704, 'eval_samples_per_second': 0.973, 'eval_steps_per_second': 0.122, 'epoch': 3.0}
-
-# 512-128-3, title + "." + content, distilbert-base-uncased, mean pooling
-# {'eval_loss': 0.7468533515930176, 'eval_precision': 0.7139872308746571, 'eval_recall': 0.7122641509433962, 'eval_f1': 0.7116785211153052, 'eval_runtime': 797.7862, 'eval_samples_per_second': 0.797, 'eval_steps_per_second': 0.1, 'epoch': 3.0}
-
-# 512-0-2, title + "." + content, bert-base-uncased, mean pooling
-# {'eval_loss': 1.0668894052505493, 'eval_precision': 0.6903830741260983, 'eval_recall': 0.6855345911949685, 'eval_f1': 0.6867447311342364, 'eval_runtime': 3.9405, 'eval_samples_per_second': 161.401, 'eval_steps_per_second': 20.302, 'epoch': 5.0}
-
-# 512-128-3, title + "." + content, bert-base-uncased, mean pooling
-# {'eval_loss': 0.9941141605377197, 'eval_precision': 0.6383857268610628, 'eval_recall': 0.4811320754716981, 'eval_f1': 0.35640246016125765, 'eval_runtime': 4.2604, 'eval_samples_per_second': 149.281, 'eval_steps_per_second': 18.778, 'epoch': 3.0}
-
-# 512-128-3, title + "." + content, bert-base-uncased, mean pooling
-# {'eval_loss': 1.3030740022659302, 'eval_precision': 0.722740737298317, 'eval_recall': 0.7216981132075472, 'eval_f1': 0.7211264330676727, 'eval_runtime': 5.3687, 'eval_samples_per_second': 118.464, 'eval_steps_per_second': 14.901, 'epoch': 5.0}
