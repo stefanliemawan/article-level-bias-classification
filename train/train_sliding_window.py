@@ -24,11 +24,11 @@ args = parser.parse_args()
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
-MODEL_NAME = args.model if args.model else "distilbert-base-uncased"
+MODEL_NAME = args.model if args.model else "bert-base-uncased"
 
 WINDOW_SIZE = int(args.windowsize) if args.windowsize else 512
-STRIDE = int(args.stride) if args.stride else 0
-MAX_CHUNKS = int(args.maxchunks) if args.maxchunks else 2
+STRIDE = int(args.stride) if args.stride else 128
+MAX_CHUNKS = int(args.maxchunks) if args.maxchunks else 3
 
 BATCH_SIZE = 8
 
@@ -40,12 +40,20 @@ print(f"MODEL: {MODEL_NAME}")
 # out of memory with 512, 0, 3
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
+train_df = train_df.head(100)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
-train_df["features"] = train_df["outlet_title_content"]
-test_df["features"] = test_df["outlet_title_content"]
-valid_df["features"] = valid_df["outlet_title_content"]
+train_df["features"] = (
+    train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
+)
+test_df["features"] = (
+    test_df["outlet"] + ". " + test_df["title"] + ". " + test_df["content"]
+)
+valid_df["features"] = (
+    valid_df["outlet"] + ". " + valid_df["title"] + ". " + valid_df["content"]
+)
+
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 

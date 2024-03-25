@@ -30,8 +30,6 @@ def preprocess_outlet(outlet):
 
 df["outlet"] = df["outlet"].apply(preprocess_outlet)
 
-df["title_content"] = df["title"] + ". " + df["content"]
-df["outlet_title_content"] = df["outlet"] + ". " + df["title"] + ". " + df["content"]
 df["labels"] = df["reliability_score"].apply(map_to_class)
 
 grouped_df = df.groupby(["labels", "outlet"])

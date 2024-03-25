@@ -20,9 +20,16 @@ valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 bias_lexicon = pd.read_csv("dataset/bias_lexicon.csv")
 bias_lexicon = bias_lexicon["words"].values
 
-train_df["features"] = train_df["outlet_title_content"]
-test_df["features"] = test_df["outlet_title_content"]
-valid_df["features"] = valid_df["outlet_title_content"]
+train_df["features"] = (
+    train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
+)
+test_df["features"] = (
+    test_df["outlet"] + ". " + test_df["title"] + ". " + test_df["content"]
+)
+valid_df["features"] = (
+    valid_df["outlet"] + ". " + valid_df["title"] + ". " + valid_df["content"]
+)
+
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
