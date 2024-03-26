@@ -164,7 +164,9 @@ class Model(nn.Module):
             [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
         )
 
-        loss_fct = self.loss_fn(weight=torch.tensor(self.class_weights).to(self.device))
+        loss_fct = torch.nn.CrossEntropyLoss(
+            weight=torch.tensor(self.class_weights).to(self.device)
+        )
         loss = loss_fct(
             pooled_logits.view(-1, self.model.config.num_labels), labels.view(-1)
         )
@@ -178,13 +180,52 @@ class Model(nn.Module):
     def fit(self): ...
 
 
-model = Model(num_layers=3, hidden_dim=256, num_classes=len(CLASS_RANGES))
-model = model.to(model.device)
+def batchify_data(data, batch_size=8, padding=False, padding_token=-1):
+    batches = []
+    for idx in range(0, len(data), batch_size):
+        # We make sure we dont get the last bit if its not batch_size size
+        if idx + batch_size < len(data):
+            # Here you would need to get the max length of the batch,
+            # and normalize the length with the PAD token.
+            if padding:
+                max_batch_length = 0
 
-train_input_ids = tokenised_dataset["train"]["input_ids"]
-train_attention_mask = tokenised_dataset["train"]["attention_mask"]
-with torch.no_grad():
-    logits, num_of_chunks = model(train_input_ids, train_attention_mask)
+                # Get longest sentence in batch
+                for seq in data[idx : idx + batch_size]:
+                    if len(seq) > max_batch_length:
+                        max_batch_length = len(seq)
+
+                # Append X padding tokens until it reaches the max length
+                for seq_idx in range(batch_size):
+                    remaining_length = max_batch_length - len(data[idx + seq_idx])
+                    data[idx + seq_idx] += [padding_token] * remaining_length
+
+            batches.append(np.array(data[idx : idx + batch_size]).astype(np.int64))
+
+    print(f"{len(batches)} batches of size {batch_size}")
+
+    return batches
+
+
+train_dataset = tokenised_dataset["train"]["input_ids"]
+valid_dataset = tokenised_dataset["valid"]["input_ids"]
+
+train_dataloader = batchify_data(train_dataset)
+valid_dataloader = batchify_data(valid_dataset)
+
+print(train_dataloader)
+
+# model = Model(num_layers=3, hidden_dim=256, num_classes=len(CLASS_RANGES))
+# model = model.to(model.device)
+
+# print(model)
+
+# opt = torch.optim.SGD(model.parameters(), lr=0.01)  # put this inside class
+
+# train_input_ids = tokenised_dataset["train"]["input_ids"]
+# train_attention_mask = tokenised_dataset["train"]["attention_mask"]
+# with torch.no_grad():
+#     logits, num_of_chunks = model(train_input_ids, train_attention_mask)
 
 
 # in the paper, they divide to equal chunks, then use the CLS tokens as repr for each chunks (su)

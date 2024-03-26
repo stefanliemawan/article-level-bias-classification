@@ -46,3 +46,6 @@ functions.train(tokenised_dataset, model, epoch=4)
 
 # outlet + title + content, bert-base-uncased
 # {'eval_loss': 0.7819182276725769, 'eval_accuracy': 0.6792452830188679, 'eval_precision': 0.6840998543100941, 'eval_recall': 0.6792452830188679, 'eval_f1': 0.6808352544547148, 'eval_runtime': 2.3317, 'eval_samples_per_second': 272.765, 'eval_steps_per_second': 34.31, 'epoch': 4.0}
+
+# title + content, bert-base-uncased
+# {'eval_loss': 0.9430739879608154, 'eval_accuracy': 0.6839622641509434, 'eval_precision': 0.6822035116350752, 'eval_recall': 0.6839622641509434, 'eval_f1': 0.6829418097346416, 'eval_runtime': 49.4481, 'eval_samples_per_second': 12.862, 'eval_steps_per_second': 1.618, 'epoch': 4.0}

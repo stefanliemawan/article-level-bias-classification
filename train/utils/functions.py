@@ -1,16 +1,16 @@
 import re
 
-import nltk
 import numpy as np
-from custom_trainer.standard_trainer import StandardTrainer
 from datasets import Dataset, DatasetDict
 from imblearn.over_sampling import SMOTE
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from .standard_trainer import StandardTrainer
 from transformers import TrainingArguments, default_data_collator
 
+# import nltk
 # nltk.download("stopwords")
 # nltk.download("wordnet")
 

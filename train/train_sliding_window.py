@@ -4,10 +4,10 @@ import platform
 
 import pandas as pd
 import torch
-from custom_trainer.sliding_window_trainer import SlidingWindowTrainer
 from sklearn.metrics import f1_score, precision_score, recall_score
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from utils import functions
+from utils.sliding_window_trainer import SlidingWindowTrainer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
