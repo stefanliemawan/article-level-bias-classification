@@ -1,4 +1,3 @@
-import argparse
 import os
 import platform
 
@@ -11,29 +10,16 @@ from utils.sliding_window_trainer import SlidingWindowTrainer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-ws", "--windowsize", help="Window Size")
-parser.add_argument("-s", "--stride", help="Stride")
-parser.add_argument("-mc", "--maxchunks", help="Max Chunks")
-parser.add_argument("-m", "--model", help="Model")
-
-args = parser.parse_args()
-
-
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
-MODEL_NAME = args.model if args.model else "bert-base-uncased"
+MODEL_NAME = "bert-base-uncased"
 
-WINDOW_SIZE = int(args.windowsize) if args.windowsize else 512
-STRIDE = int(args.stride) if args.stride else 128
-MAX_CHUNKS = int(args.maxchunks) if args.maxchunks else 3
+WINDOW_SIZE = 512
+STRIDE = 128
+MAX_CHUNKS = 3
 
-BATCH_SIZE = 8
-
-print(
-    f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}, BATCH_SIZE: {BATCH_SIZE}"
-)
+print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
 print(f"MODEL: {MODEL_NAME}")
 
 # out of memory with 512, 0, 3
@@ -135,8 +121,10 @@ functions.train(
     tokenised_dataset,
     model,
     epoch=4,
-    batch_size=BATCH_SIZE,
     compute_metrics=compute_metrics_test,
     trainer_class=SlidingWindowTrainer,
     data_collator=collate_fn_pooled_tokens,
 )
+
+# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 128, MAX_CHUNKS: 3
+# {'eval_loss': 0.9980549216270447, 'eval_precision': 0.7201026448175899, 'eval_recall': 0.7185534591194969, 'eval_f1': 0.7190264075756783, 'eval_runtime': 5.7417, 'eval_samples_per_second': 110.768, 'eval_steps_per_second': 13.933, 'epoch': 4.0}

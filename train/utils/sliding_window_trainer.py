@@ -59,44 +59,7 @@ class SlidingWindowTrainer(Trainer):
 
         return (loss, outputs) if return_outputs else loss
 
-    # def estimate_tokens(self, input_dict: Dict[str, Union[torch.Tensor, Any]]) -> int:
-    #     """
-    #     Helper function to estimate the total number of tokens from the model inputs.
-
-    #     Args:
-    #         inputs (`dict`): The model inputs.
-
-    #     Returns:
-    #         `int`: The total number of tokens.
-    #     """
-    #     if not hasattr(self, "warnings_issued"):
-    #         self.warnings_issued = {}
-    #     if "input_ids" in input_dict:
-    #         return input_dict["input_ids"][0].numel()
-    #     elif "estimate_tokens" not in self.warnings_issued:
-    #         self.warnings_issued["estimate_tokens"] = True
-    #     return 0
-
-    # def floating_point_ops(
-    #     self,
-    #     input_dict: Dict[str, Union[torch.Tensor, Any]],
-    #     exclude_embeddings: bool = True,
-    # ) -> int:
-
-    #     return 6 * self.estimate_tokens(input_dict)
     def floating_point_ops(self, inputs: Dict[str, Union[torch.Tensor, Any]]):
-        """
-        For models that inherit from [`PreTrainedModel`], uses that method to compute the number of floating point
-        operations for every backward + forward pass. If using another model, either implement such a method in the
-        model or subclass and override this method.
-
-        Args:
-            inputs (`Dict[str, Union[torch.Tensor, Any]]`):
-                The inputs and targets of the model.
-
-        Returns:
-            `int`: The number of floating-point operations.
-        """
         return 0
 
     def prediction_step(
@@ -106,29 +69,6 @@ class SlidingWindowTrainer(Trainer):
         prediction_loss_only: bool,
         ignore_keys: Optional[List[str]] = None,
     ) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor], Optional[torch.Tensor]]:
-        """
-        Perform an evaluation step on `model` using `inputs`.
-
-        Subclass and override to inject custom behavior.
-
-        Args:
-            model (`nn.Module`):
-                The model to evaluate.
-            inputs (`Dict[str, Union[torch.Tensor, Any]]`):
-                The inputs and targets of the model.
-
-                The dictionary will be unpacked before being fed to the model. Most models expect the targets under the
-                argument `labels`. Check your model's documentation for all accepted arguments.
-            prediction_loss_only (`bool`):
-                Whether or not to return the loss only.
-            ignore_keys (`List[str]`, *optional*):
-                A list of keys in the output of your model (if it is a dictionary) that should be ignored when
-                gathering predictions.
-
-        Return:
-            Tuple[Optional[torch.Tensor], Optional[torch.Tensor], Optional[torch.Tensor]]: A tuple with the loss,
-            logits and labels (each being optional).
-        """
         has_labels = (
             False
             if len(self.label_names) == 0

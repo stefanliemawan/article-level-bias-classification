@@ -55,7 +55,8 @@ def tokenise_dataset(x):
             + [tokeniser.sep_token_id]
         )
         if len(chunk) < CHUNK_SIZE:
-            chunk = chunk + ([0] * (CHUNK_SIZE - len(chunk)))  # pad until 128
+            break
+            # chunk = chunk + ([0] * (CHUNK_SIZE - len(chunk)))  # pad until 128, has to handle attention mask 0 for pad 0
         chunk_input_ids.append(chunk)
 
     chunk_attention_masks = [[1] * len(chunk) for chunk in chunk_input_ids]
@@ -120,7 +121,7 @@ class Model(nn.Module):
             input_ids_combined.extend(id)
 
         input_ids_combined_tensors = torch.stack(
-            [torch.tensor(id).to(self.device) for id in input_ids_combined]
+            [torch.tensor(x).to(self.device) for x in input_ids_combined]
         )
 
         attention_mask_combined = []
@@ -128,7 +129,7 @@ class Model(nn.Module):
             attention_mask_combined.extend(mask)
 
         attention_mask_combined_tensors = torch.stack(
-            [torch.tensor(mask).to(self.device) for mask in attention_mask_combined]
+            [torch.tensor(x).to(self.device) for x in attention_mask_combined]
         )
 
         return (
@@ -138,11 +139,9 @@ class Model(nn.Module):
         )
 
     def forward(self, input_ids, attention_mask):
-        # Get BERT output
-        input_ids, attention_mask, num_of_chunks = self.handle_chunks(
-            input_ids, attention_mask
-        )
+        print(input_ids)
         bert_output = self.bert(input_ids=input_ids, attention_mask=attention_mask)[0]
+        print(bert_output)  # nan, why, need embedding?
 
         # Apply transformer layers
         transformer_output = bert_output
@@ -150,14 +149,13 @@ class Model(nn.Module):
             transformer_output = layer(transformer_output)
 
         # Apply MLP
-        output = self.mlp(
+        outputs = self.mlp(
             transformer_output.mean(dim=1)
         )  # Average pooling over sequence length
 
-        return output, num_of_chunks
+        return outputs
 
     def compute_loss(self, logits, labels, num_of_chunks, return_outputs=False):
-
         logits_split = logits.split(num_of_chunks)
 
         pooled_logits = torch.cat(
@@ -173,51 +171,62 @@ class Model(nn.Module):
 
         return (loss, logits) if return_outputs else loss
 
-    def train_loop(self): ...
+    def prediction_step(self, inputs, batch_size=8):
+        input_ids = [f["input_ids"] for f in inputs]
+        attention_mask = [f["attention_mask"] for f in inputs]
+        labels = torch.tensor([f["labels"] for f in inputs])
+
+        for i in range(0, len(input_ids), batch_size):
+            batch_input_ids = input_ids[i : i + batch_size]
+            batch_attention_mask = input_ids[i : i + batch_size]
+            batch_labels = labels[i : i + batch_size]
+
+            with torch.no_grad():
+                (
+                    input_ids_combined_tensors,
+                    attention_mask_combined_tensors,
+                    num_of_chunks,
+                ) = self.handle_chunks(batch_input_ids, batch_attention_mask)
+
+                outputs = self.forward(
+                    input_ids_combined_tensors, attention_mask_combined_tensors
+                )
+                print(outputs)
+                # no logits in outputs, logits =
+
+                # logits = outputs
+                # loss, outputs = self.compute_loss(
+                #     logits, batch_labels, num_of_chunks, return_outputs=True
+                # )
+                # loss = loss.mean().detach()
+
+                # number_of_chunks = [len(x) for x in inputs["input_ids"]]
+                # logits_split = logits.split(number_of_chunks)
+
+                # pooled_logits = torch.cat(
+                #     [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
+                # )
+                # logits = pooled_logits
+
+                # print(logits)
+
+            break
+
+    def train_loop(self):
+        self.train()
+        total_loss = 0
+
+        # compute_loss per batch
 
     def validation_loop(self): ...
 
     def fit(self): ...
 
 
-def batchify_data(data, batch_size=8, padding=False, padding_token=-1):
-    batches = []
-    for idx in range(0, len(data), batch_size):
-        # We make sure we dont get the last bit if its not batch_size size
-        if idx + batch_size < len(data):
-            # Here you would need to get the max length of the batch,
-            # and normalize the length with the PAD token.
-            if padding:
-                max_batch_length = 0
+model = Model(num_layers=3, hidden_dim=256, num_classes=len(CLASS_RANGES))
+model = model.to(model.device)
 
-                # Get longest sentence in batch
-                for seq in data[idx : idx + batch_size]:
-                    if len(seq) > max_batch_length:
-                        max_batch_length = len(seq)
-
-                # Append X padding tokens until it reaches the max length
-                for seq_idx in range(batch_size):
-                    remaining_length = max_batch_length - len(data[idx + seq_idx])
-                    data[idx + seq_idx] += [padding_token] * remaining_length
-
-            batches.append(np.array(data[idx : idx + batch_size]).astype(np.int64))
-
-    print(f"{len(batches)} batches of size {batch_size}")
-
-    return batches
-
-
-train_dataset = tokenised_dataset["train"]["input_ids"]
-valid_dataset = tokenised_dataset["valid"]["input_ids"]
-
-train_dataloader = batchify_data(train_dataset)
-valid_dataloader = batchify_data(valid_dataset)
-
-print(train_dataloader)
-
-# model = Model(num_layers=3, hidden_dim=256, num_classes=len(CLASS_RANGES))
-# model = model.to(model.device)
-
+model.prediction_step(tokenised_dataset["train"], batch_size=8)
 # print(model)
 
 # opt = torch.optim.SGD(model.parameters(), lr=0.01)  # put this inside class

@@ -7,8 +7,9 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-from .standard_trainer import StandardTrainer
 from transformers import TrainingArguments, default_data_collator
+
+from .standard_trainer import StandardTrainer
 
 # import nltk
 # nltk.download("stopwords")
@@ -144,7 +145,7 @@ def tokenise_dataset(
 def train(
     tokenised_dataset,
     model,
-    epoch=3,
+    epoch=4,
     batch_size=8,
     compute_metrics=compute_metrics_classification,
     trainer_class=StandardTrainer,

@@ -28,7 +28,7 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-# tokeniser.add_tokens(bias_lexicon)
+tokeniser.add_tokens(bias_lexicon)
 tokeniser.add_special_tokens({"additional_special_tokens": ["[BIAS]"]})
 
 model = AutoModelForSequenceClassification.from_pretrained(
@@ -51,10 +51,9 @@ def tokenise_dataset(x):
 
     features_words = []
     for word in words:
+        features_words.append(word)
         if word in bias_lexicon:
             features_words.append("[BIAS]")
-        else:
-            features_words.append(word)
 
     input_ids = tokeniser.convert_tokens_to_ids(features_words)
 
@@ -75,5 +74,7 @@ tokenised_dataset = dataset.map(tokenise_dataset)
 
 functions.print_class_distribution(tokenised_dataset)
 
-
 functions.train(tokenised_dataset, model, epoch=4)
+
+# locally. bert-base-uncased, bias-lexicon added to vocab, title + content
+# {'eval_loss': 0.8957552909851074, 'eval_accuracy': 0.6163522012578616, 'eval_precision': 0.626335179398227, 'eval_recall': 0.6163522012578616, 'eval_f1': 0.6093365922422421, 'eval_runtime': 45.0706, 'eval_samples_per_second': 14.111, 'eval_steps_per_second': 1.775, 'epoch': 4.0}
