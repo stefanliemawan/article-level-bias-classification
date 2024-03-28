@@ -24,7 +24,7 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser, seed=SEED)
+tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser)
 
 print(tokenised_dataset)
 
@@ -49,5 +49,5 @@ functions.train(tokenised_dataset, model, epoch=4)
 # title + content, bert-base-uncased
 # {'eval_loss': 0.9430739879608154, 'eval_accuracy': 0.6839622641509434, 'eval_precision': 0.6822035116350752, 'eval_recall': 0.6839622641509434, 'eval_f1': 0.6829418097346416, 'eval_runtime': 49.4481, 'eval_samples_per_second': 12.862, 'eval_steps_per_second': 1.618, 'epoch': 4.0}
 
-# title + content, bert-base-uncased, slurm
+# title + content, bert-base-uncased, slurm, why its different?
 # {'eval_loss': 1.134574055671692, 'eval_accuracy': 0.7185534591194969, 'eval_precision': 0.7238057327072948, 'eval_recall': 0.7185534591194969, 'eval_f1': 0.7204801473496935, 'eval_runtime': 2.3229, 'eval_samples_per_second': 273.793, 'eval_steps_per_second': 34.439, 'epoch': 4.0}

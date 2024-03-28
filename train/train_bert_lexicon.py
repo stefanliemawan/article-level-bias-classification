@@ -28,7 +28,7 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokeniser.add_tokens(bias_lexicon)
+# tokeniser.add_tokens(bias_lexicon)
 tokeniser.add_special_tokens({"additional_special_tokens": ["[BIAS]"]})
 
 model = AutoModelForSequenceClassification.from_pretrained(
