@@ -12,6 +12,12 @@ df = pd.read_csv(
     index_col=0,
 )
 
+outlets_df = pd.read_csv(
+    "../dataset/BAT/ad_fontes/outlets_classes_scores.csv",
+    index_col=0,
+    encoding="ISO-8859-1",
+)
+
 
 def map_to_class(score):
     for i, (start, end) in enumerate(CLASS_RANGES):
@@ -19,18 +25,15 @@ def map_to_class(score):
             return i
 
 
-def preprocess_outlet(outlet):
-    if "www." in outlet:
-        outlet = outlet[4:]
-    if ".org" in outlet or ".com" in outlet:
-        outlet = outlet[:-4]
-
-    return outlet
-
-
-df["outlet"] = df["outlet"].apply(preprocess_outlet)
-
 df["labels"] = df["reliability_score"].apply(map_to_class)
+outlets_df["outlet_labels"] = outlets_df["reliability_score"].apply(map_to_class)
+
+outlets_df["adfontes_url"] = outlets_df["url"]
+
+df.drop(columns="outlet", inplace=True)
+df = df.merge(
+    outlets_df[["adfontes_url", "outlet_labels", "outlet"]], on=["adfontes_url"]
+)
 
 grouped_df = df.groupby(["labels", "outlet"])
 
@@ -74,6 +77,8 @@ valid_set = valid_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 train_set.to_csv("dataset/train.csv")
 test_set.to_csv("dataset/test.csv")
 valid_set.to_csv("dataset/valid.csv")
+
+outlets_df.to_csv("dataset/outlets.csv")
 
 print("TRAIN")
 print(train_set.shape)

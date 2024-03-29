@@ -8,6 +8,7 @@ import utils.functions as functions
 from datasets import Dataset, DatasetDict
 from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
 from torch import nn
+from tqdm import tqdm
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
@@ -26,7 +27,7 @@ CHUNK_SIZE = 128
 TRANSFORMER_MODEL_NAME = "bert-base-uncased"
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
-train_df = train_df.head(100)
+train_df = train_df.head(36)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
@@ -34,7 +35,6 @@ valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
-# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(train_df, test_df, valid_df)
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 
@@ -49,7 +49,7 @@ def tokenise_dataset(x):
     chunk_input_ids = []
 
     for i in range(0, len(input_ids), CHUNK_SIZE - 2):
-        chunk = (
+        chunk = torch.tensor(
             [tokeniser.cls_token_id]
             + input_ids[i : i + CHUNK_SIZE - 2]
             + [tokeniser.sep_token_id]
@@ -190,24 +190,59 @@ class Model(nn.Module):
 
         return mlp_output
 
-    def compute_loss(self, pooled_logits, labels):
-
-        loss = self.loss_function(pooled_logits, labels)
-
-        return loss
-
-    def prediction_step(self, inputs, batch_size=8):
+    def batchify(self, inputs, batch_size=8):  # better way to do this?
         input_ids = [f["input_ids"] for f in inputs]
         attention_mask = [f["attention_mask"] for f in inputs]
         labels = torch.tensor([f["labels"] for f in inputs]).to(self.device)
 
-        for i in range(0, len(input_ids), batch_size):  # use dataloader instead?
+        dataloader = []
+        for i in range(0, len(input_ids), batch_size):
             batch_input_ids = input_ids[i : i + batch_size]
             batch_attention_mask = attention_mask[i : i + batch_size]
             batch_labels = labels[i : i + batch_size]
 
-            with torch.no_grad():
+            dataloader.append([batch_input_ids, batch_attention_mask, batch_labels])
 
+        return dataloader
+
+    def train_loop(self, dataloader):
+        total_loss = 0
+        for batch_input_ids, batch_attention_mask, batch_labels in dataloader:
+            (
+                input_ids_combined_tensors,
+                attention_mask_combined_tensors,
+                num_of_chunks,
+            ) = self.handle_chunks(batch_input_ids, batch_attention_mask)
+
+            logits = self.forward(
+                input_ids_combined_tensors, attention_mask_combined_tensors
+            )
+
+            logits_split = logits.split(num_of_chunks)
+
+            pooled_logits = torch.cat(
+                [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
+            )
+
+            loss = self.loss_function(pooled_logits, batch_labels)
+
+            self.optimiser.zero_grad()
+
+            loss.backward()
+            self.optimiser.step()
+
+            total_loss += loss.detach().item()
+
+        return total_loss / (len(dataloader))
+
+    def validation_loop(self, dataloader):
+        total_loss = 0
+        with torch.no_grad():
+            for (
+                batch_input_ids,
+                batch_attention_mask,
+                batch_labels,
+            ) in dataloader:  # use dataloader instead?
                 (
                     input_ids_combined_tensors,
                     attention_mask_combined_tensors,
@@ -224,36 +259,32 @@ class Model(nn.Module):
                     [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
                 )
 
-                # pooled_logits = torch.tensor(
-                #     pooled_logits,
-                #     requires_grad=True,
-                # ).to(self.device)
+                loss = self.loss_function(pooled_logits, batch_labels)
 
-                print(pooled_logits)
+                total_loss += loss.detach().item()
 
-                loss = self.compute_loss(pooled_logits, batch_labels)
-                print(loss)
-                # loss = loss.mean().detach()
+        return total_loss / (len(dataloader))
 
-                self.optimiser.zero_grad()
+    def fit(self, train_dataloader, valid_dataloader, epochs=3):
+        train_loss_list, validation_loss_list = [], []
 
-                # RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
-                loss.backward()
-                self.optimiser.step()
+        print("Training and validating model")
+        for epoch in tqdm(range(epochs)):
+            print("-" * 25, f"Epoch {epoch + 1}", "-" * 25)
 
-                # loss.backward() computes dloss/dx for every parameter x which has requires_grad=True. These are accumulated into x.grad for every parameter x
+            train_loss = self.train_loop(train_dataloader)
+            train_loss_list += [train_loss]
 
-            break
+            validation_loss = self.validation_loop(valid_dataloader)
+            validation_loss_list += [validation_loss]
 
-    def train_loop(self):
-        self.train()
-        total_loss = 0
+            print(f"Training loss: {train_loss:.4f}")
+            print(f"Validation loss: {validation_loss:.4f}")
+            print()
 
-        # compute_loss per batch
+        return train_loss_list, validation_loss_list
 
-    def validation_loop(self): ...
-
-    def fit(self): ...
+    def predict(self): ...
 
 
 train_labels = tokenised_dataset["train"]["labels"]
@@ -265,7 +296,13 @@ model = Model(
 )
 model = model.to(model.device)
 
-model.prediction_step(tokenised_dataset["train"], batch_size=8)
+train_dataloader = model.batchify(tokenised_dataset["train"], batch_size=8)
+valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
+
+model.fit(train_dataloader, valid_dataloader)
+
+# pred = model()
+# print(pred)
 # print(model)
 
 # opt = torch.optim.SGD(model.parameters(), lr=0.01)  # put this inside class
