@@ -24,13 +24,11 @@ def compute_metrics_classification(pred):
     labels = pred.label_ids.flatten().tolist()
     preds = pred.predictions.argmax(-1)
 
-    accuracy = accuracy_score(labels, preds)
     precision = precision_score(labels, preds, average="weighted", zero_division=1)
     recall = recall_score(labels, preds, average="weighted", zero_division=1)
     f1 = f1_score(labels, preds, average="weighted", zero_division=1)
 
     return {
-        "accuracy": accuracy,
         "precision": precision,
         "recall": recall,
         "f1": f1,
@@ -75,7 +73,6 @@ def generate_title_content_features(train_df, test_df, valid_df):
 
 
 def generate_outlet_title_content_features(train_df, test_df, valid_df):
-
     train_df["features"] = (
         train_df["outlet"] + ". " + train_df["title"] + ". " + train_df["content"]
     )
