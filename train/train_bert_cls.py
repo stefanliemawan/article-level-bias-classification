@@ -319,3 +319,5 @@ model.fit(train_dataloader, valid_dataloader)
 # so no finetune, but instead do like 6 layers of transformers to get representation, then classify?
 # input -> word encode -> pooling -> cls encode -> pooling -> classification
 # implement this
+
+# loss in slurm is nan, validation loss and training loss

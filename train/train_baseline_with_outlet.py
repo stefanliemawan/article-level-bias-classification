@@ -19,13 +19,13 @@ test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
 
 outlets_df = pd.read_csv("dataset/outlets.csv", index_col=0)
-train_df, test_df, valid_df = functions.generate_outlept_title_content_features(
+train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
     train_df, test_df, valid_df
 )
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokeniser.add_tokens(train_df["outlet"].tolist())
+# tokeniser.add_tokens(train_df["outlet"].tolist())
 tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser)
 
 print(tokenised_dataset)
