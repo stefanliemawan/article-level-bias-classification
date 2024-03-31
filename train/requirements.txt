@@ -53,7 +53,7 @@ six==1.16.0
 sympy==1.12
 threadpoolctl==3.3.0
 tokenizers==0.15.2
-torch==2.2.1
+torch==2.2.0
 tqdm==4.66.2
 transformers==4.38.2
 typing_extensions==4.10.0

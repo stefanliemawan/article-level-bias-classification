@@ -1,7 +1,3 @@
-# do baseline, but add representation from outlet.csv
-# run through model() x times, get repr for outlet then add that to sequence for bert finetuning
-# or just add outlet and outlet labels to features
-
 import os
 import platform
 
@@ -25,7 +21,6 @@ train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-# tokeniser.add_tokens(train_df["outlet"].tolist())
 tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser)
 
 print(tokenised_dataset)
@@ -46,3 +41,6 @@ else:
 
 
 functions.train(tokenised_dataset, model, epoch=4)
+
+# outlet + title + content, bert-base-uncased, slurm
+# {'eval_loss': 0.9668617248535156, 'eval_accuracy': 0.7725856697819314, 'eval_precision': 0.7710658394071737, 'eval_recall': 0.7725856697819314, 'eval_f1': 0.7714502860953963, 'eval_runtime': 2.3516, 'eval_samples_per_second': 273.008, 'eval_steps_per_second': 34.445, 'epoch': 4.0}

@@ -6,6 +6,7 @@ import pandas as pd
 import torch
 import utils.functions as functions
 from datasets import Dataset, DatasetDict
+from sklearn.metrics import f1_score, precision_score, recall_score
 from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
 from torch import nn
 from tqdm import tqdm
@@ -19,17 +20,16 @@ from transformers import (
 # print(platform.system())
 # print(platform.platform())
 
-SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 CHUNK_SIZE = 128
 
-# MODEL_NAME = "distilbert-base-uncased"
 TRANSFORMER_MODEL_NAME = "bert-base-uncased"
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
 train_df = train_df.head(36)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+valid_df = valid_df.head(36)
 
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
@@ -70,34 +70,10 @@ print(tokenised_dataset)
 # so idea here is to split into chunks of word encodings, do model() model() model(), get the CLS repr, then feed into torch_model
 
 
-class PositionalEncoding(nn.Module):
-
-    def __init__(self, d_model: int, dropout: float = 0.1, max_len: int = 5000):
-        super().__init__()
-        self.dropout = nn.Dropout(p=dropout)
-
-        position = torch.arange(max_len).unsqueeze(1)
-        div_term = torch.exp(
-            torch.arange(0, d_model, 2) * (-math.log(10000.0) / d_model)
-        )
-        pe = torch.zeros(max_len, 1, d_model)
-        pe[:, 0, 0::2] = torch.sin(position * div_term)
-        pe[:, 0, 1::2] = torch.cos(position * div_term)
-        self.register_buffer("pe", pe)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Arguments:
-            x: Tensor, shape ``[seq_len, batch_size, embedding_dim]``
-        """
-        x = x + self.pe[: x.size(0)]
-        return self.dropout(x)
-
-
 # need to handle chunks inside the class
 # do we need to calculate positional embedding for the transformer layer?
 class Model(nn.Module):
-    def __init__(self, num_layers, hidden_dim, num_classes, train_labels):
+    def __init__(self, num_tf_layers, hidden_dim, num_classes, train_labels):
         super(Model, self).__init__()
         if platform.system() == "Darwin":
             self.device = "mps"
@@ -106,7 +82,7 @@ class Model(nn.Module):
         else:
             self.device = "cpu"
 
-        self.init_layers(num_layers, hidden_dim, num_classes)
+        self.init_layers(num_tf_layers, hidden_dim, num_classes)
         self.calculate_class_weights(train_labels)
         self.init_loss_optimiser()
 
@@ -205,9 +181,9 @@ class Model(nn.Module):
 
         return dataloader
 
-    def train_loop(self, dataloader):
-        total_loss = 0
-        for batch_input_ids, batch_attention_mask, batch_labels in dataloader:
+    def train_loop(self, train_dataloader):
+        loss = 0
+        for batch_input_ids, batch_attention_mask, batch_labels in train_dataloader:
             (
                 input_ids_combined_tensors,
                 attention_mask_combined_tensors,
@@ -219,30 +195,37 @@ class Model(nn.Module):
             )
 
             logits_split = logits.split(num_of_chunks)
+            # there is an empty tensor in logits_split, something with the split function?
 
             pooled_logits = torch.cat(
                 [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
             )
 
-            loss = self.loss_function(pooled_logits, batch_labels)
+            # pooled_logits sometimes return nan, need to handle nan value here
+
+            batch_loss = self.loss_function(pooled_logits, batch_labels)
 
             self.optimiser.zero_grad()
 
-            loss.backward()
+            batch_loss.backward()
             self.optimiser.step()
 
-            total_loss += loss.detach().item()
+            loss += batch_loss.detach().item()
 
-        return total_loss / (len(dataloader))
+        loss = loss / (len(train_dataloader))
+        print(f"total_loss {loss}")
 
-    def validation_loop(self, dataloader):
-        total_loss = 0
+        return loss
+
+    def validation_loop(self, valid_dataloader):
+        loss = 0
+        all_pooled_logits = torch.tensor([]).to(self.device)
         with torch.no_grad():
             for (
                 batch_input_ids,
                 batch_attention_mask,
                 batch_labels,
-            ) in dataloader:  # use dataloader instead?
+            ) in valid_dataloader:
                 (
                     input_ids_combined_tensors,
                     attention_mask_combined_tensors,
@@ -259,47 +242,63 @@ class Model(nn.Module):
                     [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
                 )
 
-                loss = self.loss_function(pooled_logits, batch_labels)
+                batch_loss = self.loss_function(pooled_logits, batch_labels)
 
-                total_loss += loss.detach().item()
+                loss += batch_loss.detach().item()
 
-        return total_loss / (len(dataloader))
+                all_pooled_logits = torch.cat((all_pooled_logits, pooled_logits), dim=0)
+
+        loss = loss / (len(valid_dataloader))
+
+        labels = []
+        for _, _, batch_labels in valid_dataloader:
+            labels.extend(batch_labels.tolist())
+
+        metrics = {"loss": loss, **self.compute_metrics(all_pooled_logits, labels)}
+        print(metrics)
+
+        return metrics
 
     def fit(self, train_dataloader, valid_dataloader, epochs=3):
-        train_loss_list, validation_loss_list = [], []
-
         print("Training and validating model")
-        for epoch in tqdm(range(epochs)):
+        for epoch in range(epochs):
             print("-" * 25, f"Epoch {epoch + 1}", "-" * 25)
 
             train_loss = self.train_loop(train_dataloader)
-            train_loss_list += [train_loss]
 
-            validation_loss = self.validation_loop(valid_dataloader)
-            validation_loss_list += [validation_loss]
+            validation_metrics = self.validation_loop(valid_dataloader)
 
             print(f"Training loss: {train_loss:.4f}")
-            print(f"Validation loss: {validation_loss:.4f}")
+            print(f"Validation metrics: {validation_metrics:.4f}")
             print()
 
-        return train_loss_list, validation_loss_list
+    def compute_metrics(self, logits, labels):
+        preds = logits.cpu().numpy().argmax(-1)
+
+        precision = precision_score(labels, preds, average="weighted", zero_division=1)
+        recall = recall_score(labels, preds, average="weighted", zero_division=1)
+        f1 = f1_score(labels, preds, average="weighted", zero_division=1)
+
+        return {"precision": precision, "recall": recall, "f1": f1}
 
     def predict(self): ...
 
 
 train_labels = tokenised_dataset["train"]["labels"]
 model = Model(
-    num_layers=3,
+    num_tf_layers=1,
     hidden_dim=512,
     num_classes=len(CLASS_RANGES),
     train_labels=train_labels,
 )
 model = model.to(model.device)
+# print(model)
 
 train_dataloader = model.batchify(tokenised_dataset["train"], batch_size=8)
 valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 
-model.fit(train_dataloader, valid_dataloader)
+# model.fit(train_dataloader, valid_dataloader, epochs=1)
+model.validation_loop(valid_dataloader)
 
 # pred = model()
 # print(pred)
