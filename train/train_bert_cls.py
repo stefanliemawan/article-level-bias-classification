@@ -1,35 +1,27 @@
-import math
 import platform
 
 import numpy as np
 import pandas as pd
 import torch
 import utils.functions as functions
-from datasets import Dataset, DatasetDict
 from sklearn.metrics import f1_score, precision_score, recall_score
 from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
 from torch import nn
-from tqdm import tqdm
 from transformers import (
-    AutoModelForSequenceClassification,
-    AutoTokenizer,
     BertModel,
     BertTokenizer,
 )
-
-# print(platform.system())
-# print(platform.platform())
 
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 CHUNK_SIZE = 128
 
 TRANSFORMER_MODEL_NAME = "bert-base-uncased"
 
+print(f"CHUNK_SIZE {CHUNK_SIZE}")
+
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
-train_df = train_df.head(36)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
 valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
-valid_df = valid_df.head(36)
 
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
@@ -47,19 +39,25 @@ def tokenise_dataset(x):
     input_ids = tokeniser.encode(features, add_special_tokens=False)
 
     chunk_input_ids = []
+    chunk_attention_masks = []
 
     for i in range(0, len(input_ids), CHUNK_SIZE - 2):
-        chunk = torch.tensor(
+        chunk = (
             [tokeniser.cls_token_id]
             + input_ids[i : i + CHUNK_SIZE - 2]
             + [tokeniser.sep_token_id]
         )
-        if len(chunk) < CHUNK_SIZE:
-            break
-            # chunk = chunk + ([0] * (CHUNK_SIZE - len(chunk)))  # pad until 128, has to handle attention mask 0 for pad 0
-        chunk_input_ids.append(chunk)
+        attention_mask = [1] * len(chunk)
 
-    chunk_attention_masks = [[1] * len(chunk) for chunk in chunk_input_ids]
+        if len(chunk) < CHUNK_SIZE:
+            pad_size = CHUNK_SIZE - len(chunk)
+            chunk = chunk + (
+                [0] * pad_size
+            )  # pad until 128, has to handle attention mask 0 for pad 0
+            attention_mask = attention_mask + ([0] * pad_size)
+
+        chunk_input_ids.append(chunk)
+        chunk_attention_masks.append(attention_mask)
 
     return {"input_ids": chunk_input_ids, "attention_mask": chunk_attention_masks}
 
@@ -125,7 +123,7 @@ class Model(nn.Module):
         print(f"class_weights: {self.class_weights}")
 
     def handle_chunks(self, input_ids, attention_mask):
-        num_of_chunks = [len(x) for x in input_ids]
+        num_of_chunks = [len(chunk) for chunk in input_ids]
 
         input_ids_combined = []
         for id in input_ids:
@@ -195,13 +193,10 @@ class Model(nn.Module):
             )
 
             logits_split = logits.split(num_of_chunks)
-            # there is an empty tensor in logits_split, something with the split function?
 
             pooled_logits = torch.cat(
                 [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
             )
-
-            # pooled_logits sometimes return nan, need to handle nan value here
 
             batch_loss = self.loss_function(pooled_logits, batch_labels)
 
@@ -268,8 +263,8 @@ class Model(nn.Module):
 
             validation_metrics = self.validation_loop(valid_dataloader)
 
-            print(f"Training loss: {train_loss:.4f}")
-            print(f"Validation metrics: {validation_metrics:.4f}")
+            print(f"Training loss: {train_loss}")
+            print(f"Validation metrics: {validation_metrics}")
             print()
 
     def compute_metrics(self, logits, labels):
@@ -281,7 +276,35 @@ class Model(nn.Module):
 
         return {"precision": precision, "recall": recall, "f1": f1}
 
-    def predict(self): ...
+    def predict(self, inputs):
+        input_ids = inputs["input_ids"]
+        attention_mask = inputs["attention_mask"]
+        labels = inputs["labels"]
+        with torch.no_grad():
+            (
+                input_ids_combined_tensors,
+                attention_mask_combined_tensors,
+                num_of_chunks,
+            ) = self.handle_chunks(input_ids, attention_mask)
+
+            logits = self.forward(
+                input_ids_combined_tensors, attention_mask_combined_tensors
+            )
+
+            logits_split = logits.split(num_of_chunks)
+
+            pooled_logits = torch.cat(
+                [torch.mean(x, axis=0, keepdim=True) for x in logits_split]
+            )
+
+            loss = self.loss_function(pooled_logits, labels)
+            loss = loss.detach().item()
+
+        metrics = {"loss": loss, **self.compute_metrics(pooled_logits, labels)}
+
+        print(metrics)
+
+        return metrics
 
 
 train_labels = tokenised_dataset["train"]["labels"]
@@ -297,26 +320,6 @@ model = model.to(model.device)
 train_dataloader = model.batchify(tokenised_dataset["train"], batch_size=8)
 valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 
-# model.fit(train_dataloader, valid_dataloader, epochs=1)
-model.validation_loop(valid_dataloader)
+model.fit(train_dataloader, valid_dataloader, epochs=5)
 
-# pred = model()
-# print(pred)
-# print(model)
-
-# opt = torch.optim.SGD(model.parameters(), lr=0.01)  # put this inside class
-
-# train_input_ids = tokenised_dataset["train"]["input_ids"]
-# train_attention_mask = tokenised_dataset["train"]["attention_mask"]
-# with torch.no_grad():
-#     logits, num_of_chunks = model(train_input_ids, train_attention_mask)
-
-
-# in the paper, they divide to equal chunks, then use the CLS tokens as repr for each chunks (su)
-
-
-# so no finetune, but instead do like 6 layers of transformers to get representation, then classify?
-# input -> word encode -> pooling -> cls encode -> pooling -> classification
-# implement this
-
-# loss in slurm is nan, validation loss and training loss
+model.predict(tokenised_dataset["test"])

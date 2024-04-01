@@ -13,7 +13,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 MODEL_NAME = "bert-base-uncased"
 
 WINDOW_SIZE = 512
-STRIDE = 256
+STRIDE = 384
 MAX_CHUNKS = 4
 
 print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
@@ -111,3 +111,6 @@ functions.train(
 
 # title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 4
 # {'eval_loss': 0.9045261740684509, 'eval_accuracy': 0.7227414330218068, 'eval_precision': 0.7253199513050848, 'eval_recall': 0.7227414330218068, 'eval_f1': 0.7234658119018105, 'eval_runtime': 7.3814, 'eval_samples_per_second': 86.975, 'eval_steps_per_second': 10.973, 'epoch': 4.0}
+
+# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 384, MAX_CHUNKS: 3
+# {'eval_loss': 0.9476966857910156, 'eval_accuracy': 0.7040498442367601, 'eval_precision': 0.7092989191893007, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.705990055709364, 'eval_runtime': 10.2325, 'eval_samples_per_second': 62.742, 'eval_steps_per_second': 7.916, 'epoch': 4.0}

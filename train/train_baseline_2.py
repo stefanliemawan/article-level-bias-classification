@@ -38,7 +38,10 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, model, epoch=5)
 
 # title + content, bert-base-uncased, slurm
 # {'eval_loss': 0.995568037033081, 'eval_accuracy': 0.7009345794392523, 'eval_precision': 0.7023993347045271, 'eval_recall': 0.7009345794392523, 'eval_f1': 0.7015790759560087, 'eval_runtime': 2.3447, 'eval_samples_per_second': 273.812, 'eval_steps_per_second': 34.546, 'epoch': 4.0}
+
+# title + content, bert-base-uncased, slurm
+# {'eval_loss': 0.83188396692276, 'eval_accuracy': 0.6853582554517134, 'eval_precision': 0.6921642436829353, 'eval_recall': 0.6853582554517134, 'eval_f1': 0.6872441742852727, 'eval_runtime': 2.3496, 'eval_samples_per_second': 273.233, 'eval_steps_per_second': 34.473, 'epoch': 3.0}

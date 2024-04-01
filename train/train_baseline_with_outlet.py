@@ -44,3 +44,6 @@ functions.train(tokenised_dataset, model, epoch=4)
 
 # outlet + title + content, bert-base-uncased, slurm
 # {'eval_loss': 0.9668617248535156, 'eval_accuracy': 0.7725856697819314, 'eval_precision': 0.7710658394071737, 'eval_recall': 0.7725856697819314, 'eval_f1': 0.7714502860953963, 'eval_runtime': 2.3516, 'eval_samples_per_second': 273.008, 'eval_steps_per_second': 34.445, 'epoch': 4.0}
+
+
+# maybe take outlets_df and add that as additional features? how? pass through one embedding layer? is this worth doing tho??
