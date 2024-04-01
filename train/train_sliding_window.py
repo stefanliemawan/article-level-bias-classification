@@ -35,8 +35,8 @@ dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 
-def tokenise_dataset(x):
-    features = x["features"]
+def tokenise_dataset(input):
+    features = input["features"]
 
     features_words = tokeniser.tokenize(features)
 
