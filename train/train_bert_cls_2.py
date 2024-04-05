@@ -9,8 +9,9 @@ from sklearn.utils.class_weight import compute_class_weight, compute_sample_weig
 from torch import nn
 from transformers import BertModel, BertTokenizer
 
-CHUNK_SIZE = 64
-NUM_TF_LAYERS = 1
+CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
+CHUNK_SIZE = 128
+
 TRANSFORMER_MODEL_NAME = "bert-base-uncased"
 
 print(f"CHUNK_SIZE {CHUNK_SIZE}")
@@ -249,6 +250,7 @@ class Model(nn.Module):
             labels.extend(batch_labels.tolist())
 
         metrics = {"loss": loss, **self.compute_metrics(all_pooled_logits, labels)}
+        print(metrics)
 
         return metrics
 
@@ -306,12 +308,11 @@ class Model(nn.Module):
         return metrics
 
 
-num_labels = len(pd.unique(train_df["labels"]))
 train_labels = tokenised_dataset["train"]["labels"]
 model = Model(
-    num_tf_layers=NUM_TF_LAYERS,
+    num_tf_layers=1,
     hidden_dim=512,
-    num_classes=num_labels,
+    num_classes=len(CLASS_RANGES),
     train_labels=train_labels,
 )
 model = model.to(model.device)
@@ -323,6 +324,3 @@ valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 model.fit(train_dataloader, valid_dataloader, epochs=4)
 
 model.predict(tokenised_dataset["test"])
-
-# title + content ,CHUNK_SIZE 128, tf_layer=1
-# {'loss': 0.9590256810188293, 'precision': 0.6593325966940399, 'recall': 0.632398753894081, 'f1': 0.6400437965263029}

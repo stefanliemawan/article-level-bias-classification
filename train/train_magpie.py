@@ -1,3 +1,4 @@
+import os
 import platform
 
 import nltk
@@ -6,10 +7,9 @@ import torch
 import utils.functions as functions
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-SEED = 42
-CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
-MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+MAX_LENGTH = 512
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
@@ -21,18 +21,21 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 
 
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_NAME, ignore_mismatched_sizes=True
-)
-
 sentence_tokenizer = nltk.tokenize.sent_tokenize
-word_tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
+word_tokeniser = AutoTokenizer.from_pretrained("mediabiasgroup/magpie-babe-ft")
 
 word_tokeniser.add_special_tokens({"additional_special_tokens": ["[BS]", "[UBS]"]})
+
+magpie_model = AutoModelForSequenceClassification.from_pretrained(
+    "mediabiasgroup/magpie-babe-ft", ignore_mismatched_sizes=True
+)
+magpie_model.resize_token_embeddings(len(word_tokeniser))
 
 
 def tokenise_dataset(input):
     features = input["features"]
+    labels = input["labels"]
+
     sentences = sentence_tokenizer(features)
 
     tokenised = torch.tensor([], dtype=torch.int16)
@@ -41,11 +44,11 @@ def tokenise_dataset(input):
             sentence, add_special_tokens=False, return_tensors="pt"
         )
 
-        if tokens.shape[1] > 512:
-            tokens = tokens[:, :512]
+        if tokens.shape[1] > MAX_LENGTH:
+            tokens = tokens[:, :MAX_LENGTH]
 
-        output = model(tokens)
-        # RuntimeError: The expanded size of the tensor (793) must match the existing size (514) at non-singleton dimension 1.  Target sizes: [1, 793].  Tensor sizes: [1, 514]
+        output = magpie_model(tokens)
+
         logits = output.get("logits")
         pred = logits.argmax(-1)
 
@@ -62,31 +65,42 @@ def tokenise_dataset(input):
 
         tokenised = torch.cat((tokenised, tokens), dim=0)
 
-    tokenised = tokenised[:512]
+    attention_mask = torch.ones(
+        len(tokenised), dtype=tokenised.dtype, device=tokenised.device
+    )
 
-    return {"input_ids": tokenised}
+    if len(tokenised) >= MAX_LENGTH:
+        tokenised = tokenised[:MAX_LENGTH]
+        attention_mask = attention_mask[:MAX_LENGTH]
+    else:
+
+        num_zeros = MAX_LENGTH - len(tokenised)
+        zeros = torch.zeros(num_zeros, dtype=tokenised.dtype, device=tokenised.device)
+        tokenised = torch.cat((tokenised, zeros), dim=0)
+        attention_mask = torch.cat((attention_mask, zeros), dim=0)
+
+    return {"input_ids": tokenised, "attention_mask": attention_mask, "labels": labels}
 
 
 tokenised_dataset = dataset.map(tokenise_dataset)
-
-
-inputs = tokenised_dataset["train"]["input_ids"][0]
-print(inputs)
+print(tokenised_dataset)
 
 num_labels = len(pd.unique(train_df["labels"]))
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_NAME, num_labels=num_labels
+bert_model = AutoModelForSequenceClassification.from_pretrained(
+    "bert-base-uncased", num_labels=num_labels
 )
+bert_model.resize_token_embeddings(len(word_tokeniser))
+
+
 if platform.system() == "Darwin":
-    model = model.to("mps")
+    bert_model = bert_model.to("mps")
 elif torch.cuda.is_available():
-    model = model.to("cuda")
+    bert_model = bert_model.to("cuda")
 else:
-    model = model.to("cpu")
+    bert_model = bert_model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, bert_model, epoch=4)
 
-# do this for all
-
-# magpie is a sentence level classifier right? so split sequence into sentence, then 1 sentence 1 score from magpie, after that feed into MLP? might work
+# RuntimeError: weight tensor should be defined either for all 2 classes or no classes but got weight tensor of shape: [3]
+# why

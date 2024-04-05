@@ -114,3 +114,6 @@ functions.train(
 
 # title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 384, MAX_CHUNKS: 3
 # {'eval_loss': 0.9476966857910156, 'eval_accuracy': 0.7040498442367601, 'eval_precision': 0.7092989191893007, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.705990055709364, 'eval_runtime': 10.2325, 'eval_samples_per_second': 62.742, 'eval_steps_per_second': 7.916, 'epoch': 4.0}
+
+# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 384, MAX_CHUNKS: 4
+# {'eval_loss': 1.0253945589065552, 'eval_accuracy': 0.7071651090342679, 'eval_precision': 0.7079421703736144, 'eval_recall': 0.7071651090342679, 'eval_f1': 0.7075249369946512, 'eval_runtime': 11.4278, 'eval_samples_per_second': 56.179, 'eval_steps_per_second': 7.088, 'epoch': 4.0}
