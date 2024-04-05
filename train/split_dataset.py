@@ -8,7 +8,7 @@ CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
 
 df = pd.read_csv(
-    "../cleaned_dataset/scraped_merged_clean_v2.csv",
+    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
     index_col=0,
 )
 
