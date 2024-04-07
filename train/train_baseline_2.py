@@ -6,7 +6,7 @@ import torch
 import utils.functions as functions
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 MODEL_NAME = "bert-base-uncased"
 
@@ -20,7 +20,7 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser)
+tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser, oversampling=True)
 
 print(tokenised_dataset)
 

@@ -8,13 +8,13 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from utils import functions
 from utils.sliding_window_trainer import SlidingWindowTrainer
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 MODEL_NAME = "bert-base-uncased"
 
 WINDOW_SIZE = 512
-STRIDE = 384
-MAX_CHUNKS = 4
+STRIDE = 256
+MAX_CHUNKS = 3
 
 print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
 print(f"MODEL: {MODEL_NAME}")

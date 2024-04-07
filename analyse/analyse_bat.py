@@ -18,6 +18,7 @@ df = pd.read_csv(
 # MEDIAN 895.0
 # MAX 15796
 # MIN 7
+
 def plot_tokens_count():
     tokeniser = BertTokenizer.from_pretrained("bert-base-uncased")
     df["tokens_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
@@ -29,7 +30,7 @@ def plot_tokens_count():
 
     plt.clf()
     plt.hist(df["tokens_count"], bins=20)
-    # plt.ylim(0, 2)
+    plt.xlim(0, 6000)
 
     plt.xlabel("Tokens Count")
     plt.ylabel("Frequency")

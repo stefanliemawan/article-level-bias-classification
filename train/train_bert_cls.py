@@ -9,11 +9,15 @@ from sklearn.utils.class_weight import compute_class_weight, compute_sample_weig
 from torch import nn
 from transformers import BertModel, BertTokenizer
 
-CHUNK_SIZE = 64
-NUM_TF_LAYERS = 1
+CHUNK_SIZE = 202
+NUM_TF_LAYERS = 2
+HIDDEN_SIZE = 768
+EPOCHS = 10
 TRANSFORMER_MODEL_NAME = "bert-base-uncased"
 
-print(f"CHUNK_SIZE {CHUNK_SIZE}")
+print(
+    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_SIZE}, EPOCHS {EPOCHS}"
+)
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
 test_df = pd.read_csv("dataset/test.csv", index_col=0)
@@ -47,9 +51,7 @@ def tokenise_dataset(x):
 
         if len(chunk) < CHUNK_SIZE:
             pad_size = CHUNK_SIZE - len(chunk)
-            chunk = chunk + (
-                [0] * pad_size
-            )  # pad until 128, has to handle attention mask 0 for pad 0
+            chunk = chunk + ([0] * pad_size)  # pad until CHUNK_SIZE
             attention_mask = attention_mask + ([0] * pad_size)
 
         chunk_input_ids.append(chunk)
@@ -84,7 +86,6 @@ class Model(nn.Module):
         self.bert = BertModel.from_pretrained(TRANSFORMER_MODEL_NAME)
         self.bert = self.bert.to(self.device)
 
-        # Define transformer layers
         self.transformer_layers = nn.ModuleList(
             [
                 nn.TransformerEncoderLayer(
@@ -96,19 +97,19 @@ class Model(nn.Module):
             ]
         )
 
-        # Define Multilayer Perceptron (MLP)
         self.mlp = nn.Sequential(
             nn.Linear(self.bert.config.hidden_size, hidden_dim),
             nn.ReLU(),
             nn.Linear(hidden_dim, num_classes),
         )
+        # maybe add one more linear layer here?
 
     def init_loss_optimiser(self):
         self.loss_function = torch.nn.CrossEntropyLoss(
             weight=torch.tensor(self.class_weights).to(self.device)
         )
         self.optimiser = torch.optim.AdamW(
-            self.parameters(), lr=5e-5
+            self.parameters(), lr=3e-5
         )  # transformers default in huggingface
         # self.optimiser = torch.optim.SGD(self.parameters(), lr=0.01)
 
@@ -310,19 +311,19 @@ num_labels = len(pd.unique(train_df["labels"]))
 train_labels = tokenised_dataset["train"]["labels"]
 model = Model(
     num_tf_layers=NUM_TF_LAYERS,
-    hidden_dim=512,
+    hidden_dim=HIDDEN_SIZE,
     num_classes=num_labels,
     train_labels=train_labels,
 )
 model = model.to(model.device)
-# print(model)
+print(model)
 
-train_dataloader = model.batchify(tokenised_dataset["train"], batch_size=8)
-valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
+# train_dataloader = model.batchify(tokenised_dataset["train"], batch_size=8)
+# valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 
-model.fit(train_dataloader, valid_dataloader, epochs=4)
+# model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
-model.predict(tokenised_dataset["test"])
+# model.predict(tokenised_dataset["test"])
 
-# title + content ,CHUNK_SIZE 128, tf_layer=1
+# title + content ,CHUNK_SIZE 128, tf_layer=1, 4 epoch
 # {'loss': 0.9590256810188293, 'precision': 0.6593325966940399, 'recall': 0.632398753894081, 'f1': 0.6400437965263029}
