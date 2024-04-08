@@ -12,13 +12,13 @@ from transformers import AutoModel, AutoTokenizer
 
 CHUNK_SIZE = 512
 NUM_TF_LAYERS = 2
-HIDDEN_SIZE = 768
-EPOCHS = 14
+HIDDEN_DIM = 512
+EPOCHS = 8
 DROPOUT_PROB = 0.2
-TRANSFORMER_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_SIZE}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB},TRANSFORMER_MODEL_NAME {TRANSFORMER_MODEL_NAME}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}, TRANSFORMER_MODEL_NAME {TF_MODEL_NAME}"
 )
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
@@ -32,7 +32,7 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 
-tokeniser = AutoTokenizer.from_pretrained(TRANSFORMER_MODEL_NAME)
+tokeniser = AutoTokenizer.from_pretrained(TF_MODEL_NAME)
 
 
 def tokenise_dataset(x):
@@ -85,7 +85,7 @@ class Model(nn.Module):
         self.init_loss_optimiser()
 
     def init_layers(self, num_tf_layers, hidden_dim, num_classes):
-        self.magpie = AutoModel.from_pretrained(TRANSFORMER_MODEL_NAME)
+        self.magpie = AutoModel.from_pretrained(TF_MODEL_NAME)
         self.magpie = self.magpie.to(self.device)
 
         self.transformer_layers = nn.ModuleList(
@@ -99,17 +99,20 @@ class Model(nn.Module):
             ]
         )
 
-        self.dropout = nn.Dropout(DROPOUT_PROB)
+        self.lstm = nn.LSTM(
+            self.magpie.config.hidden_size,
+            hidden_dim,
+            num_layers=2,
+        )
 
         self.mlp = nn.Sequential(
-            nn.Linear(self.magpie.config.hidden_size, hidden_dim),
-            nn.ReLU(),
-            nn.Dropout(DROPOUT_PROB),
             nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(),
             nn.Dropout(DROPOUT_PROB),
             nn.Linear(hidden_dim, num_classes),
         )
+
+        self.dropout = nn.Dropout(DROPOUT_PROB)
 
     def init_loss_optimiser(self):
         self.loss_function = torch.nn.CrossEntropyLoss(
@@ -119,6 +122,22 @@ class Model(nn.Module):
             self.parameters(), lr=1e-5
         )  # transformers default in huggingface
         # self.optimiser = torch.optim.SGD(self.parameters(), lr=0.01)
+
+    def forward(self, input_ids, attention_mask):
+        magpie_output = self.magpie(input_ids=input_ids, attention_mask=attention_mask)
+        transformer_output = magpie_output.last_hidden_state
+
+        for layer in self.transformer_layers:
+            transformer_output = layer(transformer_output)
+
+        transformer_output_cls = transformer_output[:, 0, :]  # only using [CLS] token
+        # transformer_output_mean = transformer_output.mean(dim=1)  # average pooling
+
+        lstm_output, _ = self.lstm(transformer_output_cls)
+
+        mlp_output = self.mlp(lstm_output)
+
+        return mlp_output
 
     def calculate_class_weights(self, train_labels):
         self.class_weights = np.asarray(
@@ -153,21 +172,6 @@ class Model(nn.Module):
             attention_mask_combined_tensors,
             num_of_chunks,
         )
-
-    def forward(self, input_ids, attention_mask):
-        magpie_output = self.magpie(input_ids=input_ids, attention_mask=attention_mask)
-        transformer_output = magpie_output.last_hidden_state
-
-        for layer in self.transformer_layers:
-            transformer_output = layer(transformer_output)
-
-        transformer_output = self.dropout(transformer_output)
-
-        mlp_output = self.mlp(
-            transformer_output[:, 0, :]
-        )  # Assuming you're only using [CLS] token
-
-        return mlp_output
 
     def batchify(self, inputs, batch_size=8):  # better way to do this?
         input_ids = [f["input_ids"] for f in inputs]
@@ -314,7 +318,7 @@ num_labels = len(pd.unique(train_df["labels"]))
 train_labels = tokenised_dataset["train"]["labels"]
 model = Model(
     num_tf_layers=NUM_TF_LAYERS,
-    hidden_dim=HIDDEN_SIZE,
+    hidden_dim=HIDDEN_DIM,
     num_classes=num_labels,
     train_labels=train_labels,
 )
@@ -328,9 +332,15 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 14, DROPOUT 0.2, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
-# features: title + content
-# ------------------------- Epoch 14 -------------------------
-# Training loss: 0.023638269709144587
-# Validation metrics: {'loss': 2.1015683107347374, 'precision': 0.7033258955286557, 'recall': 0.7093373493975904, 'f1': 0.7049971997370756}
-# {'loss': 1.9802608489990234, 'precision': 0.7264907022807645, 'recall': 0.7289719626168224, 'f1': 0.7264679742396032}
+
+# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_DIM 256, EPOCHS 8, DROPOUT 0.2, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, (lstm): LSTM(768, 256, num_layers=2)
+# ------------------------- Epoch 8 -------------------------
+# Training loss: 0.1503344306932582
+# Validation metrics: {'loss': 1.165870706180492, 'precision': 0.7041912379566014, 'recall': 0.7108433734939759, 'f1': 0.7022498295173187}
+# {'loss': 1.0614279508590698, 'precision': 0.7267950648145518, 'recall': 0.7336448598130841, 'f1': 0.7256561887323222}
+
+# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_DIM 512, EPOCHS 10, DROPOUT 0.2, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, (lstm): LSTM(768, 256, num_layers=2, bidirectional=True)
+# ------------------------- Epoch 10 -------------------------
+# Training loss: 0.07712768921450217
+# Validation metrics: {'loss': 1.5255870702395957, 'precision': 0.6829998670219071, 'recall': 0.6867469879518072, 'f1': 0.6802136371274436}
+# {'loss': 1.4709683656692505, 'precision': 0.7115481329417223, 'recall': 0.7165109034267912, 'f1': 0.7100893757205801}
