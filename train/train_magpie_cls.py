@@ -10,14 +10,15 @@ from sklearn.utils.class_weight import compute_class_weight
 from torch import nn
 from transformers import AutoModel, AutoTokenizer
 
-CHUNK_SIZE = 512
+CHUNK_SIZE = 256
 NUM_TF_LAYERS = 2
 HIDDEN_SIZE = 768
 EPOCHS = 14
-TRANSFORMER_MODEL_NAME = "bert-base-uncased"
+DROPOUT_PROB = 0.5
+TRANSFORMER_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_SIZE}, EPOCHS {EPOCHS}, TRANSFORMER_MODEL_NAME {TRANSFORMER_MODEL_NAME}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_SIZE}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB},TRANSFORMER_MODEL_NAME {TRANSFORMER_MODEL_NAME}"
 )
 
 train_df = pd.read_csv("dataset/train.csv", index_col=0)
@@ -84,13 +85,13 @@ class Model(nn.Module):
         self.init_loss_optimiser()
 
     def init_layers(self, num_tf_layers, hidden_dim, num_classes):
-        self.bert = AutoModel.from_pretrained(TRANSFORMER_MODEL_NAME)
-        self.bert = self.bert.to(self.device)
+        self.magpie = AutoModel.from_pretrained(TRANSFORMER_MODEL_NAME)
+        self.magpie = self.magpie.to(self.device)
 
         self.transformer_layers = nn.ModuleList(
             [
                 nn.TransformerEncoderLayer(
-                    d_model=self.bert.config.hidden_size,  # 768 for bert
+                    d_model=self.magpie.config.hidden_size,  # 768 for magpie
                     nhead=8,
                     dim_feedforward=hidden_dim,
                 )
@@ -98,15 +99,15 @@ class Model(nn.Module):
             ]
         )
 
-        self.dropout = nn.Dropout(0.2)
+        self.dropout = nn.Dropout(DROPOUT_PROB)
 
         self.mlp = nn.Sequential(
-            nn.Linear(self.bert.config.hidden_size, hidden_dim),
+            nn.Linear(self.magpie.config.hidden_size, hidden_dim),
             nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(self.bert.config.hidden_size, hidden_dim),
+            nn.Dropout(DROPOUT_PROB),
+            nn.Linear(self.magpie.config.hidden_size, hidden_dim),
             nn.ReLU(),
-            nn.Dropout(0.2),
+            nn.Dropout(DROPOUT_PROB),
             nn.Linear(hidden_dim, num_classes),
         )
 
@@ -154,8 +155,8 @@ class Model(nn.Module):
         )
 
     def forward(self, input_ids, attention_mask):
-        bert_output = self.bert(input_ids=input_ids, attention_mask=attention_mask)
-        transformer_output = bert_output.last_hidden_state
+        magpie_output = self.magpie(input_ids=input_ids, attention_mask=attention_mask)
+        transformer_output = magpie_output.last_hidden_state
 
         for layer in self.transformer_layers:
             transformer_output = layer(transformer_output)
@@ -330,8 +331,9 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-# TODO - apply first chunk pooling? read su
-# For the transformer encoder, we add an empty chunk at the beginning of the chunk sequence that is used as the document representation to the classifier, analogous to the [CLS] token commonly used in that way for sentence representations (and used here as the chunk representation)
-
-# title + content, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 10, TRANSFORMER_MODEL_NAME bert-base-uncased, 2 linear layer
-# {'loss': 1.7769678831100464, 'precision': 0.7186231414465551, 'recall': 0.719626168224299, 'f1': 0.7175640997635683}
+# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 14, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# features: title + content
+# ------------------------- Epoch 14 -------------------------
+# Training loss: 0.023638269709144587
+# Validation metrics: {'loss': 2.1015683107347374, 'precision': 0.7033258955286557, 'recall': 0.7093373493975904, 'f1': 0.7049971997370756}
+# {'loss': 1.9802608489990234, 'precision': 0.7264907022807645, 'recall': 0.7289719626168224, 'f1': 0.7264679742396032}

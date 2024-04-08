@@ -14,7 +14,7 @@ MODEL_NAME = "bert-base-uncased"
 
 WINDOW_SIZE = 512
 STRIDE = 256
-MAX_CHUNKS = 3
+MAX_CHUNKS = 4
 
 print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
 print(f"MODEL: {MODEL_NAME}")
@@ -106,14 +106,8 @@ functions.train(
     data_collator=collate_fn_pooled_tokens,
 )
 
-# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 128, MAX_CHUNKS: 3
-# {'eval_loss': 0.759958803653717, 'eval_precision': 0.6970096808977898, 'eval_recall': 0.6962616822429907, 'eval_f1': 0.6966204097045219, 'eval_runtime': 5.4156, 'eval_samples_per_second': 118.547, 'eval_steps_per_second': 14.957, 'epoch': 4.0}
+# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
+# {'eval_loss': 0.9750634431838989, 'eval_precision': 0.7152073894856094, 'eval_recall': 0.7133956386292835, 'eval_f1': 0.7142062154976148, 'eval_runtime': 6.8593, 'eval_samples_per_second': 93.595, 'eval_steps_per_second': 11.809, 'epoch': 4.0}
 
 # title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 4
-# {'eval_loss': 0.9045261740684509, 'eval_accuracy': 0.7227414330218068, 'eval_precision': 0.7253199513050848, 'eval_recall': 0.7227414330218068, 'eval_f1': 0.7234658119018105, 'eval_runtime': 7.3814, 'eval_samples_per_second': 86.975, 'eval_steps_per_second': 10.973, 'epoch': 4.0}
-
-# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 384, MAX_CHUNKS: 3
-# {'eval_loss': 0.9476966857910156, 'eval_accuracy': 0.7040498442367601, 'eval_precision': 0.7092989191893007, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.705990055709364, 'eval_runtime': 10.2325, 'eval_samples_per_second': 62.742, 'eval_steps_per_second': 7.916, 'epoch': 4.0}
-
-# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 384, MAX_CHUNKS: 4
-# {'eval_loss': 1.0253945589065552, 'eval_accuracy': 0.7071651090342679, 'eval_precision': 0.7079421703736144, 'eval_recall': 0.7071651090342679, 'eval_f1': 0.7075249369946512, 'eval_runtime': 11.4278, 'eval_samples_per_second': 56.179, 'eval_steps_per_second': 7.088, 'epoch': 4.0}
+# {'eval_loss': 0.9101153612136841, 'eval_precision': 0.7298301576586326, 'eval_recall': 0.7242990654205608, 'eval_f1': 0.7255672362667162, 'eval_runtime': 7.3774, 'eval_samples_per_second': 87.023, 'eval_steps_per_second': 10.98, 'epoch': 4.0}

@@ -102,5 +102,4 @@ else:
 
 functions.train(tokenised_dataset, bert_model, epoch=4)
 
-# RuntimeError: weight tensor should be defined either for all 2 classes or no classes but got weight tensor of shape: [3]
-# why
+# {'eval_loss': 1.0878552198410034, 'eval_precision': 0.7520404499179938, 'eval_recall': 0.45482866043613707, 'eval_f1': 0.28438965491938334, 'eval_runtime': 2.2536, 'eval_samples_per_second': 284.877, 'eval_steps_per_second': 35.942, 'epoch': 4.0}
