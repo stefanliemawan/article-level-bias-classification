@@ -49,6 +49,8 @@ def tokenise_dataset(x):
             + input_ids[i : i + CHUNK_SIZE - 2]
             + [tokeniser.sep_token_id]
         )
+        # CLS is <s>, SEP is </s>
+
         attention_mask = [1] * len(chunk)
 
         if len(chunk) < CHUNK_SIZE:
@@ -65,11 +67,8 @@ def tokenise_dataset(x):
 tokenised_dataset = dataset.map(tokenise_dataset)
 
 print(tokenised_dataset)
-# so idea here is to split into chunks of word encodings, do model() model() model(), get the CLS repr, then feed into torch_model
 
 
-# need to handle chunks inside the class
-# do we need to calculate positional embedding for the transformer layer?
 class Model(nn.Module):
     def __init__(self, num_tf_layers, hidden_dim, num_classes, train_labels):
         super(Model, self).__init__()
@@ -334,3 +333,17 @@ model.predict(tokenised_dataset["test"])
 # Training loss: 0.023638269709144587
 # Validation metrics: {'loss': 2.1015683107347374, 'precision': 0.7033258955286557, 'recall': 0.7093373493975904, 'f1': 0.7049971997370756}
 # {'loss': 1.9802608489990234, 'precision': 0.7264907022807645, 'recall': 0.7289719626168224, 'f1': 0.7264679742396032}
+
+# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# 12 head, worse
+# ------------------------- Epoch 3 -------------------------
+# Training loss: 0.4326541157168967
+# Validation metrics: {'loss': 0.8027956230812762, 'precision': 0.7006949769990162, 'recall': 0.6987951807228916, 'f1': 0.6965828678531171}
+
+# {'loss': 0.7336888909339905, 'precision': 0.7282305818702972, 'recall': 0.7258566978193146, 'f1': 0.7206436028148315}
+
+# ------------------------- Epoch 14 -------------------------
+# Training loss: 0.04398503941909791
+# Validation metrics: {'loss': 1.8984565923203636, 'precision': 0.7098462770863868, 'recall': 0.713855421686747, 'f1': 0.7105307708828702}
+
+# {'loss': 1.7765055894851685, 'precision': 0.7142225499274963, 'recall': 0.7165109034267912, 'f1': 0.7144432790862646}
