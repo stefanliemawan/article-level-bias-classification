@@ -13,7 +13,7 @@ from transformers import AutoModel, AutoTokenizer
 CHUNK_SIZE = 512
 NUM_TF_LAYERS = 2
 HIDDEN_SIZE = 768
-EPOCHS = 14
+EPOCHS = 3
 DROPOUT_PROB = 0.2
 TRANSFORMER_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 
@@ -84,7 +84,9 @@ class Model(nn.Module):
         self.init_loss_optimiser()
 
     def init_layers(self, num_tf_layers, hidden_dim, num_classes):
-        self.magpie = AutoModel.from_pretrained(TRANSFORMER_MODEL_NAME)
+        self.magpie = AutoModel.from_pretrained(
+            TRANSFORMER_MODEL_NAME
+        )
         self.magpie = self.magpie.to(self.device)
 
         self.transformer_layers = nn.ModuleList(
@@ -154,8 +156,14 @@ class Model(nn.Module):
         )
 
     def forward(self, input_ids, attention_mask):
-        magpie_output = self.magpie(input_ids=input_ids, attention_mask=attention_mask)
+        magpie_output = self.magpie(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+        )
         transformer_output = magpie_output.last_hidden_state
+
+        # len(magpie_output.hidden_states) --> 13
+        # transformer_output = magpie_output.hidden_states[-6]
 
         for layer in self.transformer_layers:
             transformer_output = layer(transformer_output)
