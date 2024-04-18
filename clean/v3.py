@@ -1,0 +1,44 @@
+import re
+
+import pandas as pd
+
+URL_REGEX = r"http(s)?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+CAPITAL_LETTER_AFTER_PERIOD_REGEX = r"\.(?=[A-Z])"
+
+df = pd.read_csv(
+    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
+    index_col=0,
+)
+# df = pd.read_csv(
+#     "../cleaned_dataset/scraped_merged_clean_v3.csv",
+#     index_col=0,
+# )
+
+urls_removed = []
+
+
+def strip_url(content):
+    def replace_urls(match):
+        url = match.group(0)  # Get the matched URL
+        urls_removed.append(url)
+
+        return ""
+
+    content = re.sub(URL_REGEX, replace_urls, content)
+
+    return content
+
+
+def dot(content):
+    content = re.sub(
+        CAPITAL_LETTER_AFTER_PERIOD_REGEX, lambda x: x.group(0) + " ", content
+    )
+
+    return content
+
+
+df["content"] = df["content"].apply(strip_url)
+df["content"] = df["content"].apply(dot)
+
+
+df.to_csv("../cleaned_dataset/scraped_merged_clean_v3.csv")

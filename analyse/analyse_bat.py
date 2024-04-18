@@ -11,22 +11,30 @@ df = pd.read_csv(
     index_col=0,
 )
 
+v3_df = pd.read_csv(
+    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
+    index_col=0,
+)
+
+
 # outlet_df = pd.read_csv("../dataset/BAT/ad_fontes/outlets_classes_scores.csv", index_col=0)
 
 
+# v2
 # MEAN 1217.8416461217523
 # MEDIAN 895.0
 # MAX 15796
 # MIN 7
 
-def plot_tokens_count():
+
+def plot_tokens_count(df):
     tokeniser = BertTokenizer.from_pretrained("bert-base-uncased")
     df["tokens_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
 
-    # print("MEAN", np.mean(df["tokens_count"].values))
-    # print("MEDIAN", np.median(df["tokens_count"].values))
-    # print("MAX", np.max(df["tokens_count"].values))
-    # print("MIN", np.min(df["tokens_count"].values))
+    print("MEAN", np.mean(df["tokens_count"].values))
+    print("MEDIAN", np.median(df["tokens_count"].values))
+    print("MAX", np.max(df["tokens_count"].values))
+    print("MIN", np.min(df["tokens_count"].values))
 
     plt.clf()
     plt.hist(df["tokens_count"], bins=20)
@@ -37,7 +45,7 @@ def plot_tokens_count():
     plt.title("Tokens Count")
     plt.grid(True)
     # plt.show()
-    plt.savefig("figures/tokens_count.png")
+    plt.savefig("figures/tokens_count_6000_v3.png")
 
 
 def plot_reliability_score():
@@ -55,7 +63,7 @@ def plot_reliability_score():
 #     print(outlet_df)
 
 
-plot_tokens_count()
+plot_tokens_count(v3_df)
 # plot_reliability_score()
 # plot_outlet_reliability_score()
 
