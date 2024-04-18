@@ -5,7 +5,12 @@ import numpy as np
 import pandas as pd
 import torch
 import utils.functions as functions
-from sklearn.metrics import f1_score, precision_score, recall_score
+from sklearn.metrics import (
+    classification_report,
+    f1_score,
+    precision_score,
+    recall_score,
+)
 from sklearn.utils.class_weight import compute_class_weight
 from torch import nn
 from transformers import AutoModel, AutoTokenizer
@@ -275,6 +280,8 @@ class Model(nn.Module):
 
     def compute_metrics(self, logits, labels):
         preds = logits.cpu().numpy().argmax(-1)
+
+        report = classification_report(labels, preds)
 
         precision = precision_score(labels, preds, average="weighted", zero_division=1)
         recall = recall_score(labels, preds, average="weighted", zero_division=1)

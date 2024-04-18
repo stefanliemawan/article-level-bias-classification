@@ -5,7 +5,12 @@ import numpy as np
 import pandas as pd
 import torch
 import utils.functions as functions
-from sklearn.metrics import f1_score, precision_score, recall_score
+from sklearn.metrics import (
+    classification_report,
+    f1_score,
+    precision_score,
+    recall_score,
+)
 from sklearn.utils.class_weight import compute_class_weight
 from torch import nn
 from transformers import AutoModel, AutoTokenizer
@@ -84,9 +89,7 @@ class Model(nn.Module):
         self.init_loss_optimiser()
 
     def init_layers(self, num_tf_layers, hidden_dim, num_classes):
-        self.magpie = AutoModel.from_pretrained(
-            TRANSFORMER_MODEL_NAME
-        )
+        self.magpie = AutoModel.from_pretrained(TRANSFORMER_MODEL_NAME)
         self.magpie = self.magpie.to(self.device)
 
         self.transformer_layers = nn.ModuleList(
@@ -279,6 +282,9 @@ class Model(nn.Module):
     def compute_metrics(self, logits, labels):
         preds = logits.cpu().numpy().argmax(-1)
 
+        report = classification_report(labels, preds)
+        print(report)
+
         precision = precision_score(labels, preds, average="weighted", zero_division=1)
         recall = recall_score(labels, preds, average="weighted", zero_division=1)
         f1 = f1_score(labels, preds, average="weighted", zero_division=1)
@@ -341,6 +347,7 @@ model.predict(tokenised_dataset["test"])
 # Training loss: 0.023638269709144587
 # Validation metrics: {'loss': 2.1015683107347374, 'precision': 0.7033258955286557, 'recall': 0.7093373493975904, 'f1': 0.7049971997370756}
 # {'loss': 1.9802608489990234, 'precision': 0.7264907022807645, 'recall': 0.7289719626168224, 'f1': 0.7264679742396032}
+# BEST 
 
 # CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 # 12 head, worse
