@@ -8,12 +8,12 @@ CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
 
 df = pd.read_csv(
-    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
+    "../dataset/scraped_merged_clean_v3.csv",
     index_col=0,
 )
 
 outlets_df = pd.read_csv(
-    "../dataset/BAT/ad_fontes/outlets_classes_scores.csv",
+    "../original_dataset/BAT/ad_fontes/outlets_classes_scores.csv",
     index_col=0,
     encoding="ISO-8859-1",
 )
@@ -74,11 +74,11 @@ train_set = train_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 test_set = test_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 valid_set = valid_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
-train_set.to_csv("dataset/train.csv")
-test_set.to_csv("dataset/test.csv")
-valid_set.to_csv("dataset/valid.csv")
+train_set.to_csv("../dataset/v3/train.csv")
+test_set.to_csv("../dataset/v3/test.csv")
+valid_set.to_csv("../dataset/v3/valid.csv")
 
-outlets_df.to_csv("dataset/outlets.csv")
+outlets_df.to_csv("../dataset/outlets.csv")
 
 print("TRAIN")
 print(train_set.shape)

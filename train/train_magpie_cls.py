@@ -341,7 +341,7 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 14, DROPOUT 0.2, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# v2, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 14, DROPOUT 0.2, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 # features: title + content
 # ------------------------- Epoch 14 -------------------------
 # Training loss: 0.023638269709144587
@@ -349,7 +349,7 @@ model.predict(tokenised_dataset["test"])
 # {'loss': 1.9802608489990234, 'precision': 0.7264907022807645, 'recall': 0.7289719626168224, 'f1': 0.7264679742396032}
 # BEST 
 
-# CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# v2, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 # 12 head, worse
 # ------------------------- Epoch 3 -------------------------
 # Training loss: 0.4326541157168967
@@ -357,6 +357,7 @@ model.predict(tokenised_dataset["test"])
 
 # {'loss': 0.7336888909339905, 'precision': 0.7282305818702972, 'recall': 0.7258566978193146, 'f1': 0.7206436028148315}
 
+# v2?
 # ------------------------- Epoch 14 -------------------------
 # Training loss: 0.04398503941909791
 # Validation metrics: {'loss': 1.8984565923203636, 'precision': 0.7098462770863868, 'recall': 0.713855421686747, 'f1': 0.7105307708828702}

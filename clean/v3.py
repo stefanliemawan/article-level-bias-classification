@@ -1,14 +1,18 @@
 import re
 
 import pandas as pd
+import utils
+from tqdm import tqdm
 
 URL_REGEX = r"http(s)?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
 CAPITAL_LETTER_AFTER_PERIOD_REGEX = r"\.(?=[A-Z])"
 
+
 df = pd.read_csv(
-    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
+    "../dataset/scraped_merged_clean_v2_edited.csv",
     index_col=0,
 )
+
 # df = pd.read_csv(
 #     "../cleaned_dataset/scraped_merged_clean_v3.csv",
 #     index_col=0,
@@ -37,8 +41,10 @@ def dot(content):
     return content
 
 
-df["content"] = df["content"].apply(strip_url)
-df["content"] = df["content"].apply(dot)
+tqdm.pandas()
 
+df["content"] = df["content"].progress_apply(strip_url)
+df["content"] = df["content"].progress_apply(dot)
+df["content"] = df["content"].progress_apply(utils.fix_conjoined_words)
 
-df.to_csv("../cleaned_dataset/scraped_merged_clean_v3.csv")
+df.to_csv("../dataset/scraped_merged_clean_v3.csv")

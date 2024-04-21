@@ -19,9 +19,9 @@ MAX_CHUNKS = 4
 print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
 print(f"MODEL: {MODEL_NAME}")
 
-train_df = pd.read_csv("dataset/train.csv", index_col=0)
-test_df = pd.read_csv("dataset/test.csv", index_col=0)
-valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
+test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
+valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
 
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
@@ -106,8 +106,8 @@ functions.train(
     data_collator=collate_fn_pooled_tokens,
 )
 
-# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
+# v2, title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
 # {'eval_loss': 0.9750634431838989, 'eval_precision': 0.7152073894856094, 'eval_recall': 0.7133956386292835, 'eval_f1': 0.7142062154976148, 'eval_runtime': 6.8593, 'eval_samples_per_second': 93.595, 'eval_steps_per_second': 11.809, 'epoch': 4.0}
 
-# title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 4
+# v2, title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 4
 # {'eval_loss': 0.9101153612136841, 'eval_precision': 0.7298301576586326, 'eval_recall': 0.7242990654205608, 'eval_f1': 0.7255672362667162, 'eval_runtime': 7.3774, 'eval_samples_per_second': 87.023, 'eval_steps_per_second': 10.98, 'epoch': 4.0}

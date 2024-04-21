@@ -5,8 +5,7 @@
 #SBATCH --ntasks-per-node=18
 #SBATCH --gpus-per-node=1
 #SBATCH --time=02:00:00
-#SBATCH --account=lp_wice_pilot
-#SBATCH --reservation=pilot
+#SBATCH --account=intro_vsc36378
 
 
 cp -r $VSC_DATA $VSC_SCRATCH

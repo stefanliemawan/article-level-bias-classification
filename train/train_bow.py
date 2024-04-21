@@ -12,9 +12,9 @@ from sklearn.metrics import (
     recall_score,
 )
 
-train_df = pd.read_csv("dataset/train.csv", index_col=0)
-test_df = pd.read_csv("dataset/test.csv", index_col=0)
-valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+train_df = pd.read_csv("dataset/v2/train.csv", index_col=0)
+test_df = pd.read_csv("dataset/v2/test.csv", index_col=0)
+valid_df = pd.read_csv("dataset/v2/valid.csv", index_col=0)
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
@@ -59,8 +59,17 @@ print(
     }
 )
 
+#               precision    recall  f1-score   support
+
+#            0       0.48      0.53      0.50        74
+#            1       0.66      0.65      0.65       292
+#            2       0.76      0.75      0.75       276
+
+#     accuracy                           0.68       642
+#    macro avg       0.63      0.64      0.63       642
+# weighted avg       0.68      0.68      0.68       642
+
 # {'precision': 0.6788933546977032, 'recall': 0.67601246105919, 'f1': 0.6772696229141721}
-# SAD
 
 
 y_train = train_df["reliability_score"].values
@@ -75,3 +84,6 @@ r2 = r2_score(y_test, y_pred)
 
 print("Mean Squared Error:", mse)
 print("R-squared Score:", r2)
+
+# Mean Squared Error: 322.854437784475
+# R-squared Score: -3.0529706496787528
