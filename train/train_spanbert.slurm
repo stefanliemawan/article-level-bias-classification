@@ -2,9 +2,9 @@
 #SBATCH --clusters=wice
 #SBATCH --partition=gpu_h100
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=16
+#SBATCH --ntasks-per-node=18
 #SBATCH --gpus-per-node=1
-#SBATCH --time=00:15:00
+#SBATCH --time=00:30:00
 #SBATCH --account=intro_vsc36378
 
 
@@ -24,4 +24,4 @@ cd vsc36378/train
 pip install -r requirements.txt
 
 python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
-torchrun train_sliding_window.py --windowsize $windowsize --stride $stride --maxchunks $maxchunks --model $model
+torchrun train_spanbert.py

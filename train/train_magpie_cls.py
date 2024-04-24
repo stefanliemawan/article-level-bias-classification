@@ -1,4 +1,3 @@
-import math
 import platform
 
 import numpy as np
@@ -25,10 +24,11 @@ TRANSFORMER_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 print(
     f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_SIZE}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB},TRANSFORMER_MODEL_NAME {TRANSFORMER_MODEL_NAME}"
 )
+print("dataset v3")
 
-train_df = pd.read_csv("dataset/train.csv", index_col=0)
-test_df = pd.read_csv("dataset/test.csv", index_col=0)
-valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
+test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
+valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
 
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
@@ -347,7 +347,7 @@ model.predict(tokenised_dataset["test"])
 # Training loss: 0.023638269709144587
 # Validation metrics: {'loss': 2.1015683107347374, 'precision': 0.7033258955286557, 'recall': 0.7093373493975904, 'f1': 0.7049971997370756}
 # {'loss': 1.9802608489990234, 'precision': 0.7264907022807645, 'recall': 0.7289719626168224, 'f1': 0.7264679742396032}
-# BEST 
+# BEST
 
 # v2, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 # 12 head, worse

@@ -14,10 +14,11 @@ MODEL_NAME = "bert-base-uncased"
 
 WINDOW_SIZE = 512
 STRIDE = 256
-MAX_CHUNKS = 4
+MAX_CHUNKS = 3
 
 print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
 print(f"MODEL: {MODEL_NAME}")
+print("dataset v3")
 
 train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
 test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
@@ -111,3 +112,6 @@ functions.train(
 
 # v2, title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 4
 # {'eval_loss': 0.9101153612136841, 'eval_precision': 0.7298301576586326, 'eval_recall': 0.7242990654205608, 'eval_f1': 0.7255672362667162, 'eval_runtime': 7.3774, 'eval_samples_per_second': 87.023, 'eval_steps_per_second': 10.98, 'epoch': 4.0}
+
+# v3, title + content, bert-base-uncased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
+# {'eval_loss': 0.855532169342041, 'eval_precision': 0.7241055353656541, 'eval_recall': 0.7227414330218068, 'eval_f1': 0.7233254772032158, 'eval_runtime': 7.2872, 'eval_samples_per_second': 88.1, 'eval_steps_per_second': 11.115, 'epoch': 4.0}
