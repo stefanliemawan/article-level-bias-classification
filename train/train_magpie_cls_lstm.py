@@ -25,10 +25,11 @@ TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 print(
     f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}, TRANSFORMER_MODEL_NAME {TF_MODEL_NAME}"
 )
+print("dataset v3")
 
-train_df = pd.read_csv("dataset/train.csv", index_col=0)
-test_df = pd.read_csv("dataset/test.csv", index_col=0)
-valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
+test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
+valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
 
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
@@ -339,7 +340,7 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-
+# v2 ---
 # CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_DIM 256, EPOCHS 8, DROPOUT 0.2, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, (lstm): LSTM(768, 256, num_layers=2)
 # ------------------------- Epoch 8 -------------------------
 # Training loss: 0.1503344306932582
@@ -359,3 +360,5 @@ model.predict(tokenised_dataset["test"])
 # Validation metrics: {'loss': 1.4456789765551865, 'precision': 0.6987418728300206, 'recall': 0.7048192771084337, 'f1': 0.6969043349033112}
 
 # {'loss': 1.4155519008636475, 'precision': 0.7143933030667106, 'recall': 0.7180685358255452, 'f1': 0.7117710580545409}
+
+# v3

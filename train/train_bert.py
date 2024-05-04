@@ -8,8 +8,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
-# MODEL_NAME = "bert-base-uncased"
-MODEL_NAME = "bert-large-cased"
+MODEL_NAME = "bert-base-uncased"
 
 print(f"MODEL: {MODEL_NAME}")
 print("dataset v3")
@@ -52,3 +51,5 @@ functions.train(tokenised_dataset, model, epoch=4)
 
 # v3, title + content, bert-base-uncased, no oversampling just weighted loss
 # {'eval_loss': 1.2678630352020264, 'eval_precision': 0.7163276764016158, 'eval_recall': 0.7118380062305296, 'eval_f1': 0.7134907269760798, 'eval_runtime': 45.7962, 'eval_samples_per_second': 14.019, 'eval_steps_per_second': 1.769, 'epoch': 4.0}
+
+# worse with bert-large-uncased

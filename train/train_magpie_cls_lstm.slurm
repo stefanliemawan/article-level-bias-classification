@@ -5,8 +5,7 @@
 #SBATCH --ntasks-per-node=18
 #SBATCH --gpus-per-node=1
 #SBATCH --time=02:00:00
-#SBATCH --account=lp_wice_pilot
-#SBATCH --reservation=pilot
+#SBATCH --account=intro_vsc36378
 
 
 cp -r $VSC_DATA $VSC_SCRATCH
@@ -21,8 +20,8 @@ conda init bash
 conda activate $VSC_SCRATCH/envs/jobs_env
 python --version
 
-cd vsc36378
+cd vsc36378/train
 pip install -r requirements.txt
 
 python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
-torchrun train_magpie_cls_2.py
+torchrun train_magpie_cls_lstm.py

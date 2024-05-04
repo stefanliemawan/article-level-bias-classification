@@ -10,9 +10,9 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 MODEL_NAME = "bert-base-uncased"
 
-train_df = pd.read_csv("dataset/train.csv", index_col=0)
-test_df = pd.read_csv("dataset/test.csv", index_col=0)
-valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
+test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
+valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
 
 outlets_df = pd.read_csv("dataset/outlets.csv", index_col=0)
 train_df, test_df, valid_df = functions.generate_outlet_title_content_features(

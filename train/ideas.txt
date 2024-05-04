@@ -1,0 +1,11 @@
+either try kulkarni or chen_gaussian, or maybe indivec?
+
+chen - add bias position and bias frequency as features, but why use gaussian mixture model?
+
+kulkarni - has some kind of network
+Problem Formulation
+X = {Xtitle, Xnet, Xcontent} which represents a set of multi-modal features of news articles and a label set Y = {LEFT, CENTER, RIGHT}, we
+would like to model Pr(Y |X).
+
+relevance score?
+entity-based learning? save entities
