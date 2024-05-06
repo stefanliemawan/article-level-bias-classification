@@ -6,33 +6,39 @@ import torch
 import torch.nn.functional as F
 import utils.functions as functions
 from sklearn.metrics.pairwise import cosine_similarity
+from tqdm import tqdm
 from transformers import AutoModel, AutoModelForSequenceClassification, AutoTokenizer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
-MODEL_NAME = "bert-base-uncased"
+MODEL_NAME = "bert-base-cased"
+DATASET_VERSION = "v4"
 
 print(f"MODEL: {MODEL_NAME}")
-print("dataset v3")
+print(f"dataset {DATASET_VERSION}")
 
-train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
-test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
-valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
+train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
+test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
+valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
+
+tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
 
+dataset = functions.create_dataset(train_df, test_df, valid_df)
 
-text_test = train_df.loc[0]["features"]
+tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser)
+print(tokenised_dataset)
 
-sentences = text_test.split(". ")
+functions.print_class_distribution(tokenised_dataset)
 
-
-tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModel.from_pretrained(MODEL_NAME)
-
+num_labels = len(pd.unique(train_df["labels"]))
+model = AutoModelForSequenceClassification.from_pretrained(
+    MODEL_NAME, num_labels=num_labels
+)
 
 if platform.system() == "Darwin":
     model = model.to("mps")
@@ -41,38 +47,5 @@ elif torch.cuda.is_available():
 else:
     model = model.to("cpu")
 
-sentence_embeddings = []
-for sentence in sentences[:3]:
-    tokens = tokeniser.encode(
-        sentence, add_special_tokens=False, return_tensors="pt"
-    ).to("mps")
-    output = model(tokens)
-    last_hidden_state = output.last_hidden_state
 
-    sentence_embeddings.append(last_hidden_state)
-
-
-x = sentence_embeddings[0].squeeze(0)
-y = sentence_embeddings[1].squeeze(0)
-z = sentence_embeddings[2].squeeze(0)
-
-x = F.normalize(x, p=2, dim=-1)
-y = F.normalize(y, p=2, dim=-1)
-z = F.normalize(z, p=2, dim=-1)
-
-x = x.cpu().detach().numpy()
-y = y.cpu().detach().numpy()
-z = z.cpu().detach().numpy()
-
-print(x.shape)
-print(y.shape)
-print(z.shape)
-
-similarity_matrix = cosine_similarity(x, y)
-# print(similarity_matrix)
-print(similarity_matrix[0][0])
-
-similarity_matrix = cosine_similarity(x, z)
-# print(similarity_matrix)
-print(similarity_matrix[0][0])
-# works
+# # functions.train(tokenised_dataset, model, epoch=4)
