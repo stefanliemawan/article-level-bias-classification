@@ -6,7 +6,7 @@ import torch
 import utils.functions as functions
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 MODEL_NAME = "bert-base-uncased"
 
@@ -14,7 +14,7 @@ train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
 test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
 valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
 
-outlets_df = pd.read_csv("dataset/outlets.csv", index_col=0)
+outlets_df = pd.read_csv("../dataset/outlets.csv", index_col=0)
 train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
     train_df, test_df, valid_df
 )
@@ -42,7 +42,7 @@ else:
 
 functions.train(tokenised_dataset, model, epoch=4)
 
-# outlet + title + content, bert-base-uncased, slurm
+# v2, outlet + title + content, bert-base-uncased, slurm
 # {'eval_loss': 0.9668617248535156, 'eval_accuracy': 0.7725856697819314, 'eval_precision': 0.7710658394071737, 'eval_recall': 0.7725856697819314, 'eval_f1': 0.7714502860953963, 'eval_runtime': 2.3516, 'eval_samples_per_second': 273.008, 'eval_steps_per_second': 34.445, 'epoch': 4.0}
 
 

@@ -21,7 +21,7 @@ conda init bash
 conda activate $VSC_SCRATCH/envs/jobs_env
 python --version
 
-cd vsc36378
+cd vsc36378/train
 pip install -r requirements.txt
 
 python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
