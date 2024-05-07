@@ -71,14 +71,18 @@ def rank_content(row):
         if len(sentence) == 1:
             print(sentence)
 
-        if len(sentence) > 512:
-            sentence_embeddings = get_embeddings(sentence[:512])
-        elif len(sentence) != 0:
-            sentence_embeddings = get_embeddings(sentence)
+        try:
+            if len(sentence) > 512:
+                sentence_embeddings = get_embeddings(sentence[:512])
+            elif len(sentence) != 0:
+                sentence_embeddings = get_embeddings(sentence)
 
-        sentence_score = calculate_similarity_score(
-            title_embeddings, sentence_embeddings
-        )
+            sentence_score = calculate_similarity_score(
+                title_embeddings, sentence_embeddings
+            )
+        except Exception as exception:
+            print(len(sentence), exception)
+            sentence_score = 0.0
 
         sentences_score.append((sentence, sentence_score))
 
