@@ -12,9 +12,11 @@ from sklearn.metrics import (
     root_mean_squared_error,
 )
 
-train_df = pd.read_csv("../dataset/v3/train.csv", index_col=0)
-test_df = pd.read_csv("../dataset/v3/test.csv", index_col=0)
-valid_df = pd.read_csv("../dataset/v3/valid.csv", index_col=0)
+DATASET_VERSION = "v4"
+
+train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
+test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
+valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
@@ -70,7 +72,7 @@ print("Root Mean Squared Error:", rmse)
 print("R-squared Score:", r2)
 
 
-# v3
+# V3 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #               precision    recall  f1-score   support
 
 #            0       0.62      0.18      0.27        74
@@ -84,3 +86,18 @@ print("R-squared Score:", r2)
 # {'accuracy': 0.7040498442367601, 'precision': 0.6990965451838657, 'recall': 0.7040498442367601, 'f1': 0.6856967728656046}
 # Root Mean Squared Error: 7.213715142373027
 # R-squared Score: 0.34674209184813376
+
+# V4 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#               precision    recall  f1-score   support
+
+#            0       0.60      0.16      0.26        74
+#            1       0.66      0.77      0.71       292
+#            2       0.77      0.79      0.78       276
+
+#     accuracy                           0.71       642
+#    macro avg       0.68      0.57      0.58       642
+# weighted avg       0.70      0.71      0.69       642
+
+# {'accuracy': 0.7087227414330218, 'precision': 0.7020962286836469, 'recall': 0.7087227414330218, 'f1': 0.6891113551980523}
+# Root Mean Squared Error: 7.229617918388458
+# R-squared Score: 0.3438586774243867

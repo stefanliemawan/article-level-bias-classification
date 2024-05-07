@@ -6,9 +6,10 @@ from sklearn.model_selection import train_test_split
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
+DATASET_VERSION = "v4"
 
 df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v4_ranked.csv",
+    f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
 
@@ -74,9 +75,9 @@ train_set = train_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 test_set = test_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 valid_set = valid_set.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
-train_set.to_csv("../dataset/v4_ranked/train.csv")
-test_set.to_csv("../dataset/v4_ranked/test.csv")
-valid_set.to_csv("../dataset/v4_ranked/valid.csv")
+train_set.to_csv(f"../dataset/{DATASET_VERSION}/train.csv")
+test_set.to_csv(f"../dataset/{DATASET_VERSION}/test.csv")
+valid_set.to_csv(f"../dataset/{DATASET_VERSION}/valid.csv")
 
 outlets_df.to_csv("../dataset/outlets.csv")
 
