@@ -8,18 +8,19 @@ ABBR_REGEX = r"([A-Z])\. ?([A-Z])\."
 NAME_ABBR_REGEX = r"([A-Z])\. ([A-Z][a-z]+)"
 
 ABBR_DICT = {
-    "United State": "US",
+    "United State": "US",  # maybe this should be the other way around?
     "United States": "US",
     "United States of America": "US",
     "United Nations": "UN",
     "Ph. D": "PhD",
     "Gov.": "Governor",
+    "Sen.": "Senator",
+    "Rep.": "Representative",
     "No.": "Number",
     "b log": "blog",
     "b logs": "blog",
     " v.": " vs",
     " vs.": " vs",
-    "St. ": "Street",
     "Jan.": "January",
     "Feb.": "February",
     "Mar.": "March",
@@ -32,23 +33,23 @@ ABBR_DICT = {
     "Oct.": "October",
     "Nov.": "November",
     "Dec.": "December",
-    "isn't": "is not",
-    "hasn't": "has not",
-    "haven't": "have not",
-    "hadn't": "had not",
-    "shouldn't": "should not",
-    "wouldn't": "would not",
-    "couldn't": "could not",
-    "wasn't": "was not",
-    "weren't": "were not",
+}
+
+CONTRACTION_DICT = {
     "won't": "will not",
-    "can't": "can not",
     "n't": " not",
     "'m": " am",
     "'s": " is",
     "'re": " are",
     "'ve": " have",
     "'ll": " will",
+    "won’t": "will not",
+    "n’t": " not",
+    "’m": " am",
+    "’s": " is",
+    "’re": " are",
+    "’ve": " have",
+    "’ll": " will",
 }
 
 df = pd.read_csv(
@@ -68,6 +69,9 @@ def strip_abbr(content):
     for abbr, expanded_form in ABBR_DICT.items():
         stripped_abbr = stripped_abbr.replace(abbr, expanded_form)
 
+    for contraction, expanded_form in CONTRACTION_DICT.items():
+        stripped_abbr = stripped_abbr.replace(contraction, expanded_form)
+
     return stripped_abbr
 
 
@@ -79,6 +83,6 @@ df["content"] = df["content"].progress_apply(strip_abbr)
 df.to_csv("../dataset/scraped_merged_clean_v4.csv")
 
 
-# test_txt = "UN sanctions. The U. S, not Iran,"
+# test_txt = "hasn’t explained why,"
 
 # print(strip_abbr(test_txt))
