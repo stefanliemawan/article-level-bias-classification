@@ -8,6 +8,7 @@ ABBR_REGEX = r"([A-Z])\. ?([A-Z])\."
 NAME_ABBR_REGEX = r"([A-Z])\. ([A-Z][a-z]+)"
 
 ABBR_DICT = {
+    " s": "s,",
     "United State": "US",
     "United States": "US",
     "United States of America": "US",
@@ -32,6 +33,15 @@ ABBR_DICT = {
     "Oct.": "October",
     "Nov.": "November",
     "Dec.": "December",
+    "isn't": "is not",
+    "hasn't": "has not",
+    "haven't": "have not",
+    "hadn't": "had not",
+    "shouldn't": "should not",
+    "wouldn't": "would not",
+    "couldn't": "could not",
+    "wasn't": "was not",
+    "weren't": "were not",
     "won't": "will not",
     "can't": "can not",
     "n't": " not",

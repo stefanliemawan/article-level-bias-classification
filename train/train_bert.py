@@ -44,7 +44,7 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=5)
+functions.train(tokenised_dataset, model, epoch=6)
 
 # v2, title + content, bert-base-uncased, with oversampling
 # {'eval_loss': 0.8049562573432922, 'eval_precision': 0.6989735466648578, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.6967025255248073, 'eval_runtime': 2.3663, 'eval_samples_per_second': 271.307, 'eval_steps_per_second': 34.23, 'epoch': 4.0}
@@ -70,7 +70,28 @@ functions.train(tokenised_dataset, model, epoch=5)
 # {'eval_loss': 0.9702945351600647, 'eval_precision': 0.6942916688679829, 'eval_recall': 0.6915887850467289, 'eval_f1': 0.6918596226482016, 'eval_runtime': 47.7002, 'eval_samples_per_second': 13.459, 'eval_steps_per_second': 1.698, 'epoch': 4.0}
 
 
-# new v4, title + content, bert-base-cased, no oversampling just weighted loss
-# {'eval_loss': 0.9504181742668152, 'eval_precision': 0.705154040094885, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.7042395318266549, 'eval_runtime': 53.1039, 'eval_samples_per_second': 12.089, 'eval_steps_per_second': 1.525, 'epoch': 4.0}
+# v4, title + content, bert-base-cased, no oversampling just weighted loss
+#               precision    recall  f1-score   support
 
-# try cased with more epoch?
+#            0       0.56      0.66      0.61        74
+#            1       0.70      0.66      0.68       292
+#            2       0.77      0.78      0.77       276
+
+#     accuracy                           0.71       642
+#    macro avg       0.68      0.70      0.69       642
+# weighted avg       0.71      0.71      0.71       642
+
+# {'eval_loss': 0.886698305606842, 'eval_precision': 0.7142597176941626, 'eval_recall': 0.7118380062305296, 'eval_f1': 0.71233323335984, 'eval_runtime': 44.0597, 'eval_samples_per_second': 14.571, 'eval_steps_per_second': 1.838, 'epoch': 4.0}
+
+# v4, title + content, bert-base-cased, no oversampling just weighted loss, old
+#               precision    recall  f1-score   support
+
+#            0       0.62      0.54      0.58        74
+#            1       0.70      0.73      0.71       292
+#            2       0.78      0.77      0.78       276
+
+#     accuracy                           0.73       642
+#    macro avg       0.70      0.68      0.69       642
+# weighted avg       0.73      0.73      0.73       642
+
+# {'eval_loss': 1.7175806760787964, 'eval_precision': 0.7253978396507152, 'eval_recall': 0.7258566978193146, 'eval_f1': 0.7250427756243668, 'eval_runtime': 48.3937, 'eval_samples_per_second': 13.266, 'eval_steps_per_second': 1.674, 'epoch': 6.0}

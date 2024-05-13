@@ -10,6 +10,8 @@ from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
 
 MODEL_NAME = "bert-base-cased"
+# MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+
 DATASET_VERSION = "v4"
 
 print(f"MODEL: {MODEL_NAME}")
@@ -109,3 +111,5 @@ df["content"] = df.progress_apply(rank_content, axis=1)
 df.to_csv("../dataset/scraped_merged_clean_v4_ranked.csv")
 
 # give or take 1 hour?
+
+# do this within tokenise_dataset instead?
