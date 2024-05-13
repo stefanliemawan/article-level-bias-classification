@@ -8,7 +8,6 @@ ABBR_REGEX = r"([A-Z])\. ?([A-Z])\."
 NAME_ABBR_REGEX = r"([A-Z])\. ([A-Z][a-z]+)"
 
 ABBR_DICT = {
-    " s": "s,",
     "United State": "US",
     "United States": "US",
     "United States of America": "US",

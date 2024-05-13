@@ -35,7 +35,7 @@ generate_word_cloud(text)
 
 def word_occurrences(text):
     # Split the text into words
-    # words = re.findall(r"\w+", text)
+    # words = re.findall(r"(\w+)", text)
     words = text.split()
 
     # Count the occurrences of each word
