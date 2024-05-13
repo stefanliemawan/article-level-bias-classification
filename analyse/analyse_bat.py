@@ -6,13 +6,19 @@ import pandas as pd
 import scipy.stats as stats
 from transformers import BertTokenizer
 
-df = pd.read_csv(
-    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
+v1_df = pd.read_csv(
+    "../dataset/scraped_merged_clean_v1.csv",
     index_col=0,
 )
 
+v2_edited_df = pd.read_csv(
+    "../dataset/scraped_merged_clean_v2_edited.csv",
+    index_col=0,
+)
+
+
 v3_df = pd.read_csv(
-    "../cleaned_dataset/scraped_merged_clean_v2_edited.csv",
+    "../dataset/scraped_merged_clean_v3.csv",
     index_col=0,
 )
 
@@ -20,9 +26,9 @@ v3_df = pd.read_csv(
 # outlet_df = pd.read_csv("../dataset/BAT/ad_fontes/outlets_classes_scores.csv", index_col=0)
 
 
-# v2
-# MEAN 1217.8416461217523
-# MEDIAN 895.0
+# v2_edited
+# MEAN 1216.7633225867628
+# MEDIAN 900.0
 # MAX 15796
 # MIN 7
 
@@ -38,17 +44,18 @@ def plot_tokens_count(df):
 
     plt.clf()
     plt.hist(df["tokens_count"], bins=20)
-    plt.xlim(0, 6000)
+    # plt.xlim(0, 6000)
 
     plt.xlabel("Tokens Count")
     plt.ylabel("Frequency")
     plt.title("Tokens Count")
     plt.grid(True)
     # plt.show()
-    plt.savefig("figures/tokens_count_6000_v3.png")
+    # plt.savefig("figures/tokens_count_all_v2_edited.png")
+    plt.savefig("figures/tokens_count_all_v1.png")
 
 
-def plot_reliability_score():
+def plot_reliability_score(df):
     plt.clf()
 
     plt.hist(df["reliability_score"], bins=10)
@@ -63,14 +70,15 @@ def plot_reliability_score():
 #     print(outlet_df)
 
 
-plot_tokens_count(v3_df)
+# plot_tokens_count(v2_edited_df)
+plot_tokens_count(v2_edited_df)
 # plot_reliability_score()
 # plot_outlet_reliability_score()
 
 
-# max_content = df["content"].apply(len)
-# print(max_content)
+max_content = v2_edited_df["content"].apply(len)
+print(max_content)
 
-# row = df.loc[max_content.idxmax()]
+row = v2_edited_df.loc[max_content.idxmax()]
 
-# print(row)
+print(row)

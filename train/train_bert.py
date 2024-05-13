@@ -44,7 +44,7 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, model, epoch=5)
 
 # v2, title + content, bert-base-uncased, with oversampling
 # {'eval_loss': 0.8049562573432922, 'eval_precision': 0.6989735466648578, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.6967025255248073, 'eval_runtime': 2.3663, 'eval_samples_per_second': 271.307, 'eval_steps_per_second': 34.23, 'epoch': 4.0}
@@ -55,7 +55,7 @@ functions.train(tokenised_dataset, model, epoch=4)
 # v3, title + content, bert-base-uncased, no oversampling just weighted loss
 # {'eval_loss': 1.2678630352020264, 'eval_precision': 0.7163276764016158, 'eval_recall': 0.7118380062305296, 'eval_f1': 0.7134907269760798, 'eval_runtime': 45.7962, 'eval_samples_per_second': 14.019, 'eval_steps_per_second': 1.769, 'epoch': 4.0}
 
-# v4_ranked, title + content, bert-base-cased, no oversampling just weighted loss
+# v4_ranked, title + content, bert-base-cased, no oversampling just weighted loss, old
 
 #               precision    recall  f1-score   support
 
@@ -69,17 +69,8 @@ functions.train(tokenised_dataset, model, epoch=4)
 
 # {'eval_loss': 0.9702945351600647, 'eval_precision': 0.6942916688679829, 'eval_recall': 0.6915887850467289, 'eval_f1': 0.6918596226482016, 'eval_runtime': 47.7002, 'eval_samples_per_second': 13.459, 'eval_steps_per_second': 1.698, 'epoch': 4.0}
 
-# v4, title + content, bert-base-cased, no oversampling just weighted loss
-#               precision    recall  f1-score   support
 
-#            0       0.49      0.54      0.52        74
-#            1       0.68      0.63      0.65       292
-#            2       0.75      0.79      0.77       276
+# new v4, title + content, bert-base-cased, no oversampling just weighted loss
+# {'eval_loss': 0.9504181742668152, 'eval_precision': 0.705154040094885, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.7042395318266549, 'eval_runtime': 53.1039, 'eval_samples_per_second': 12.089, 'eval_steps_per_second': 1.525, 'epoch': 4.0}
 
-#     accuracy                           0.69       642
-#    macro avg       0.64      0.65      0.65       642
-# weighted avg       0.69      0.69      0.69       642
-
-# {'eval_loss': 0.818742036819458, 'eval_precision': 0.6889055678014557, 'eval_recall': 0.6884735202492211, 'eval_f1': 0.6879510201257746, 'eval_runtime': 50.2343, 'eval_samples_per_second': 12.78, 'eval_steps_per_second': 1.612, 'epoch': 4.0}
-
-# so v4 is even worse for some reason?
+# try cased with more epoch?
