@@ -92,13 +92,15 @@ def fix_more_words(content):
 
 tqdm.pandas()
 
+df = df.sample(frac=1).reset_index(drop=True)
+
 # df["content"] = df["content"].progress_apply(strip_url)
 # df["content"] = df["content"].progress_apply(dot)
 # df["content"] = df["content"].progress_apply(utils.fix_conjoined_words)
 
 df["content"] = df["content"].progress_apply(fix_more_words)
 
-df.to_csv("../dataset/scraped_merged_clean_v3_edited.csv")
+# df.to_csv("../dataset/scraped_merged_clean_v3_new.csv")
 
 # test_txt = "January 6, 2021. (Photo By Tom Williams/CQ-Roll Call, Inc via Getty Images)Eventually Capitol Police escor"
 

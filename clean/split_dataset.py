@@ -7,6 +7,7 @@ SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
 DATASET_VERSION = "v4"
+print(f"dataset {DATASET_VERSION}")
 
 df = pd.read_csv(
     f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",

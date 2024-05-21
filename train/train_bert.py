@@ -8,10 +8,10 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
-# MODEL_NAME = "bert-base-uncased"
-MODEL_NAME = "bert-base-cased"
+MODEL_NAME = "bert-base-uncased"
+# MODEL_NAME = "bert-base-cased"
 
-DATASET_VERSION = "v4"
+DATASET_VERSION = "v3"
 
 print(f"MODEL: {MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")

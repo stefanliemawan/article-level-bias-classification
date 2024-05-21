@@ -1,5 +1,7 @@
 import re
 
+ADDED_WORDS = ["ughest", "retweet"]
+
 
 def load_word_list():
     with open("../word_list/words_alpha.txt") as word_file:
@@ -12,6 +14,7 @@ word_list = load_word_list()
 print(len(word_list))
 
 
+# not good
 def fix_conjoined_words(text):
     # pattern = r"([a-z])([A-Z])"
     # corrected_text = re.sub(pattern, r"\1 \2", text)
@@ -38,12 +41,17 @@ def suggest_correction(input_word):
     word_candidates = []
 
     for word in word_list:
-        if word in input_word:
+        if word in input_word and len(word) > 3:
             word_candidates.append(word)
+
+    word_candidates = sorted(word_candidates, key=lambda x: len(x), reverse=True)
+    # print(word_candidates)
 
     correct_word_candidates = []
 
     for word1 in word_candidates:
+        if word1 + "s" == input_word:
+            return input_word
         for word2 in word_candidates:
             joined_word = word1 + word2
 
@@ -62,12 +70,23 @@ def suggest_correction(input_word):
                         )
 
     if len(correct_word_candidates) == 1:
-        return correct_word_candidates[0]
+        correct_word = correct_word_candidates[0]
+        print()
+        print(input_word)
+        print(correct_word)
+
+        return correct_word
+
     elif len(correct_word_candidates) > 1:
-        return choose_best_word(correct_word_candidates)
+        correct_word = choose_best_word(correct_word_candidates)
+        print()
+        print(input_word)
+        print(correct_word)
+
+        return correct_word
 
     return input_word
 
 
-# corrected = suggest_correction("profileDeepfakevideos")
+# corrected = suggest_correction("stakeholders")
 # print(corrected)
