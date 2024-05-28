@@ -1,7 +1,7 @@
-from bs4 import BeautifulSoup
-import requests
 import re
 
+import requests
+from bs4 import BeautifulSoup
 
 REGEX_STRINGS = [
     r"article-content",
@@ -96,9 +96,10 @@ def find_article(soup: BeautifulSoup, regex):
 
 def uniform_scrape(url):
     soup = get_soup(url)
+    # print(soup)
 
     for regex_string in REGEX_STRINGS:
-        print(regex_string)
+        # print(regex_string)
         if regex_string == r"<article>":
             article = soup.find("article")
             REGEX_COUNT["<article>"] += 1
