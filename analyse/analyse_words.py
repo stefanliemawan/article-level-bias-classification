@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from wordcloud import WordCloud
 
-DATASET_VERSION = "v4"
+DATASET_VERSION = "vx"
 
 print(f"dataset {DATASET_VERSION}")
 
 
 df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v4.csv",
+    f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
 
