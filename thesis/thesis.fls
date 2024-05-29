@@ -806,7 +806,6 @@ INPUT ./intro.tex
 INPUT intro.tex
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmcsc10.tfm
 INPUT ./chap-1.tex
 INPUT ./chap-1.tex
 INPUT ./chap-1.tex
@@ -819,6 +818,7 @@ INPUT ./chap-1.tex
 INPUT chap-1.tex
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmcsc10.tfm
 INPUT ./chap-2.tex
 INPUT ./chap-2.tex
 INPUT ./chap-2.tex

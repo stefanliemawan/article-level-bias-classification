@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  29 MAY 2024 19:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  29 MAY 2024 20:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -585,30 +585,30 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_a_int=\count330
 \l__lipsum_b_int=\count331
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 33.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 34.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./thesis.aux (./intro.aux) (./chap-1.aux) (./chap-2.aux) (./chap-n.aux) (./conclusion.aux) (./app-A.aux) (./app-n.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
 
 
 ******************************************************
@@ -649,26 +649,26 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 33.
-Package microtype Info: Applying patch `item' on input line 33.
-Package microtype Info: Applying patch `toc' on input line 33.
-Package microtype Info: Applying patch `eqnum' on input line 33.
-Package microtype Info: Applying patch `footnote' on input line 33.
-Package microtype Info: Applying patch `verbatim' on input line 33.
+LaTeX Info: Redefining \microtypecontext on input line 34.
+Package microtype Info: Applying patch `item' on input line 34.
+Package microtype Info: Applying patch `toc' on input line 34.
+Package microtype Info: Applying patch `eqnum' on input line 34.
+Package microtype Info: Applying patch `footnote' on input line 34.
+Package microtype Info: Applying patch `verbatim' on input line 34.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 33.
+LaTeX Info: Redefining \showhyphens on input line 34.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-Package hyperref Info: Link coloring ON on input line 33.
+Package hyperref Info: Link coloring ON on input line 34.
  (./thesis.out) (./thesis.out)
 \@outlinefile=\write4
 \openout4 = `thesis.out'.
@@ -677,24 +677,24 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `kulemtfpf' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<logokuleng.pdf, id=120, 216.81pt x 99.9735pt>
+<logokuleng.pdf, id=112, 216.81pt x 99.9735pt>
 File: logokuleng.pdf Graphic file (type pdf)
 <use logokuleng.pdf>
-Package pdftex.def Info: logokuleng.pdf  used on input line 33.
+Package pdftex.def Info: logokuleng.pdf  used on input line 34.
 (pdftex.def)             Requested size: 216.80946pt x 99.97324pt.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <12> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 33.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <14.4> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 33.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 34.
  [-1
 
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc} </Users/stefanliemawan/Library/texmf/tex/latex/kulemt/logokuleng.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 33.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 34.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 33.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 34.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -752,26 +752,26 @@ Overfull \hbox (0.86812pt too wide) in paragraph at lines 78--78
 ]
 \openout2 = `intro.aux'.
 
- (./intro.tex [1
+ (./intro.tex) [1
 
 
-])
+]
+\openout2 = `chap-1.aux'.
+
+ (./chap-1.tex [2
+
+
+
+
+] [3])
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [2]
-\openout2 = `chap-1.aux'.
-
- (./chap-1.tex [3
-
-
-
-
-]) [4]
+ [4]
 \openout2 = `chap-2.aux'.
 
  (./chap-2.tex
-<logokul.pdf, id=239, 159.33528pt x 56.90298pt>
+<logokul.pdf, id=229, 159.33528pt x 56.90298pt>
 File: logokul.pdf Graphic file (type pdf)
 <use logokul.pdf>
 Package pdftex.def Info: logokul.pdf  used on input line 18.
@@ -849,21 +849,21 @@ bibitemlist
 
  (./thesis.aux (./intro.aux) (./chap-1.aux) (./chap-2.aux) (./chap-n.aux) (./conclusion.aux) (./app-A.aux) (./app-n.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 2C024375879D4F7190D6BA67D73927E7;3806.
+(rerunfilecheck)             Checksum: 8F09F1A3D8641956ABAD8A9BA4A1DDBF;3528.
  ) 
 Here is how much of TeX's memory you used:
- 16667 strings out of 476025
- 271155 string characters out of 5790016
- 1863388 words of memory out of 5000000
- 36595 multiletter control sequences out of 15000+600000
+ 16663 strings out of 476025
+ 271107 string characters out of 5790016
+ 1862388 words of memory out of 5000000
+ 36593 multiletter control sequences out of 15000+600000
  584706 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,77p,1085b,586s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,77p,1125b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (29 pages, 272474 bytes).
+Output written on thesis.pdf (29 pages, 269193 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 344 compressed objects within 4 object streams
- 86 named destinations out of 1000 (max. 500000)
- 38131 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 38115 words of extra memory for PDF output out of 42996 (max. 10000000)
 
