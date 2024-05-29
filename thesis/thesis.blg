@@ -1,53 +1,57 @@
 This is BibTeX, Version 0.99d (TeX Live 2023)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: thesis.aux
-A level-1 auxiliary file: intro.aux
 A level-1 auxiliary file: chap-1.aux
 A level-1 auxiliary file: chap-2.aux
-A level-1 auxiliary file: chap-n.aux
-A level-1 auxiliary file: conclusion.aux
+A level-1 auxiliary file: chap-3.aux
+A level-1 auxiliary file: chap-4.aux
+A level-1 auxiliary file: chap-5.aux
+A level-1 auxiliary file: chap-6.aux
 A level-1 auxiliary file: app-A.aux
 A level-1 auxiliary file: app-n.aux
 The style file: abbrv.bst
 Database file #1: references.bib
-You've used 17 entries,
+Warning--I didn't find a database entry for "h2g2"
+Warning--to sort, need author or key in media-bias-group
+You've used 28 entries,
             2118 wiz_defined-function locations,
-            599 strings with 7128 characters,
-and the built_in function-call counts, 4964 in all, are:
-= -- 466
-> -- 275
-< -- 0
-+ -- 113
-- -- 92
-* -- 314
-:= -- 893
-add.period$ -- 57
-call.type$ -- 17
-change.case$ -- 100
+            655 strings with 10184 characters,
+and the built_in function-call counts, 10047 in all, are:
+= -- 926
+> -- 644
+< -- 4
++ -- 251
+- -- 220
+* -- 718
+:= -- 1711
+add.period$ -- 87
+call.type$ -- 28
+change.case$ -- 191
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 168
-empty$ -- 376
-format.name$ -- 92
-if$ -- 1010
+cite$ -- 29
+duplicate$ -- 320
+empty$ -- 713
+format.name$ -- 220
+if$ -- 2079
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 11
-newline$ -- 94
-num.names$ -- 34
-pop$ -- 105
+int.to.str$ -- 28
+missing$ -- 14
+newline$ -- 141
+num.names$ -- 62
+pop$ -- 228
 preamble$ -- 1
-purify$ -- 80
+purify$ -- 158
 quote$ -- 0
-skip$ -- 112
+skip$ -- 247
 stack$ -- 0
-substring$ -- 191
-swap$ -- 14
-text.length$ -- 0
+substring$ -- 433
+swap$ -- 68
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 64
-warning$ -- 0
-while$ -- 39
-width$ -- 19
-write$ -- 193
+type$ -- 112
+warning$ -- 1
+while$ -- 77
+width$ -- 30
+write$ -- 302
+(There were 2 warnings)

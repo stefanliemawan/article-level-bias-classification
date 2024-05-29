@@ -1,0 +1,45 @@
+\chapter{Dataset Building}
+\label{cha:4}
+
+\section{BAT dataset}
+
+\subsection{Characteristics}
+
+The BAT dataset \cite{spinde-2023-bat} is chosen for this project due to its article-level suitability and score labels. It contains 6345 rows of manually labeled news articles from 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website along with their respective \textbf{political bias} and \textbf{reliability scores}. Articles in the dataset encompassed a wide arrange of topics such as COVID-19, politics, and lifestyle. The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right). The reliability score reflects the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting).
+
+Both political bias and reliability scores on each article were rated using defined metrics and multiple sub-factors, performed by three randomly selected analysts from Ad Fontes Media's team of over 60 experts. The corresponding three scores were then averaged, producing the final article scores. Moreover, each group consists analysts with different beliefs in the political spectrum i.e., left, center, and right.
+
+\subsection{Extension}
+
+The original BAT dataset only contains news titles and links (along with other metadata) and is missing the body content of articles. To overcome this, a Python script is written and executed, iteratively visiting each of the URL from the dataset and scrape the news content. This was not an easy task as each website has its own unique structures and formats. Furthermore, some of the scraped text contains noises that are almost impossible to remove through the script and requires manual intervention. The current extended dataset contains 5273 rows of articles, due to several unavailable websites and missing articles.
+
+The scraped content are then pre-processed several times, sometimes repeatedly in an attempt to remove as much noise as possible and clean the text. At this step, a lot of scripts and methods are experimented with.
+
+\begin{comment}
+    Explain further on preprocessing scraped text.
+\end{comment}
+
+
+\subsection{Analysis}
+
+
+\begin{comment}
+Additionally, BAT includes 175,807 comments and retweets referring to the articles.
+
+The existing literature suggests that labels provided by Ad Fontes media are suitable for media bias-related tasks and are of high quality [43]. However, especially since it relies on manual labels, the Ad Fontes article set does not cover the full range of political and non-political, recent and less recent, or controversial and non-controversial topics. The article selection by Ad Fontes media thus likely introduces bias into the dataset.
+
+Ad Fontes: Bentley et al. (2019) (Understanding Online News Behaviors) show that the portals’ labels are highly correlated to findings from social scientists.
+
+\end{comment}
+
+
+% \section{Conclusion}
+% The final section of the chapter gives an overview of the important results
+% of this chapter. This implies that the introductory chapter and the
+% concluding chapter don't need a conclusion.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End: 

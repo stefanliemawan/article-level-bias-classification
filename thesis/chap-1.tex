@@ -1,43 +1,36 @@
-\chapter{The First Chapter}
+\chapter{Introduction}
 \label{cha:1}
-A chapter is a logical unit. It normally starts with an introduction, which
-you are reading now. The last topic of the chapter holds the conclusion.
 
-\section{The First Topic of the Chapter}
-First comes the introduction to this topic.
+\section{Overview}
 
-\lipsum[55]
+This thesis project is part of an Advanced Master of Artificial Intelligence programme—Speech and Language Technology, in collaboration with the Media Bias Group \cite{media-bias-group}, who provided the topic and additional guidance along the project.
 
-\subsection{An item}
-Please don't abuse enumerations: short enumerations shouldn't use
-``\verb|itemize|'' or ``\texttt{enumerate}'' environments.
-So \emph{never write}: 
-\begin{quote}
-  The Eiffel tower has three floors:
-  \begin{itemize}
-  \item the first one;
-  \item the second one;
-  \item the third one.
-  \end{itemize}
-\end{quote}
-But write:
-\begin{quote}
-  The Eiffel tower has three floors: the first one, the second one, and the
-  third one.
-\end{quote}
+\section{Motivation}
 
-\section{A Second Topic}
-\lipsum[64]
 
-\subsection{Another item}
-\lipsum[56-57]
 
-\section{Conclusion}
-The final section of the chapter gives an overview of the important results
-of this chapter. This implies that the introductory chapter and the
-concluding chapter don't need a conclusion.
+Media misinformation and manipulation are rampant in today's landscape. Despite being a major societal issue, there has been hardly enough resources and work dedicated to in the realm of media bias and its broader context.
 
-\lipsum[66]
+Considerable work has been done on fake news and its detection, media bias operates on a higher level and cannot be described the same simply fake news. Fake news involves intentionally spreading false information, whereas media bias refers to the distortion or manipulation of information by media outlets, which may or may not be intentional, to favor certain perspectives or agendas. Unlike fake news, media bias can influence public perception subtly through selective reporting, framing, or sourcing, making it a complex and challenging issue to address comprehensively.
+
+To combat media bias effectively, it is crucial to develop robust methodologies and technologies for detecting and analyzing biased content across various media platforms. Additionally, raising awareness about media literacy and critical thinking skills can empower individuals to identify and navigate biased information effectively in today's media landscape. Ultimately, addressing media bias requires concerted efforts from researchers, policymakers, media organizations, and the public to promote transparency, accountability, and integrity in news reporting and consumption.
+
+\section{Goals}
+
+To aid in the work of media bias, the goal of this project are as follows:
+\begin{enumerate}
+    \item Build a reliable, annotated dataset comprised of articles content and metadata.
+    \item Propose a method to effectively represent articles in a space vector.
+    \item Design a system that is able to effectively detect and classify bias on the article level of granularity.
+    \item Validate the resulting system and dataset.
+\end{enumerate}
+
+\section{About the Media Bias Group}
+
+The Media Bias Group \cite{media-bias-group} was established in mid-2020 by Timo Spinde during his pursuit of a Ph.D. in computer science, having been integrated in the topic since his undergraduate studies, with a vision to aid others perceive news in a more balanced and conscious manner. After a year of planning how a system could uncover bias on a vast scale encompassing millions of articles, he founded the group and forged connections with various partners, particularly those relevant to specific aspects of the project. In just one year, the project has garnered support from multiple other research groups, with around twenty students from seven countries joining to contribute to the system. Since 2021, the group has also begun offering its first Ph.D. positions.
+
+The group is comprised of a collective of scholars across various fields such as Psychology, Linguistics, and Computer Science, with a shared goal to comprehend the factors influencing human perception of news content as biased or one-sided. Currently, the network includes of six main researches and coordinators, twenty one professors and postdocs, as well as eight active students. Numerous publications related to media bias have been published through the network into major conferences such as EMNLP 2021 \cite{spinde-2021-babe}, along with dataset and benchmark creations.
+
 
 %%% Local Variables: 
 %%% mode: latex

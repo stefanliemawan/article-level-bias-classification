@@ -1,10 +1,9 @@
 \begin{thebibliography}{10}
 
-\bibitem{h2g2}
-D.~Adams.
-\newblock {\em The Hitchhiker's Guide to the Galaxy}.
-\newblock Del Rey (reprint), 1995.
-\newblock ISBN-13: 978-0345391803.
+\bibitem{media-bias-group}
+Home - media bias group.
+\newblock \url{https://media-bias-research.org/}.
+\newblock Accessed: 2024-05-29.
 
 \bibitem{aires-2020-information}
 V.~P. Aires, J.~Freire, F.~G. Nakamura, A.~S. da~Silva, and E.~F. Nakamura.
@@ -21,6 +20,16 @@ S.~Boudana.
 \newblock A definition of journalistic objectivity as a performance.
 \newblock {\em Media, Culture \& Society}, 33(3):385--398, 2011.
 
+\bibitem{chen-etal-2020-nlpcss}
+W.-F. Chen, K.~Al~Khatib, H.~Wachsmuth, and B.~Stein.
+\newblock Analyzing political bias and unfairness in news articles at different levels of granularity.
+\newblock In D.~Bamman, D.~Hovy, D.~Jurgens, B.~O'Connor, and S.~Volkova, editors, {\em Proceedings of the Fourth Workshop on Natural Language Processing and Computational Social Science}, pages 149--154, Online, Nov. 2020. Association for Computational Linguistics.
+
+\bibitem{fan-2019-basil}
+L.~Fan, M.~White, E.~Sharma, R.~Su, P.~K. Choubey, R.~Huang, and L.~Wang.
+\newblock In plain sight: Media bias through the lens of factual reporting.
+\newblock In {\em Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing}. Association for Computational Linguistics, 2019.
+
 \bibitem{gallup-knight-2020-american-views}
 K.~Foundation.
 \newblock American views 2020: Trust, media and democracy.
@@ -31,6 +40,10 @@ J.~Gottfried and J.~Liedke.
 \newblock Partisan divides in media trust widen, driven by a decline among republicans.
 \newblock Technical report, Pew Research Center, 2021.
 \newblock [Online; accessed 29-April-2024].
+
+\bibitem{horych-2024-magpie}
+T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
+\newblock Magpie: Multi-task media-bias analysis generalization for pre-trained identification of expressions, 2024.
 
 \bibitem{lim-2018-understanding}
 S.~jeong Lim, A.~Jatowt, and M.~Yoshikawa.
@@ -49,6 +62,19 @@ S.~Keeter, N.~Hatley, A.~Lau, and C.~Kennedy.
 \newblock Technical report, Pew Research Center, 2021.
 \newblock [Online; accessed 30-April-2024].
 
+\bibitem{kulkarni-2018-multi-view}
+V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
+\newblock Multi-view models for political ideology detection of news articles.
+\newblock In E.~Riloff, D.~Chiang, J.~Hockenmaier, and J.~Tsujii, editors, {\em Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, pages 3518--3527, Brussels, Belgium, Oct.-Nov. 2018. Association for Computational Linguistics.
+
+\bibitem{lei-2024-sentence}
+Y.~Lei and R.~Huang.
+\newblock Sentence-level media bias analysis with event relation graph, 2024.
+
+\bibitem{maab-2023-target-aware}
+I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
+\newblock Target-aware contextual political bias detection in news, 2023.
+
 \bibitem{reuters-2023-digital-news-report}
 N.~Newman, R.~Fletcher, K.~Eddy, C.~T. Robertson, and R.~K. Nielsen.
 \newblock Reuters institute digital news report 2023.
@@ -66,16 +92,14 @@ C.~Panagopoulos.
 \newblock Polls and elections accuracy and bias in the 2020 u.s. general election polls.
 \newblock {\em Presidential Studies Quarterly}, 51(1):214--227, 2021.
 
+\bibitem{park-2022-efficient}
+H.~H. Park, Y.~Vyas, and K.~Shah.
+\newblock Efficient classification of long documents using transformers, 2022.
+
 \bibitem{patterson-donsbach-1996-news-decisions}
 T.~E. Patterson and W.~Donsbach.
 \newblock News decisions: Journalists as partisan actors.
 \newblock {\em Political Communication}, 13(4):455--468, 1996.
-
-\bibitem{pratchett06:_good_omens}
-T.~Pratchett and N.~Gaiman.
-\newblock {\em Good Omens: \emph{The Nice and Accurate Prophecies of Agnes Nutter, Witch}}.
-\newblock HarperTorch (reprint), 2006.
-\newblock ISBN-13: 978-0060853983.
 
 \bibitem{rafail-2018-tea-party}
 P.~Rafail and J.~D. McCarthy.
@@ -86,9 +110,32 @@ P.~Rafail and J.~D. McCarthy.
 T.~Spinde, S.~Hinterreiter, F.~Haak, T.~Ruas, H.~Giese, N.~Meuschke, and B.~Gipp.
 \newblock The media bias taxonomy: A systematic literature review on the forms and automated detection of media bias, 2024.
 
-\bibitem{wiki}
-Wikipedia.
-\newblock Thesis or dissertation.
-\newblock URL: \url{http://en.wikipedia.org/wiki/Thesis_or_dissertation}, last checked on 2010-01-07.
+\bibitem{spinde-2021-babe}
+T.~Spinde, M.~Plank, J.-D. Krieger, T.~Ruas, B.~Gipp, and A.~Aizawa.
+\newblock Neural media bias detection using distant supervision with {BABE} - bias annotations by experts.
+\newblock In M.-F. Moens, X.~Huang, L.~Specia, and S.~W.-t. Yih, editors, {\em Findings of the Association for Computational Linguistics: EMNLP 2021}, pages 1166--1177, Punta Cana, Dominican Republic, Nov. 2021. Association for Computational Linguistics.
+
+\bibitem{spinde-2023-bat}
+T.~Spinde, E.~Richter, M.~Wessel, J.~Kulshrestha, and K.~Donnay.
+\newblock What do twitter comments tell about news article bias? assessing the impact of news article bias on its perception on twitter.
+\newblock {\em Online Social Networks and Media}, 37-38:100264, 2023.
+
+\bibitem{spinde-2021-bias-words}
+T.~Spinde, L.~Rudnitckaia, J.~Mitrović, F.~Hamborg, M.~Granitzer, B.~Gipp, and K.~Donnay.
+\newblock Automated identification of bias inducing words in news articles using linguistic and context-oriented features.
+\newblock {\em Information Processing \& Management}, 58(3):102505, 2021.
+
+\bibitem{su-2021-classifying}
+X.~Su, T.~Miller, X.~Ding, M.~Afshar, and D.~Dligach.
+\newblock Classifying long clinical documents with pre-trained transformers, 2021.
+
+\bibitem{vallejo-2023-connecting}
+G.~Vallejo, T.~Baldwin, and L.~Frermann.
+\newblock Connecting the dots in news analysis: A cross-disciplinary survey of media bias and framing, 2023.
+
+\bibitem{van-den-berg-2020-context}
+E.~van~den Berg and K.~Markert.
+\newblock Context in informational bias detection.
+\newblock In D.~Scott, N.~Bel, and C.~Zong, editors, {\em Proceedings of the 28th International Conference on Computational Linguistics}, pages 6315--6326, Barcelona, Spain (Online), Dec. 2020. International Committee on Computational Linguistics.
 
 \end{thebibliography}

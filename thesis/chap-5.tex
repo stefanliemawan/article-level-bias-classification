@@ -1,0 +1,49 @@
+\chapter{Proposed Methods}
+\label{cha:5}
+
+\section{Features and baselines}
+
+The main focus of the features will be the textual content of articles. A good article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing context of the article will be the key element of a good performance.
+
+As a baseline, traditional methods such as Bag-of-Words and TF-IDF along with standard fine-tuning of BERT are implemented.
+
+\begin{comment}
+Correlation between sentiment and bias?
+
+Following from (\citealt{chen-2020-detecting-media-bias-gaussian},\citealt{van-den-berg-2020-contex-informational-bias-detection}, \citealt{guo-2022-modeling}, and \citealt{maab-2023-lexical-bias-detection}), experiments will be done with techniques from these past works, particularly on context-building.
+
+Other representation techniques such as Doc2Vec \citep{mikolov-2014-doc2vec} and Multivec \citep{berard-2016-multivec} will also be considered.
+
+Sentiment analysis can be beneficial as additional features, find relationships and correlation between sentiment and bias. (find ref)
+
+MultiVec includes word2vec's features, paragraph vector (batch and online) and bivec for bilingual distributed representations. MultiVec also includes different distance measures between words and sequences of words.
+\end{comment}
+
+\begin{comment}
+ChatGPT on article-level representations
+Word Embeddings: Techniques like Word2Vec, GloVe, or FastText can convert words into numerical vectors, capturing semantic relationships between them. For an article representation, averaging or pooling these word vectors can create a simple yet effective representation.
+
+Doc2Vec: Models like Doc2Vec extend word embeddings to whole documents, assigning each document a unique vector representation. This captures document-level semantics and context.
+
+TF-IDF: Term Frequency-Inverse Document Frequency represents the importance of a word in a document relative to a collection of documents. It gives weight to words based on their frequency in the document and their rarity in the corpus.
+
+BERT and Transformers: Models like BERT utilize transformer architectures to create contextualized word embeddings. By considering the context of words in a sentence, these models generate representations that capture nuanced meanings.
+
+Graph-based Representations: Representing articles as nodes in a graph where edges signify relationships (such as co-citations or topic similarities) can offer a comprehensive representation.
+
+Topic Modeling: Techniques like Latent Dirichlet Allocation (LDA) or Non-Negative Matrix Factorization (NMF) can help in extracting underlying topics from the articles, creating representations based on these topics' distributions.
+
+P.S. from ChatGPT -> For very long documents, downsampling or breaking the article into manageable chunks might be necessary to fit into memory or improve model performance.
+\end{comment}
+
+
+\section{Evaluation}
+
+\section{Proposed Method}
+
+\section{Results}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End: 
