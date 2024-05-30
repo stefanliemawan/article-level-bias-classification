@@ -1,5 +1,6 @@
 import os
 import platform
+import sys
 
 import pandas as pd
 import torch
@@ -11,7 +12,10 @@ os.environ["TOKENIZERS_PARALLELISM"] = "true"
 MODEL_NAME = "bert-base-uncased"
 # MODEL_NAME = "bert-base-cased"
 
-DATASET_VERSION = "v3"
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
 
 print(f"MODEL: {MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")

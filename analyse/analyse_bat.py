@@ -1,4 +1,4 @@
-import math
+import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -6,22 +6,16 @@ import pandas as pd
 import scipy.stats as stats
 from transformers import BertTokenizer
 
-v1_df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v1.csv",
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
+print(f"dataset {DATASET_VERSION}")
+
+df = pd.read_csv(
+    f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
-
-v2_edited_df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v2_edited.csv",
-    index_col=0,
-)
-
-
-v3_df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v3.csv",
-    index_col=0,
-)
-
 
 # outlet_df = pd.read_csv("../dataset/BAT/ad_fontes/outlets_classes_scores.csv", index_col=0)
 
@@ -51,8 +45,7 @@ def plot_tokens_count(df):
     plt.title("Tokens Count")
     plt.grid(True)
     # plt.show()
-    # plt.savefig("figures/tokens_count_all_v2_edited.png")
-    plt.savefig("figures/tokens_count_all_v1.png")
+    plt.savefig(f"figures/tokens_count_all_{DATASET_VERSION}.png")
 
 
 def plot_reliability_score(df):
@@ -70,15 +63,11 @@ def plot_reliability_score(df):
 #     print(outlet_df)
 
 
-# plot_tokens_count(v2_edited_df)
-plot_tokens_count(v2_edited_df)
+# plot_tokens_count(df)
+plot_tokens_count(df)
 # plot_reliability_score()
 # plot_outlet_reliability_score()
 
 
-max_content = v2_edited_df["content"].apply(len)
-print(max_content)
-
-row = v2_edited_df.loc[max_content.idxmax()]
-
-print(row)
+df = df.sort_values(by=["tokens_count"], ascending=False)
+print(df.head())

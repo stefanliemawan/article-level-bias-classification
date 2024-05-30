@@ -1,3 +1,5 @@
+import sys
+
 import numpy as np
 import pandas as pd
 from click import group
@@ -6,7 +8,11 @@ from sklearn.model_selection import train_test_split
 SEED = 42
 CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
 
-DATASET_VERSION = "v4"
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
+
 print(f"dataset {DATASET_VERSION}")
 
 df = pd.read_csv(

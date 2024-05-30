@@ -1,12 +1,15 @@
 import re
+import sys
 from collections import Counter
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from wordcloud import WordCloud
 
-DATASET_VERSION = "vx"
-
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
 print(f"dataset {DATASET_VERSION}")
 
 
@@ -15,6 +18,8 @@ df = pd.read_csv(
     index_col=0,
 )
 
+# non_string_rows = df[df["content"].apply(lambda x: not isinstance(x, str))]
+# print(non_string_rows)
 text = " ".join(df["content"])
 
 
