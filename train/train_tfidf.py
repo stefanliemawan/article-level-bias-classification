@@ -1,3 +1,5 @@
+import sys
+
 import pandas as pd
 import utils.functions as functions
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -12,7 +14,13 @@ from sklearn.metrics import (
     root_mean_squared_error,
 )
 
-DATASET_VERSION = "v4"
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
+
+print(f"dataset {DATASET_VERSION}")
+
 
 train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
@@ -101,3 +109,20 @@ print("R-squared Score:", r2)
 # {'accuracy': 0.7024922118380063, 'precision': 0.6979456384008158, 'recall': 0.7024922118380063, 'f1': 0.6842438697072533}
 # Root Mean Squared Error: 7.171388583275486
 # R-squared Score: 0.3543855987213742
+
+
+# vx, new split 4 classes
+#               precision    recall  f1-score   support
+
+#            0       0.50      0.04      0.07        26
+#            1       0.55      0.31      0.40        55
+#            2       0.44      0.39      0.42       109
+#            3       0.81      0.93      0.87       405
+
+#     accuracy                           0.74       595
+#    macro avg       0.58      0.42      0.44       595
+# weighted avg       0.71      0.74      0.71       595
+
+# {'accuracy': 0.7378151260504202, 'precision': 0.7074338920376668, 'recall': 0.7378151260504202, 'f1': 0.707936758773465}
+# Root Mean Squared Error: 7.175571322301571
+# R-squared Score: 0.22236351244414454

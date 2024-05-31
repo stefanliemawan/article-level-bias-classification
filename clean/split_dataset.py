@@ -6,7 +6,9 @@ from click import group
 from sklearn.model_selection import train_test_split
 
 SEED = 42
-CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 58.67)]
+# CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 64)]
+# CLASS_RANGES = [(0, 24), (24.01, 40.00), (40.01, 64)]
+CLASS_RANGES = [(0, 24), (24.01, 32.00), (32.01, 40.00), (40.01, 64)]
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -33,6 +35,8 @@ def map_to_class(score):
             return i
 
 
+# df["labels"], bins = pd.qcut(df["reliability_score"], q=3, labels=False, retbins=True)
+# print(bins)
 df["labels"] = df["reliability_score"].apply(map_to_class)
 outlets_df["outlet_labels"] = outlets_df["reliability_score"].apply(map_to_class)
 
@@ -60,7 +64,7 @@ for group_name, group_df in grouped_df:
         #     test_data.append(group_df)
     else:
         train_group, test_group = train_test_split(
-            group_df, test_size=0.25, random_state=SEED
+            group_df, test_size=0.22, random_state=SEED
         )
         test_group, valid_group = train_test_split(
             test_group, test_size=0.4, random_state=SEED
@@ -86,7 +90,7 @@ train_set.to_csv(f"../dataset/{DATASET_VERSION}/train.csv")
 test_set.to_csv(f"../dataset/{DATASET_VERSION}/test.csv")
 valid_set.to_csv(f"../dataset/{DATASET_VERSION}/valid.csv")
 
-outlets_df.to_csv("../dataset/outlets.csv")
+# outlets_df.to_csv("../dataset/outlets.csv")
 
 print("TRAIN")
 print(train_set.shape)

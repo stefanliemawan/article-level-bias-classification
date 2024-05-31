@@ -31,10 +31,10 @@ def plot_tokens_count(df):
     tokeniser = BertTokenizer.from_pretrained("bert-base-uncased")
     df["tokens_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
 
-    print("MEAN", np.mean(df["tokens_count"].values))
-    print("MEDIAN", np.median(df["tokens_count"].values))
-    print("MAX", np.max(df["tokens_count"].values))
-    print("MIN", np.min(df["tokens_count"].values))
+    print("MEAN_TOKENS_COUNT", np.mean(df["tokens_count"].values))
+    print("MEDIAN_TOKENS_COUNT", np.median(df["tokens_count"].values))
+    print("MAX_TOKENS_COUNT", np.max(df["tokens_count"].values))
+    print("MIN_TOKENS_COUNT", np.min(df["tokens_count"].values))
 
     plt.clf()
     plt.hist(df["tokens_count"], bins=20)
@@ -47,11 +47,16 @@ def plot_tokens_count(df):
     # plt.show()
     plt.savefig(f"figures/tokens_count_all_{DATASET_VERSION}.png")
 
+    df = df.sort_values(by=["tokens_count"], ascending=False)
+    print(df.head())
+
 
 def plot_reliability_score(df):
     plt.clf()
 
     plt.hist(df["reliability_score"], bins=10)
+    print("MAX_RELIABILITY", np.max(df["reliability_score"].values))
+    print("MIN_RELIABILITY", np.min(df["reliability_score"].values))
 
     plt.title("Reliability Score Distribution")
     plt.grid(True)
@@ -64,10 +69,6 @@ def plot_reliability_score(df):
 
 
 # plot_tokens_count(df)
-plot_tokens_count(df)
-# plot_reliability_score()
+# plot_tokens_count(df)
+plot_reliability_score(df)
 # plot_outlet_reliability_score()
-
-
-df = df.sort_values(by=["tokens_count"], ascending=False)
-print(df.head())

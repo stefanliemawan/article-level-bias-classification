@@ -1,3 +1,5 @@
+import sys
+
 import pandas as pd
 import utils.functions as functions
 from sklearn.feature_extraction.text import CountVectorizer
@@ -11,7 +13,12 @@ from sklearn.metrics import (
     root_mean_squared_error,
 )
 
-DATASET_VERSION = "v4"
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
+
+print(f"dataset {DATASET_VERSION}")
 
 
 train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
@@ -116,6 +123,37 @@ print("R-squared Score:", r2)
 # {'precision': 0.6746011833824667, 'recall': 0.67601246105919, 'f1': 0.6751771625582206}
 # Root Mean Squared Error: 13.579412236084156
 # R-squared Score: -1.3148808570530375
+
+# vx, new split, 3 classes
+#               precision    recall  f1-score   support
+
+#            0       0.36      0.35      0.35        26
+#            1       0.64      0.61      0.63       225
+#            2       0.82      0.84      0.83       405
+
+#     accuracy                           0.74       656
+#    macro avg       0.61      0.60      0.60       656
+# weighted avg       0.74      0.74      0.74       656
+
+# {'precision': 0.7390064329813691, 'recall': 0.7423780487804879, 'f1': 0.7404838628130398}
+# Root Mean Squared Error: 13.099893945449123
+# R-squared Score: -1.5172887479620059
+
+# vx, new split, 4 classes
+#               precision    recall  f1-score   support
+
+#            0       0.33      0.31      0.32        26
+#            1       0.32      0.36      0.34        55
+#            2       0.35      0.34      0.34       109
+#            3       0.85      0.84      0.84       405
+
+#     accuracy                           0.68       595
+#    macro avg       0.46      0.46      0.46       595
+# weighted avg       0.68      0.68      0.68       595
+
+# {'precision': 0.6843867127882997, 'recall': 0.680672268907563, 'f1': 0.6823428660543767}
+# Root Mean Squared Error: 12.384665786096445
+# R-squared Score: -1.3164996625559335
 
 # ================================================================================================================================================
 # ================================================================================================================================================

@@ -1,9 +1,14 @@
+import json
 import re
 
 ADDED_WORDS = ["ughest", "retweet"]
 
 URL_REGEX = r"http(s)?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
 CAPITAL_LETTER_AFTER_PERIOD_REGEX = r"\.(?=[A-Z])"
+
+
+with open("word_fix_dict_gpt.json", "r") as f:
+    WORD_FIX_DICT_GPT = json.load(f)
 
 WORD_FIX_DICT = {
     " isstill": " is still",
@@ -222,6 +227,14 @@ def dot(content):
 def fix_words_by_dict(content):
     fixed_content = content
     for word, fixed_word in WORD_FIX_DICT.items():
+        fixed_content = fixed_content.replace(word, fixed_word)
+
+    return fixed_content
+
+
+def fix_words_by_gpt_dict(content):
+    fixed_content = content
+    for word, fixed_word in WORD_FIX_DICT_GPT.items():
         fixed_content = fixed_content.replace(word, fixed_word)
 
     return fixed_content
