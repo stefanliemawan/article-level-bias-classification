@@ -1,47 +1,46 @@
-\chapter{Proposed Methods}
+\chapter{Methodology}
 \label{cha:5}
 
 \section{Features and baselines}
 
-The main focus of the features will be the textual content of articles. A good article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing context of the article will be the key element of a good performance.
+The main focus of the features will be the textual content of articles. A Reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing context of the article will be the key element of a Reliable performance.
 
-As a baseline, traditional methods such as Bag-of-Words and TF-IDF along with standard fine-tuning of BERT are implemented.
+As a baseline, traditional methods such as Bag-of-Words and TF-IDF along with standard fine-tuning of BERT are implemented. Moreover, majority votes of outlet classes are done...
 
-\begin{comment}
-Correlation between sentiment and bias?
+\section{Pre-processing}
 
-Following from (\citealt{chen-2020-detecting-media-bias-gaussian},\citealt{van-den-berg-2020-contex-informational-bias-detection}, \citealt{guo-2022-modeling}, and \citealt{maab-2023-lexical-bias-detection}), experiments will be done with techniques from these past works, particularly on context-building.
+The dataset reliability scores are grouped and split into 4 classes based on Ad Fontes split as previously described in Section \ref{bat-characteristics}:
+\begin{enumerate}
+    \item Problematic ---> scores between 0.00 and 24.00
+    \item Questionable ---> scores between 24.01 and 32.00
+    \item Generally Reliable ---> scores between 32.01 and 40.00
+    \item Reliable ---> scores between 40.01 and 64
+\end{enumerate}
 
-Other representation techniques such as Doc2Vec \citep{mikolov-2014-doc2vec} and Multivec \citep{berard-2016-multivec} will also be considered.
+The dataset is then split into three sets of train, test and validation with the following distribution:
+\begin{itemize}
+    \item Train set: 4145 rows \\
+          270 samples of class 'Problematic', 578 samples of class 'Questionable', 990 samples of class 'Generally Reliable', 2307 of class 'Reliable'
+    \item Test set: 544 rows \\
+          24 samples of class 'Problematic', 51 samples of class 'Questionable', 99 samples of class 'Generally Reliable', 370 of class 'Reliable'
+    \item Validation set: 578 rows \\
+          31 samples of class 'Problematic', 66 samples of class 'Questionable', 123 samples of class 'Generally Reliable', 358 of class 'Reliable'
+\end{itemize}
 
-Sentiment analysis can be beneficial as additional features, find relationships and correlation between sentiment and bias. (find ref)
+The split are done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by grouping the articles based on its outlet and label and iterating over each group, splitting the rows equally and appending to the train, test, and validation set. Group of less than 5 rows are not enough to be split and therefore appended to the train set.
 
-MultiVec includes word2vec's features, paragraph vector (batch and online) and bivec for bilingual distributed representations. MultiVec also includes different distance measures between words and sequences of words.
-\end{comment}
+To handle class imbalances, weighted loss is used when training the model, with weights in proportion the distribution of each class.
 
-\begin{comment}
-ChatGPT on article-level representations
-Word Embeddings: Techniques like Word2Vec, GloVe, or FastText can convert words into numerical vectors, capturing semantic relationships between them. For an article representation, averaging or pooling these word vectors can create a simple yet effective representation.
+\section{Proposed methods}
 
-Doc2Vec: Models like Doc2Vec extend word embeddings to whole documents, assigning each document a unique vector representation. This captures document-level semantics and context.
+\subsection{Sliding window}
 
-TF-IDF: Term Frequency-Inverse Document Frequency represents the importance of a word in a document relative to a collection of documents. It gives weight to words based on their frequency in the document and their rarity in the corpus.
+The first method to be implemented is the sliding window method, where articles are split into chunks and applied as a mini-batch to the model. The logits of each chunks are then pooled together and averaged out to get the final logits, to which the loss function will be applied to.
 
-BERT and Transformers: Models like BERT utilize transformer architectures to create contextualized word embeddings. By considering the context of words in a sentence, these models generate representations that capture nuanced meanings.
+\subsection{CLS method}
 
-Graph-based Representations: Representing articles as nodes in a graph where edges signify relationships (such as co-citations or topic similarities) can offer a comprehensive representation.
+The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM (BERT), inputted into the model and taking the last hidden state (as described in \cite{sun-2020-finetune}) as the text reprensetation. From there, they then get passed into several transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into a MLP layer.
 
-Topic Modeling: Techniques like Latent Dirichlet Allocation (LDA) or Non-Negative Matrix Factorization (NMF) can help in extracting underlying topics from the articles, creating representations based on these topics' distributions.
-
-P.S. from ChatGPT -> For very long documents, downsampling or breaking the article into manageable chunks might be necessary to fit into memory or improve model performance.
-\end{comment}
-
-
-\section{Evaluation}
-
-\section{Proposed Method}
-
-\section{Results}
 
 %%% Local Variables: 
 %%% mode: latex

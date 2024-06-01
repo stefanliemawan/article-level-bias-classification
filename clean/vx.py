@@ -11,8 +11,8 @@ df["content"] = df["content"].progress_apply(utils.delete_noise)
 df["content"] = df["content"].progress_apply(utils.delete_phrases)
 df["content"] = df["content"].progress_apply(utils.strip_url)
 df["content"] = df["content"].progress_apply(utils.dot)
+df["content"] = df["content"].progress_apply(utils.remove_noise_phrases)
 df["content"] = df["content"].progress_apply(utils.fix_words_by_dict)
-df["content"] = df["content"].progress_apply(utils.fix_words_by_gpt_dict)
 
 df.dropna(subset=["content"], inplace=True)
 

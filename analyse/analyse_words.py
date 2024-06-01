@@ -24,7 +24,7 @@ text = " ".join(df["content"])
 
 
 def load_word_list():
-    with open("../word_list/words_alpha.txt") as word_file:
+    with open("../word_list/words.txt") as word_file:
         word_list = set(word_file.read().split())
 
     return word_list
@@ -73,5 +73,5 @@ def generate_word_occurrences(text):
     )
 
 
-# generate_word_cloud(text)
+generate_word_cloud(text)
 generate_word_occurrences(text)
