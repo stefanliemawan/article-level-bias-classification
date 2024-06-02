@@ -12,10 +12,9 @@ A level-1 auxiliary file: app-A.aux
 A level-1 auxiliary file: app-n.aux
 The style file: abbrv.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "h2g2"
 You've used 33 entries,
             2118 wiz_defined-function locations,
-            678 strings with 11001 characters,
+            677 strings with 10997 characters,
 and the built_in function-call counts, 11715 in all, are:
 = -- 1079
 > -- 744
@@ -54,4 +53,3 @@ warning$ -- 0
 while$ -- 93
 width$ -- 35
 write$ -- 352
-(There was 1 warning)

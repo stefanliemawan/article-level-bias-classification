@@ -5,11 +5,12 @@
 
 \subsection{Characteristics} \label{bat-characteristics}
 
-The BAT dataset \cite{spinde-2023-bat} is chosen instead of NLPCSS \cite{chen-etal-2020-nlpcss} for this project due to its article-level suitability and labels fluidity, as well additional metadata as it contains outlets information. It contains 6345 rows of manually labeled news articles from 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website along with their respective \textbf{political bias} and \textbf{reliability scores}. Articles in the dataset encompassed a wide arrange of topics such as COVID-19, politics, and lifestyle. The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right). The reliability score reflects the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting).
+The BAT dataset \cite{spinde-2023-bat} is chosen instead of NLPCSS \cite{chen-etal-2020-nlpcss} for this project due to its article-level suitability and labels fluidity, as well additional metadata as it contains outlets information. It contains 6345 rows of manually labeled news articles from 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website along with their respective \textbf{political bias} and \textbf{reliability scores}. Articles in the dataset encompassed a wide arrange of topics such as COVID-19, politics, and lifestyle. The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right). The reliability score reflects the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting). However, since this dataset depends on manual labeling, the selection of articles by Ad Fontes Media likely introduces bias into the dataset \cite{spinde-2023-bat}.
 
 Both political bias and reliability scores on each article were rated using defined metrics and multiple sub-factors, performed by three randomly selected analysts from Ad Fontes Media's team of over 60 experts. The corresponding three scores were then averaged, producing the final article scores. Moreover, each group consists analysts with different beliefs in the political spectrum i.e., left, center, and right.
 
 The reliability score evaluates original fact reporting to analysis, opinion, propaganda, and inaccurate/fabricated information, with scores above 40 generally considered good and scores below 24 typically seen as problematic, scores between 24 and 40 suggest a variety of factors, including a strong presence of opinion and analysis or significant variability in reliability across different articles \cite{adfontes}. This metric is chosen as the main label in this project due to its correlation with textual-level bias: phrasing bias, spin bias, and statement bias described in \ref{media-bias-definition}
+
 
 \subsection{Extension}
 
@@ -23,23 +24,12 @@ Explain further on preprocessing scraped text. More details on the preprocessing
 
 \subsection{Analysis}
 
-The article contents tokens length range between 22 tokens up to 15530 tokens, with an average length of 1186.5 and a median value of 887 tokens. Only 9 articles have more than 10000 tokens, while there are 106 of articles with less than 100 tokens. Furthermore, only 1206 articles stay between 512 tokens, which is the limit for BERT input. The reliability score ranges from 1.0 to the 58.67. Not a single articles gaines more than 60 score despite the highest being 64.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/wordcloud_vx.png}
-    \caption{Wordcloud}
-    \label{fig:wordcloud}
-\end{figure}
-
-
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\linewidth]{figures/tokens_count_vx_hist.png}
-    \caption{Tokens count distribution}
+    \caption{Articles tokens count distribution}
     \label{fig:tokens_hist}
 \end{figure}
-
 
 \begin{figure}[ht]
     \centering
@@ -48,12 +38,17 @@ The article contents tokens length range between 22 tokens up to 15530 tokens, w
     \label{fig:reliability_score_hist}
 \end{figure}
 
+The article contents tokens length ranges between 22 tokens up to 15530 tokens, with an average length of 1186.5 and a median value of 887 tokens. Only 9 articles have more than 10000 tokens, while there are 106 of articles with less than 100 tokens. Furthermore, only 1193 articles stay between 512 tokens, which is the limit for BERT input. Articles reliability score ranges from 1.0 to the 58.67, the majority have value between 20 - 50. Not a single articles were rated more than 60 despite the highest score being 64. Visualisations can be seen in both Figure \ref{fig:tokens_hist} and Figure \ref{fig:reliability_score_hist}, as well as Figure \ref{fig:tokens_hist_split}
+
+
 \begin{figure}[ht]
-    \centering
     \includegraphics[width=0.9\linewidth]{figures/dates_hist.png}
-    \caption{Dates distribution}
+    \caption{Article dates distribution}
     \label{fig:dates_hist}
 \end{figure}
+
+Most articles are written and published within the last 6 years, with only 29 articles, a minuscule percentage, published before 2019, shown in Figure \ref{fig:dates_hist}. From my personal analysis, these 29 articles generally contain similar topics to articles published after 2019 and therefore should not hold any difference in behaviour and characteristics.
+
 
 \begin{figure}[ht]
     \centering
@@ -63,20 +58,10 @@ The article contents tokens length range between 22 tokens up to 15530 tokens, w
 \end{figure}
 
 
-
-Further analysis (Figure \ref{fig:pearson_correlation}) shown that there is virtually no linear relationship between between tokens count and reliability score, with a Pearson correlation coefficient is 0.02. This proves that the length of an article has no significant impact with its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
+Figure \ref{fig:avg_tokens_count_per_class} shows that all classes seem to have similar tokens count, close to the overall average. Class 'Problematic' and 'Questionable', being the two most biased classes, seem to have lower average tokens count than the two other classes. However, further analysis (Figure \ref{fig:pearson_correlation}) shows that there is virtually no linear relationship between between tokens count and reliability score, with a Pearson correlation coefficient is 0.02. This proves that the length of an article has no significant impact with its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
 
 \begin{comment}
 relationship between words and reliability score?
-\end{comment}
-
-\begin{comment}
-Additionally, BAT includes 175,807 comments and retweets referring to the articles.
-
-The existing literature suggests that labels provided by Ad Fontes media are suitable for media bias-related tasks and are of high quality [43]. However, especially since it relies on manual labels, the Ad Fontes article set does not cover the full range of political and non-political, recent and less recent, or controversial and non-controversial topics. The article selection by Ad Fontes media thus likely introduces bias into the dataset.
-
-Ad Fontes: Bentley et al. (2019) (Understanding Online News Behaviors) show that the portals’ labels are highly correlated to findings from social scientists.
-
 \end{comment}
 
 

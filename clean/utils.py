@@ -65,6 +65,10 @@ def delete_noise(content):
         "About this rating",
         "Forgot Your Password?New to?SubscribePrint subscriber?Activateyour online access",
         "This video can not be played",
+        "Readmore",
+        "IMAGE:",
+        "Thank you for relying on us to provide the journalism you can trust. Please consider supportingNJ.comwith a subscription.",
+        "We're hiring!Please take a look at the new openings in our newsroom. See jobsPlease",
     ]
 
     for index, sentence in enumerate(sentences.copy()):
@@ -83,9 +87,13 @@ def delete_noise(content):
             sentences.pop(index)
         if re.match(r"[Cc]opyright.*\d{4}", sentence):
             return ". ".join(sentences[:index])
+        if "/Getty Imageshide caption" in sentence:
+            pattern = r"\b[A-Z][a-z]+ [A-Z][a-z]+/Getty Imageshide caption "
+            sentences[index] = re.sub(pattern, "", sentence)
         if "/APhide caption" in sentence:
             pattern = r"\b[A-Z][a-z]+ [A-Z][a-z]+/APhide caption"
             sentences[index] = re.sub(pattern, "", sentence)
+
         # elif "/AP" in sentence:
         #     pattern = r"\b[A-Z][a-z]+ [A-Z][a-z]+/AP"
         #     print(sentence)

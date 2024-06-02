@@ -1,0 +1,131 @@
+\chapter{Evaluation}
+\label{cha:6}
+
+
+All methods are implemented using the PyTorch (cite) and transformer (cite) package from HuggingFace. Batch size is set to 8, with epoch ranging between 4-6 for standard finetuning.
+
+Every method besides the majorty votes only includes textual content as the input sequence (title + content)
+
+
+\section{Baseline methods}
+
+\begin{table}[!h]
+    \centering
+    \begin{minipage}[t]{\linewidth}
+        \centering
+        \begin{tabular}{|| c | c | c | c | c ||}
+            \hline
+            Class              & Precision & Recall & F1   & Support \\
+            \hline
+            \hline
+            Problematic        & 0.41      & 0.29   & 0.34 & 24      \\
+            \hline
+            Questionable       & 0.35      & 0.41   & 0.38 & 51      \\
+            \hline
+            Generally Reliable & 0.41      & 0.42   & 0.42 & 99      \\
+            \hline
+            Reliable           & 0.87      & 0.85   & 0.86 & 370     \\
+            \hline
+            Overall            & 0.71      & 0.70   & 0.71 &         \\
+            \hline
+        \end{tabular}
+        \caption{BoW + logistic regression evaluation}
+        \label{table:bow_logistic}
+    \end{minipage}
+\end{table}
+
+\begin{table}[!h]
+    \begin{minipage}[t]{\linewidth}
+        \centering
+        \begin{tabular}{|| c | c | c | c | c ||}
+            \hline
+            Class              & Precision & Recall & F1     & Support \\
+            \hline
+            \hline
+            Problematic        & 1.00      & 0.04   & 0.08   & 24      \\
+            \hline
+            Questionable       & 0.54      & 0.27   & 0.36   & 51      \\
+            \hline
+            Generally Reliable & 0.43      & 0.41   & 0.42   & 99      \\
+            \hline
+            Reliable           & 0.82      & 0.93   & 0.87   & 370     \\
+            \hline
+            Overall            & 0.7291    & 0.7371 & 0.7070 &         \\
+            \hline
+        \end{tabular}
+        \caption{TF-IDF + logistic regression evaluation}
+        \label{table:tfidf_logistic}
+    \end{minipage}
+\end{table}
+
+
+\begin{table}[!h]
+    \centering
+    \begin{minipage}[t]{\linewidth}
+        \centering
+        \begin{tabular}{|| c | c | c | c | c ||}
+            \hline
+            Class              & Precision & Recall & F1     & Support \\
+            \hline
+            \hline
+            Problematic        & 0.60      & 0.25   & 0.35   & 24      \\
+            \hline
+            Questionable       & 0.47      & 0.53   & 0.50   & 51      \\
+            \hline
+            Generally Reliable & 0.37      & 0.56   & 0.45   & 99      \\
+            \hline
+            Reliable           & 0.89      & 0.79   & 0.84   & 370     \\
+            \hline
+            Overall            & 0.7428    & 0.7003 & 0.7132 &         \\
+            \hline
+        \end{tabular}
+        \caption{BERT finetuning evaluation}
+        \label{table:bert-finetuning}
+    \end{minipage}
+\end{table}
+
+
+\begin{table}[!h]
+    \centering
+    \begin{minipage}[t]{\linewidth}
+        \centering
+        \begin{tabular}{|| c | c | c | c | c ||}
+            \hline
+            Class              & Precision & Recall & F1     & Support \\
+            \hline
+            \hline
+            Problematic        & 0.57      & 0.71   & 0.63   & 24      \\
+            \hline
+            Questionable       & 0.60      & 0.47   & 0.53   & 51      \\
+            \hline
+            Generally Reliable & 0.56      & 0.55   & 0.55   & 99      \\
+            \hline
+            Reliable           & 0.91      & 0.93   & 0.92   & 370     \\
+            \hline
+            Overall            & 0.8007    & 0.8051 & 0.8017 &         \\
+            \hline
+        \end{tabular}
+        \caption{Outlet-based majority votes evaluation}
+        \label{table:majority-votes}
+    \end{minipage}
+\end{table}
+
+
+In both Table \ref{table:bow_logistic} and Table \ref{table:tfidf_logistic}, it can be seen that frequency-based approaches such as BoW and TF-IDF already perform quite well if we look at the average metrics. However, when we look at per class metrics, it can be seen that the overall scores are heavily influenced by the performance on class 'Reliable' due to its large support. It is quite evident that the model suffers when classifying underrepresented classes, this is expected as the dataset is highly-imbalanced. Furthermore, TF-IDF model seems to perform significantly worse on the 'Problematic' class.
+
+Finetuning BERT model only performed slightly better than BoW method as can be seen in Table \ref{table:bert-finetuning} and Table \ref{table:bow_logistic}
+
+As a comparison, using solely outlet information without any textual information (with majority votes) outperformed all baseline methods both overall and on every class. This result signifies how influental outlet information can be used to classify media bias.
+
+\begin{comment}
+Find out why TF-IDF performs worse on class problematic
+\end{comment}
+
+\section{Sliding window}
+
+\section{CLS Method}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End: 

@@ -9,6 +9,9 @@ SEED = 42
 # CLASS_RANGES = [(0, 29.32), (29.33, 43.98), (43.98, 64)]
 # CLASS_RANGES = [(0, 24), (24.01, 40.00), (40.01, 64)]
 CLASS_RANGES = [(0, 24), (24.01, 32.00), (32.01, 40.00), (40.01, 64)]
+# CLASS_RANGES = [(0, 28.00), (28.01, 40.00), (40.01, 64)]
+
+CLASSES = ["Problematic", "Questionable", "Generally Reliable", "Reliable"]
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -32,13 +35,16 @@ outlets_df = pd.read_csv(
 def map_to_class(score):
     for i, (start, end) in enumerate(CLASS_RANGES):
         if start <= score <= end:
-            return i
+            return i, CLASSES[i]
 
 
 # df["labels"], bins = pd.qcut(df["reliability_score"], q=3, labels=False, retbins=True)
 # print(bins)
-df["labels"] = df["reliability_score"].apply(map_to_class)
-outlets_df["outlet_labels"] = outlets_df["reliability_score"].apply(map_to_class)
+df[["labels", "class"]] = df["reliability_score"].apply(map_to_class).apply(pd.Series)
+df.to_csv(f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv")
+outlets_df["outlet_labels"] = outlets_df["reliability_score"].apply(
+    lambda x: map_to_class(x)[0]
+)
 
 outlets_df["adfontes_url"] = outlets_df["url"]
 

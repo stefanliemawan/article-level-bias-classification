@@ -69,11 +69,113 @@ def plot_tokens_count(df):
     print(df.sort_values(by=["tokens_count"], ascending=False).head(20))
     print(df.sort_values(by=["tokens_count"], ascending=True).head(20))
 
-    count_below_100 = df[df["tokens_count"] < 100].shape[0]
-    print(f"Number of rows with tokens_count below 100: {count_below_100}")
+    count_below_100 = df[df["tokens_count"] < 128].shape[0]
+    print(f"Number of rows with tokens_count below 128: {count_below_100}")
 
     count_below_512 = df[df["tokens_count"] < 512].shape[0]
     print(f"Number of rows with tokens_count below 512: {count_below_512}")
+
+
+def plot_tokens_count_split(df):
+
+    range1 = df[(df["tokens_count"] >= 0) & (df["tokens_count"] < 512)]
+    range2 = df[(df["tokens_count"] >= 512) & (df["tokens_count"] < 2048)]
+    range3 = df[(df["tokens_count"] >= 2048) & (df["tokens_count"] < 4096)]
+    range4 = df[df["tokens_count"] >= 4096]
+
+    fig, axes = plt.subplots(2, 2, figsize=(12, 12))
+
+    range_dict = [
+        {
+            "ax_position": [0, 0],
+            "color": "skyblue",
+            "df": range1,
+            "text_position": [0.4, 0.95],
+            "title": "Tokens Count 0-512",
+        },
+        {
+            "ax_position": [0, 1],
+            "color": "orange",
+            "df": range2,
+            "text_position": [0.6, 0.95],
+            "title": "Tokens Count 512-2048",
+        },
+        {
+            "ax_position": [1, 0],
+            "color": "green",
+            "df": range3,
+            "text_position": [0.4, 0.95],
+            "title": "Tokens Count 2048-4096",
+        },
+        {
+            "ax_position": [1, 1],
+            "color": "red",
+            "df": range4,
+            "text_position": [0.6, 0.95],
+            "title": "Tokens Count > 4096",
+        },
+    ]
+
+    for range in range_dict:
+        ax_position = range["ax_position"]
+        text_pos_x, text_pos_y = range["text_position"]
+        df_range = range["df"]
+
+        axes[*ax_position].hist(
+            df_range["tokens_count"], bins=15, color=range["color"], edgecolor="black"
+        )
+        axes[*ax_position].set_title(range["title"])
+        axes[*ax_position].set_xlabel("Tokens Count")
+        axes[*ax_position].set_ylabel("Frequency")
+        axes[*ax_position].text(
+            text_pos_x,
+            text_pos_y,
+            f"Count: {len(df_range)}",
+            transform=axes[*ax_position].transAxes,
+            ha="center",
+        )
+
+    plt.suptitle("Articles Tokens Count Distribution Across Ranges")
+    plt.tight_layout()
+
+    plt.savefig(f"figures/tokens_count_{DATASET_VERSION}_split_hist.png")
+
+
+def plot_tokens_count_per_class(df):
+    plt.clf()
+    # plt.figure(figsize=(10, 6))
+
+    custom_sort_order = [
+        "Problematic",
+        "Questionable",
+        "Generally Reliable",
+        "Reliable",
+    ]
+
+    # Convert 'class' column to categorical with custom sort order
+    df["class"] = pd.Categorical(
+        df["class"], categories=custom_sort_order, ordered=True
+    )
+
+    average_token_count = df.groupby("class")["tokens_count"].mean()
+
+    # Plotting the histogram of the average token counts
+    average_token_count.plot(
+        kind="bar",
+        color=["darkred", "darkorange", "darkgreen", "darkblue"],
+        edgecolor="black",
+        alpha=0.7,
+        width=0.8,
+    )
+    plt.xlabel("Class")
+    plt.ylabel("Average Tokens Count")
+    plt.title("Average Tokens Count by Class")
+
+    plt.xticks(rotation=60, ha="right")
+
+    plt.tight_layout()
+
+    plt.savefig(f"figures/tokens_count_{DATASET_VERSION}_per_class_hist.png")
 
 
 def plot_reliability_score(df):
@@ -102,12 +204,26 @@ def plot_dates(df):
 
     df = df.sort_values(by="date")
 
-    plt.figure(figsize=(10, 6))
-    plt.hist(df["date"], bins=20, edgecolor="black")
-    plt.xlabel("Date")
-    plt.ylabel("Frequency")
-    plt.title("Distribution of Articles By Date")
-    # plt.xticks(rotation=45)
+    before_2019 = df[df["date"] < "2019-01-01"]
+    before_2019.to_csv(f"../dataset/{DATASET_VERSION}_pre2019.csv")
+    after_2019 = df[df["date"] >= "2019-01-01"]
+
+    print("Articles before 2019:", before_2019.shape[0])
+    print("Articles after 2019:", after_2019.shape[0])
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+
+    ax1.hist(before_2019["date"], bins=30, color="skyblue", edgecolor="black")
+    ax1.set_title("Articles Before 2019")
+    ax1.set_xlabel("Date")
+    ax1.set_ylabel("Frequency")
+
+    ax2.hist(after_2019["date"], bins=30, color="orange", edgecolor="black")
+    ax2.set_title("Articles After 2019")
+    ax2.set_xlabel("Date")
+    ax2.set_ylabel("Frequency")
+
+    plt.tight_layout()
 
     plt.savefig("figures/dates_hist.png")
 
@@ -146,7 +262,7 @@ def plot_correlation_bias_reliability(df):
     plt.title(
         f"Bias Score vs Reliability Score \nPearson correlation: {correlation:.2f}"
     )
-    plt.xlabel("bias_score")
+    plt.xlabel("Bias Score")
     plt.ylabel("Reliability Score")
 
     plt.savefig("figures/correlation_bias_reliability_score.png")
@@ -155,10 +271,13 @@ def plot_correlation_bias_reliability(df):
 # def plot_outlet_reliability_score():
 #     print(outlet_df)
 
+if "tokens_count" not in df:
+    count_tokens(df)
 
-# count_tokens(df)
-plot_tokens_count(df)
-plot_reliability_score(df)
-plot_dates(df)
+# plot_tokens_count(df)
+# plot_tokens_count_split(df)
+plot_tokens_count_per_class(df)
+# plot_reliability_score(df)
+# plot_dates(df)
 # plot_correlation_tokens_reliability(df)
 # plot_correlation_bias_reliability(df)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  1 JUN 2024 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  2 JUN 2024 09:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1113,7 +1113,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `kulemtfpf' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<logokuleng.pdf, id=112, 216.81pt x 99.9735pt>
+<logokuleng.pdf, id=116, 216.81pt x 99.9735pt>
 File: logokuleng.pdf Graphic file (type pdf)
 <use logokuleng.pdf>
 Package pdftex.def Info: logokuleng.pdf  used on input line 34.
@@ -1141,11 +1141,7 @@ Package microtype Info: Loading generic protrusion settings for font family
  [0
 
 
-{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [1
-
-
-
-] (./thesis.toc
+{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] (./thesis.toc
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1168,31 +1164,18 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 8.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 8.
-) [2
+) [1
 
 
-] [3
 
-] (./thesis.lof) (./thesis.lot) [4
-
-
-]
-
-LaTeX Warning: Citation `h2g2' on page v undefined on input line 77.
-
-
-Overfull \hbox (0.86812pt too wide) in paragraph at lines 77--77
-[]|\T1/lmr/m/n/10.95 (-20) ``The Answer to the Ultimate Question of Life, the Universe, and Everything''
- []
-
-[5
-
-{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [6
+] [2
 
 ]
 \openout2 = `chap-1.aux'.
 
  (./chap-1.tex [1
+
+
 
 
 ])
@@ -1223,51 +1206,58 @@ Package microtype Info: Character `029' is missing
 
 
 
-] [11]
-<figures/wordcloud_vx.png, id=336, 462.528pt x 346.896pt>
-File: figures/wordcloud_vx.png Graphic file (type png)
-<use figures/wordcloud_vx.png>
-Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 30.
-(pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
-<figures/tokens_count_vx_hist.png, id=338, 722.7pt x 433.62pt>
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]
+<figures/tokens_count_vx_hist.png, id=304, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 38.
+Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 29.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/reliability_score_hist.png, id=339, 722.7pt x 433.62pt>
+<figures/reliability_score_hist.png, id=306, 722.7pt x 433.62pt>
 File: figures/reliability_score_hist.png Graphic file (type png)
 <use figures/reliability_score_hist.png>
-Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 46.
+Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 36.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/dates_hist.png, id=340, 722.7pt x 433.62pt>
+ [12 <./figures/tokens_count_vx_hist.png>]
+<figures/dates_hist.png, id=319, 1156.32pt x 433.62pt>
 File: figures/dates_hist.png Graphic file (type png)
 <use figures/dates_hist.png>
-Package pdftex.def Info: figures/dates_hist.png  used on input line 53.
-(pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/correlation_tokens_reliability_score.png, id=341, 722.7pt x 433.62pt>
+Package pdftex.def Info: figures/dates_hist.png  used on input line 45.
+(pdftex.def)             Requested size: 358.19757pt x 134.32156pt.
+<figures/correlation_tokens_reliability_score.png, id=321, 722.7pt x 433.62pt>
 File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
 <use figures/correlation_tokens_reliability_score.png>
-Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 60.
+Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 55.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-) [12] [13 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_hist.png>] [14 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>] [15 <./figures/correlation_tokens_reliability_score.png>]
+ [13 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>]) [14 <./figures/correlation_tokens_reliability_score.png>]
 \openout2 = `chap-5.aux'.
 
- (./chap-5.tex [16
+ (./chap-5.tex [15
 
 
 
 
-] [17]) [18]
+]) [16]
 \openout2 = `chap-6.aux'.
 
+ (./chap-6.tex
 
-No file chap-6.tex.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17
+
+
+
+
+]) [18]
 \openout2 = `chap-7.aux'.
 
-(./chap-7.tex) [19
-
-
-
+ (./chap-7.tex) [19
 
 
 
@@ -1279,18 +1269,34 @@ No file chap-6.tex.
 ] [21] [22]
 \openout2 = `app-A.aux'.
 
- (./app-A.tex) [23
+ (./app-A.tex
+<figures/tokens_count_vx_split_hist.png, id=391, 867.24pt x 867.24pt>
+File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
+<use figures/tokens_count_vx_split_hist.png>
+Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
+(pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
+<figures/wordcloud_vx.png, id=392, 462.528pt x 346.896pt>
+File: figures/wordcloud_vx.png Graphic file (type png)
+<use figures/wordcloud_vx.png>
+Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
+(pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
+<figures/tokens_count_vx_per_class_hist.png, id=393, 462.528pt x 346.896pt>
+File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
+<use figures/tokens_count_vx_per_class_hist.png>
+Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 21.
+(pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
+) [23
 
 
-]
+ <./figures/tokens_count_vx_split_hist.png>] [24 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_per_class_hist.png>]
 \openout2 = `app-n.aux'.
 
- (./app-n.tex [24
+ (./app-n.tex) [25
 
 
 
 
-]) [25] [26
+] [26
 
 
 
@@ -1302,32 +1308,23 @@ bibitemlist
 \tf@toc=\write5
 \openout5 = `thesis.toc'.
 
-\tf@lof=\write6
-\openout6 = `thesis.lof'.
-
-\tf@lot=\write7
-\openout7 = `thesis.lot'.
-
  (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux) (./app-n.aux))
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 139A31C41060A654203E60BF5349A1F7;3355.
+(rerunfilecheck)             Checksum: 0A6B0B0BB7CC3DDC48D5CD6FF56E77DF;3333.
  ) 
 Here is how much of TeX's memory you used:
- 16803 strings out of 476025
- 275216 string characters out of 5790016
- 1862388 words of memory out of 5000000
- 36662 multiletter control sequences out of 15000+600000
+ 16809 strings out of 476025
+ 275826 string characters out of 5790016
+ 1867388 words of memory out of 5000000
+ 36674 multiletter control sequences out of 15000+600000
  582428 words of font info for 145 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,77p,1617b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (37 pages, 521213 bytes).
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on thesis.pdf (33 pages, 617938 bytes).
 PDF statistics:
- 514 PDF objects out of 1000 (max. 8388607)
- 438 compressed objects within 5 object streams
- 123 named destinations out of 1000 (max. 500000)
- 36087 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 427 compressed objects within 5 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 36105 words of extra memory for PDF output out of 42996 (max. 10000000)
 

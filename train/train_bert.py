@@ -9,8 +9,8 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
-MODEL_NAME = "bert-base-uncased"
-# MODEL_NAME = "bert-base-cased"
+# MODEL_NAME = "bert-base-uncased"
+MODEL_NAME = "bert-base-cased"
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -48,7 +48,7 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=6)
+functions.train(tokenised_dataset, model, epoch=3)
 
 # v2, title + content, bert-base-uncased, with oversampling
 # {'eval_loss': 0.8049562573432922, 'eval_precision': 0.6989735466648578, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.6967025255248073, 'eval_runtime': 2.3663, 'eval_samples_per_second': 271.307, 'eval_steps_per_second': 34.23, 'epoch': 4.0}
@@ -210,3 +210,15 @@ functions.train(tokenised_dataset, model, epoch=6)
 
 # new split, vx, 4 classes, not done, this is valid on epoch 4, laptop heating. test later, but i think 4 classes is better.
 # {'eval_loss': 1.358709454536438, 'eval_precision': 0.732512403908757, 'eval_recall': 0.7028753993610224, 'eval_f1': 0.7107864589046988, 'eval_runtime': 49.3262, 'eval_samples_per_second': 12.691, 'eval_steps_per_second': 1.602, 'epoch': 4.0}
+#
+#               precision    recall  f1-score   support
+
+#            0       0.60      0.25      0.35        24
+#            1       0.47      0.53      0.50        51
+#            2       0.37      0.56      0.45        99
+#            3       0.89      0.79      0.84       370
+
+#     accuracy                           0.70       544
+#    macro avg       0.58      0.53      0.53       544
+# weighted avg       0.74      0.70      0.71       544
+# {'eval_loss': 1.9810607433319092, 'eval_precision': 0.742856365034052, 'eval_recall': 0.7003676470588235, 'eval_f1': 0.7132017243769818, 'eval_runtime': 37.6228, 'eval_samples_per_second': 14.459, 'eval_steps_per_second': 1.807, 'epoch': 6.0}
