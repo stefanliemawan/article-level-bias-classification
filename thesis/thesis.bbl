@@ -10,6 +10,10 @@ H.~Allcott and M.~Gentzkow.
 \newblock Social media and fake news in the 2016 election.
 \newblock {\em Journal of Economic Perspectives}, 31(2):211--36, 2017.
 
+\bibitem{beltagy-2020-longformer}
+I.~Beltagy, M.~E. Peters, and A.~Cohan.
+\newblock Longformer: The long-document transformer, 2020.
+
 \bibitem{boudana-2011-journalistic-objectivity}
 S.~Boudana.
 \newblock A definition of journalistic objectivity as a performance.
@@ -20,7 +24,7 @@ W.-F. Chen, K.~Al~Khatib, B.~Stein, and H.~Wachsmuth.
 \newblock Detecting media bias in news articles using {G}aussian bias distributions.
 \newblock In T.~Cohn, Y.~He, and Y.~Liu, editors, {\em Findings of the Association for Computational Linguistics: EMNLP 2020}, pages 4290--4300, Online, Nov. 2020. Association for Computational Linguistics.
 
-\bibitem{chen-etal-2020-nlpcss}
+\bibitem{chen-2020-nlpcss}
 W.-F. Chen, K.~Al~Khatib, H.~Wachsmuth, and B.~Stein.
 \newblock Analyzing political bias and unfairness in news articles at different levels of granularity.
 \newblock In D.~Bamman, D.~Hovy, D.~Jurgens, B.~O'Connor, and S.~Volkova, editors, {\em Proceedings of the Fourth Workshop on Natural Language Processing and Computational Social Science}, pages 149--154, Online, Nov. 2020. Association for Computational Linguistics.
@@ -28,6 +32,16 @@ W.-F. Chen, K.~Al~Khatib, H.~Wachsmuth, and B.~Stein.
 \bibitem{demidov-2023-political-bias-classification}
 D.~Demidov.
 \newblock Political bias of news content: Classification based on individual articles and media, 03 2023.
+
+\bibitem{devlin-2019-bert}
+J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova.
+\newblock {BERT}: Pre-training of deep bidirectional transformers for language understanding.
+\newblock In J.~Burstein, C.~Doran, and T.~Solorio, editors, {\em Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)}, pages 4171--4186, Minneapolis, Minnesota, June 2019. Association for Computational Linguistics.
+
+\bibitem{dwyl-english-words}
+dwyl.
+\newblock english-words.
+\newblock \url{https://github.com/dwyl/english-words}, 2022.
 
 \bibitem{fan-2019-basil}
 L.~Fan, M.~White, E.~Sharma, R.~Su, P.~K. Choubey, R.~Huang, and L.~Wang.
@@ -57,6 +71,10 @@ M.~B. Group.
 \newblock \url{https://media-bias-research.org/}.
 \newblock Accessed: 2024-05-29.
 
+\bibitem{guo-2022-modeling}
+S.~Guo and K.~Q. Zhu.
+\newblock Modeling multi-level context for informational bias detection by contrastive learning and sentential graph network, 2022.
+
 \bibitem{horych-2024-magpie}
 T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
 \newblock Magpie: Multi-task media-bias analysis generalization for pre-trained identification of expressions, 2024.
@@ -83,9 +101,28 @@ V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
 \newblock Multi-view models for political ideology detection of news articles.
 \newblock In E.~Riloff, D.~Chiang, J.~Hockenmaier, and J.~Tsujii, editors, {\em Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, pages 3518--3527, Brussels, Belgium, Oct.-Nov. 2018. Association for Computational Linguistics.
 
-\bibitem{lei-2024-sentence}
+\bibitem{lee-2021-unifying}
+N.~Lee, B.~Z. Li, S.~Wang, P.~Fung, H.~Ma, W.-t. Yih, and M.~Khabsa.
+\newblock On unifying misinformation detection.
+\newblock In K.~Toutanova, A.~Rumshisky, L.~Zettlemoyer, D.~Hakkani-Tur, I.~Beltagy, S.~Bethard, R.~Cotterell, T.~Chakraborty, and Y.~Zhou, editors, {\em Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies}, pages 5479--5485, Online, June 2021. Association for Computational Linguistics.
+
+\bibitem{lei-2024-event-relation}
 Y.~Lei and R.~Huang.
 \newblock Sentence-level media bias analysis with event relation graph, 2024.
+
+\bibitem{lei-2022-sentence}
+Y.~Lei, R.~Huang, L.~Wang, and N.~Beauchamp.
+\newblock Sentence-level media bias analysis informed by discourse structures.
+\newblock In Y.~Goldberg, Z.~Kozareva, and Y.~Zhang, editors, {\em Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing}, pages 10040--10050, Abu Dhabi, United Arab Emirates, Dec. 2022. Association for Computational Linguistics.
+
+\bibitem{liu-2019-roberta}
+Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettlemoyer, and V.~Stoyanov.
+\newblock Roberta: A robustly optimized bert pretraining approach, 2019.
+
+\bibitem{maab-2023-lexical-bias-detection}
+I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
+\newblock An effective approach for informational and lexical bias detection.
+\newblock In M.~Akhtar, R.~Aly, C.~Christodoulopoulos, O.~Cocarascu, Z.~Guo, A.~Mittal, M.~Schlichtkrull, J.~Thorne, and A.~Vlachos, editors, {\em Proceedings of the Sixth Fact Extraction and VERification Workshop (FEVER)}, pages 66--77, Dubrovnik, Croatia, May 2023. Association for Computational Linguistics.
 
 \bibitem{maab-2023-target-aware}
 I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
@@ -111,6 +148,11 @@ C.~Panagopoulos.
 \bibitem{park-2022-efficient}
 H.~H. Park, Y.~Vyas, and K.~Shah.
 \newblock Efficient classification of long documents using transformers, 2022.
+
+\bibitem{paszke-2017-pytorch}
+A.~Paszke, S.~Gross, S.~Chintala, G.~Chanan, E.~Yang, Z.~DeVito, Z.~Lin, A.~Desmaison, L.~Antiga, and A.~Lerer.
+\newblock Automatic differentiation in pytorch.
+\newblock In {\em NIPS-W}, 2017.
 
 \bibitem{patterson-donsbach-1996-news-decisions}
 T.~E. Patterson and W.~Donsbach.
@@ -161,5 +203,18 @@ E.~van~den Berg and K.~Markert.
 \bibitem{wan-2019-long-length}
 L.~Wan, G.~Papageorgiou, M.~Seddon, and M.~Bernardoni.
 \newblock Long-length legal document classification, 2019.
+
+\bibitem{white-1950-case-study-selection-news}
+D.~M. White.
+\newblock The “gate keeper”: A case study in the selection of news.
+\newblock {\em Journalism Quarterly}, 27(4):383--390, 1950.
+
+\bibitem{wolf-2020-huggingface}
+T.~Wolf, L.~Debut, V.~Sanh, J.~Chaumond, C.~Delangue, A.~Moi, P.~Cistac, T.~Rault, R.~Louf, M.~Funtowicz, J.~Davison, S.~Shleifer, P.~von Platen, C.~Ma, Y.~Jernite, J.~Plu, C.~Xu, T.~L. Scao, S.~Gugger, M.~Drame, Q.~Lhoest, and A.~M. Rush.
+\newblock Huggingface's transformers: State-of-the-art natural language processing, 2020.
+
+\bibitem{zaheer-2021-bigbird}
+M.~Zaheer, G.~Guruganesh, A.~Dubey, J.~Ainslie, C.~Alberti, S.~Ontanon, P.~Pham, A.~Ravula, Q.~Wang, L.~Yang, and A.~Ahmed.
+\newblock Big bird: Transformers for longer sequences, 2021.
 
 \end{thebibliography}

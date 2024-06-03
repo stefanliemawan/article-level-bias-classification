@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  2 JUN 2024 09:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  3 JUN 2024 07:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1021,30 +1021,30 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_a_int=\count330
 \l__lipsum_b_int=\count331
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 34.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 35.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux) (./app-n.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 
 ******************************************************
@@ -1085,26 +1085,26 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 34.
-Package microtype Info: Applying patch `item' on input line 34.
-Package microtype Info: Applying patch `toc' on input line 34.
-Package microtype Info: Applying patch `eqnum' on input line 34.
-Package microtype Info: Applying patch `footnote' on input line 34.
-Package microtype Info: Applying patch `verbatim' on input line 34.
+LaTeX Info: Redefining \microtypecontext on input line 35.
+Package microtype Info: Applying patch `item' on input line 35.
+Package microtype Info: Applying patch `toc' on input line 35.
+Package microtype Info: Applying patch `eqnum' on input line 35.
+Package microtype Info: Applying patch `footnote' on input line 35.
+Package microtype Info: Applying patch `verbatim' on input line 35.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 34.
+LaTeX Info: Redefining \showhyphens on input line 35.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-Package hyperref Info: Link coloring ON on input line 34.
+Package hyperref Info: Link coloring ON on input line 35.
  (./thesis.out) (./thesis.out)
 \@outlinefile=\write4
 \openout4 = `thesis.out'.
@@ -1116,21 +1116,21 @@ Package microtype Info: Loading generic protrusion settings for font family
 <logokuleng.pdf, id=116, 216.81pt x 99.9735pt>
 File: logokuleng.pdf Graphic file (type pdf)
 <use logokuleng.pdf>
-Package pdftex.def Info: logokuleng.pdf  used on input line 34.
+Package pdftex.def Info: logokuleng.pdf  used on input line 35.
 (pdftex.def)             Requested size: 216.80946pt x 99.97324pt.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <12> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 34.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <14.4> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 34.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 35.
  [-1
 
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc} </Users/stefanliemawan/Library/texmf/tex/latex/kulemt/logokuleng.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 34.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 35.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 34.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 35.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1198,7 +1198,10 @@ Package microtype Info: Character `029' is missing
 
 
 
-] [7] [8]) [9]
+] [7]
+Underfull \vbox (badness 7814) has occurred while \output is active []
+
+ [8]) [9]
 \openout2 = `chap-4.aux'.
 
  (./chap-4.tex [10
@@ -1207,104 +1210,102 @@ Package microtype Info: Character `029' is missing
 
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1924) has occurred while \output is active []
 
- [11]
-<figures/tokens_count_vx_hist.png, id=304, 722.7pt x 433.62pt>
+ [11] [12]
+<figures/tokens_count_vx_hist.png, id=337, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 29.
+Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 57.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/reliability_score_hist.png, id=306, 722.7pt x 433.62pt>
+<figures/reliability_score_hist.png, id=339, 722.7pt x 433.62pt>
 File: figures/reliability_score_hist.png Graphic file (type png)
 <use figures/reliability_score_hist.png>
-Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 36.
+Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 64.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
- [12 <./figures/tokens_count_vx_hist.png>]
-<figures/dates_hist.png, id=319, 1156.32pt x 433.62pt>
+ [13 <./figures/tokens_count_vx_hist.png>]
+<figures/dates_hist.png, id=352, 1156.32pt x 433.62pt>
 File: figures/dates_hist.png Graphic file (type png)
 <use figures/dates_hist.png>
-Package pdftex.def Info: figures/dates_hist.png  used on input line 45.
+Package pdftex.def Info: figures/dates_hist.png  used on input line 73.
 (pdftex.def)             Requested size: 358.19757pt x 134.32156pt.
-<figures/correlation_tokens_reliability_score.png, id=321, 722.7pt x 433.62pt>
+<figures/correlation_tokens_reliability_score.png, id=354, 722.7pt x 433.62pt>
 File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
 <use figures/correlation_tokens_reliability_score.png>
-Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 55.
+Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 83.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
- [13 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>]) [14 <./figures/correlation_tokens_reliability_score.png>]
+ [14 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>]) [15 <./figures/correlation_tokens_reliability_score.png>]
 \openout2 = `chap-5.aux'.
 
- (./chap-5.tex [15
+ (./chap-5.tex [16
 
 
 
 
-]) [16]
+] [17]) [18]
 \openout2 = `chap-6.aux'.
 
- (./chap-6.tex
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[17
+ (./chap-6.tex [19
 
 
 
 
-]) [18]
+]) [20] [21]
 \openout2 = `chap-7.aux'.
 
- (./chap-7.tex) [19
+ (./chap-7.tex [22
 
 
 
 
-] [20
+]) [23] [24
 
 
 
-] [21] [22]
+] [25] [26]
 \openout2 = `app-A.aux'.
 
  (./app-A.tex
-<figures/tokens_count_vx_split_hist.png, id=391, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_split_hist.png, id=442, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_split_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
 (pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
-<figures/wordcloud_vx.png, id=392, 462.528pt x 346.896pt>
+<figures/wordcloud_vx.png, id=443, 462.528pt x 346.896pt>
 File: figures/wordcloud_vx.png Graphic file (type png)
 <use figures/wordcloud_vx.png>
 Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
 (pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
-<figures/tokens_count_vx_per_class_hist.png, id=393, 462.528pt x 346.896pt>
+<figures/tokens_count_vx_per_class_hist.png, id=444, 462.528pt x 346.896pt>
 File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_per_class_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 21.
 (pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
-) [23
+<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=445, 308.352pt x 243.7908pt>
+File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
+<use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
+Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg  used on input line 29.
+(pdftex.def)             Requested size: 318.40121pt x 251.73972pt.
+) [27
 
 
- <./figures/tokens_count_vx_split_hist.png>] [24 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_per_class_hist.png>]
+ <./figures/tokens_count_vx_split_hist.png>] [28 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_per_class_hist.png>] [29 <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>]
 \openout2 = `app-n.aux'.
 
- (./app-n.tex) [25
+ (./app-n.tex [30
 
 
 
 
-] [26
+]) [31] [32
 
 
 
 ] (./thesis.bbl
 bibitemlist
-[27
+[33
 
-] [28]) [29]
+] [34] [35]) [36]
 \tf@toc=\write5
 \openout5 = `thesis.toc'.
 
@@ -1313,18 +1314,18 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 0A6B0B0BB7CC3DDC48D5CD6FF56E77DF;3333.
  ) 
 Here is how much of TeX's memory you used:
- 16809 strings out of 476025
- 275826 string characters out of 5790016
+ 16908 strings out of 476025
+ 277609 string characters out of 5790016
  1867388 words of memory out of 5000000
- 36674 multiletter control sequences out of 15000+600000
- 582428 words of font info for 145 fonts, out of 8000000 for 9000
+ 36701 multiletter control sequences out of 15000+600000
+ 590515 words of font info for 170 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,77p,1617b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (33 pages, 617938 bytes).
+ 75i,11n,77p,3058b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on thesis.pdf (40 pages, 1349147 bytes).
 PDF statistics:
- 501 PDF objects out of 1000 (max. 8388607)
- 427 compressed objects within 5 object streams
- 120 named destinations out of 1000 (max. 500000)
- 36105 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 576 PDF objects out of 1000 (max. 8388607)
+ 492 compressed objects within 5 object streams
+ 142 named destinations out of 1000 (max. 500000)
+ 40206 words of extra memory for PDF output out of 42996 (max. 10000000)
 

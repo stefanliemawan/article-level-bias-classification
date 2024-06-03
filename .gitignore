@@ -1,6 +1,7 @@
 original_dataset
 scrap
 models
+word_list
 **.zip
 **__pycache__
 kulemt**

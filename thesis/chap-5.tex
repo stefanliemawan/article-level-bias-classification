@@ -3,9 +3,9 @@
 
 \section{Features and baselines}
 
-The main focus of the features will be the textual content of articles. A Reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing context of the article will be the key element of a reliable performance. Therefore, only articles title and content will be used as the input, concatenated into a single sequence.
+The main focus of the features will be the textual content of articles. A Reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. Therefore, only the articles title and content will be used as the input, concatenated into a single sequence.
 
-As a baseline, traditional methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. Standard fine-tuning of BERT will also be evaluated. Additionally, an outlet-based majority votes method is also implemented as a comparison and to show the influence of outlet information within the classifiers. This method works by simply taking the majority class for every outlet and use it as a classifier (if an article is from outlet A then it is class X).
+As a baseline, traditional methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. Standard fine-tuning of BERT will also be evaluated. Additionally, an outlet-based majority votes method is also implemented as a comparison and to show the influence of outlet information within the classifiers. This method works by simply taking the majority vote over classes for every outlet and use it as a classifier: \textit{an article is from outlet A, majority of articles from outlet A is classified as class X, therefore, article A has a class X}.
 
 \section{Pre-processing}
 
@@ -17,7 +17,7 @@ The dataset reliability scores are grouped and split into 4 classes based on Ad 
     \item Reliable ---> scores between 40.01 and 64
 \end{enumerate}
 
-The dataset is then split into three sets of train, test and validation with the following distribution:
+The dataset is then split into three sets of train, test, and validation with the following distribution:
 \begin{itemize}
     \item Train set: 4145 rows \\
           270 samples of class 'Problematic', 578 samples of class 'Questionable', 990 samples of class 'Generally Reliable', 2307 of class 'Reliable'
@@ -27,22 +27,17 @@ The dataset is then split into three sets of train, test and validation with the
           31 samples of class 'Problematic', 66 samples of class 'Questionable', 123 samples of class 'Generally Reliable', 358 of class 'Reliable'
 \end{itemize}
 
-The split are done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by grouping the articles based on its outlet and label and iterating over each group, splitting the rows equally and appending to the train, test, and validation set. Group of less than 5 rows are not enough to be split and therefore appended to the train set.
-
-To handle class imbalances, weighted loss is used when training the model, with weights in proportion the distribution of each class.
+The split is done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by grouping the articles based on their outlet and label and iterating over each group, splitting the rows equally, and appending to the train, test, and validation set. Groups of less than 5 rows are not enough to be split and therefore appended to the train set. To handle class imbalances, weighted loss is used when training the model, with weights in proportion to the distribution of each class.
 
 \section{Proposed methods}
 
 \subsection{Sliding window}
 
-The first method to be implemented is the sliding window method, where articles are split into chunks and applied as a mini-batch to the model. The logits of each chunks are then pooled together and averaged out to get the final logits, to which the loss function will be applied to. Both max and mean pooling functions were experimented, with mean pooling performing slightly better.
-
-For this approach, a window size of 512 (maximum token of BERT) is chosen with a stride of 256. Additionally, only the first 3 chunks of each input sequence will be used, each input sequence will be truncated to only the first 3 chunks, as using longer chunks do not consistently improve the performance, along with increased computation cost.
+The first method to be implemented is the sliding window method, where articles are split into chunks and applied as a mini-batch to the model. The logits of each chunk are then pooled together and averaged out to get the final logits, to which the loss function will be applied to. Several pooling functions can be applied such as max and mean pooling.
 
 \subsection{CLS method}
 
-The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM (BERT), inputted into the model and taking the last hidden state (as described in \cite{sun-2020-finetune}) as the text reprensetation. From there, they then get passed into several transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into a MLP layer. Both LSTM and Bi-LSTM layer were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
-
+The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM (BERT), inputted into the model, and taking the last hidden state (as described in \cite{sun-2020-finetune}) as the text representation. From there, they then get passed into several transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into an MLP layer. Both LSTM and Bi-LSTM layers were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
 
 %%% Local Variables: 
 %%% mode: latex
