@@ -1,11 +1,12 @@
-\documentclass[master=eelt,masteroption=ec]{kulemt}
+\documentclass[master=mai,masteroption=slt]{kulemt}
 \setup{% Remove the "%" on the next line when using UTF-8 character encoding
   inputenc=utf8,
-  title={Artile-level Media Bias Classification},
+  title={Article-level Media Bias Classification},
   author={Stefan Liemawan Adji},
-  promotor={Prof. Myriam de Lhoneaux},
-  assessor={Ir.\,Kn. Owsmuch\and K. Nowsrest},
-  assistant={Ir.\ An~Assistent \and A.~Friend}}
+  promotor={Prof. Miryam de Lhoneux},
+  assessor={},
+  assistant={}
+  }
 % Remove the "%" on the next line for generating the cover page
 %\setup{coverpageonly}
 % Remove the "%" before the next "\setup" to generate only the first pages
@@ -20,16 +21,18 @@
 % Finally the hyperref package is used for pdf files.
 % This can be commented out for printed versions.
 
-\usepackage[pdfusetitle,colorlinks,plainpages=false]{hyperref}
-\usepackage{verbatim}
+\usepackage{hyperref}
+\hypersetup{
+    pdfusetitle,
+    colorlinks,
+    plainpages=false,
+    citecolor=magenta,  
+    linkcolor=black,  
+    urlcolor=black,   
+    filecolor=black   
+}
 
-%%%%%%%
-% The lipsum package is used to generate random text.
-% You never need this in a real master's thesis text!
-\IfFileExists{lipsum.sty}%
- {\usepackage{lipsum}}%
- {\newcommand{\lipsum}[1][1-7]{\par And some text: lipsum ##1.\par}}
-%%%%%%%
+\usepackage{verbatim}
 
 %\includeonly{chap-n}
 \begin{document}
