@@ -28,6 +28,9 @@ valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
+# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+#     train_df, test_df, valid_df
+# )
 
 
 train_df = pd.concat((train_df, valid_df))
@@ -78,82 +81,37 @@ r2 = r2_score(y_test, y_pred)
 print("Root Mean Squared Error:", rmse)
 print("R-squared Score:", r2)
 
-
-# V2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#               precision    recall  f1-score   support
-
-#            0       0.48      0.53      0.50        74
-#            1       0.66      0.65      0.65       292
-#            2       0.76      0.75      0.75       276
-
-#     accuracy                           0.68       642
-#    macro avg       0.63      0.64      0.63       642
-# weighted avg       0.68      0.68      0.68       642
-
-# {'precision': 0.6788933546977032, 'recall': 0.67601246105919, 'f1': 0.6772696229141721}
-# Root Mean Squared Error: 17.968150650094042
-# R-squared Score: -3.0529706496787528
-
-# V3 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#               precision    recall  f1-score   support
-
-#            0       0.49      0.50      0.50        74
-#            1       0.66      0.67      0.66       292
-#            2       0.76      0.74      0.75       276
-
-#     accuracy                           0.68       642
-#    macro avg       0.64      0.64      0.64       642
-# weighted avg       0.68      0.68      0.68       642
-
-# {'precision': 0.683636963290562, 'recall': 0.6822429906542056, 'f1': 0.6828527804303766}
-# Root Mean Squared Error: 16.379482558072976
-# R-squared Score: -2.367961002518596
-
-# V4 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#               precision    recall  f1-score   support
-
-#            0       0.50      0.46      0.48        74
-#            1       0.65      0.66      0.66       292
-#            2       0.75      0.75      0.75       276
-
-#     accuracy                           0.68       642
-#    macro avg       0.63      0.62      0.63       642
-# weighted avg       0.67      0.68      0.68       642
-
-# {'precision': 0.6746011833824667, 'recall': 0.67601246105919, 'f1': 0.6751771625582206}
-# Root Mean Squared Error: 13.579412236084156
-# R-squared Score: -1.3148808570530375
-
-# vx, new split, 3 classes
-#               precision    recall  f1-score   support
-
-#            0       0.36      0.35      0.35        26
-#            1       0.64      0.61      0.63       225
-#            2       0.82      0.84      0.83       405
-
-#     accuracy                           0.74       656
-#    macro avg       0.61      0.60      0.60       656
-# weighted avg       0.74      0.74      0.74       656
-
-# {'precision': 0.7390064329813691, 'recall': 0.7423780487804879, 'f1': 0.7404838628130398}
-# Root Mean Squared Error: 13.099893945449123
-# R-squared Score: -1.5172887479620059
-
 # vx, new split, 4 classes
 #               precision    recall  f1-score   support
 
-#            0       0.33      0.31      0.32        26
-#            1       0.32      0.36      0.34        55
-#            2       0.35      0.34      0.34       109
-#            3       0.85      0.84      0.84       405
+#            0       0.44      0.33      0.38        24
+#            1       0.32      0.31      0.32        51
+#            2       0.38      0.43      0.41        99
+#            3       0.86      0.85      0.85       370
 
-#     accuracy                           0.68       595
-#    macro avg       0.46      0.46      0.46       595
-# weighted avg       0.68      0.68      0.68       595
+#     accuracy                           0.70       544
+#    macro avg       0.50      0.48      0.49       544
+# weighted avg       0.70      0.70      0.70       544
 
-# {'precision': 0.6843867127882997, 'recall': 0.680672268907563, 'f1': 0.6823428660543767}
-# Root Mean Squared Error: 12.384665786096445
-# R-squared Score: -1.3164996625559335
+# {'precision': 0.7043289262820513, 'recall': 0.6985294117647058, 'f1': 0.700754718733791}
+# Root Mean Squared Error: 11.768355756468427
+# R-squared Score: -1.060256189378769
+
+# vx, with outlet
+#               precision    recall  f1-score   support
+
+#            0       0.45      0.38      0.41        24
+#            1       0.34      0.35      0.35        51
+#            2       0.37      0.39      0.38        99
+#            3       0.86      0.85      0.86       370
+
+#     accuracy                           0.70       544
+#    macro avg       0.51      0.49      0.50       544
+# weighted avg       0.71      0.70      0.70       544
+
+# {'precision': 0.7056256461617989, 'recall': 0.7003676470588235, 'f1': 0.7027264297753896}
+# Root Mean Squared Error: 11.173182888150889
+# R-squared Score: -0.857134959596002
 
 # ================================================================================================================================================
 # ================================================================================================================================================

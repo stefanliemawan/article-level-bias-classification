@@ -3,7 +3,7 @@
 
 \section{Features and baselines}
 
-The main focus of the features will be the textual content of articles. A Reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. Therefore, only the articles title and content will be used as the input, concatenated into a single sequence.
+The primary features will include the title and content of the articles. Ideally, a reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. Additionally, outlet metadata is also incorporated and compared.
 
 As a baseline, traditional methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. Standard fine-tuning of BERT will also be evaluated. Additionally, an outlet-based majority votes method is also implemented as a comparison and to show the influence of outlet information within the classifiers. This method works by simply taking the majority vote over classes for every outlet and use it as a classifier: \textit{an article is from outlet A, majority of articles from outlet A is classified as class X, therefore, article A has a class X}.
 
@@ -37,7 +37,7 @@ The first method to be implemented is the sliding window method, where articles 
 
 \subsection{CLS method}
 
-The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM (BERT), inputted into the model, and taking the last hidden state (as described in \cite{sun-2020-finetune}) as the text representation. From there, they then get passed into several transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into an MLP layer. Both LSTM and Bi-LSTM layers were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
+The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM (BERT), inputted into the model, and taking the last hidden state (as described in \cite{sun-2020-fine-tune}) as the text representation. From there, they then get passed into several transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into an MLP layer. Both LSTM and Bi-LSTM layers were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
 
 %%% Local Variables: 
 %%% mode: latex

@@ -1,7 +1,7 @@
 \chapter{Evaluation}
 \label{cha:6}
 
-All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. The batch size is set to 8, with epochs ranging between 4-6 for standard finetuning. Every method besides the majority votes only includes textual content as the input sequence (title + content).
+All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. The batch size is set to 8, with epochs ranging between 4-6 for standard fine-tuning. For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles.
 
 \section{Baseline methods}
 
@@ -9,40 +9,76 @@ All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and tra
     \centering
     \begin{tabular}{|| c | c | c | c | c ||}
         \hline
-        Class              & Precision & Recall & F1   & Support \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        Problematic        & 0.44      & 0.33   & 0.38   & 24                 \\
+        \hline
+        Questionable       & 0.32      & 0.31   & 0.32   & 51                 \\
+        \hline
+        Generally Reliable & 0.38      & 0.43   & 0.41   & 99                 \\
+        \hline
+        Reliable           & 0.86      & 0.85   & 0.85   & 370                \\
+        \hline
+        Overall            & 0.7043    & 0.6985 & 0.7007 &                    \\
         \hline
         \hline
-        Problematic        & 0.41      & 0.29   & 0.34 & 24      \\
         \hline
-        Questionable       & 0.35      & 0.41   & 0.38 & 51      \\
         \hline
-        Generally Reliable & 0.41      & 0.42   & 0.42 & 99      \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
         \hline
-        Reliable           & 0.87      & 0.85   & 0.86 & 370     \\
+        Class              & Precision & Recall & F1     & Support            \\
         \hline
-        Overall            & 0.71      & 0.70   & 0.71 &         \\
+        Problematic        & 0.45      & 0.38   & 0.41   & 24                 \\
+        \hline
+        Questionable       & 0.34      & 0.35   & 0.35   & 51                 \\
+        \hline
+        Generally Reliable & 0.37      & 0.39   & 0.38   & 99                 \\
+        \hline
+        Reliable           & 0.86      & 0.85   & 0.86   & 370                \\
+        \hline
+        Overall            & 0.7056    & 0.7003 & 0.7027 &                    \\
         \hline
     \end{tabular}
     \caption{BoW + logistic regression evaluation}
-    \label{table:bow_logistic-eval}
+    \label{table:bow-logistic-eval}
 \end{table}
 
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|| c | c | c | c | c ||}
         \hline
-        Class              & Precision & Recall & F1     & Support \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        Problematic        & 1.00      & 0.04   & 0.08   & 24                 \\
+        \hline
+        Questionable       & 0.56      & 0.29   & 0.38   & 51                 \\
+        \hline
+        Generally Reliable & 0.44      & 0.41   & 0.42   & 99                 \\
+        \hline
+        Reliable           & 0.82      & 0.93   & 0.87   & 370                \\
+        \hline
+        Overall            & 0.7316    & 0.7389 & 0.7094 &                    \\
         \hline
         \hline
-        Problematic        & 1.00      & 0.04   & 0.08   & 24      \\
         \hline
-        Questionable       & 0.54      & 0.27   & 0.36   & 51      \\
         \hline
-        Generally Reliable & 0.43      & 0.41   & 0.42   & 99      \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
         \hline
-        Reliable           & 0.82      & 0.93   & 0.87   & 370     \\
+        Class              & Precision & Recall & F1     & Support            \\
         \hline
-        Overall            & 0.7291    & 0.7371 & 0.7070 &         \\
+        Problematic        & 1.00      & 0.04   & 0.08   & 24                 \\
+        \hline
+        Questionable       & 0.54      & 0.27   & 0.36   & 51                 \\
+        \hline
+        Generally Reliable & 0.43      & 0.44   & 0.44   & 99                 \\
+        \hline
+        Reliable           & 0.82      & 0.92   & 0.87   & 370                \\
+        \hline
+        Overall            & 0.7336    & 0.7371 & 0.7099 &                    \\
         \hline
     \end{tabular}
     \caption{TF-IDF + logistic regression evaluation}
@@ -50,28 +86,51 @@ All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and tra
 \end{table}
 
 
+In both Table \ref{table:bow-logistic-eval} and Table \ref{table:tfidf_logistic-eval}, it can be seen that frequency-based approaches such as BoW and TF-IDF perform generally well. Including outlet information as features only slighty improve the performance. However, when we look at per-class metrics, it can be seen that the overall scores are heavily influenced by the performance of class 'Reliable' due to its large support. Evidently, the model suffers when classifying underrepresented classes. Furthermore, TF-IDF model seems to perform significantly worse in the 'Problematic' class.
+
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|| c | c | c | c | c ||}
         \hline
-        Class              & Precision & Recall & F1     & Support \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
         \hline
         \hline
-        Problematic        & 0.60      & 0.25   & 0.35   & 24      \\
+        Problematic        & 0.60      & 0.25   & 0.35   & 24                 \\
         \hline
-        Questionable       & 0.47      & 0.53   & 0.50   & 51      \\
+        Questionable       & 0.47      & 0.53   & 0.50   & 51                 \\
         \hline
-        Generally Reliable & 0.37      & 0.56   & 0.45   & 99      \\
+        Generally Reliable & 0.37      & 0.56   & 0.45   & 99                 \\
         \hline
-        Reliable           & 0.89      & 0.79   & 0.84   & 370     \\
+        Reliable           & 0.89      & 0.79   & 0.84   & 370                \\
         \hline
-        Overall            & 0.7428    & 0.7003 & 0.7132 &         \\
+        Overall            & 0.7428    & 0.7003 & 0.7132 &                    \\
+        \hline
+        \hline
+        \hline
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.67      & 0.42   & 0.51   & 24                 \\
+        \hline
+        Questionable       & 0.46      & 0.61   & 0.52   & 51                 \\
+        \hline
+        Generally Reliable & 0.46      & 0.62   & 0.52   & 99                 \\
+        \hline
+        Reliable           & 0.95      & 0.84   & 0.89   & 370                \\
+        \hline
+        Overall            & 0.7997    & 0.7535 & 0.7717 &                    \\
         \hline
     \end{tabular}
-    \caption{BERT finetuning evaluation}
-    \label{table:bert-finetuning-eval}
+    \caption{BERT fine-tuning evaluation}
+    \label{table:bert-fine-tuning-eval}
 \end{table}
 
+Fine-tuning BERT after 6 epochs only performed slightly better than BoW method as can be seen in Table \ref{table:bert-fine-tuning-eval} and Table \ref{table:bow-logistic-eval}. In this method 'bert-base-cased' is used instead of 'bert-base-uncased' to reserve differences in capitalised words, which can be crucial. Moreover, incorporating outlet information as features moderately increase the performance in all accounts.
 
 \begin{table}[htbp]
     \centering
@@ -96,9 +155,6 @@ All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and tra
 \end{table}
 
 
-In both Table \ref{table:bow_logistic-eval} and Table \ref{table:tfidf_logistic-eval}, it can be seen that frequency-based approaches such as BoW and TF-IDF already perform quite well if we look at the average metrics. However, when we look at per-class metrics, it can be seen that the overall scores are heavily influenced by the performance of class 'Reliable' due to its large support. It is quite evident that the model suffers when classifying underrepresented classes, this is expected as the dataset is highly-imbalanced. Furthermore, TF-IDF model seems to perform significantly worse in the 'Problematic' class.
-
-Finetuning BERT after 6 epochs only performed slightly better than BoW method as can be seen in Table \ref{table:bert-finetuning-eval} and Table \ref{table:bow_logistic-eval}. In this method 'bert-base-cased' is used instead of 'bert-base-uncased' to reserve differences in capitalised entities.
 
 As a comparison, using solely outlet information without any textual information (with majority votes) outperformed all baseline methods both overall and in every class. This result signifies how influential outlet information can be used to classify media bias.
 
