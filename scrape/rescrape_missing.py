@@ -17,7 +17,7 @@ NOT_FOUND_OUTLETS = [
 def rescrape_1():
     outlets = ["www.libertynation.com"]
 
-    df = pd.read_csv("../dataset/scraped_merged.csv", index_col=0)
+    df = pd.read_csv("../dataset/scraped.csv", index_col=0)
     df = df[df["content"].isnull() | df["outlet"].isin(outlets)]
 
     print(df)
@@ -44,18 +44,21 @@ def clean_content(content):
         return
 
 def format_df():
-    df = pd.read_csv("rescraped_1_edited.csv", index_col=0)
+    df = pd.read_csv("../dataset/rescraped_2_edited.csv", index_col=0)
     df["content"] = df["content"].progress_apply(clean_content)
 
     print(df["content"].isnull().sum(), "rows are empty out of", len(df))
 
-    df.to_csv("rescraped_1_edited.csv")
+    df.to_csv("../dataset/rescraped_2_edited.csv")
 
 
 
 
 format_df()
+# rescraped_1_edited
 # 757 rows are empty out of 956
+# rescraped_2_edited
+# 692 rows are empty out of 955
 
 # test_url = (
 #     "https://www.nationalreview.com/news/j-d-vance-launches-senate-bid-joins-crowded-ohio-gop-primary-field/"

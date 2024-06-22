@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 tqdm.pandas()
 
-df = pd.read_csv("../dataset/scraped_merged_clean_v1.csv", index_col=0)
+df = pd.read_csv("../dataset/scraped_clean_new_v1.csv", index_col=0)
 df.dropna(subset=["content"], inplace=True)
 
 df["content"] = df["content"].progress_apply(utils.delete_noise)
@@ -16,7 +16,7 @@ df["content"] = df["content"].progress_apply(utils.fix_words_by_dict)
 
 df.dropna(subset=["content"], inplace=True)
 
-df.to_csv("../dataset/scraped_merged_clean_vx.csv")
+df.to_csv("../dataset/scraped_clean_vx.csv")
 
 
 # x = " their President Trump"

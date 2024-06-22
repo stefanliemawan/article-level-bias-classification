@@ -14,7 +14,7 @@ print(f"dataset {DATASET_VERSION}")
 
 
 df = pd.read_csv(
-    f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",
+    f"../dataset/scraped_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
 

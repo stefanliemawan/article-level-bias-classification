@@ -21,7 +21,7 @@ except IndexError:
 print(f"dataset {DATASET_VERSION}")
 
 df = pd.read_csv(
-    f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",
+    f"../dataset/scraped_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
 
@@ -41,7 +41,8 @@ def map_to_class(score):
 # df["labels"], bins = pd.qcut(df["reliability_score"], q=3, labels=False, retbins=True)
 # print(bins)
 df[["labels", "class"]] = df["reliability_score"].apply(map_to_class).apply(pd.Series)
-df.to_csv(f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv")
+df.to_csv(f"../dataset/scraped_clean_{DATASET_VERSION}.csv")
+
 outlets_df["outlet_labels"] = outlets_df["reliability_score"].apply(
     lambda x: map_to_class(x)[0]
 )

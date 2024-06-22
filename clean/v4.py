@@ -53,7 +53,7 @@ CONTRACTION_DICT = {
 }
 
 df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v3_edited.csv",
+    "../dataset/scraped_clean_v3_edited.csv",
     index_col=0,
 )
 
@@ -80,7 +80,7 @@ tqdm.pandas()
 df["title"] = df["title"].progress_apply(strip_abbr)
 df["content"] = df["content"].progress_apply(strip_abbr)
 
-df.to_csv("../dataset/scraped_merged_clean_v4.csv")
+df.to_csv("../dataset/scraped_clean_v4.csv")
 
 
 # test_txt = "hasn’t explained why,"

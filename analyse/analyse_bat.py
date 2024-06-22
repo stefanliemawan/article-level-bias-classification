@@ -14,7 +14,7 @@ except IndexError:
 print(f"dataset {DATASET_VERSION}")
 
 df = pd.read_csv(
-    f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv",
+    f"../dataset/scraped_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
 
@@ -46,7 +46,7 @@ def count_tokens(df):
     tokeniser = BertTokenizer.from_pretrained("bert-base-uncased")
     df["tokens_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
 
-    df.to_csv(f"../dataset/scraped_merged_clean_{DATASET_VERSION}.csv")
+    df.to_csv(f"../dataset/scraped_clean_{DATASET_VERSION}.csv")
 
 
 def plot_tokens_count(df):

@@ -18,7 +18,7 @@ print(f"MODEL: {MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
 df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v4.csv",
+    "../dataset/scraped_clean_v4.csv",
     index_col=0,
 )
 
@@ -108,7 +108,7 @@ tqdm.pandas()
 df["content"] = df.progress_apply(rank_content, axis=1)
 
 
-df.to_csv("../dataset/scraped_merged_clean_v4_ranked.csv")
+df.to_csv("../dataset/scraped_clean_v4_ranked.csv")
 
 # give or take 1 hour?
 

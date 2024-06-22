@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
 
-df = pd.read_csv("../cleaned_dataset/scraped_merged_clean_v2.csv", index_col=0)
+df = pd.read_csv("../cleaned_dataset/scraped_clean_v2.csv", index_col=0)
 df = df.head(50)
 
 cnt_pro = df["content"].value_counts()

@@ -10,11 +10,11 @@ def merge_df():
 
     df[df.isnull()] = scraped_7_df
 
-    df.to_csv("cleaned_dataset/scraped_merged.csv")
+    df.to_csv("cleaned_dataset/scraped.csv")
 
 
 def clean_df():
-    df = pd.read_csv("cleaned_dataset/scraped_merged.csv", index_col=0)
+    df = pd.read_csv("cleaned_dataset/scraped.csv", index_col=0)
     df.dropna(subset=["content"], inplace=True)
 
     # invalid content but notna
@@ -28,7 +28,7 @@ def clean_df():
     )  # theres a solution for this one, update if rescraped
 
     df.reset_index(inplace=True)
-    df.to_csv("cleaned_dataset/scraped_merged_clean_v1.csv")
+    df.to_csv("cleaned_dataset/scraped_clean_v1.csv")
 
 
 # merge_df()
