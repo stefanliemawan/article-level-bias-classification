@@ -37,7 +37,7 @@ def generate_word_cloud(text):
     )
 
     # Display the word cloud
-# plt.figure(figsize=(10, 6))
+    # plt.figure(figsize=(10, 6))
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
     plt.savefig(f"figures/wordcloud_{DATASET_VERSION}.png")

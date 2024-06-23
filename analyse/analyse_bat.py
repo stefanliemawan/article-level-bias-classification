@@ -21,7 +21,7 @@ df = pd.read_csv(
 # outlet_df = pd.read_csv("../dataset/BAT/ad_fontes/outlets_classes_scores.csv", index_col=0)
 
 
-# v2_edited
+# v2
 # MEAN 1216.7633225867628
 # MEDIAN 900.0
 # MAX 15796
@@ -43,7 +43,7 @@ df = pd.read_csv(
 
 
 def count_tokens(df):
-    tokeniser = BertTokenizer.from_pretrained("bert-base-uncased")
+    tokeniser = BertTokenizer.from_pretrained("bert-base-cased")
     df["tokens_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
 
     df.to_csv(f"../dataset/scraped_clean_{DATASET_VERSION}.csv")

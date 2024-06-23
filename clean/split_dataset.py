@@ -43,6 +43,8 @@ def map_to_class(score):
 df[["labels", "class"]] = df["reliability_score"].apply(map_to_class).apply(pd.Series)
 df.to_csv(f"../dataset/scraped_clean_{DATASET_VERSION}.csv")
 
+# df = df.sample(frac=1, random_state=SEED).reset_index(drop=True)
+
 outlets_df["outlet_labels"] = outlets_df["reliability_score"].apply(
     lambda x: map_to_class(x)[0]
 )

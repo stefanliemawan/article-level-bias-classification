@@ -27,38 +27,11 @@ def load_word_list():
 # print(len(word_list))
 
 
-def delete_phrases(content):
-    phrases = [
-        "Dr. Michael Brown (www.askdrbrown.org) is the host of the nationally syndicatedLine of Fireradio program.",
-        "— InsideJeffrey Epstein’s Decades-Long RelationshipWith Leslie Wexner—",
-        "This <a target",
-        "Production:Genevieve Montinar",
-        "We hope you’ll join us (click to subscribe)",
-        "Principled journalism that gets to the roots of the crises we face is more important today than ever.",
-        "Want to see more stories like this? Sign up forThe Roundup,",
-        "This story was originally publishedAugust",
-        "Our journalism needs your support.",
-        "ExploreExplore",
-    ]
-
-    for phrase in phrases:
-        phrase_position = content.find(phrase)
-
-        if phrase_position != -1:
-            content = content[:phrase_position]
-
-    return content
-
-
 def delete_noise(content):
     content = content.replace("\n", "")
 
-    sentences = content.split(". ")
-
-    if sentences[0].startswith(
-        "Join the 3,900+ MTFP members who believe in the power of independent news"
-    ):
-        sentences = sentences[3:]
+    # sentences = content.split(". ")
+    sentences = content.split(".")
 
     noisy_texts = [
         "Link Copied",
@@ -69,6 +42,22 @@ def delete_noise(content):
         "IMAGE:",
         "Thank you for relying on us to provide the journalism you can trust. Please consider supportingNJ.comwith a subscription.",
         "We're hiring!Please take a look at the new openings in our newsroom. See jobsPlease",
+        "Add Changing America",
+    ]
+
+    noisy_footers = [
+        "Contact reporter",
+        "Newsweek is committed to challenging conventional wisdom and finding connections in the search for common ground",
+        "— InsideJeffrey Epstein’s",
+        "From the Archive:",
+        "Dr. Michael Brown (www.askdrbrown.org) is the host of the nationally syndicatedLine of Fireradio program",
+        "This <a target",
+        "Production:Genevieve Montinar",
+        "We hope you’ll join us (click to subscribe)",
+        "Principled journalism that gets to the roots of the crises we face is more important today than ever.",
+        "Want to see more stories like this? Sign up forThe Roundup,",
+        "This story was originally publishedAugust",
+        "Our journalism needs your support.",
     ]
 
     for index, sentence in enumerate(sentences.copy()):
@@ -83,7 +72,19 @@ def delete_noise(content):
                 sentences[index] = sentence[len(noisy_text) :]
                 if len(sentences[index]) == 0:
                     return None
-        if "Already a subscriber?" in sentence:
+        for noisy_footer in noisy_footers:
+            if noisy_footer in sentence:
+                sentences = sentences[:index]
+                content = ".".join(sentences)
+                content = content + "."
+
+                return content
+
+        if (
+            "Already a subscriber?" in sentence
+            or "Contact Us|Privacy Policy© 2024 Right Wing Watch, a project of People For the American Way."
+            in sentence
+        ):
             sentences.pop(index)
         if re.match(r"[Cc]opyright.*\d{4}", sentence):
             return ". ".join(sentences[:index])
@@ -101,7 +102,7 @@ def delete_noise(content):
         #     print()
         #     sentences[index] = re.sub(pattern, "", sentence)
 
-    content = ". ".join(sentences)
+    content = ".".join(sentences)
 
     return content
 
@@ -137,6 +138,8 @@ def replace_words(text, replacement_dict):
 
 def fix_words_by_dict(content):
     words = content.split()
+    # words = re.findall(r"(\w+)", content)
+
     replaced_words = [WORD_FIX_DICT.get(word, word) for word in words]
     fixed_content = " ".join(replaced_words)
 

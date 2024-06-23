@@ -28,7 +28,7 @@ def rescrape_1():
     df.to_csv("rescraped_1.csv")
 
 def rescrape_2():
-    df = pd.read_csv("rescraped_1_edited.csv")
+    df = pd.read_csv("rescraped_1.csv")
     outlets = ["www.cato.org"]
 
     df = df[df["outlet"].isin(outlets)]
@@ -44,20 +44,20 @@ def clean_content(content):
         return
 
 def format_df():
-    df = pd.read_csv("../dataset/rescraped_2_edited.csv", index_col=0)
+    df = pd.read_csv("../dataset/rescraped_2.csv", index_col=0)
     df["content"] = df["content"].progress_apply(clean_content)
 
     print(df["content"].isnull().sum(), "rows are empty out of", len(df))
 
-    df.to_csv("../dataset/rescraped_2_edited.csv")
+    df.to_csv("../dataset/rescraped_2.csv")
 
 
 
 
 format_df()
-# rescraped_1_edited
+# rescraped_1
 # 757 rows are empty out of 956
-# rescraped_2_edited
+# rescraped_2
 # 692 rows are empty out of 955
 
 # test_url = (

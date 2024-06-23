@@ -53,7 +53,7 @@ CONTRACTION_DICT = {
 }
 
 df = pd.read_csv(
-    "../dataset/scraped_clean_v3_edited.csv",
+    "../dataset/scraped_clean_v3.csv",
     index_col=0,
 )
 
