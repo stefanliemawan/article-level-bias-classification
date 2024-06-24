@@ -30,35 +30,40 @@ def load_word_list():
 def delete_noise(content):
     content = content.replace("\n", "")
 
-    # sentences = content.split(". ")
-    sentences = content.split(".")
+    sentences = content.split(". ")
+    # sentences = content.split(".")
 
     noisy_texts = [
         "Link Copied",
         "About this rating",
-        "Forgot Your Password?New to?SubscribePrint subscriber?Activateyour online access",
         "This video can not be played",
-        "Readmore",
-        "IMAGE:",
-        "Thank you for relying on us to provide the journalism you can trust. Please consider supportingNJ.comwith a subscription.",
-        "We're hiring!Please take a look at the new openings in our newsroom. See jobsPlease",
-        "Add Changing America",
     ]
 
     noisy_footers = [
         "Contact reporter",
         "Newsweek is committed to challenging conventional wisdom and finding connections in the search for common ground",
         "— InsideJeffrey Epstein’s",
-        "From the Archive:",
-        "Dr. Michael Brown (www.askdrbrown.org) is the host of the nationally syndicatedLine of Fireradio program",
-        "This <a target",
-        "Production:Genevieve Montinar",
+        "is the host of the nationally syndicatedLine of Fireradio program",
+        "Principled journalism that gets to the roots of the crises we face is more important today than ever",
         "We hope you’ll join us (click to subscribe)",
-        "Principled journalism that gets to the roots of the crises we face is more important today than ever.",
         "Want to see more stories like this? Sign up forThe Roundup,",
-        "This story was originally publishedAugust",
-        "Our journalism needs your support.",
+        "This story was originally published",
+        "Our journalism needs your support",
+        "IMAGE:",
+        "Thank you for relying on us to provide the journalism you can trust",
     ]
+
+    for index, sentence in enumerate(sentences.copy()):
+        for noisy_footer in noisy_footers:
+            if noisy_footer in sentence:
+                if (
+                    noisy_footer
+                    == "is the host of the nationally syndicatedLine of Fireradio program"
+                ):
+                    sentences = sentences[: index - 1]
+                else:
+                    sentences = sentences[:index]
+                break
 
     for index, sentence in enumerate(sentences.copy()):
         if sentence.startswith("NewsNews|"):
@@ -72,13 +77,6 @@ def delete_noise(content):
                 sentences[index] = sentence[len(noisy_text) :]
                 if len(sentences[index]) == 0:
                     return None
-        for noisy_footer in noisy_footers:
-            if noisy_footer in sentence:
-                sentences = sentences[:index]
-                content = ".".join(sentences)
-                content = content + "."
-
-                return content
 
         if (
             "Already a subscriber?" in sentence
@@ -102,7 +100,7 @@ def delete_noise(content):
         #     print()
         #     sentences[index] = re.sub(pattern, "", sentence)
 
-    content = ".".join(sentences)
+    content = ". ".join(sentences)
 
     return content
 

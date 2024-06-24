@@ -31,6 +31,13 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 #     train_df, test_df, valid_df
 # )
 
+
+# train_df, test_df, valid_df = (
+#     functions.generate_outlet_title_content_polarity_subjectivity_features(
+#         train_df, test_df, valid_df
+#     )
+# )
+
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 tokenised_dataset = functions.tokenise_dataset(dataset, tokeniser)
@@ -51,14 +58,7 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=6)
-
-# -----
-# vx
-# {'eval_loss': 1.9800511598587036, 'eval_precision': 0.7056521727814955, 'eval_recall': 0.705607476635514, 'eval_f1': 0.7032725263999192, 'eval_runtime': 48.2933, 'eval_samples_per_second': 13.294, 'eval_steps_per_second': 1.677, 'epoch': 6.0}
-
-# new split, vx, 3 classes
-# {'eval_loss': 1.9766238927841187, 'eval_precision': 0.758306434771169, 'eval_recall': 0.7576219512195121, 'eval_f1': 0.7538789014487921, 'eval_runtime': 46.6118, 'eval_samples_per_second': 14.074, 'eval_steps_per_second': 1.759, 'epoch': 6.0}
+functions.train(tokenised_dataset, model, epoch=1)
 
 # new split, vx, 4 classes, not done, this is valid on epoch 4, laptop heating. test later, but i think 4 classes is better.
 # {'eval_loss': 1.358709454536438, 'eval_precision': 0.732512403908757, 'eval_recall': 0.7028753993610224, 'eval_f1': 0.7107864589046988, 'eval_runtime': 49.3262, 'eval_samples_per_second': 12.691, 'eval_steps_per_second': 1.602, 'epoch': 4.0}

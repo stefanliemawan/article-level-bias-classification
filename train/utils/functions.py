@@ -95,6 +95,47 @@ def generate_outlet_title_content_features(train_df, test_df, valid_df):
     return train_df, test_df, valid_df
 
 
+def generate_outlet_title_content_polarity_subjectivity_features(
+    train_df, test_df, valid_df
+):
+    train_df["features"] = (
+        str(train_df["polarity"])
+        + " "
+        + str(train_df["subjectivity"])
+        + " "
+        + train_df["outlet"]
+        + ". "
+        + train_df["title"]
+        + ". "
+        + train_df["content"]
+    )
+    test_df["features"] = (
+        str(test_df["polarity"])
+        + " "
+        + str(test_df["subjectivity"])
+        + " "
+        + test_df["outlet"]
+        + ". "
+        + test_df["title"]
+        + ". "
+        + test_df["content"]
+    )
+    valid_df["features"] = (
+        str(valid_df["polarity"])
+        + " "
+        + str(valid_df["subjectivity"])
+        + " "
+        + valid_df["outlet"]
+        + ". "
+        + valid_df["title"]
+        + ". "
+        + valid_df["content"]
+    )
+    print("features: outlet + title + content")
+
+    return train_df, test_df, valid_df
+
+
 def create_dataset(train_df, test_df, valid_df):
     train_dataset = Dataset.from_pandas(
         train_df[["features", "labels"]],
