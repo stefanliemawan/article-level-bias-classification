@@ -208,6 +208,7 @@ def train(
         save_total_limit=2,
         save_strategy="no",
         load_best_model_at_end=False,
+        # learning_rate=5e-5,
     )
 
     trainer = trainer_class(
