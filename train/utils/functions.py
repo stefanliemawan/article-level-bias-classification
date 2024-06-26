@@ -209,6 +209,7 @@ def train(
         save_strategy="no",
         load_best_model_at_end=False,
         # learning_rate=5e-5,
+        learning_rate=1e-5,
     )
 
     trainer = trainer_class(
