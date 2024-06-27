@@ -95,47 +95,6 @@ def generate_outlet_title_content_features(train_df, test_df, valid_df):
     return train_df, test_df, valid_df
 
 
-def generate_outlet_title_content_polarity_subjectivity_features(
-    train_df, test_df, valid_df
-):
-    train_df["features"] = (
-        str(train_df["polarity"])
-        + " "
-        + str(train_df["subjectivity"])
-        + " "
-        + train_df["outlet"]
-        + ". "
-        + train_df["title"]
-        + ". "
-        + train_df["content"]
-    )
-    test_df["features"] = (
-        str(test_df["polarity"])
-        + " "
-        + str(test_df["subjectivity"])
-        + " "
-        + test_df["outlet"]
-        + ". "
-        + test_df["title"]
-        + ". "
-        + test_df["content"]
-    )
-    valid_df["features"] = (
-        str(valid_df["polarity"])
-        + " "
-        + str(valid_df["subjectivity"])
-        + " "
-        + valid_df["outlet"]
-        + ". "
-        + valid_df["title"]
-        + ". "
-        + valid_df["content"]
-    )
-    print("features: outlet + title + content")
-
-    return train_df, test_df, valid_df
-
-
 def create_dataset(train_df, test_df, valid_df):
     train_dataset = Dataset.from_pandas(
         train_df[["features", "labels"]],
@@ -198,6 +157,15 @@ def train(
     data_collator=default_data_collator,
 ):
 
+    # num_training_examples = len(tokenised_dataset["train"]["input_ids"])
+    # total_steps = (num_training_examples // batch_size) * epoch
+
+    # # Calculate warmup steps (10% of total steps)
+    # warmup_steps = int(total_steps * 0.1)
+    # print(f"warmup_steps: {warmup_steps}")
+
+    warmup_steps = 500
+
     training_args = TrainingArguments(
         output_dir="test_trainer",
         logging_strategy="epoch",
@@ -209,7 +177,10 @@ def train(
         save_strategy="no",
         load_best_model_at_end=False,
         # learning_rate=5e-5,
-        learning_rate=1e-5,
+        # learning_rate=1e-5,
+        learning_rate=2e-5,
+        warmup_steps=warmup_steps,
+        # weight_decay=0.01,
     )
 
     trainer = trainer_class(
