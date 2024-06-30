@@ -1,9 +1,12 @@
+import math
+import time
 from collections.abc import Mapping
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import torch
 from sklearn.utils.class_weight import compute_class_weight
+from torch.utils.data import Dataset
 from transformers import Trainer
 
 
@@ -19,7 +22,7 @@ class SlidingWindowTrainer(Trainer):
         print(f"class_weights: {self.class_weights}")
 
     def compute_loss(self, model, inputs, return_outputs=False):
-        labels = inputs.pop("labels")
+        labels = inputs.pop("labels").to(self.model.device)
 
         input_ids = inputs["input_ids"]
         attention_mask = inputs["attention_mask"]
@@ -51,10 +54,11 @@ class SlidingWindowTrainer(Trainer):
         )
 
         loss_fct = torch.nn.CrossEntropyLoss(
-            weight=torch.tensor(self.class_weights).to(self.model.device)
-        )
+            weight=torch.tensor(self.class_weights)
+        ).to(self.model.device)
         loss = loss_fct(
-            pooled_logits.view(-1, self.model.config.num_labels), labels.view(-1)
+            pooled_logits.view(-1, self.model.config.num_labels),
+            labels.view(-1),
         )
 
         return (loss, outputs) if return_outputs else loss
@@ -127,6 +131,71 @@ class SlidingWindowTrainer(Trainer):
 
         return (loss, logits, labels)
 
+    # def evaluate(
+    #     self,
+    #     eval_dataset: Optional[Union[Dataset, Dict[str, Dataset]]] = None,
+    #     ignore_keys: Optional[List[str]] = None,
+    #     metric_key_prefix: str = "eval",
+    # ) -> Dict[str, float]:
+    #     print("yhaa")
+    #     # handle multipe eval datasets
+    #     override = eval_dataset is not None
+    #     eval_dataset = eval_dataset if override else self.eval_dataset
+    #     if isinstance(eval_dataset, dict):
+    #         metrics = {}
+    #         for eval_dataset_name, _eval_dataset in eval_dataset.items():
+    #             dataset_metrics = self.evaluate(
+    #                 eval_dataset=_eval_dataset if override else eval_dataset_name,
+    #                 ignore_keys=ignore_keys,
+    #                 metric_key_prefix=f"{metric_key_prefix}_{eval_dataset_name}",
+    #             )
+    #             metrics.update(dataset_metrics)
+    #         return metrics
+
+    #     # memory metrics - must set up as early as possible
+    #     self._memory_tracker.start()
+
+    #     eval_dataloader = self.get_eval_dataloader(eval_dataset)
+
+    #     start_time = time.time()
+
+    #     eval_loop = (
+    #         self.prediction_loop
+    #         if self.args.use_legacy_prediction_loop
+    #         else self.evaluation_loop
+    #     )
+    #     output = eval_loop(
+    #         eval_dataloader,
+    #         description="Evaluation",
+    #         # No point gathering the predictions if there are no metrics, otherwise we defer to
+    #         # self.args.prediction_loss_only
+    #         prediction_loss_only=True if self.compute_metrics is None else None,
+    #         ignore_keys=ignore_keys,
+    #         metric_key_prefix=metric_key_prefix,
+    #     )
+
+    #     total_batch_size = self.args.eval_batch_size * self.args.world_size
+    #     if f"{metric_key_prefix}_jit_compilation_time" in output.metrics:
+    #         start_time += output.metrics[f"{metric_key_prefix}_jit_compilation_time"]
+    #     output.metrics.update(
+    #         speed_metrics(
+    #             metric_key_prefix,
+    #             start_time,
+    #             num_samples=output.num_samples,
+    #             num_steps=math.ceil(output.num_samples / total_batch_size),
+    #         )
+    #     )
+
+    #     self.log(output.metrics)
+
+    #     self.control = self.callback_handler.on_evaluate(
+    #         self.args, self.state, self.control, output.metrics
+    #     )
+
+    #     self._memory_tracker.stop_and_update_metrics(output.metrics)
+
+    #     return output.metrics
+
 
 def nested_detach(tensors):
     "Detach `tensors` (even if it's a nested list/tuple/dict of tensors)."
@@ -135,6 +204,36 @@ def nested_detach(tensors):
     elif isinstance(tensors, Mapping):
         return type(tensors)({k: nested_detach(t) for k, t in tensors.items()})
     return tensors.detach()
+
+
+def speed_metrics(split, start_time, num_samples=None, num_steps=None, num_tokens=None):
+    """
+    Measure and return speed performance metrics.
+
+    This function requires a time snapshot `start_time` before the operation to be measured starts and this function
+    should be run immediately after the operation to be measured has completed.
+
+    Args:
+    - split: name to prefix metric (like train, eval, test...)
+    - start_time: operation start time
+    - num_samples: number of samples processed
+    - num_steps: number of steps processed
+    - num_tokens: number of tokens processed
+    """
+    runtime = time.time() - start_time
+    result = {f"{split}_runtime": round(runtime, 4)}
+    if runtime == 0:
+        return result
+    if num_samples is not None:
+        samples_per_second = num_samples / runtime
+        result[f"{split}_samples_per_second"] = round(samples_per_second, 3)
+    if num_steps is not None:
+        steps_per_second = num_steps / runtime
+        result[f"{split}_steps_per_second"] = round(steps_per_second, 3)
+    if num_tokens is not None:
+        tokens_per_second = num_tokens / runtime
+        result[f"{split}_tokens_per_second"] = round(tokens_per_second, 3)
+    return result
 
 
 # flos and floating_point_ops is set to only the first input_ids shape... not sure how this will affect the whole thing

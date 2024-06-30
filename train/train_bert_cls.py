@@ -200,6 +200,8 @@ class Model(nn.Module):
                 num_of_chunks,
             ) = self.handle_chunks(batch_input_ids, batch_attention_mask)
 
+            self.optimiser.zero_grad()
+
             logits = self.forward(
                 input_ids_combined_tensors, attention_mask_combined_tensors
             )
@@ -211,8 +213,6 @@ class Model(nn.Module):
             )
 
             batch_loss = self.loss_function(pooled_logits, batch_labels)
-
-            self.optimiser.zero_grad()
 
             batch_loss.backward()
             self.optimiser.step()

@@ -1,6 +1,5 @@
 import os
 
-import train.utils.functions as functions
 import gensim
 import nltk
 import numpy as np
@@ -17,6 +16,8 @@ from transformers import (
     BertModel,
     BertTokenizer,
 )
+
+import train.utils.functions as functions
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -103,7 +104,7 @@ class_weights = np.asarray(class_weights).astype(np.float32)
 model = AutoModelForSequenceClassification.from_pretrained(
     MODEL_NAME, num_labels=len(CLASS_RANGES)
 )
-functions.train(dataset, model, epoch=3, class_weights=class_weights)
+functions.train(dataset, model, epochs=3, class_weights=class_weights)
 
 # v2 train-test-valid classification 3 classes, title + ". " content, doc2vec_512_100.model, distilbert-base-uncased, weighted loss
 # {'eval_loss': 1.0887564420700073, 'eval_accuracy': 0.45754716981132076, 'eval_precision': 0.7518022427910289, 'eval_recall': 0.45754716981132076, 'eval_f1': 0.2872626244122855, 'eval_runtime': 25.0162, 'eval_samples_per_second': 25.424, 'eval_steps_per_second': 3.198, 'epoch': 3.0}

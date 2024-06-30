@@ -24,13 +24,13 @@ train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
 valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
-train_df, test_df, valid_df = functions.generate_title_content_features(
-    train_df, test_df, valid_df
-)
-
-# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+# train_df, test_df, valid_df = functions.generate_title_content_features(
 #     train_df, test_df, valid_df
 # )
+
+train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+    train_df, test_df, valid_df
+)
 
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
@@ -53,7 +53,7 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, model, epochs=4)
 
 # new split, vx, 4 classes, not done, this is valid on epoch 4, laptop heating. test later, but i think 4 classes is better.
 # {'eval_loss': 1.358709454536438, 'eval_precision': 0.732512403908757, 'eval_recall': 0.7028753993610224, 'eval_f1': 0.7107864589046988, 'eval_runtime': 49.3262, 'eval_samples_per_second': 12.691, 'eval_steps_per_second': 1.602, 'epoch': 4.0}
@@ -96,6 +96,8 @@ functions.train(tokenised_dataset, model, epoch=4)
 # weighted avg       0.80      0.76      0.77       544
 
 # {'eval_loss': 0.8534926772117615, 'eval_precision': 0.7997825187003461, 'eval_recall': 0.7573529411764706, 'eval_f1': 0.7717662709748838, 'eval_runtime': 37.8122, 'eval_samples_per_second': 14.387, 'eval_steps_per_second': 1.798, 'epoch': 4.0}
+
+# =========================================================================================================================
 
 # vx + rescraped, 4 classes, learning rate 1e-5
 #               precision    recall  f1-score   support
@@ -154,6 +156,20 @@ functions.train(tokenised_dataset, model, epoch=4)
 # weighted avg       0.74      0.71      0.72       569
 
 # {'eval_loss': 0.956117570400238, 'eval_precision': 0.7359465879430142, 'eval_recall': 0.7065026362038664, 'eval_f1': 0.7193567444490316, 'eval_runtime': 47.4066, 'eval_samples_per_second': 12.003, 'eval_steps_per_second': 1.519, 'epoch': 4.0}
+
+# vx + rescraped, 4 classes, with outlet, learning rate 2e-5, 500 warmup steps, no weight decay
+#               precision    recall  f1-score   support
+
+#            0       0.65      0.56      0.60        27
+#            1       0.45      0.50      0.47        54
+#            2       0.44      0.62      0.52       104
+#            3       0.94      0.84      0.88       384
+
+#     accuracy                           0.75       569
+#    macro avg       0.62      0.63      0.62       569
+# weighted avg       0.79      0.75      0.76       569
+
+# {'eval_loss': 0.8186598420143127, 'eval_precision': 0.7883162926291302, 'eval_recall': 0.7504393673110721, 'eval_f1': 0.7645458957067559, 'eval_runtime': 51.7116, 'eval_samples_per_second': 11.003, 'eval_steps_per_second': 1.392, 'epoch': 4.0}
 
 # vx + rescraped, learning rate 1e-5, with outlet
 #               precision    recall  f1-score   support

@@ -150,29 +150,28 @@ def tokenise_dataset(
 def train(
     tokenised_dataset,
     model,
-    epoch=4,
+    epochs=4,
     batch_size=8,
     compute_metrics=compute_metrics_classification,
     trainer_class=StandardTrainer,
     data_collator=default_data_collator,
 ):
 
-    # num_training_examples = len(tokenised_dataset["train"]["input_ids"])
-    # total_steps = (num_training_examples // batch_size) * epoch
+    num_training_examples = len(tokenised_dataset["train"]["input_ids"])
+    total_steps = (num_training_examples // batch_size) * epochs
 
     # # Calculate warmup steps (10% of total steps)
-    # warmup_steps = int(total_steps * 0.1)
-    # print(f"warmup_steps: {warmup_steps}")
-
-    warmup_steps = 500
+    warmup_steps = int(total_steps * 0.1)
+    # warmup_steps = 500
+    print(f"warmup_steps: {warmup_steps}")
 
     training_args = TrainingArguments(
         output_dir="test_trainer",
         logging_strategy="epoch",
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         per_device_train_batch_size=batch_size,
         per_device_eval_batch_size=batch_size,
-        num_train_epochs=epoch,
+        num_train_epochs=epochs,
         save_total_limit=2,
         save_strategy="no",
         load_best_model_at_end=False,

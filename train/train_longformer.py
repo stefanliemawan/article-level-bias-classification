@@ -45,4 +45,4 @@ elif torch.cuda.is_available():
 else:
     model = model.to("cpu")
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, model, epochs=4)
