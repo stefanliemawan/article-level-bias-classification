@@ -1,47 +1,49 @@
-\chapter{Proposed Methods}
+\chapter{Methodology}
 \label{cha:5}
 
 \section{Features and baselines}
 
-The main focus of the features will be the textual content of articles. A good article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing context of the article will be the key element of a good performance.
+The primary features will include the title and content of the articles. Ideally, a reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. Additionally, outlet metadata is also incorporated and compared.
 
-As a baseline, traditional methods such as Bag-of-Words and TF-IDF along with standard fine-tuning of BERT are implemented.
+As a baseline, traditional methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. Standard fine-tuning of BERT will also be evaluated. Additionally, an outlet-based majority votes method is also implemented as a comparison and to show the influence of outlet information within the classifiers. This method works by simply taking the majority vote over classes for every outlet and use it as a classifier: \textit{an article is from outlet A, majority of articles from outlet A is classified as class X, therefore, article A has a class X}.
 
-\begin{comment}
-Correlation between sentiment and bias?
+\section{Pre-processing}
 
-Following from (\citealt{chen-2020-detecting-media-bias-gaussian},\citealt{van-den-berg-2020-contex-informational-bias-detection}, \citealt{guo-2022-modeling}, and \citealt{maab-2023-lexical-bias-detection}), experiments will be done with techniques from these past works, particularly on context-building.
+The dataset reliability scores are grouped and split into 4 classes based on Ad Fontes split as previously described in Section \ref{bat-characteristics}:
+\begin{enumerate}
+    \item Problematic ---> scores between 0.00 and 24.00
+    \item Questionable ---> scores between 24.01 and 32.00
+    \item Generally Reliable ---> scores between 32.01 and 40.00
+    \item Reliable ---> scores between 40.01 and 64
+\end{enumerate}
 
-Other representation techniques such as Doc2Vec \citep{mikolov-2014-doc2vec} and Multivec \citep{berard-2016-multivec} will also be considered.
+The dataset is then split into three sets of train, test, and validation with the following distribution:
+\begin{itemize}
+    \item Train set: 4325 rows \\
+          287 samples of class 'Problematic', 611 samples of class 'Questionable', 1033 samples of class 'Generally Reliable', 2394 of class 'Reliable'
+    \item Test set: 569 rows \\
+          27 samples of class 'Problematic', 54 samples of class 'Questionable', 104 samples of class 'Generally Reliable', 384 of class 'Reliable'
+    \item Validation set: 603 rows \\
+          34 samples of class 'Problematic', 70 samples of class 'Questionable', 128 samples of class 'Generally Reliable', 371 of class 'Reliable'
+\end{itemize}
 
-Sentiment analysis can be beneficial as additional features, find relationships and correlation between sentiment and bias. (find ref)
+The split is done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by first grouping the articles based on their outlet and labels, then iterating over each group, splitting the rows equally, and distributing to the train, test, and validation set. Groups of less than 5 rows that are not enough to be split and therefore appended to the train set. To handle class imbalances, weighted loss is used when training the model, with weights in proportion to the distribution of each class.
 
-MultiVec includes word2vec's features, paragraph vector (batch and online) and bivec for bilingual distributed representations. MultiVec also includes different distance measures between words and sequences of words.
-\end{comment}
+A major drawback of this 'balance' splitting is that there is no unseen outlet in the test set and validation set. This can influence the final test metrics and may hinder the model's ability to generalise to new, unseen articles from unseen outlets. However, considering that new outlets are rarely introduced in the real life, it might be beneficial to slightly overfit on the patterns of existing outlets.
 
-\begin{comment}
-ChatGPT on article-level representations
-Word Embeddings: Techniques like Word2Vec, GloVe, or FastText can convert words into numerical vectors, capturing semantic relationships between them. For an article representation, averaging or pooling these word vectors can create a simple yet effective representation.
+\section{Proposed methods}
 
-Doc2Vec: Models like Doc2Vec extend word embeddings to whole documents, assigning each document a unique vector representation. This captures document-level semantics and context.
+\subsection{Sliding window}
 
-TF-IDF: Term Frequency-Inverse Document Frequency represents the importance of a word in a document relative to a collection of documents. It gives weight to words based on their frequency in the document and their rarity in the corpus.
+The first method to be implemented is the sliding window method, where articles are split into chunks and applied as a mini-batch to the model. The logits of each chunk are then pooled together and averaged out to get the final logits, to which the loss function will be applied to. Several pooling functions can be applied such as max and mean pooling.
 
-BERT and Transformers: Models like BERT utilize transformer architectures to create contextualized word embeddings. By considering the context of words in a sentence, these models generate representations that capture nuanced meanings.
+\subsection{CLS method}
 
-Graph-based Representations: Representing articles as nodes in a graph where edges signify relationships (such as co-citations or topic similarities) can offer a comprehensive representation.
+The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM, inputted into the model, and taking the last hidden state (as described in \cite{sun-2020-fine-tune}) as the text representation. From there, they get passed into multiple transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into an MLP layer.
 
-Topic Modeling: Techniques like Latent Dirichlet Allocation (LDA) or Non-Negative Matrix Factorization (NMF) can help in extracting underlying topics from the articles, creating representations based on these topics' distributions.
+Two Transformer models are used as the LLM encoder: BERT (bert-base-cased) and MAGPIE.
 
-P.S. from ChatGPT -> For very long documents, downsampling or breaking the article into manageable chunks might be necessary to fit into memory or improve model performance.
-\end{comment}
-
-
-\section{Evaluation}
-
-\section{Proposed Method}
-
-\section{Results}
+Both LSTM and Bi-LSTM layers were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
 
 %%% Local Variables: 
 %%% mode: latex

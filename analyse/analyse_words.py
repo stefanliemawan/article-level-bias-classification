@@ -1,25 +1,30 @@
 import re
+import sys
 from collections import Counter
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from wordcloud import WordCloud
 
-DATASET_VERSION = "v4"
-
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
 print(f"dataset {DATASET_VERSION}")
 
 
 df = pd.read_csv(
-    "../dataset/scraped_merged_clean_v4.csv",
+    f"../dataset/scraped_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
 
+# non_string_rows = df[df["content"].apply(lambda x: not isinstance(x, str))]
+# print(non_string_rows)
 text = " ".join(df["content"])
 
 
 def load_word_list():
-    with open("../word_list/words_alpha.txt") as word_file:
+    with open("../word_list/words.txt") as word_file:
         word_list = set(word_file.read().split())
 
     return word_list
@@ -68,5 +73,5 @@ def generate_word_occurrences(text):
     )
 
 
-# generate_word_cloud(text)
+generate_word_cloud(text)
 generate_word_occurrences(text)

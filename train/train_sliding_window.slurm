@@ -24,4 +24,4 @@ cd vsc36378/train
 pip install -r requirements.txt
 
 python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
-torchrun train_sliding_window.py --windowsize $windowsize --stride $stride --maxchunks $maxchunks --model $model
+torchrun train_sliding_window.py

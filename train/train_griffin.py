@@ -43,7 +43,7 @@ else:
     model = model.to("cpu")
 
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, model, epochs=4)
 
 # title + content, bert-base-uncased, with oversampling
 # {'eval_loss': 0.8049562573432922, 'eval_precision': 0.6989735466648578, 'eval_recall': 0.7040498442367601, 'eval_f1': 0.6967025255248073, 'eval_runtime': 2.3663, 'eval_samples_per_second': 271.307, 'eval_steps_per_second': 34.23, 'epoch': 4.0}

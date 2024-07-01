@@ -50,8 +50,7 @@
   publisher = {Association for Computational Linguistics},
   url       = {https://aclanthology.org/2020.nlpcss-1.16},
   doi       = {10.18653/v1/2020.nlpcss-1.16},
-  pages     = {149--154},
-  abstract  = {Media is an indispensable source of information and opinion, shaping the beliefs and attitudes of our society. Obviously, media portals can also provide overly biased content, e.g., by reporting on political events in a selective or incomplete manner. A relevant question hence is whether and how such a form of unfair news coverage can be exposed. This paper addresses the automatic detection of bias, but it goes one step further in that it explores how political bias and unfairness are manifested linguistically. We utilize a new corpus of 6964 news articles with labels derived from adfontesmedia.com to develop a neural model for bias assessment. Analyzing the model on article excerpts, we find insightful bias patterns at different levels of text granularity, from single words to the whole article discourse.}
+  pages     = {149--154}
 }
 
 @inproceedings{spinde-2021-babe,
@@ -147,7 +146,7 @@
                Hockenmaier, Julia  and
                Tsujii, Jun{'}ichi},
   booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},
-  month     = oct # {-} # nov,
+  month     = {7},
   year      = {2018},
   address   = {Brussels, Belgium},
   publisher = {Association for Computational Linguistics},
@@ -197,7 +196,6 @@
   address   = {New York, NY, USA},
   url       = {https://doi.org/10.1145/2939672.2939754},
   doi       = {10.1145/2939672.2939754},
-  abstract  = {Prediction tasks over nodes and edges in networks require careful effort in engineering features used by learning algorithms. Recent research in the broader field of representation learning has led to significant progress in automating prediction by learning the features themselves. However, present feature learning approaches are not expressive enough to capture the diversity of connectivity patterns observed in networks. Here we propose node2vec, an algorithmic framework for learning continuous feature representations for nodes in networks. In node2vec, we learn a mapping of nodes to a low-dimensional space of features that maximizes the likelihood of preserving network neighborhoods of nodes. We define a flexible notion of a node's network neighborhood and design a biased random walk procedure, which efficiently explores diverse neighborhoods. Our algorithm generalizes prior work which is based on rigid notions of network neighborhoods, and we argue that the added flexibility in exploring neighborhoods is the key to learning richer representations.We demonstrate the efficacy of node2vec over existing state-of-the-art techniques on multi-label classification and link prediction in several real-world networks from diverse domains. Taken together, our work represents a new way for efficiently learning state-of-the-art task-independent representations in complex networks.},
   booktitle = {Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
   pages     = {855–864},
   numpages  = {10},
@@ -325,8 +323,7 @@
   publisher = {Association for Computational Linguistics},
   url       = {https://aclanthology.org/2023.fever-1.7},
   doi       = {10.18653/v1/2023.fever-1.7},
-  pages     = {66--77},
-  abstract  = {In this paper we present a thorough investigation of automatic bias recognition on BASIL, a dataset of political news which has been annotated with different kinds of biases. We begin by unveiling several inconsistencies in prior work using this dataset, showing that most approaches focus only on certain task formulations while ignoring others, and also failing to report important evaluation details. We provide a comprehensive categorization of these approaches, as well as a more uniform and clear set of evaluation metrics. We argue about the importance of the missing formulations and also propose the novel task of simultaneously detecting different kinds of biases in news. In our work, we tackle bias on six different BASIL classification tasks in a unified manner. Eventually, we introduce a simple yet effective approach based on data augmentation and preprocessing which is generic and works very well across models and task formulations, allowing us to obtain state-of-the-art results. We also perform ablation studies on some tasks to quantify the strength of data augmentation and preprocessing, and find that they correlate positively on all bias tasks.}
+  pages     = {66--77}
 }
 
 @inproceedings{van-den-berg-2020-contex-informational-bias-detection,
@@ -343,8 +340,7 @@
   publisher = {International Committee on Computational Linguistics},
   url       = {https://aclanthology.org/2020.coling-main.556},
   doi       = {10.18653/v1/2020.coling-main.556},
-  pages     = {6315--6326},
-  abstract  = {Informational bias is bias conveyed through sentences or clauses that provide tangential, speculative or background information that can sway readers{'} opinions towards entities. By nature, informational bias is context-dependent, but previous work on informational bias detection has not explored the role of context beyond the sentence. In this paper, we explore four kinds of context for informational bias in English news articles: neighboring sentences, the full article, articles on the same event from other news publishers, and articles from the same domain (but potentially different events). We find that integrating event context improves classification performance over a very strong baseline. In addition, we perform the first error analysis of models on this task. We find that the best-performing context-inclusive model outperforms the baseline on longer sentences, and sentences from politically centrist articles.}
+  pages     = {6315--6326}
 }
 
 @misc{guo-2022-modeling,
@@ -365,8 +361,7 @@
   doi      = {https://doi.org/10.1016/j.osnem.2023.100264},
   url      = {https://www.sciencedirect.com/science/article/pii/S246869642300023X},
   author   = {Timo Spinde and Elisabeth Richter and Martin Wessel and Juhi Kulshrestha and Karsten Donnay},
-  keywords = {Media bias, Sentiment analysis, Hate speech detection, Transfer learning},
-  abstract = {News stories circulating online, especially on social media platforms, are nowadays a primary source of information. Given the nature of social media, news no longer are just news, but they are embedded in the conversations of users interacting with them. This is particularly relevant for inaccurate information or even outright misinformation because user interaction has a crucial impact on whether information is uncritically disseminated or not. Biased coverage has been shown to affect personal decision-making. Still, it remains an open question whether users are aware of the biased reporting they encounter and how they react to it. The latter is particularly relevant given that user reactions help contextualize reporting for other users and can thus help mitigate but may also exacerbate the impact of biased media coverage. This paper approaches the question from a measurement point of view, examining whether reactions to news articles on Twitter can serve as bias indicators, i.e., whether how users comment on a given article relates to its actual level of bias. We first give an overview of research on media bias before discussing key concepts related to how individuals engage with online content, focusing on the sentiment (or valance) of comments and on outright hate speech. We then present the first dataset connecting reliable human-made media bias classifications of news articles with the reactions these articles received on Twitter. We call our dataset BAT - Bias And Twitter. BAT covers 2,800 (bias-rated) news articles from 255 English-speaking news outlets. Additionally, BAT includes 175,807 comments and retweets referring to the articles. Based on BAT, we conduct a multi-feature analysis to identify comment characteristics and analyze whether Twitter reactions correlate with an article’s bias. First, we fine-tune and apply two XLNet-based classifiers for hate speech detection and sentiment analysis. Second, we relate the results of the classifiers to the article bias annotations within a multi-level regression. The results show that Twitter reactions to an article indicate its bias, and vice-versa. With a regression coefficient of 0.703 (p<0.01), we specifically present evidence that Twitter reactions to biased articles are significantly more hateful. Our analysis shows that the news outlet’s individual stance reinforces the hate-bias relationship. In future work, we will extend the dataset and analysis, including additional concepts related to media bias.}
+  keywords = {Media bias, Sentiment analysis, Hate speech detection, Transfer learning}
 }
 
 @misc{maab-2023-target-aware,
@@ -517,7 +512,7 @@
   pages     = {6315--6326}
 }
 
-@inproceedings{chen-etal-2020-nlpcss,
+@inproceedings{chen-2020-nlpcss,
   title     = {Analyzing Political Bias and Unfairness in News Articles at Different Levels of Granularity},
   author    = {Chen, Wei-Fan  and
                Al Khatib, Khalid  and
@@ -538,7 +533,7 @@
   pages     = {149--154}
 }
 
-@misc{lei-2024-sentence,
+@misc{lei-2024-event-relation,
   title         = {Sentence-level Media Bias Analysis with Event Relation Graph},
   author        = {Yuanyuan Lei and Ruihong Huang},
   year          = {2024},
@@ -577,15 +572,6 @@
   primaryclass  = {cs.CL}
 }
 
-@misc{lei-2024-event-relation-graph,
-  title         = {Sentence-level Media Bias Analysis with Event Relation Graph},
-  author        = {Yuanyuan Lei and Ruihong Huang},
-  year          = {2024},
-  eprint        = {2404.01722},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.CL}
-}
-
 @misc{park-2022-efficient,
   title         = {Efficient Classification of Long Documents Using Transformers},
   author        = {Hyunji Hayley Park and Yogarshi Vyas and Kashif Shah},
@@ -609,6 +595,229 @@
 
 @misc{media-bias-group,
   title        = {Home - Media Bias Group},
+  author       = {Media Bias Group},
   howpublished = {\url{https://media-bias-research.org/}},
   note         = {Accessed: 2024-05-29}
+}
+
+@misc{adfontes,
+  title        = {Home - Ad Fontes Media},
+  author       = {Ad Fontes},
+  howpublished = {\url{https://adfontesmedia.com//}},
+  note         = {Accessed: 2024-05-31}
+}
+
+@misc{wan-2019-long-length,
+  title         = {Long-length Legal Document Classification},
+  author        = {Lulu Wan and George Papageorgiou and Michael Seddon and Mirko Bernardoni},
+  year          = {2019},
+  eprint        = {1912.06905},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+@misc{demidov-2023-political-bias-classification,
+  author = {Demidov, Dmitry},
+  year   = {2023},
+  month  = {03},
+  title  = {Political Bias of News Content: Classification based on Individual Articles and Media}
+}
+
+@misc{sun-2020-fine-tune,
+  title         = {How to Fine-Tune BERT for Text Classification?},
+  author        = {Chi Sun and Xipeng Qiu and Yige Xu and Xuanjing Huang},
+  year          = {2020},
+  eprint        = {1905.05583},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+@inproceedings{paszke-2017-pytorch,
+  title     = {Automatic differentiation in PyTorch},
+  author    = {Paszke, Adam and Gross, Sam and Chintala, Soumith and Chanan, Gregory and Yang, Edward and DeVito, Zachary and Lin, Zeming and Desmaison, Alban and Antiga, Luca and Lerer, Adam},
+  booktitle = {NIPS-W},
+  year      = {2017}
+}
+
+@misc{wolf-2020-huggingface,
+  title         = {HuggingFace's Transformers: State-of-the-art Natural Language Processing},
+  author        = {Thomas Wolf and Lysandre Debut and Victor Sanh and Julien Chaumond and Clement Delangue and Anthony Moi and Pierric Cistac and Tim Rault and Rémi Louf and Morgan Funtowicz and Joe Davison and Sam Shleifer and Patrick von Platen and Clara Ma and Yacine Jernite and Julien Plu and Canwen Xu and Teven Le Scao and Sylvain Gugger and Mariama Drame and Quentin Lhoest and Alexander M. Rush},
+  year          = {2020},
+  eprint        = {1910.03771},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+@article{white-1950-case-study-selection-news,
+  author  = {David Manning White},
+  title   = {The “Gate Keeper”: A Case Study in the Selection of News},
+  journal = {Journalism Quarterly},
+  volume  = {27},
+  number  = {4},
+  pages   = {383-390},
+  year    = {1950},
+  doi     = {10.1177/107769905002700403},
+  url     = {https://doi.org/10.1177/107769905002700403},
+  eprint  = {https://doi.org/10.1177/107769905002700403}
+}
+
+
+@inproceedings{devlin-2019-bert,
+  title     = {{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding},
+  author    = {Devlin, Jacob  and
+               Chang, Ming-Wei  and
+               Lee, Kenton  and
+               Toutanova, Kristina},
+  editor    = {Burstein, Jill  and
+               Doran, Christy  and
+               Solorio, Thamar},
+  booktitle = {Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)},
+  month     = jun,
+  year      = {2019},
+  address   = {Minneapolis, Minnesota},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/N19-1423},
+  doi       = {10.18653/v1/N19-1423},
+  pages     = {4171--4186}
+}
+
+@misc{liu-2019-roberta,
+  title         = {RoBERTa: A Robustly Optimized BERT Pretraining Approach},
+  author        = {Yinhan Liu and Myle Ott and Naman Goyal and Jingfei Du and Mandar Joshi and Danqi Chen and Omer Levy and Mike Lewis and Luke Zettlemoyer and Veselin Stoyanov},
+  year          = {2019},
+  eprint        = {1907.11692},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+@misc{beltagy-2020-longformer,
+  title         = {Longformer: The Long-Document Transformer},
+  author        = {Iz Beltagy and Matthew E. Peters and Arman Cohan},
+  year          = {2020},
+  eprint        = {2004.05150},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+@misc{zaheer-2021-bigbird,
+  title         = {Big Bird: Transformers for Longer Sequences},
+  author        = {Manzil Zaheer and Guru Guruganesh and Avinava Dubey and Joshua Ainslie and Chris Alberti and Santiago Ontanon and Philip Pham and Anirudh Ravula and Qifan Wang and Li Yang and Amr Ahmed},
+  year          = {2021},
+  eprint        = {2007.14062},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.LG}
+}
+
+@misc{dwyl-english-words,
+  author       = {dwyl},
+  title        = {english-words},
+  year         = {2022},
+  publisher    = {GitHub},
+  journal      = {GitHub repository},
+  howpublished = {\url{https://github.com/dwyl/english-words}}
+}
+
+@inproceedings{lee-2021-unifying,
+  title     = {On Unifying Misinformation Detection},
+  author    = {Lee, Nayeon  and
+               Li, Belinda Z.  and
+               Wang, Sinong  and
+               Fung, Pascale  and
+               Ma, Hao  and
+               Yih, Wen-tau  and
+               Khabsa, Madian},
+  editor    = {Toutanova, Kristina  and
+               Rumshisky, Anna  and
+               Zettlemoyer, Luke  and
+               Hakkani-Tur, Dilek  and
+               Beltagy, Iz  and
+               Bethard, Steven  and
+               Cotterell, Ryan  and
+               Chakraborty, Tanmoy  and
+               Zhou, Yichao},
+  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
+  month     = jun,
+  year      = {2021},
+  address   = {Online},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2021.naacl-main.432},
+  doi       = {10.18653/v1/2021.naacl-main.432},
+  pages     = {5479--5485}
+}
+
+@inproceedings{lei-2022-sentence,
+  title     = {Sentence-level Media Bias Analysis Informed by Discourse Structures},
+  author    = {Lei, Yuanyuan  and
+               Huang, Ruihong  and
+               Wang, Lu  and
+               Beauchamp, Nick},
+  editor    = {Goldberg, Yoav  and
+               Kozareva, Zornitsa  and
+               Zhang, Yue},
+  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},
+  month     = dec,
+  year      = {2022},
+  address   = {Abu Dhabi, United Arab Emirates},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.emnlp-main.682},
+  doi       = {10.18653/v1/2022.emnlp-main.682},
+  pages     = {10040--10050}
+}
+
+
+@misc{pappagari-2019-hierarchical,
+  title         = {Hierarchical Transformers for Long Document Classification},
+  author        = {Raghavendra Pappagari and Piotr Żelasko and Jesús Villalba and Yishay Carmiel and Najim Dehak},
+  year          = {2019},
+  eprint        = {1910.10781},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+@inproceedings{recasens-2013-linguistic,
+  title     = {Linguistic Models for Analyzing and Detecting Biased Language},
+  author    = {Recasens, Marta  and
+               Danescu-Niculescu-Mizil, Cristian  and
+               Jurafsky, Dan},
+  editor    = {Schuetze, Hinrich  and
+               Fung, Pascale  and
+               Poesio, Massimo},
+  booktitle = {Proceedings of the 51st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = aug,
+  year      = {2013},
+  address   = {Sofia, Bulgaria},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/P13-1162},
+  pages     = {1650--1659}
+}
+
+@misc{reuters-2023-trust,
+  author = {{Reuters Institute for the Study of Journalism}},
+  title  = {Share of adults who trust news media most of the time in selected countries worldwide as of February 2023 [Graph]},
+  year   = {2023},
+  month  = {June 14},
+  note   = {In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/308468/importance-brand-journalist-creating-trust-news/}}
+}
+
+@misc{yougov-2023-confidence,
+  author = {{YouGov}},
+  title  = {Level of confidence in distinguishing between real news from false news among adults in the United States as of April 2023 [Graph]},
+  year   = {2023},
+  month  = {May 8},
+  note   = {In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/657090/fake-news-recogition-confidence/}}
+}
+@misc{yougov-2023-frequency,
+  author = {{YouGov}},
+  title  = {Frequency of seeing false or misleading information online among adults in the United States as of April 2023, by age group [Graph]},
+  year   = {2023},
+  month  = {May 8},
+  note   = {In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/1462057/false-news-consumption-frequency-us-by-age/}}
+}
+
+@misc{reuters-2023-false-info,
+  author = {{Reuters Institute for the Study of Journalism}},
+  title  = {News consumers who saw false or misleading information about key topics in the last week in selected countries worldwide as of February 2023 [Graph]},
+  year   = {2023},
+  month  = {June 14},
+  note   = {In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/1317019/false-information-topics-worldwide/}}
 }

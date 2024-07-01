@@ -25,7 +25,7 @@ LEMMATISER = WordNetLemmatizer()
 STOP_WORDS = set(stopwords.words("english"))
 
 
-def compute_metrics_classification(pred):
+def compute_metrics_tf(pred):
     labels = pred.label_ids.flatten().tolist()
     preds = pred.predictions.argmax(-1)
 
@@ -41,6 +41,23 @@ def compute_metrics_classification(pred):
         "recall": recall,
         "f1": f1,
     }
+
+
+def compute_metrics(y_true, y_pred):
+    report = classification_report(y_true, y_pred, zero_division=1)
+    print(report)
+
+    precision = precision_score(y_true, y_pred, average="weighted", zero_division=1)
+    recall = recall_score(y_true, y_pred, average="weighted", zero_division=1)
+    f1 = f1_score(y_true, y_pred, average="weighted", zero_division=1)
+
+    print(
+        {
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+        }
+    )
 
 
 def print_class_distribution(dataset):
@@ -147,26 +164,66 @@ def tokenise_dataset(
     return tokenised_dataset
 
 
+def tokenise_chunks(x, tokeniser, chunk_size):
+    features = x["features"]
+
+    input_ids = tokeniser.encode(features, add_special_tokens=False)
+
+    chunk_input_ids = []
+    chunk_attention_masks = []
+
+    for i in range(0, len(input_ids), chunk_size - 2):
+        chunk = (
+            [tokeniser.cls_token_id]
+            + input_ids[i : i + chunk_size - 2]
+            + [tokeniser.sep_token_id]
+        )
+        # CLS is <s>, SEP is </s>
+
+        attention_mask = [1] * len(chunk)
+
+        if len(chunk) < chunk_size:
+            pad_size = chunk_size - len(chunk)
+            chunk = chunk + ([0] * pad_size)  # pad until CHUNK_SIZE
+            attention_mask = attention_mask + ([0] * pad_size)
+
+        chunk_input_ids.append(chunk)
+        chunk_attention_masks.append(attention_mask)
+
+    return {"input_ids": chunk_input_ids, "attention_mask": chunk_attention_masks}
+
+
 def train(
     tokenised_dataset,
     model,
-    epoch=4,
+    epochs=4,
     batch_size=8,
-    compute_metrics=compute_metrics_classification,
+    compute_metrics=compute_metrics_tf,
     trainer_class=StandardTrainer,
     data_collator=default_data_collator,
 ):
 
+    learning_rate = 2e-5
+    num_training_examples = len(tokenised_dataset["train"]["input_ids"])
+    total_steps = (num_training_examples // batch_size) * epochs
+    warmup_steps = int(total_steps * 0.1)
+    # warmup_steps = 500
+
+    print(f"warmup_steps: {warmup_steps}")
+    print(f"learning_rate: {learning_rate}")
+
     training_args = TrainingArguments(
         output_dir="test_trainer",
         logging_strategy="epoch",
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         per_device_train_batch_size=batch_size,
         per_device_eval_batch_size=batch_size,
-        num_train_epochs=epoch,
+        num_train_epochs=epochs,
         save_total_limit=2,
         save_strategy="no",
         load_best_model_at_end=False,
+        learning_rate=learning_rate,
+        warmup_steps=warmup_steps,
     )
 
     trainer = trainer_class(

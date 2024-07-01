@@ -49,7 +49,7 @@ elif torch.cuda.is_available():
 else:
     model = model.to("cpu")
 
-functions.train(tokenised_dataset, model, epoch=4)
+functions.train(tokenised_dataset, model, epochs=4)
 
 # v3, title + content, MODEL: SpanBERT/spanbert-base-cased, MAX_LENGTH: 512
 # {'eval_loss': 0.8917548060417175, 'eval_precision': 0.6020342677906867, 'eval_recall': 0.5778816199376947, 'eval_f1': 0.5736767677493624, 'eval_runtime': 2.3225, 'eval_samples_per_second': 276.422, 'eval_steps_per_second': 34.876, 'epoch': 4.0}
