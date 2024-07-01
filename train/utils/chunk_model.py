@@ -108,11 +108,11 @@ class ChunkModel(nn.Module):
         )
 
     def forward(self, input_ids, attention_mask):
-        magpie_output = self.tf_model(
+        tf_model_output = self.tf_model(
             input_ids=input_ids,
             attention_mask=attention_mask,
         )
-        transformer_output = magpie_output.last_hidden_state
+        transformer_output = tf_model_output.last_hidden_state
 
         for layer in self.transformer_layers:
             transformer_output = layer(transformer_output)

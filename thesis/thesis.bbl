@@ -164,6 +164,16 @@ P.~Rafail and J.~D. McCarthy.
 \newblock Making the tea party republican: Media bias and framing in newspapers and cable news.
 \newblock {\em Social Currents}, 5(5):421--437, 2018.
 
+\bibitem{reuters-2023-false-info}
+{Reuters Institute for the Study of Journalism}.
+\newblock News consumers who saw false or misleading information about key topics in the last week in selected countries worldwide as of february 2023 [graph], June 14 2023.
+\newblock In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/1317019/false-information-topics-worldwide/}.
+
+\bibitem{reuters-2023-trust}
+{Reuters Institute for the Study of Journalism}.
+\newblock Share of adults who trust news media most of the time in selected countries worldwide as of february 2023 [graph], June 14 2023.
+\newblock In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/308468/importance-brand-journalist-creating-trust-news/}.
+
 \bibitem{spinde-2024-taxonomy}
 T.~Spinde, S.~Hinterreiter, F.~Haak, T.~Ruas, H.~Giese, N.~Meuschke, and B.~Gipp.
 \newblock The media bias taxonomy: A systematic literature review on the forms and automated detection of media bias, 2024.
@@ -212,6 +222,16 @@ D.~M. White.
 \bibitem{wolf-2020-huggingface}
 T.~Wolf, L.~Debut, V.~Sanh, J.~Chaumond, C.~Delangue, A.~Moi, P.~Cistac, T.~Rault, R.~Louf, M.~Funtowicz, J.~Davison, S.~Shleifer, P.~von Platen, C.~Ma, Y.~Jernite, J.~Plu, C.~Xu, T.~L. Scao, S.~Gugger, M.~Drame, Q.~Lhoest, and A.~M. Rush.
 \newblock Huggingface's transformers: State-of-the-art natural language processing, 2020.
+
+\bibitem{yougov-2023-frequency}
+{YouGov}.
+\newblock Frequency of seeing false or misleading information online among adults in the united states as of april 2023, by age group [graph], May 8 2023.
+\newblock In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/1462057/false-news-consumption-frequency-us-by-age/}.
+
+\bibitem{yougov-2023-confidence}
+{YouGov}.
+\newblock Level of confidence in distinguishing between real news from false news among adults in the united states as of april 2023 [graph], May 8 2023.
+\newblock In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/657090/fake-news-recogition-confidence/}.
 
 \bibitem{zaheer-2021-bigbird}
 M.~Zaheer, G.~Guruganesh, A.~Dubey, J.~Ainslie, C.~Alberti, S.~Ontanon, P.~Pham, A.~Ravula, Q.~Wang, L.~Yang, and A.~Ahmed.

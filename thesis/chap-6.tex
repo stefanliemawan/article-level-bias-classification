@@ -1,7 +1,7 @@
 \chapter{Evaluation}
 \label{cha:6}
 
-All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. The batch size is set to 8, with epochs ranging between 4-6 for standard fine-tuning. For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles.
+All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. The batch size is set to 8, with epochs ranging between 3-5. For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles.
 
 \section{Baseline methods}
 
@@ -9,36 +9,19 @@ All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and tra
     \centering
     \begin{tabular}{|| c | c | c | c | c ||}
         \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}} \\
         \hline
-        Class              & Precision & Recall & F1     & Support            \\
+        Class              & Precision & Recall & F1     & Support   \\
         \hline
-        Problematic        & 0.44      & 0.33   & 0.38   & 24                 \\
+        Problematic        & 0.38      & 0.41   & 0.39   & 27        \\
         \hline
-        Questionable       & 0.32      & 0.31   & 0.32   & 51                 \\
+        Questionable       & 0.34      & 0.31   & 0.33   & 54        \\
         \hline
-        Generally Reliable & 0.38      & 0.43   & 0.41   & 99                 \\
+        Generally Reliable & 0.36      & 0.40   & 0.38   & 104       \\
         \hline
-        Reliable           & 0.86      & 0.85   & 0.85   & 370                \\
+        Reliable           & 0.85      & 0.83   & 0.84   & 384       \\
         \hline
-        Overall            & 0.7043    & 0.6985 & 0.7007 &                    \\
-        \hline
-        \hline
-        \hline
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        Problematic        & 0.45      & 0.38   & 0.41   & 24                 \\
-        \hline
-        Questionable       & 0.34      & 0.35   & 0.35   & 51                 \\
-        \hline
-        Generally Reliable & 0.37      & 0.39   & 0.38   & 99                 \\
-        \hline
-        Reliable           & 0.86      & 0.85   & 0.86   & 370                \\
-        \hline
-        Overall            & 0.7056    & 0.7003 & 0.7027 &                    \\
+        Overall            & 0.6922    & 0.6818 & 0.6865 &           \\
         \hline
     \end{tabular}
     \caption{BoW + logistic regression evaluation}
@@ -49,36 +32,19 @@ All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and tra
     \centering
     \begin{tabular}{|| c | c | c | c | c ||}
         \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}} \\
         \hline
-        Class              & Precision & Recall & F1     & Support            \\
+        Class              & Precision & Recall & F1     & Support   \\
         \hline
-        Problematic        & 1.00      & 0.04   & 0.08   & 24                 \\
+        Problematic        & 1.00      & 0.11   & 0.20   & 27        \\
         \hline
-        Questionable       & 0.56      & 0.29   & 0.38   & 51                 \\
+        Questionable       & 0.47      & 0.17   & 0.25   & 54        \\
         \hline
-        Generally Reliable & 0.44      & 0.41   & 0.42   & 99                 \\
+        Generally Reliable & 0.36      & 0.31   & 0.33   & 104       \\
         \hline
-        Reliable           & 0.82      & 0.93   & 0.87   & 370                \\
+        Reliable           & 0.79      & 0.94   & 0.86   & 384       \\
         \hline
-        Overall            & 0.7316    & 0.7389 & 0.7094 &                    \\
-        \hline
-        \hline
-        \hline
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        Problematic        & 1.00      & 0.04   & 0.08   & 24                 \\
-        \hline
-        Questionable       & 0.54      & 0.27   & 0.36   & 51                 \\
-        \hline
-        Generally Reliable & 0.43      & 0.44   & 0.44   & 99                 \\
-        \hline
-        Reliable           & 0.82      & 0.92   & 0.87   & 370                \\
-        \hline
-        Overall            & 0.7336    & 0.7371 & 0.7099 &                    \\
+        Overall            & 0.6904    & 0.7117 & 0.6725 &           \\
         \hline
     \end{tabular}
     \caption{TF-IDF + logistic regression evaluation}
@@ -97,15 +63,15 @@ In both Table \ref{table:bow-logistic-eval} and Table \ref{table:tfidf_logistic-
         Class              & Precision & Recall & F1     & Support            \\
         \hline
         \hline
-        Problematic        & 0.60      & 0.25   & 0.35   & 24                 \\
+        Problematic        & 0.43      & 0.44   & 0.44   & 27                 \\
         \hline
-        Questionable       & 0.47      & 0.53   & 0.50   & 51                 \\
+        Questionable       & 0.29      & 0.39   & 0.33   & 54                 \\
         \hline
-        Generally Reliable & 0.37      & 0.56   & 0.45   & 99                 \\
+        Generally Reliable & 0.44      & 0.48   & 0.46   & 104                \\
         \hline
-        Reliable           & 0.89      & 0.79   & 0.84   & 370                \\
+        Reliable           & 0.90      & 0.83   & 0.86   & 384                \\
         \hline
-        Overall            & 0.7428    & 0.7003 & 0.7132 &                    \\
+        Overall            & 0.7359    & 0.7065 & 0.7193 &                    \\
         \hline
         \hline
         \hline
@@ -115,15 +81,15 @@ In both Table \ref{table:bow-logistic-eval} and Table \ref{table:tfidf_logistic-
         Class              & Precision & Recall & F1     & Support            \\
         \hline
         \hline
-        Problematic        & 0.67      & 0.42   & 0.51   & 24                 \\
+        Problematic        & 0.65      & 0.56   & 0.60   & 27                 \\
         \hline
-        Questionable       & 0.46      & 0.61   & 0.52   & 51                 \\
+        Questionable       & 0.45      & 0.50   & 0.47   & 54                 \\
         \hline
-        Generally Reliable & 0.46      & 0.62   & 0.52   & 99                 \\
+        Generally Reliable & 0.44      & 0.62   & 0.52   & 104                \\
         \hline
-        Reliable           & 0.95      & 0.84   & 0.89   & 370                \\
+        Reliable           & 0.94      & 0.84   & 0.88   & 384                \\
         \hline
-        Overall            & 0.7997    & 0.7535 & 0.7717 &                    \\
+        Overall            & 0.8186    & 0.7883 & 0.7504 &                    \\
         \hline
     \end{tabular}
     \caption{BERT fine-tuning evaluation}
@@ -139,15 +105,15 @@ Fine-tuning BERT after 6 epochs only performed slightly better than BoW method a
         Class              & Precision & Recall & F1     & Support \\
         \hline
         \hline
-        Problematic        & 0.57      & 0.71   & 0.63   & 24      \\
+        Problematic        & 0.56      & 0.70   & 0.62   & 27      \\
         \hline
-        Questionable       & 0.60      & 0.47   & 0.53   & 51      \\
+        Questionable       & 0.58      & 0.46   & 0.52   & 54      \\
         \hline
-        Generally Reliable & 0.56      & 0.55   & 0.55   & 99      \\
+        Generally Reliable & 0.56      & 0.53   & 0.54   & 104     \\
         \hline
-        Reliable           & 0.91      & 0.93   & 0.92   & 370     \\
+        Reliable           & 0.91      & 0.93   & 0.92   & 384     \\
         \hline
-        Overall            & 0.8007    & 0.8051 & 0.8017 &         \\
+        Overall            & 0.7945    & 0.7996 & 0.7959 &         \\
         \hline
     \end{tabular}
     \caption{Outlet-based majority votes evaluation}
@@ -165,16 +131,144 @@ Find out why TF-IDF performs worse on class problematic
 
 \section{Sliding window}
 
-For this approach, a window size of 512 (maximum token of BERT) is chosen with a stride of 256. Additionally, only the first 3 chunks of each input sequence will be used, each input sequence will be truncated to only the first 3 chunks, as using longer chunks does not consistently improve the performance, along with increased computation cost.
+For this approach, a window size of 512 (maximum token of BERT) is chosen with a stride of 256. Additionally, only the first 3 chunks of each input sequence will be used and the rest discarded, as using longer chunks did not consistently improve performance, along with increased computation cost.
 
-Evaluation pending.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|| c | c | c | c | c ||}
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.45      & 0.48   & 0.46   & 27                 \\
+        \hline
+        Questionable       & 0.39      & 0.52   & 0.45   & 54                 \\
+        \hline
+        Generally Reliable & 0.42      & 0.50   & 0.46   & 104                \\
+        \hline
+        Reliable           & 0.91      & 0.81   & 0.86   & 384                \\
+        \hline
+        Overall            & 0.7472    & 0.7112 & 0.7257 &                    \\
+        \hline
+        \hline
+        \hline
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.46      & 0.41   & 0.43   & 27                 \\
+        \hline
+        Questionable       & 0.41      & 0.48   & 0.44   & 54                 \\
+        \hline
+        Generally Reliable & 0.46      & 0.56   & 0.51   & 104                \\
+        \hline
+        Reliable           & 0.91      & 0.84   & 0.87   & 384                \\
+        \hline
+        Overall            & 0.7585    & 0.7359 & 0.7451 &                    \\
+        \hline
+    \end{tabular}
+    \caption{Sliding Window evaluation}
+    \label{table:sliding-window-eval}
+\end{table}
+
+The sliding window method outperformed both BoW and TF-IDF methods, while performing slightly better to a standard BERT fine-tuning of the first 512 tokens. However, with the outlet information included, BERT fine-tuning still reigns superior with a particularly strong f1 score on the "Problematic" class.
 
 \section{CLS Method}
 
-For the CLS method, two different language models are used: BERT and MAGPIE, to encode the input in a higher dimensional space. Both approaches with the CLS method are evaluated. A chunk size of 512 is used, 2 transformer layers, 0.2 dropout probability, and 3 epochs.
+For the CLS method, two different language models are used: BERT and MAGPIE, to encode the input in a higher dimensional space. Both approaches with the CLS method are evaluated. A chunk size of 512 is used, 2 transformer layers, learning rate 1e-5, 162 warmup steps (10\% of training steps), 0.2 dropout probability, and 3 epochs.
 
-Evaluation pending.
 
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|| c | c | c | c | c ||}
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.44      & 0.67   & 0.53   & 27                 \\
+        \hline
+        Questionable       & 0.41      & 0.48   & 0.44   & 54                 \\
+        \hline
+        Generally Reliable & 0.39      & 0.50   & 0.44   & 104                \\
+        \hline
+        Reliable           & 0.91      & 0.79   & 0.84   & 384                \\
+        \hline
+        Overall            & 0.7440    & 0.6994 & 0.7163 &                    \\
+        \hline
+        \hline
+        \hline
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.37      & 0.59   & 0.46   & 27                 \\
+        \hline
+        Questionable       & 0.32      & 0.43   & 0.37   & 54                 \\
+        \hline
+        Generally Reliable & 0.40      & 0.47   & 0.43   & 104                \\
+        \hline
+        Reliable           & 0.92      & 0.79   & 0.85   & 384                \\
+        \hline
+        Overall            & 0.7384    & 0.6871 & 0.7071 &                    \\
+        \hline
+    \end{tabular}
+    \caption{BERT CLS evaluation}
+    \label{table:bert-cls-eval}
+\end{table}
+
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|| c | c | c | c | c ||}
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.46      & 0.63   & 0.53   & 27                 \\
+        \hline
+        Questionable       & 0.36      & 0.41   & 0.38   & 54                 \\
+        \hline
+        Generally Reliable & 0.41      & 0.55   & 0.47   & 104                \\
+        \hline
+        Reliable           & 0.93      & 0.80   & 0.86   & 384                \\
+        \hline
+        Overall            & 0.7577    & 0.7117 & 0.7293 &                    \\
+        \hline
+        \hline
+        \hline
+        \hline
+        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
+        \hline
+        Class              & Precision & Recall & F1     & Support            \\
+        \hline
+        \hline
+        Problematic        & 0.42      & 0.52   & 0.47   & 27                 \\
+        \hline
+        Questionable       & 0.35      & 0.43   & 0.38   & 54                 \\
+        \hline
+        Generally Reliable & 0.43      & 0.55   & 0.48   & 104                \\
+        \hline
+        Reliable           & 0.93      & 0.82   & 0.87   & 384                \\
+        \hline
+        Overall            & 0.76034   & 0.7170 & 0.7342 &                    \\
+        \hline
+    \end{tabular}
+    \caption{MAGPIE CLS evaluation}
+    \label{table:magpie-cls-eval}
+\end{table}
+
+Similarly, both CLS methods mostly outperformed the baselines. However, with outlet information included the CLS methods performed somewhat worse, particularly on the most biased "Problematic" class.
 
 %%% Local Variables: 
 %%% mode: latex

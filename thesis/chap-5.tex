@@ -27,7 +27,9 @@ The dataset is then split into three sets of train, test, and validation with th
           34 samples of class 'Problematic', 70 samples of class 'Questionable', 128 samples of class 'Generally Reliable', 371 of class 'Reliable'
 \end{itemize}
 
-The split is done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by grouping the articles based on their outlet and label and iterating over each group, splitting the rows equally, and appending to the train, test, and validation set. Groups of less than 5 rows are not enough to be split and therefore appended to the train set. To handle class imbalances, weighted loss is used when training the model, with weights in proportion to the distribution of each class.
+The split is done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by first grouping the articles based on their outlet and labels, then iterating over each group, splitting the rows equally, and distributing to the train, test, and validation set. Groups of less than 5 rows that are not enough to be split and therefore appended to the train set. To handle class imbalances, weighted loss is used when training the model, with weights in proportion to the distribution of each class.
+
+A major drawback of this 'balance' splitting is that there is no unseen outlet in the test set and validation set. This can influence the final test metrics and may hinder the model's ability to generalise to new, unseen articles from unseen outlets. However, considering that new outlets are rarely introduced in the real life, it might be beneficial to slightly overfit on the patterns of existing outlets.
 
 \section{Proposed methods}
 
@@ -37,7 +39,11 @@ The first method to be implemented is the sliding window method, where articles 
 
 \subsection{CLS method}
 
-The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM (BERT), inputted into the model, and taking the last hidden state (as described in \cite{sun-2020-fine-tune}) as the text representation. From there, they then get passed into several transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into an MLP layer. Both LSTM and Bi-LSTM layers were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
+The CLS method works similarly by splitting each article into chunks. They are first encoded by using a pre-trained LLM, inputted into the model, and taking the last hidden state (as described in \cite{sun-2020-fine-tune}) as the text representation. From there, they get passed into multiple transformer layers to enhance the contextual representation. Then, for each chunk, only the representation of the CLS token (first token) is then selected, acting as a summary representation of the whole chunk sequence, before finally passing them into an MLP layer.
+
+Two Transformer models are used as the LLM encoder: BERT (bert-base-cased) and MAGPIE.
+
+Both LSTM and Bi-LSTM layers were experimented with instead of MLP, with no apparent improvement in performance. MAGPIE and other LLMs can also be used instead of BERT to encode the input sequence.
 
 %%% Local Variables: 
 %%% mode: latex

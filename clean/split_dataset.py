@@ -57,7 +57,7 @@ df = df.merge(
 )
 
 grouped_df = df.groupby(["labels", "outlet"])
-
+# grouped_df = df.groupby(["labels"])
 
 train_data, test_data, valid_data = [], [], []
 
@@ -84,11 +84,21 @@ for group_name, group_df in grouped_df:
         valid_data.append(valid_group)
 
 
-# Concatenate data subsets to form train, test, and validation sets
-
 train_set = pd.concat(train_data)
 test_set = pd.concat(test_data)
 valid_set = pd.concat(valid_data)
+
+
+# train_valid_set, test_set = train_test_split(
+#     df, test_size=0.15, stratify=df["labels"], random_state=SEED
+# )
+
+# train_set, valid_set = train_test_split(
+#     train_valid_set,
+#     test_size=0.15,
+#     stratify=train_valid_set["labels"],
+#     random_state=SEED,
+# )
 
 # Shuffle the datasets to ensure randomness
 train_set = train_set.sample(frac=1, random_state=SEED).reset_index(drop=True)

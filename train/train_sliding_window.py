@@ -28,7 +28,6 @@ print(f"dataset {DATASET_VERSION}")
 
 train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
-test_df = test_df.head(568)
 valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
 

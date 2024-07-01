@@ -1,6 +1,8 @@
+import platform
 import sys
 
 import pandas as pd
+import torch
 import utils.functions as functions
 from torch import nn
 from transformers import AutoModel, AutoTokenizer
@@ -55,13 +57,13 @@ print(tokenised_dataset)
 
 class Model(ChunkModel):
     def init_layers(self, num_tf_layers, hidden_dim, num_classes):
-        self.magpie = AutoModel.from_pretrained(self.tf_model_name)
-        self.magpie = self.magpie.to(self.device)
+        self.tf_model = AutoModel.from_pretrained(self.tf_model_name)
+        self.tf_model = self.tf_model.to(self.device)
 
         self.transformer_layers = nn.ModuleList(
             [
                 nn.TransformerEncoderLayer(
-                    d_model=self.magpie.config.hidden_size,  # 768 for magpie
+                    d_model=self.tf_model.config.hidden_size,  # 768 for magpie
                     nhead=8,
                     dim_feedforward=hidden_dim,
                 )
@@ -69,8 +71,9 @@ class Model(ChunkModel):
             ]
         )
 
+
         self.lstm = nn.LSTM(
-            self.magpie.config.hidden_size,
+            self.tf_model.config.hidden_size,
             hidden_dim,
             num_layers=2,
         )
@@ -82,14 +85,31 @@ class Model(ChunkModel):
             nn.Linear(hidden_dim, num_classes),
         )
 
+    def forward(self, input_ids, attention_mask):
+        magpie_output = self.magpie(input_ids=input_ids, attention_mask=attention_mask)
+        transformer_output = magpie_output.last_hidden_state
+
+        for layer in self.transformer_layers:
+            transformer_output = layer(transformer_output)
+
+        transformer_output_cls = transformer_output[:, 0, :]
+
+        lstm_output, _ = self.lstm(transformer_output_cls)
+
+        mlp_output = self.mlp(lstm_output)
+
+        return mlp_output
+
 
 num_labels = len(pd.unique(train_df["labels"]))
 train_labels = tokenised_dataset["train"]["labels"]
 model = Model(
+    tf_model_name=TF_MODEL_NAME,
     num_tf_layers=NUM_TF_LAYERS,
     hidden_dim=HIDDEN_DIM,
     num_classes=num_labels,
     train_labels=train_labels,
+    dropout_prob=DROPOUT_PROB,
 )
 model = model.to(model.device)
 print(model)
