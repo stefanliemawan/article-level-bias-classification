@@ -24,13 +24,13 @@ train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
 valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
-# train_df, test_df, valid_df = functions.generate_title_content_features(
-#     train_df, test_df, valid_df
-# )
-
-train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
+
+# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+#     train_df, test_df, valid_df
+# )
 
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)

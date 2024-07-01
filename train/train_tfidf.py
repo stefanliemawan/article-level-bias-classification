@@ -36,7 +36,7 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 
 train_df = pd.concat((train_df, valid_df))
 
-tfidf_vectorizer = TfidfVectorizer(max_features=1000)
+tfidf_vectorizer = TfidfVectorizer()
 
 x_train = tfidf_vectorizer.fit_transform(train_df["features"].values)
 x_test = tfidf_vectorizer.transform(test_df["features"].values)
@@ -84,34 +84,34 @@ print("Root Mean Squared Error:", rmse)
 print("R-squared Score:", r2)
 
 
-# vx, new split 4 classes
+# vx + rescraped, new split 4 classes
 #               precision    recall  f1-score   support
 
-#            0       1.00      0.04      0.08        24
-#            1       0.56      0.29      0.38        51
-#            2       0.44      0.41      0.42        99
-#            3       0.82      0.93      0.87       370
+#            0       1.00      0.11      0.20        27
+#            1       0.47      0.17      0.25        54
+#            2       0.36      0.31      0.33       104
+#            3       0.79      0.94      0.86       384
 
-#     accuracy                           0.74       544
-#    macro avg       0.70      0.42      0.44       544
-# weighted avg       0.73      0.74      0.71       544
+#     accuracy                           0.71       569
+#    macro avg       0.65      0.38      0.41       569
+# weighted avg       0.69      0.71      0.67       569
 
-# {'accuracy': 0.7389705882352942, 'precision': 0.7316219412792847, 'recall': 0.7389705882352942, 'f1': 0.709459642701604}
-# Root Mean Squared Error: 7.044471273220665
-# R-squared Score: 0.2617788981933262
+# {'precision': 0.6904947579415414, 'recall': 0.7117750439367311, 'f1': 0.6725642034140528}
+# Root Mean Squared Error: 6.566735323176123
+# R-squared Score: 0.369010342588014
 
-# vx, with outlet
+# vx + rescraped, with outlet (maybe not the right way to include outlet)
 #               precision    recall  f1-score   support
 
-#            0       1.00      0.04      0.08        24
-#            1       0.54      0.27      0.36        51
-#            2       0.43      0.44      0.44        99
-#            3       0.82      0.92      0.87       370
+#            0       1.00      0.11      0.20        27
+#            1       0.50      0.17      0.25        54
+#            2       0.36      0.32      0.34       104
+#            3       0.79      0.94      0.86       384
 
-#     accuracy                           0.74       544
-#    macro avg       0.70      0.42      0.44       544
-# weighted avg       0.73      0.74      0.71       544
+#     accuracy                           0.72       569
+#    macro avg       0.66      0.38      0.41       569
+# weighted avg       0.70      0.72      0.68       569
 
-# {'accuracy': 0.7371323529411765, 'precision': 0.7336086093108126, 'recall': 0.7371323529411765, 'f1': 0.7099331665186448}
-# Root Mean Squared Error: 7.001971395443109
-# R-squared Score: 0.2706595262754652
+# {'precision': 0.6957633399277345, 'recall': 0.7152899824253075, 'f1': 0.6760595491600301}
+# Root Mean Squared Error: 6.461067706981272
+# R-squared Score: 0.38915390648029846
