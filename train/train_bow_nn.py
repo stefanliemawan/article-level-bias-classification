@@ -2,6 +2,7 @@ import sys
 
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 import utils.functions as functions
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import (
@@ -12,7 +13,7 @@ from sklearn.metrics import (
     recall_score,
 )
 from sklearn.utils.class_weight import compute_class_weight
-from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import EarlyStopping, LearningRateScheduler
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.regularizers import l2
@@ -35,9 +36,9 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 )
 
 
-# vectorizer = TfidfVectorizer(max_features=1000)
+# vectorizer = CountVectorizer()
+vectorizer = TfidfVectorizer()
 
-vectorizer = CountVectorizer()
 x_train = vectorizer.fit_transform(train_df["features"].values)
 x_test = vectorizer.transform(test_df["features"].values)
 x_valid = vectorizer.transform(valid_df["features"].values)
@@ -74,15 +75,30 @@ model.add(Dropout(0.2))
 model.add(Dense(num_labels, activation="softmax"))
 
 # Compile and train the model
-model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+
+
+# def scheduler(epoch, lr):
+#     warmup_epochs = 3
+#     if epoch < warmup_epochs:
+#         return lr + (0.001 - lr) / warmup_epochs
+#     return lr
+
+
+# lr_scheduler = LearningRateScheduler(scheduler)
+optimiser = tf.keras.optimizers.AdamW(learning_rate=2e-5)
+
+model.compile(
+    loss="categorical_crossentropy", optimizer=optimiser, metrics=["accuracy"]
+)
 
 model.fit(
     x_train,
     y_train,
-    epochs=4,
-    batch_size=6,
+    epochs=10,
+    batch_size=8,
     validation_data=(x_valid, y_valid),
     class_weight=class_weights_dict,
+    # callbacks=[lr_scheduler],
 )
 
 # Predictions and evaluation
@@ -103,30 +119,32 @@ print(
     }
 )
 
-# 6 epoch, bow
+# 10 epoch, bow, title + content
 #               precision    recall  f1-score   support
 
-#            0       0.89      0.33      0.48        24
-#            1       0.35      0.43      0.39        51
-#            2       0.39      0.43      0.41        99
-#            3       0.87      0.86      0.86       370
+#            0       0.38      0.44      0.41        27
+#            1       0.33      0.35      0.34        54
+#            2       0.41      0.42      0.42       104
+#            3       0.88      0.85      0.86       384
 
-#     accuracy                           0.72       544
-#    macro avg       0.63      0.51      0.54       544
-# weighted avg       0.74      0.72      0.72       544
+#     accuracy                           0.71       569
+#    macro avg       0.50      0.52      0.51       569
+# weighted avg       0.72      0.71      0.71       569
 
-# {'precision': 0.7366000516980076, 'recall': 0.7169117647058824, 'f1': 0.7206226905839207}
+# {'precision': 0.7162298537356339, 'recall': 0.7065026362038664, 'f1': 0.711064316646461}
 
-# 6 epoch, tdiff
+# 10 epoch, tfidf, title + content
 #               precision    recall  f1-score   support
 
-#            0       1.00      0.08      0.15        24
-#            1       0.40      0.53      0.46        51
-#            2       0.51      0.45      0.48        99
-#            3       0.86      0.90      0.88       370
+#            0       0.26      0.63      0.37        27
+#            1       0.40      0.07      0.12        54
+#            2       0.36      0.48      0.41       104
+#            3       0.88      0.82      0.85       384
 
-#     accuracy                           0.75       544
-#    macro avg       0.69      0.49      0.49       544
-# weighted avg       0.76      0.75      0.74       544
+#     accuracy                           0.68       569
+#    macro avg       0.48      0.50      0.44       569
+# weighted avg       0.71      0.68      0.68       569
 
-# {'precision': 0.7619584635673662, 'recall': 0.75, 'f1': 0.7374589872512924}
+# {'precision': 0.7118441600972082, 'recall': 0.6766256590509666, 'f1': 0.6776529851708551}
+
+# use outlet and title as features + bow of content?

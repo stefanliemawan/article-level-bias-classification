@@ -73,7 +73,7 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-# vx, no warmup steps, new rescraped, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, title + content
+# vx + rescraped, title + content, no warmup steps, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 #               precision    recall  f1-score   support
 
 #            0       0.56      0.19      0.28        27
@@ -87,7 +87,7 @@ model.predict(tokenised_dataset["test"])
 
 # {'loss': 1.036009430885315, 'precision': 0.7515373221663202, 'recall': 0.7328646748681898, 'f1': 0.736117275094499}
 
-# vx, warmup_steps: 162, new rescraped, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, title + content
+# vx + rescraped, title + content, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft,
 #               precision    recall  f1-score   support
 
 #            0       0.46      0.63      0.53        27
@@ -102,7 +102,7 @@ model.predict(tokenised_dataset["test"])
 # {'loss': 0.8415158987045288, 'precision': 0.7577533590596234, 'recall': 0.7117750439367311, 'f1': 0.7293065634451941}
 # worse with 500 warmup
 
-# vx, warmup_steps: 162, new rescraped, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, title + content, learning_rate 2e-5
+# vx + rescraped, title + content, learning_rate 2e-5, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 #               precision    recall  f1-score   support
 
 #            0       0.45      0.48      0.46        27
@@ -117,7 +117,7 @@ model.predict(tokenised_dataset["test"])
 # {'loss': 0.8991358280181885, 'precision': 0.7558342374893745, 'recall': 0.7012302284710018, 'f1': 0.7225577730868136}
 
 
-# vx, warmup_steps: 162, new rescraped, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, outlet + title + content
+# vx + rescraped, warmup_steps: 162, outlet + title + content , CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 #               precision    recall  f1-score   support
 
 #            0       0.42      0.52      0.47        27

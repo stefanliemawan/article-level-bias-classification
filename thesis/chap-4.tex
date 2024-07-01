@@ -42,9 +42,11 @@ An example of a low-rated article can be seen in Table \ref{table:example-biased
 
 \subsection{Extension}
 
-The original BAT dataset only contains news titles and links (along with other metadata) and is missing the body content of articles. To overcome this, a Python script is written and executed, iteratively visiting each of the URLs from the dataset and scraping the news content. This was not an easy task as each website has its own unique structures and formats. Furthermore, the scraped text contains noises that are almost impossible to remove through the script. Some outlets such as The Nation, Chicago Tribune, and Truthout required manual intervention as the scraped text was duplicated over themselves. The current extended dataset contains 5270 rows of articles, mainly due to unavailable websites and missing articles.
+The original BAT dataset only contains news titles and links (along with other metadata) and is missing the body content of articles. To overcome this, a Python script is written and executed, iteratively visiting each of the URLs from the dataset and scraping the news content. This was not an easy task as each website has its own unique structures and formats. Furthermore, the scraped text contains noises that are almost impossible to remove through the script. Some outlets such as The Nation, Chicago Tribune, and Truthout required manual intervention as the scraped text was duplicated over themselves. The first round of Extension resulted in 5270 rows of articles out of the original 6345 rows, mainly due to unavailable websites and missing articles.
 
 To remove noises from article content, the text are then pre-processed extensively. All the content of every article in the dataset were joined into one single list, split into words, and then compared against an English word list \cite{dwyl-english-words}, resulting in a list of faulty words sorted by their occurences. Using this list, noisy patterns were analysed and handled through a combination of string and regex methods, and conjoined words were identified and fixed through a giant Python dictionary. This process is repeated more than several times until the contents are valuable enough to work with. Note that at this point some noises still remain within the text as it will take an extensive amount of time and manual labour to completely clean the text.
+
+An additional round of extension is done by compiling the list of unavailable/unscraped websites and taking a closer look of the problem individually. This round involved searching for missing articles, fixing broken links, visiting the websites manually on the browser, and copy-pasting article contents into a spreadsheet, resulting in additional 226 rows of articles. The final dataset consists of 5496 rows of articles.
 
 \begin{comment}
 Explain further on preprocessing scraped text. More details on the preprocessing scripts?
@@ -66,7 +68,7 @@ Explain further on preprocessing scraped text. More details on the preprocessing
     \label{fig:reliability_score_hist}
 \end{figure}
 
-The article content tokens length ranges between 22 tokens to 15530 tokens, with an average length of 1186.5 and a median value of 887 tokens. Only 9 articles have more than 10000 tokens, while there are 106 of articles with less than 100 tokens. Furthermore, only 1193 articles stay between 512 tokens, which is the limit for BERT input. The articles reliability score ranges from 1.0 to 58.67, the majority have a value between 20 - 50. Not a single articles were rated more than 60 despite the highest score being 64. Visualisations can be seen in both Figure \ref{fig:tokens_hist} and Figure \ref{fig:reliability_score_hist}, as well as Figure \ref{fig:tokens_hist_split}
+The article content tokens length ranges between 17 tokens to 16139 tokens, with an average length of 1207.07 and a median value of 908 tokens. Only 9 articles have more than 10000 tokens, while there are 106 of articles with less than 100 tokens. Furthermore, only 1209 articles stay between 512 tokens, which is the limit for BERT input. The articles reliability score ranges from 1.0 to 58.67, the majority have a value between 20 - 50. Not a single articles were rated more than 60 despite the highest score being 64. Visualisations can be seen in both Figure \ref{fig:tokens_hist} and Figure \ref{fig:reliability_score_hist}, as well as Figure \ref{fig:tokens_hist_split}
 
 
 \begin{figure}[htbp]
@@ -75,7 +77,7 @@ The article content tokens length ranges between 22 tokens to 15530 tokens, with
     \label{fig:dates_hist}
 \end{figure}
 
-Most articles are written and published within the last 6 years, with only 29 articles, a minuscule percentage, published before 2019, shown in Figure \ref{fig:dates_hist}. From my personal analysis, these 29 articles generally contain similar topics to articles published after 2019 and therefore should not hold any difference in behaviour and characteristics.
+Most articles are written and published within the last 6 years, with only 31 articles, a minuscule percentage, published before 2019, shown in Figure \ref{fig:dates_hist}. From a personal analysis, these 31 articles generally contain similar topics to articles published after 2019 and therefore should not hold consequental difference in behaviour and characteristics.
 
 
 \begin{figure}[htbp]

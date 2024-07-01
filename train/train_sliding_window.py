@@ -109,3 +109,18 @@ functions.train(
 
 # 100%|██████████| 71/71 [00:07<00:00,  9.68it/s]
 # {'eval_loss': 0.8890448808670044, 'eval_precision': 0.7472220951363592, 'eval_recall': 0.7112676056338029, 'eval_f1': 0.7257911489910044, 'eval_runtime': 7.4861, 'eval_samples_per_second': 75.874, 'eval_steps_per_second': 9.484, 'epoch': 4.0}
+
+# vx + rescraped, outlet + title + content, bert-base-cased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
+#               precision    recall  f1-score   support
+
+#            0       0.46      0.41      0.43        27
+#            1       0.41      0.48      0.44        54
+#            2       0.46      0.56      0.51       103
+#            3       0.91      0.84      0.87       384
+
+#     accuracy                           0.74       568
+#    macro avg       0.56      0.57      0.56       568
+# weighted avg       0.76      0.74      0.75       568
+
+
+# {'eval_loss': 0.8257732391357422, 'eval_precision': 0.7585514237108042, 'eval_recall': 0.7359154929577465, 'eval_f1': 0.7451975162272549, 'eval_runtime': 7.4763, 'eval_samples_per_second': 75.973, 'eval_steps_per_second': 9.497, 'epoch': 4.0}

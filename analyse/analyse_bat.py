@@ -69,11 +69,14 @@ def plot_tokens_count(df):
     print(df.sort_values(by=["tokens_count"], ascending=False).head(20))
     print(df.sort_values(by=["tokens_count"], ascending=True).head(20))
 
-    count_below_100 = df[df["tokens_count"] < 128].shape[0]
+    count_below_100 = df[df["tokens_count"] < 100].shape[0]
     print(f"Number of rows with tokens_count below 128: {count_below_100}")
 
     count_below_512 = df[df["tokens_count"] < 512].shape[0]
     print(f"Number of rows with tokens_count below 512: {count_below_512}")
+
+    count_above_10k = df[df["tokens_count"] > 10000].shape[0]
+    print(f"Number of rows with tokens_count below 10k: {count_above_10k}")
 
 
 def plot_tokens_count_split(df):
@@ -275,7 +278,7 @@ def plot_outlet_reliability_score(df):
     average_scores = df.groupby("outlet")["reliability_score"].mean()
 
     # Plot the average reliability scores
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(50, 6))
     average_scores.plot(kind="bar", color="skyblue")
     plt.title("Average Reliability Score by Outlet")
     plt.xlabel("Outlet")
@@ -292,11 +295,11 @@ def plot_outlet_reliability_score(df):
 if "tokens_count" not in df:
     count_tokens(df)
 
-# plot_tokens_count(df)
-# plot_tokens_count_split(df)
-# plot_tokens_count_per_class(df)
-# plot_reliability_score(df)
-# plot_dates(df)
-# plot_correlation_tokens_reliability(df)
-# plot_correlation_bias_reliability(df)
+plot_tokens_count(df)
+plot_tokens_count_split(df)
+plot_tokens_count_per_class(df)
+plot_reliability_score(df)
+plot_dates(df)
+plot_correlation_tokens_reliability(df)
+plot_correlation_bias_reliability(df)
 plot_outlet_reliability_score(df)

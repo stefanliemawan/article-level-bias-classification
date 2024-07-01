@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  5 JUN 2024 04:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  1 JUL 2024 09:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1210,25 +1210,24 @@ Underfull \vbox (badness 1924) has occurred while \output is active []
 <figures/tokens_count_vx_hist.png, id=334, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 57.
+Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 59.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
 <figures/reliability_score_hist.png, id=336, 722.7pt x 433.62pt>
 File: figures/reliability_score_hist.png Graphic file (type png)
 <use figures/reliability_score_hist.png>
-Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 64.
+Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 66.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
- [13 <./figures/tokens_count_vx_hist.png>]
-<figures/dates_hist.png, id=349, 1156.32pt x 433.62pt>
+<figures/dates_hist.png, id=340, 1156.32pt x 433.62pt>
 File: figures/dates_hist.png Graphic file (type png)
 <use figures/dates_hist.png>
-Package pdftex.def Info: figures/dates_hist.png  used on input line 73.
+Package pdftex.def Info: figures/dates_hist.png  used on input line 75.
 (pdftex.def)             Requested size: 358.19757pt x 134.32156pt.
-<figures/correlation_tokens_reliability_score.png, id=351, 722.7pt x 433.62pt>
+<figures/correlation_tokens_reliability_score.png, id=342, 722.7pt x 433.62pt>
 File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
 <use figures/correlation_tokens_reliability_score.png>
-Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 83.
+Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 85.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
- [14 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>]) [15 <./figures/correlation_tokens_reliability_score.png>]
+ [13] [14 <./figures/tokens_count_vx_hist.png> <./figures/reliability_score_hist.png>]) [15 <./figures/dates_hist.png> <./figures/correlation_tokens_reliability_score.png>]
 \openout2 = `chap-5.aux'.
 
  (./chap-5.tex [16
@@ -1270,11 +1269,11 @@ File: figures/wordcloud_vx.png Graphic file (type png)
 <use figures/wordcloud_vx.png>
 Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
 (pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
-<figures/tokens_count_vx_per_class_hist.png, id=441, 462.528pt x 346.896pt>
+<figures/tokens_count_vx_per_class_hist.png, id=441, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_per_class_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 21.
-(pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
+(pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
 <images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=442, 308.352pt x 243.7908pt>
 File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
 <use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
@@ -1283,15 +1282,15 @@ Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.j
 ) [27
 
 
- <./figures/tokens_count_vx_split_hist.png>] [28 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_per_class_hist.png>] [29 <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>]
+ <./figures/tokens_count_vx_split_hist.png>] [28 <./figures/wordcloud_vx.png>] [29 <./figures/tokens_count_vx_per_class_hist.png>] [30 <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>]
 \openout2 = `app-n.aux'.
 
- (./app-n.tex [30
+ (./app-n.tex) [31
 
 
 
 
-]) [31] [32
+] [32
 
 
 
@@ -1316,7 +1315,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  75i,11n,76p,3058b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (40 pages, 1332088 bytes).
+Output written on thesis.pdf (40 pages, 1358706 bytes).
 PDF statistics:
  573 PDF objects out of 1000 (max. 8388607)
  491 compressed objects within 5 object streams

@@ -19,12 +19,12 @@ The dataset reliability scores are grouped and split into 4 classes based on Ad 
 
 The dataset is then split into three sets of train, test, and validation with the following distribution:
 \begin{itemize}
-    \item Train set: 4145 rows \\
-          270 samples of class 'Problematic', 578 samples of class 'Questionable', 990 samples of class 'Generally Reliable', 2307 of class 'Reliable'
-    \item Test set: 544 rows \\
-          24 samples of class 'Problematic', 51 samples of class 'Questionable', 99 samples of class 'Generally Reliable', 370 of class 'Reliable'
-    \item Validation set: 578 rows \\
-          31 samples of class 'Problematic', 66 samples of class 'Questionable', 123 samples of class 'Generally Reliable', 358 of class 'Reliable'
+    \item Train set: 4325 rows \\
+          287 samples of class 'Problematic', 611 samples of class 'Questionable', 1033 samples of class 'Generally Reliable', 2394 of class 'Reliable'
+    \item Test set: 569 rows \\
+          27 samples of class 'Problematic', 54 samples of class 'Questionable', 104 samples of class 'Generally Reliable', 384 of class 'Reliable'
+    \item Validation set: 603 rows \\
+          34 samples of class 'Problematic', 70 samples of class 'Questionable', 128 samples of class 'Generally Reliable', 371 of class 'Reliable'
 \end{itemize}
 
 The split is done in a way to ensure that articles from different outlets are distributed equally between the three sets. This is done by grouping the articles based on their outlet and label and iterating over each group, splitting the rows equally, and appending to the train, test, and validation set. Groups of less than 5 rows are not enough to be split and therefore appended to the train set. To handle class imbalances, weighted loss is used when training the model, with weights in proportion to the distribution of each class.

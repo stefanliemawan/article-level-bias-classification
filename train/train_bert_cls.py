@@ -8,7 +8,7 @@ from utils.chunk_model import ChunkModel
 CHUNK_SIZE = 512
 NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
-EPOCHS = 14
+EPOCHS = 3
 TF_MODEL_NAME = "bert-base-cased"
 DROPOUT_PROB = 0.2
 
@@ -30,7 +30,10 @@ test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
 valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
 
-train_df, test_df, valid_df = functions.generate_title_content_features(
+# train_df, test_df, valid_df = functions.generate_title_content_features(
+#     train_df, test_df, valid_df
+# )
+train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
     train_df, test_df, valid_df
 )
 
@@ -70,8 +73,31 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-# TODO - apply first chunk pooling? read su
-# For the transformer encoder, we add an empty chunk at the beginning of the chunk sequence that is used as the document representation to the classifier, analogous to the [CLS] token commonly used in that way for sentence representations (and used here as the chunk representation)
+# vx + rescraped, title + content, bert-base-cased, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2
+#               precision    recall  f1-score   support
 
-# title + content, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 10, TRANSFORMER_MODEL_NAME bert-base-uncased, 2 linear layer
-# {'loss': 1.7769678831100464, 'precision': 0.7186231414465551, 'recall': 0.719626168224299, 'f1': 0.7175640997635683}
+#            0       0.44      0.67      0.53        27
+#            1       0.41      0.48      0.44        54
+#            2       0.39      0.50      0.44       104
+#            3       0.91      0.79      0.84       384
+
+#     accuracy                           0.70       569
+#    macro avg       0.54      0.61      0.56       569
+# weighted avg       0.74      0.70      0.72       569
+
+# {'loss': 0.9091169238090515, 'precision': 0.7440445027139698, 'recall': 0.6994727592267135, 'f1': 0.7163546531981585}
+
+# vx + rescraped, outlet + title + content, bert-base-cased, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2
+
+#               precision    recall  f1-score   support
+
+#            0       0.37      0.59      0.46        27
+#            1       0.32      0.43      0.37        54
+#            2       0.40      0.47      0.43       104
+#            3       0.92      0.79      0.85       384
+
+#     accuracy                           0.69       569
+#    macro avg       0.50      0.57      0.53       569
+# weighted avg       0.74      0.69      0.71       569
+
+# {'loss': 0.9438098669052124, 'precision': 0.7384057291425898, 'recall': 0.687170474516696, 'f1': 0.7071647651827099}
