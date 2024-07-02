@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  2 JUL 2024 16:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  2 JUL 2024 17:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1532,6 +1532,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 9.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 9.
+
+Underfull \vbox (badness 6078) has occurred while \output is active []
+
  [23
 
 
@@ -1553,91 +1556,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \openout2 = `app-A.aux'.
 
  (./app-A.tex
-<figures/tokens_count_vx_split_hist.png, id=476, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_split_hist.png, id=477, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_split_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
 (pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
-<figures/wordcloud_vx.png, id=477, 462.528pt x 346.896pt>
+<figures/wordcloud_vx.png, id=478, 462.528pt x 346.896pt>
 File: figures/wordcloud_vx.png Graphic file (type png)
 <use figures/wordcloud_vx.png>
 Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
-(pdftex.def)             Requested size: 358.19757pt x 268.66164pt.
-<figures/tokens_count_vx_per_class_hist.png, id=478, 867.24pt x 867.24pt>
-File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
-<use figures/tokens_count_vx_per_class_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 21.
-(pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
-<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=479, 308.352pt x 243.7908pt>
-File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
-<use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
-Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg  used on input line 29.
-(pdftex.def)             Requested size: 318.40121pt x 251.73972pt.
-<images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png, id=480, 1003.75pt x 2275.50125pt>
-File: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png Graphic file (type png)
-<use images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>
-Package pdftex.def Info: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png  used on input line 38.
-(pdftex.def)             Requested size: 238.80243pt x 541.33992pt.
-<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=483, 1003.75pt x 745.78625pt>
-File: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png Graphic file (type png)
-<use images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>
-Package pdftex.def Info: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png  used on input line 46.
-(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
-) [31
-
-
- <./figures/tokens_count_vx_split_hist.png>] [32 <./figures/wordcloud_vx.png>] [33 <./figures/tokens_count_vx_per_class_hist.png>] [34 <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>] [35 <./images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>] [36 <./images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>]
-\openout2 = `app-n.aux'.
-
- (./app-n.tex) [37
-
-
-
-
-] [38
-
-
-
-] (./thesis.bbl
-bibitemlist
-[39
-
-] [40] [41]
-Underfull \hbox (badness 4699) in paragraph at lines 173--176
-[]\T1/lmr/m/n/10.95 (+20) Reuters In-sti-tute for the Study of Jour-nal-ism.  Share of adults
- []
-
-
-Underfull \hbox (badness 1502) in paragraph at lines 173--176
-\T1/lmr/m/n/10.95 (+20) who trust news me-dia most of the time in se-lected coun-tries world-
- []
-
-
-Underfull \hbox (badness 2088) in paragraph at lines 173--176
-\T1/lmr/m/n/10.95 (+20) wide as of febru-ary 2023 [graph], June 14 2023.  In Statista. Re-
- []
-
-[42]) [43]
-\tf@toc=\write6
-\openout6 = `thesis.toc'.
-
- (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux) (./app-n.aux))
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 76018581F59C8C4CF6268CD2C445935A;2959.
- ) 
-Here is how much of TeX's memory you used:
- 27955 strings out of 476025
- 511424 string characters out of 5790016
- 1874388 words of memory out of 5000000
- 47482 multiletter control sequences out of 15000+600000
- 602148 words of font info for 189 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 84i,11n,89p,3058b,674s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (47 pages, 3894393 bytes).
-PDF statistics:
- 645 PDF objects out of 1000 (max. 8388607)
- 538 compressed objects within 6 object streams
- 158 named destinations out of 1000 (max. 500000)
- 46368 words of extra memory for PDF output out of 51595 (max. 10000000)
-
+(pdftex.def)             Requested size: 358.

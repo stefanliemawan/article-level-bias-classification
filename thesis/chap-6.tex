@@ -1,7 +1,7 @@
 \chapter{Evaluation}
 \label{cha:6}
 
-All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. BERT model used is 'bert-base-cased'. The batch size is set to 8, with epochs ranging between 3-5. Learning rate is set to either 1e-5 and 2e-5, with a linear warmup steps of 162 (10\% of total training steps). For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles. Chunk size is 512 for chunk-based methods.
+All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. BERT model used is 'bert-base-cased'. The batch size is set to 8, with epochs ranging between 3-5. Learning rate is set to either 1e-5 and 2e-5, with a linear warmup steps of 162 (10\% of total training steps). For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles. Chunk size is 512 for chunk-based methods. 2 transformer layers, 0.2 dropout probability.
 
 \begin{table}[htbp]
     \centering
@@ -55,21 +55,9 @@ All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and tra
     \label{table:eval}
 \end{table}
 
+Table \ref{table:eval} shows the evaluation of all methods given title and content of articles as features. It can be seen that frequency-based approaches such as BoW and TF-IDF perform generally well. Including outlet information as features only slighty improve the performance. However, when we look at per-class metrics, it can be seen that the overall scores are heavily influenced by the performance of class 'Reliable' due to its large support. Evidently, the model suffers when classifying underrepresented classes. Furthermore, TF-IDF model seems to perform significantly worse in the 'Problematic' class Fine-tuning BERT only performed slightly better than BoW method. In this method 'bert-base-cased' is used instead of 'bert-base-uncased' to reserve differences in capitalised words, which can be crucial. Moreover, incorporating outlet information as features moderately increase the performance in all accounts. The sliding window method outperformed both BoW and TF-IDF methods, while performing slightly better to a standard BERT fine-tuning of the first 512 tokens. For the CLS method, two different language models are used: BERT and MAGPIE, to encode the input in a higher dimensional space. Both approaches with the CLS method are evaluated. Similarly, the CLS method mostly outperformed the baselines. Compared to the sliding window, the MAGPIE CLS method performed slightly better while only using 2 transformer layer instead of 12 in the standard fine-tuning operation.
 
-
-From Table \ref{table:eval} it can be seen that frequency-based approaches such as BoW and TF-IDF perform generally well. Including outlet information as features only slighty improve the performance. However, when we look at per-class metrics, it can be seen that the overall scores are heavily influenced by the performance of class 'Reliable' due to its large support. Evidently, the model suffers when classifying underrepresented classes. Furthermore, TF-IDF model seems to perform significantly worse in the 'Problematic' class.
-
-Fine-tuning BERT only performed slightly better than BoW method. In this method 'bert-base-cased' is used instead of 'bert-base-uncased' to reserve differences in capitalised words, which can be crucial. Moreover, incorporating outlet information as features moderately increase the performance in all accounts.
-
-As a comparison, using solely outlet information without any textual information (with majority votes) outperformed all baseline methods both overall and in every class. This result signifies how influential outlet information can be used to classify media bias.
-
-
-The sliding window method outperformed both BoW and TF-IDF methods, while performing slightly better to a standard BERT fine-tuning of the first 512 tokens. However, with the outlet information included, BERT fine-tuning still reigned superior with a particularly strong f1 score on the "Problematic" class.
-
-For the CLS method, two different language models are used: BERT and MAGPIE, to encode the input in a higher dimensional space. Both approaches with the CLS method are evaluated. A chunk size of 512 is used, 2 transformer layers, learning rate 1e-5, 162 warmup steps (10\% of training steps), 0.2 dropout probability, and 3 epochs.
-
-
-Similarly, the CLS method mostly outperformed the baselines. However, with outlet information included the CLS methods performed somewhat worse, particularly on the most biased "Problematic" class. Compared to the sliding window, the MAGPIE CLS method performed slightly better while only using 2 transformer layer instead of 12 in the standard fine-tuning operation.
+Table \ref{table:eval-outlet} shows the evaluation of methods, given the outlet as additional features to the title and content. As a comparison, using solely outlet information without any textual information (with majority votes) outperformed all baseline methods both overall and in every class. This result signifies how influential outlet information can be used to classify media bias. BERT fine-tuning still reigned superior with a particularly strong f1 score on the "Problematic" class. The CLS methods performed somewhat worse, particularly on the most biased "Problematic" class.
 
 
 \begin{table}[htbp]
