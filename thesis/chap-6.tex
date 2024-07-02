@@ -1,274 +1,117 @@
 \chapter{Evaluation}
 \label{cha:6}
 
-All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. The batch size is set to 8, with epochs ranging between 3-5. For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles.
-
-\section{Baseline methods}
+All methods are implemented using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. BERT model used is 'bert-base-cased'. The batch size is set to 8, with epochs ranging between 3-5. Learning rate is set to either 1e-5 and 2e-5, with a linear warmup steps of 162 (10\% of total training steps). For every method, precision, recall, and F1 score is evaluated on both overall and per class performance. It is particularly important to assess how well the model classify biased articles. Chunk size is 512 for chunk-based methods.
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
+    \small
+    \begin{tabular}{| c | c | c | c | c |}
+        \hline                            Method & Class              & Precision & Recall & F1     \\\cline{1-5}
+        \multirow{5}{*}{BoW + LR}                & Problematic        & 0.38      & 0.41   & 0.39   \\
+                                                 & Questionable       & 0.34      & 0.31   & 0.33   \\
+                                                 & Generally Reliable & 0.36      & 0.40   & 0.38   \\
+                                                 & Reliable           & 0.85      & 0.83   & 0.84   \\
+                                                 & Overall            & 0.6922    & 0.6818 & 0.6865 \\
         \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}} \\
+        \multirow{5}{*}{TF-IDF + LR}             & Problematic        & 1.00      & 0.11   & 0.20   \\
+                                                 & Questionable       & 0.47      & 0.17   & 0.25   \\
+                                                 & Generally Reliable & 0.36      & 0.31   & 0.33   \\
+                                                 & Reliable           & 0.79      & 0.94   & 0.86   \\
+                                                 & Overall            & 0.6904    & 0.7117 & 0.6725 \\
         \hline
-        Class              & Precision & Recall & F1     & Support   \\
+        \multirow{5}{*}{Outlet majority}         & Problematic        & 0.56      & 0.70   & 0.62   \\
+                                                 & Questionable       & 0.58      & 0.46   & 0.52   \\
+                                                 & Generally Reliable & 0.56      & 0.53   & 0.54   \\
+                                                 & Reliable           & 0.91      & 0.93   & 0.92   \\
+                                                 & Overall            & 0.7945    & 0.7996 & 0.7959 \\
         \hline
-        Problematic        & 0.38      & 0.41   & 0.39   & 27        \\
+        \multirow{5}{*}{BERT FT}                 & Problematic        & 0.43      & 0.44   & 0.44   \\
+                                                 & Questionable       & 0.29      & 0.39   & 0.33   \\
+                                                 & Generally Reliable & 0.44      & 0.48   & 0.46   \\
+                                                 & Reliable           & 0.90      & 0.83   & 0.86   \\
+                                                 & Overall            & 0.7359    & 0.7065 & 0.7193 \\
         \hline
-        Questionable       & 0.34      & 0.31   & 0.33   & 54        \\
+        \multirow{5}{*}{BERT SW FT}              & Problematic        & 0.45      & 0.48   & 0.46   \\
+                                                 & Questionable       & 0.39      & 0.52   & 0.45   \\
+                                                 & Generally Reliable & 0.42      & 0.50   & 0.46   \\
+                                                 & Reliable           & 0.91      & 0.81   & 0.86   \\
+                                                 & Overall            & 0.7472    & 0.7112 & 0.7257 \\
         \hline
-        Generally Reliable & 0.36      & 0.40   & 0.38   & 104       \\
+        \multirow{5}{*}{BERT CLS}                & Problematic        & 0.44      & 0.67   & 0.53   \\
+                                                 & Questionable       & 0.41      & 0.48   & 0.44   \\
+                                                 & Generally Reliable & 0.39      & 0.50   & 0.44   \\
+                                                 & Reliable           & 0.91      & 0.79   & 0.84   \\
+                                                 & Overall            & 0.7440    & 0.6994 & 0.7163 \\
         \hline
-        Reliable           & 0.85      & 0.83   & 0.84   & 384       \\
-        \hline
-        Overall            & 0.6922    & 0.6818 & 0.6865 &           \\
-        \hline
-    \end{tabular}
-    \caption{BoW + logistic regression evaluation}
-    \label{table:bow-logistic-eval}
-\end{table}
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support   \\
-        \hline
-        Problematic        & 1.00      & 0.11   & 0.20   & 27        \\
-        \hline
-        Questionable       & 0.47      & 0.17   & 0.25   & 54        \\
-        \hline
-        Generally Reliable & 0.36      & 0.31   & 0.33   & 104       \\
-        \hline
-        Reliable           & 0.79      & 0.94   & 0.86   & 384       \\
-        \hline
-        Overall            & 0.6904    & 0.7117 & 0.6725 &           \\
-        \hline
-    \end{tabular}
-    \caption{TF-IDF + logistic regression evaluation}
-    \label{table:tfidf_logistic-eval}
-\end{table}
-
-
-In both Table \ref{table:bow-logistic-eval} and Table \ref{table:tfidf_logistic-eval}, it can be seen that frequency-based approaches such as BoW and TF-IDF perform generally well. Including outlet information as features only slighty improve the performance. However, when we look at per-class metrics, it can be seen that the overall scores are heavily influenced by the performance of class 'Reliable' due to its large support. Evidently, the model suffers when classifying underrepresented classes. Furthermore, TF-IDF model seems to perform significantly worse in the 'Problematic' class.
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.43      & 0.44   & 0.44   & 27                 \\
-        \hline
-        Questionable       & 0.29      & 0.39   & 0.33   & 54                 \\
-        \hline
-        Generally Reliable & 0.44      & 0.48   & 0.46   & 104                \\
-        \hline
-        Reliable           & 0.90      & 0.83   & 0.86   & 384                \\
-        \hline
-        Overall            & 0.7359    & 0.7065 & 0.7193 &                    \\
-        \hline
-        \hline
-        \hline
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.65      & 0.56   & 0.60   & 27                 \\
-        \hline
-        Questionable       & 0.45      & 0.50   & 0.47   & 54                 \\
-        \hline
-        Generally Reliable & 0.44      & 0.62   & 0.52   & 104                \\
-        \hline
-        Reliable           & 0.94      & 0.84   & 0.88   & 384                \\
-        \hline
-        Overall            & 0.8186    & 0.7883 & 0.7504 &                    \\
+        \multirow{5}{*}{MAGPIE CLS}              & Problematic        & 0.46      & 0.63   & 0.53   \\
+                                                 & Questionable       & 0.36      & 0.41   & 0.38   \\
+                                                 & Generally Reliable & 0.41      & 0.55   & 0.47   \\
+                                                 & Reliable           & 0.93      & 0.80   & 0.86   \\
+                                                 & Overall            & 0.7577    & 0.7117 & 0.7293 \\
         \hline
     \end{tabular}
-    \caption{BERT fine-tuning evaluation}
-    \label{table:bert-fine-tuning-eval}
-\end{table}
-
-Fine-tuning BERT after 6 epochs only performed slightly better than BoW method as can be seen in Table \ref{table:bert-fine-tuning-eval} and Table \ref{table:bow-logistic-eval}. In this method 'bert-base-cased' is used instead of 'bert-base-uncased' to reserve differences in capitalised words, which can be crucial. Moreover, incorporating outlet information as features moderately increase the performance in all accounts.
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
-        \hline
-        Class              & Precision & Recall & F1     & Support \\
-        \hline
-        \hline
-        Problematic        & 0.56      & 0.70   & 0.62   & 27      \\
-        \hline
-        Questionable       & 0.58      & 0.46   & 0.52   & 54      \\
-        \hline
-        Generally Reliable & 0.56      & 0.53   & 0.54   & 104     \\
-        \hline
-        Reliable           & 0.91      & 0.93   & 0.92   & 384     \\
-        \hline
-        Overall            & 0.7945    & 0.7996 & 0.7959 &         \\
-        \hline
-    \end{tabular}
-    \caption{Outlet-based majority votes evaluation}
-    \label{table:majority-votes-eval}
+    \caption{Evaluation table, with features only including title and content of articles}
+    \label{table:eval}
 \end{table}
 
 
+
+From Table \ref{table:eval} it can be seen that frequency-based approaches such as BoW and TF-IDF perform generally well. Including outlet information as features only slighty improve the performance. However, when we look at per-class metrics, it can be seen that the overall scores are heavily influenced by the performance of class 'Reliable' due to its large support. Evidently, the model suffers when classifying underrepresented classes. Furthermore, TF-IDF model seems to perform significantly worse in the 'Problematic' class.
+
+Fine-tuning BERT only performed slightly better than BoW method. In this method 'bert-base-cased' is used instead of 'bert-base-uncased' to reserve differences in capitalised words, which can be crucial. Moreover, incorporating outlet information as features moderately increase the performance in all accounts.
 
 As a comparison, using solely outlet information without any textual information (with majority votes) outperformed all baseline methods both overall and in every class. This result signifies how influential outlet information can be used to classify media bias.
 
-\begin{comment}
-Find out why TF-IDF performs worse on class problematic
-\end{comment}
 
-
-\section{Sliding window}
-
-For this approach, a window size of 512 (maximum token of BERT) is chosen with a stride of 256. Additionally, only the first 3 chunks of each input sequence will be used and the rest discarded, as using longer chunks did not consistently improve performance, along with increased computation cost.
-
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.45      & 0.48   & 0.46   & 27                 \\
-        \hline
-        Questionable       & 0.39      & 0.52   & 0.45   & 54                 \\
-        \hline
-        Generally Reliable & 0.42      & 0.50   & 0.46   & 104                \\
-        \hline
-        Reliable           & 0.91      & 0.81   & 0.86   & 384                \\
-        \hline
-        Overall            & 0.7472    & 0.7112 & 0.7257 &                    \\
-        \hline
-        \hline
-        \hline
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.46      & 0.41   & 0.43   & 27                 \\
-        \hline
-        Questionable       & 0.41      & 0.48   & 0.44   & 54                 \\
-        \hline
-        Generally Reliable & 0.46      & 0.56   & 0.51   & 104                \\
-        \hline
-        Reliable           & 0.91      & 0.84   & 0.87   & 384                \\
-        \hline
-        Overall            & 0.7585    & 0.7359 & 0.7451 &                    \\
-        \hline
-    \end{tabular}
-    \caption{Sliding Window evaluation}
-    \label{table:sliding-window-eval}
-\end{table}
-
-The sliding window method outperformed both BoW and TF-IDF methods, while performing slightly better to a standard BERT fine-tuning of the first 512 tokens. However, with the outlet information included, BERT fine-tuning still reigns superior with a particularly strong f1 score on the "Problematic" class.
-
-\section{CLS Method}
+The sliding window method outperformed both BoW and TF-IDF methods, while performing slightly better to a standard BERT fine-tuning of the first 512 tokens. However, with the outlet information included, BERT fine-tuning still reigned superior with a particularly strong f1 score on the "Problematic" class.
 
 For the CLS method, two different language models are used: BERT and MAGPIE, to encode the input in a higher dimensional space. Both approaches with the CLS method are evaluated. A chunk size of 512 is used, 2 transformer layers, learning rate 1e-5, 162 warmup steps (10\% of training steps), 0.2 dropout probability, and 3 epochs.
 
 
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.44      & 0.67   & 0.53   & 27                 \\
-        \hline
-        Questionable       & 0.41      & 0.48   & 0.44   & 54                 \\
-        \hline
-        Generally Reliable & 0.39      & 0.50   & 0.44   & 104                \\
-        \hline
-        Reliable           & 0.91      & 0.79   & 0.84   & 384                \\
-        \hline
-        Overall            & 0.7440    & 0.6994 & 0.7163 &                    \\
-        \hline
-        \hline
-        \hline
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.37      & 0.59   & 0.46   & 27                 \\
-        \hline
-        Questionable       & 0.32      & 0.43   & 0.37   & 54                 \\
-        \hline
-        Generally Reliable & 0.40      & 0.47   & 0.43   & 104                \\
-        \hline
-        Reliable           & 0.92      & 0.79   & 0.85   & 384                \\
-        \hline
-        Overall            & 0.7384    & 0.6871 & 0.7071 &                    \\
-        \hline
-    \end{tabular}
-    \caption{BERT CLS evaluation}
-    \label{table:bert-cls-eval}
-\end{table}
+Similarly, the CLS method mostly outperformed the baselines. However, with outlet information included the CLS methods performed somewhat worse, particularly on the most biased "Problematic" class. Compared to the sliding window, the MAGPIE CLS method performed slightly better while only using 2 transformer layer instead of 12 in the standard fine-tuning operation.
 
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{|| c | c | c | c | c ||}
+    \small
+    \begin{tabular}{| c | c | c | c | c |}
+        \hline                            Method & Class              & Precision & Recall & F1     \\\cline{1-5}
+        \multirow{5}{*}{Outlet majority}         & Problematic        & 0.56      & 0.70   & 0.62   \\
+                                                 & Questionable       & 0.58      & 0.46   & 0.52   \\
+                                                 & Generally Reliable & 0.56      & 0.53   & 0.54   \\
+                                                 & Reliable           & 0.91      & 0.93   & 0.92   \\
+                                                 & Overall            & 0.7945    & 0.7996 & 0.7959 \\
         \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: title + content}}          \\
+        \multirow{5}{*}{BERT FT}                 & Problematic        & 0.65      & 0.56   & 0.60   \\
+                                                 & Questionable       & 0.45      & 0.50   & 0.47   \\
+                                                 & Generally Reliable & 0.44      & 0.62   & 0.52   \\
+                                                 & Reliable           & 0.94      & 0.84   & 0.88   \\
+                                                 & Overall            & 0.8186    & 0.7883 & 0.7504 \\
         \hline
-        Class              & Precision & Recall & F1     & Support            \\
+        \multirow{5}{*}{BERT SW FT}              & Problematic        & 0.46      & 0.41   & 0.43   \\
+                                                 & Questionable       & 0.41      & 0.48   & 0.44   \\
+                                                 & Generally Reliable & 0.46      & 0.56   & 0.51   \\
+                                                 & Reliable           & 0.91      & 0.84   & 0.87   \\
+                                                 & Overall            & 0.7585    & 0.7359 & 0.7451 \\
         \hline
+        \multirow{5}{*}{BERT CLS}                & Problematic        & 0.37      & 0.59   & 0.46   \\
+                                                 & Questionable       & 0.32      & 0.43   & 0.37   \\
+                                                 & Generally Reliable & 0.40      & 0.47   & 0.43   \\
+                                                 & Reliable           & 0.92      & 0.79   & 0.85   \\
+                                                 & Overall            & 0.7384    & 0.6871 & 0.7071 \\
         \hline
-        Problematic        & 0.46      & 0.63   & 0.53   & 27                 \\
-        \hline
-        Questionable       & 0.36      & 0.41   & 0.38   & 54                 \\
-        \hline
-        Generally Reliable & 0.41      & 0.55   & 0.47   & 104                \\
-        \hline
-        Reliable           & 0.93      & 0.80   & 0.86   & 384                \\
-        \hline
-        Overall            & 0.7577    & 0.7117 & 0.7293 &                    \\
-        \hline
-        \hline
-        \hline
-        \hline
-        \multicolumn{5}{|| c ||}{\textbf{Features: outlet + title + content}} \\
-        \hline
-        Class              & Precision & Recall & F1     & Support            \\
-        \hline
-        \hline
-        Problematic        & 0.42      & 0.52   & 0.47   & 27                 \\
-        \hline
-        Questionable       & 0.35      & 0.43   & 0.38   & 54                 \\
-        \hline
-        Generally Reliable & 0.43      & 0.55   & 0.48   & 104                \\
-        \hline
-        Reliable           & 0.93      & 0.82   & 0.87   & 384                \\
-        \hline
-        Overall            & 0.76034   & 0.7170 & 0.7342 &                    \\
+        \multirow{5}{*}{MAGPIE CLS}              & Problematic        & 0.42      & 0.52   & 0.47   \\
+                                                 & Questionable       & 0.35      & 0.43   & 0.38   \\
+                                                 & Generally Reliable & 0.43      & 0.55   & 0.48   \\
+                                                 & Reliable           & 0.93      & 0.82   & 0.87   \\
+                                                 & Overall            & 0.76034   & 0.7170 & 0.7342 \\
         \hline
     \end{tabular}
-    \caption{MAGPIE CLS evaluation}
-    \label{table:magpie-cls-eval}
+    \caption{Evaluation table, with outlet information as additional features (outlet + title + content)}
+    \label{table:eval-outlet}
 \end{table}
 
-Similarly, both CLS methods mostly outperformed the baselines. However, with outlet information included the CLS methods performed somewhat worse, particularly on the most biased "Problematic" class.
 
 %%% Local Variables: 
 %%% mode: latex
