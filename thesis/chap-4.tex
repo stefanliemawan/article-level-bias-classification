@@ -44,9 +44,31 @@ An example of a low-rated article can be seen in Table \ref{table:example-biased
 
 The original BAT dataset only contains news titles and links (along with other metadata) and is missing the body content of articles. To overcome this, a Python script is written and executed, iteratively visiting each of the URLs from the dataset and scraping the news content. This was not an easy task as each website has its own unique structures and formats. Furthermore, the scraped text contains noises that are almost impossible to remove through the script. Some outlets such as The Nation, Chicago Tribune, and Truthout required manual intervention as the scraped text was duplicated over themselves. The first round of Extension resulted in 5270 rows of articles out of the original 6345 rows, mainly due to unavailable websites and missing articles.
 
-To remove noises from article content, the text are then pre-processed extensively. All the content of every article in the dataset were joined into one single list, split into words, and then compared against an English word list \cite{dwyl-english-words}, resulting in a list of faulty words sorted by their occurences. Using this list, noisy patterns were analysed and handled through a combination of string and regex methods, and conjoined words were identified and fixed through a giant Python dictionary. This process is repeated more than several times until the contents are valuable enough to work with. Note that at this point some noises still remain within the text as it will take an extensive amount of time and manual labour to completely clean the text.
+To remove noises from article content, the text are then pre-processed extensively. All the content of every article in the dataset were joined into one single list, split into words, and then matched with an English word list \cite{dwyl-english-words}, outputting a list of words that do not exist in the dictionary, sorted by their occurences. Using this list, noise patterns were analysed and handled through a combination of string and regex methods, frequent noisy phrases and conjoined words were identified and fixed through giant JSON dictionaries as references. This process is repeated more than several times until the contents are valuable enough to work with. Note that at this point some noises still remain within the text as it will take an extensive amount of time and manual labour to completely clean the text. Figure \ref{fig:conjoined_words} shows examples of conjoined words, which are highly prevalent inside scraped article contents. Figure \ref{fig:dict_fix_examples} shows part of giant JSON files that are used to address these noises.
 
-An additional round of extension is done by compiling the list of unavailable/unscraped websites and taking a closer look of the problem individually. This round involved searching for missing articles, fixing broken links, visiting the websites manually on the browser, and copy-pasting article contents into a spreadsheet, resulting in additional 226 rows of articles. The final dataset consists of 5496 rows of articles.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\linewidth]{images/conjoined_words_example.png}
+    \caption{Example of conjoined words, over 60k of conjoined are expected to exist within the dataset article contents}
+    \label{fig:conjoined_words}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.67\linewidth]{images/noise_phrases_example.png}
+    \includegraphics[width=0.3\linewidth]{images/word_fix_example.png}
+    \caption{Dictionaries to fix conjoined words and noise phrases}
+    \label{fig:dict_fix_examples}
+\end{figure}
+
+
+An additional round of extension is done after the initial scraping by compiling the list of unavailable/unscraped websites and taking a closer look of the problem individually. This round involved searching for missing articles, fixing broken links, visiting the websites manually on the browser, and copy-pasting article contents into a spreadsheet, resulting in additional 226 rows of articles. The final dataset consists of 5496 rows of articles.
+
+\begin{comment}
+add total tokens for all contents in the dataset?
+add pseudocode for utils and noise fixing?
+\end{comment}
 
 \begin{comment}
 Explain further on preprocessing scraped text. More details on the preprocessing scripts?

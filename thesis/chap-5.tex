@@ -1,13 +1,9 @@
 \chapter{Methodology}
 \label{cha:5}
 
-\section{Features and baselines}
-
-The primary features will include the title and content of the articles. Ideally, a reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. Additionally, outlet metadata is also incorporated and compared.
-
-As a baseline, traditional methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. Standard fine-tuning of BERT will also be evaluated. Additionally, an outlet-based majority votes method is also implemented as a comparison and to show the influence of outlet information within the classifiers. This method works by simply taking the majority vote over classes for every outlet and use it as a classifier: \textit{an article is from outlet A, majority of articles from outlet A is classified as class X, therefore, article A has a class X}.
-
 \section{Pre-processing}
+
+\subsection{Dataset split}
 
 The dataset reliability scores are grouped and split into 4 classes based on Ad Fontes split as previously described in Section \ref{bat-characteristics}:
 \begin{enumerate}
@@ -31,9 +27,44 @@ The split is done in a way to ensure that articles from different outlets are di
 
 A major drawback of this 'balance' splitting is that there is no unseen outlet in the test set and validation set. This can influence the final test metrics and may hinder the model's ability to generalise to new, unseen articles from unseen outlets. However, considering that new outlets are rarely introduced in the real life, it might be beneficial to slightly overfit on the patterns of existing outlets.
 
+
+\section{Features and baselines}
+
+The primary features will include the title and content of the articles. Ideally, a reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. However, outlet information is also experimented and compared.
+
+As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. In these cases, the validation set are concatenated into the training set. An outlet majority votes is also implemented as a comparison to show the influence of outlet information in this particular task. This method works by simply taking the majority vote over classes for every outlet and use it as a classifier: \textit{an article is from outlet A, majority of articles from outlet A is classified as class X, therefore, article A has a class X}.
+
 \section{Proposed methods}
 
-\subsection{Sliding window fine-tuning}
+\subsection{BoW + MLP}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+            node distance=1.25cm,
+            every node/.style={fill=white, font=\footnotesize},
+            thick, scale=1, every node/.style={scale=1}]
+
+        \node (input) [draw, align=center] {Bag-of-words Input};
+        \node (dense) [draw, below of=input] {Dense};
+        \draw[->] (input.south) -- (dense.north);
+        \node (dropout) [draw, right of=dense, xshift=2cm] {Dropout};
+        \draw[->] (dense.east) -- node[above, midway] {ReLU} (dropout.west);
+        \node (softmax) [draw, right of=dropout, xshift=2cm] {Softmax};
+        \draw[->] (dropout.east) -- (softmax.west);
+        \node (output) [draw, right of=softmax, xshift=2cm] {Output};
+        \draw[->] (softmax.east) -- (output.west);
+
+    \end{tikzpicture}
+    \caption{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}
+    \label{fig:bow_mlp_architecture}
+\end{figure}
+
+Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of the BoW + MLP method, combining traditional encoding methods with a simple neural network training. This approach allows for a simple and computationally-cheap implementation, yet effective classifier. The model is trained on 10 epochs with a learning rate of 2e-5. Hidden size for the dense layer is 128 with a dropout probability of 0.2, no warmup steps are applied.
+
+\subsection{BERT fine-tuning}
+
+\subsection{BERT sliding window fine-tuning}
 
 \begin{figure}[htbp]
     \centering
@@ -81,11 +112,13 @@ A major drawback of this 'balance' splitting is that there is no unseen outlet i
 
         \draw[->] (final_logits.south) -- (loss.north);
     \end{tikzpicture}
-    \caption{Sliding window fine-tuning architecture. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying the loss function.}
+    \caption{BERT Sliding window fine-tuning architecture. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying the loss function.}
     \label{fig:sliding_window_architecture}
 \end{figure}
 
-Figure \ref{fig:sliding_window_architecture} illustrates the architecture of the sliding window method. Input texts are segmented into smaller chunks, which are then processed as mini-batches by the model. The logits (output scores) of each chunk are pooled together to produce final logits, to which the loss function is applied. This method bypasses the sequence length limitation of BERT models (512 tokens), allowing for full representation and processing of text input without any loss of information.
+Figure \ref{fig:sliding_window_architecture} illustrates the architecture of the sliding window fine-tuning method. Input texts are segmented into chunks, which are then processed as mini-batches by the model. The logits (output scores) produced by each chunk are then pooled together to produce the final logits, to which the loss function is applied. This method bypasses the sequence length limitation of BERT models (512 tokens), allowing for full representation and processing of text input without any loss of information.
+
+A window size of 512 is used in the implementation with no stride, fine-tuned on 4 epochs with weighted loss.
 
 \begin{comment}
 The complexity of this method is as follows:
@@ -118,7 +151,7 @@ where L is the sequence length, T is the number of transformer layers in the BER
         \draw[->] (input.south) -- (chunk2.north);
         \draw[->] (input.south) -- (chunk3.north);
 
-        \node (encoder) [draw, below of=chunk2] {Transformer Model};
+        \node (encoder) [draw, below of=chunk2] {Transformer Encoder};
 
         \draw[->] (chunk1.south) -- (encoder.north);
         \draw[->] (chunk2.south) -- (encoder.north);
@@ -160,9 +193,9 @@ where L is the sequence length, T is the number of transformer layers in the BER
 \end{figure}
 
 Figure \ref{fig:cls_method} shows the full architecture of the CLS method.
-This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded using a pre-trained Large Language Model (LLM) and fed into the model. The last hidden state, as described in \cite{sun-2020-fine-tune}, serves as the text representation. Subsequently, the chunks pass through multiple transformer layers to enrich their contextual understanding. For each chunk, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP) layer. Finally, a softmax operation will be applied to the output of the MLP layer to determine the final output class.
+This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional space features by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, as described in \cite{sun-2020-fine-tune}. Subsequently, the chunks are then passed into \textit{n} transformer layers to enrich their contextual understanding. For each chunk, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Finally, a softmax operation will be applied to the output of the MLP layer to determine the final output class. Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
 
-Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
+Two different language models can be used as the transformer encoder in this method: BERT \cite{devlin-2019-bert} or MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLu activation function \cite{agarap-2018-relu} and dropouts. Each chunk is set to contain 512 tokens, only 2 transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss.
 
 \begin{comment}
 The complexity of the CLS method can be expressed as:
@@ -180,6 +213,13 @@ where:
 \end{align*}
 \end{comment}
 
+\section{Implementation details}
+
+All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and transformer \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used on all cases.
+
+\subsection{Weighted loss}
+
+Weighted loss addresses the problem of training models on an imbalanced dataset by assigning higher weights to classes with fewer instances and lower weights to classes with more instances. This adjustment ensures that the model pays more attention to correctly predicting the minority class, thereby improving overall performance metrics. This method is applied through the scikit-learn library \cite{pedregosa-2011-scikit-learn}.
 
 %%% Local Variables: 
 %%% mode: latex

@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{agarap-2018-relu}
+A.~F. Agarap.
+\newblock Deep learning using rectified linear units (relu).
+\newblock {\em arXiv preprint arXiv:1803.08375}, 2018.
+
 \bibitem{aires-2020-information}
 V.~P. Aires, J.~Freire, F.~G. Nakamura, A.~S. da~Silva, and E.~F. Nakamura.
 \newblock An information theory approach to detect media bias in news websites.
@@ -119,6 +124,10 @@ Y.~Lei, R.~Huang, L.~Wang, and N.~Beauchamp.
 Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettlemoyer, and V.~Stoyanov.
 \newblock Roberta: A robustly optimized bert pretraining approach, 2019.
 
+\bibitem{loshchilov-2019-adamw}
+I.~Loshchilov and F.~Hutter.
+\newblock Decoupled weight decay regularization, 2019.
+
 \bibitem{maab-2023-lexical-bias-detection}
 I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
 \newblock An effective approach for informational and lexical bias detection.
@@ -158,6 +167,11 @@ A.~Paszke, S.~Gross, S.~Chintala, G.~Chanan, E.~Yang, Z.~DeVito, Z.~Lin, A.~Desm
 T.~E. Patterson and W.~Donsbach.
 \newblock News decisions: Journalists as partisan actors.
 \newblock {\em Political Communication}, 13(4):455--468, 1996.
+
+\bibitem{pedregosa-2011-scikit-learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, et~al.
+\newblock Scikit-learn: Machine learning in python.
+\newblock {\em Journal of machine learning research}, 12(Oct):2825--2830, 2011.
 
 \bibitem{rafail-2018-tea-party}
 P.~Rafail and J.~D. McCarthy.
@@ -209,6 +223,11 @@ G.~Vallejo, T.~Baldwin, and L.~Frermann.
 E.~van~den Berg and K.~Markert.
 \newblock Context in informational bias detection.
 \newblock In D.~Scott, N.~Bel, and C.~Zong, editors, {\em Proceedings of the 28th International Conference on Computational Linguistics}, pages 6315--6326, Barcelona, Spain (Online), Dec. 2020. International Committee on Computational Linguistics.
+
+\bibitem{van-1995-python}
+G.~Van~Rossum and F.~L. Drake~Jr.
+\newblock {\em Python reference manual}.
+\newblock Centrum voor Wiskunde en Informatica Amsterdam, 1995.
 
 \bibitem{wan-2019-long-length}
 L.~Wan, G.~Papageorgiou, M.~Seddon, and M.~Bernardoni.

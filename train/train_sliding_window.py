@@ -14,6 +14,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "true"
 MODEL_NAME = "bert-base-cased"
 
 WINDOW_SIZE = 512
+STRIDE = 256
+MAX_CHUNKS = 3
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -41,7 +43,7 @@ dataset = functions.create_dataset(train_df, test_df, valid_df)
 
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 
-
+# no stride and max chunks applied here
 tokenised_dataset = dataset.map(
     functions.tokenise_chunks,
     fn_kwargs={
@@ -91,7 +93,7 @@ functions.train(
     data_collator=collate_fn_pooled_tokens,
 )
 
-# vx + rescraped, title + content, bert-base-cased, WINDOW_SIZE: 512
+# vx + rescraped, title + content, bert-base-cased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
 #               precision    recall  f1-score   support
 
 #            0       0.45      0.48      0.46        27
@@ -107,7 +109,7 @@ functions.train(
 # 100%|██████████| 71/71 [00:07<00:00,  9.68it/s]
 # {'eval_loss': 0.8890448808670044, 'eval_precision': 0.7472220951363592, 'eval_recall': 0.7112676056338029, 'eval_f1': 0.7257911489910044, 'eval_runtime': 7.4861, 'eval_samples_per_second': 75.874, 'eval_steps_per_second': 9.484, 'epoch': 4.0}
 
-# vx + rescraped, outlet + title + content, bert-base-cased, WINDOW_SIZE: 512
+# vx + rescraped, outlet + title + content, bert-base-cased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
 #               precision    recall  f1-score   support
 
 #            0       0.46      0.41      0.43        27
