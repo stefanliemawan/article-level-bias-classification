@@ -1,9 +1,7 @@
 \chapter{Methodology}
 \label{cha:5}
 
-\section{Pre-processing}
-
-\subsection{Dataset split}
+\section{Dataset split}
 
 The dataset reliability scores are grouped and split into 4 classes based on its reliability score as previously described in Section \ref{bat-characteristics}:
 \begin{enumerate}
@@ -185,7 +183,7 @@ where L is the sequence length, T is the number of Transformer layers in the BER
 
         \draw[->] (transformern.south) -- (dropout.north);
 
-        \node (cls) [draw, rectangle, below of=dropout] {CLS token};
+        \node (cls) [draw, rectangle, below of=dropout] {CLS Pooling};
 
         \draw[->] (dropout.south) -- (cls.north);
 
@@ -203,7 +201,7 @@ where L is the sequence length, T is the number of Transformer layers in the BER
     \label{fig:cls_method}
 \end{figure}
 
-Figure \ref{fig:cls_method} shows the full architecture of the CLS method. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional space features by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the chunks are then passed into \textit{n} Transformer layers to enrich their contextual understanding. For each chunk, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Finally, a softmax operation will be applied to the output of the MLP layer to determine the final output class. Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
+Figure \ref{fig:cls_method} shows the full architecture of the CLS method. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional space features by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into \textit{n}-amount of Transformer layers to enrich their contextual understanding. For each chunk afterwards, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class. Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
 
 Two different language models can be used as the Transformer encoder in this method: BERT \cite{devlin-2019-bert} or MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLu activation function \cite{agarap-2018-relu} and dropouts. Each chunk is set to contain 512 tokens, only 2 Transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warmup steps (10\% of total training steps).
 
@@ -225,7 +223,7 @@ where:
 
 \section{Training details}
 
-All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and Transformer \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases.
+All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and Transformer \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. Batch size is set to 8 for all deep learning methods.
 
 \subsection{Weighted loss}
 

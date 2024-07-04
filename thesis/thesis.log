@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  4 JUL 2024 06:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  4 JUL 2024 06:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1372,7 +1372,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `kulemtfpf' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<logokul.pdf, id=99, 159.33528pt x 56.90298pt>
+<logokul.pdf, id=115, 159.33528pt x 56.90298pt>
 File: logokul.pdf Graphic file (type pdf)
 <use logokul.pdf>
 Package pdftex.def Info: logokul.pdf  used on input line 42.
@@ -1441,16 +1441,21 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [2]
+ [2] [3]
 \openout2 = `chap-2.aux'.
 
- (./chap-2.tex
-<images/the-economist-biased-article.png, id=174, 736.7525pt x 980.66376pt>
+ (./chap-2.tex [4
+
+
+
+
+]
+<images/the-economist-biased-article.png, id=203, 736.7525pt x 980.66376pt>
 File: images/the-economist-biased-article.png Graphic file (type png)
 <use images/the-economist-biased-article.png>
 Package pdftex.def Info: images/the-economist-biased-article.png  used on input line 12.
 (pdftex.def)             Requested size: 358.19757pt x 476.77356pt.
-<images/bias-types-taxonomy.png, id=177, 929.4725pt x 598.235pt>
+<images/bias-types-taxonomy.png, id=209, 929.4725pt x 598.235pt>
 File: images/bias-types-taxonomy.png Graphic file (type png)
 <use images/bias-types-taxonomy.png>
 Package pdftex.def Info: images/bias-types-taxonomy.png  used on input line 22.
@@ -1458,26 +1463,21 @@ Package pdftex.def Info: images/bias-types-taxonomy.png  used on input line 22.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3
-
-
-
-
-] [4 <./images/the-economist-biased-article.png>] [5 <./images/bias-types-taxonomy.png>]
-<images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png, id=225, 1003.75pt x 745.78625pt>
+ [5] [6 <./images/the-economist-biased-article.png>] [7 <./images/bias-types-taxonomy.png>]
+<images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png, id=257, 1003.75pt x 745.78625pt>
 File: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png Graphic file (type png)
 <use images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>
 Package pdftex.def Info: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png  used on input line 40.
 (pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
-<images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png, id=228, 1003.75pt x 745.78625pt>
+<images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png, id=260, 1003.75pt x 745.78625pt>
 File: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png Graphic file (type png)
 <use images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>
 Package pdftex.def Info: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png  used on input line 48.
 (pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
- [6 <./images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>]) [7 <./images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>]
+ [8 <./images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>]) [9 <./images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>]
 \openout2 = `chap-3.aux'.
 
- (./chap-3.tex [8
+ (./chap-3.tex [10
 
 
 
@@ -1485,95 +1485,89 @@ Package pdftex.def Info: images/statistic_id1462057_frequency-of-seeing-false-in
 ]
 Underfull \vbox (badness 1708) has occurred while \output is active []
 
- [9]) [10]
+ [11]) [12]
 \openout2 = `chap-4.aux'.
 
  (./chap-4.tex
-Underfull \vbox (badness 1924) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11
-
-
+ [13
 
 
-] [12]
-<images/conjoined_words_example.png, id=343, 148.555pt x 149.55875pt>
+
+
+] [14]
+<images/conjoined_words_example.png, id=374, 148.555pt x 149.55875pt>
 File: images/conjoined_words_example.png Graphic file (type png)
 <use images/conjoined_words_example.png>
-Package pdftex.def Info: images/conjoined_words_example.png  used on input line 52.
+Package pdftex.def Info: images/conjoined_words_example.png  used on input line 50.
 (pdftex.def)             Requested size: 159.19757pt x 160.27959pt.
-<images/noise_phrases_example.png, id=344, 706.64pt x 168.63pt>
+<images/noise_phrases_example.png, id=375, 706.64pt x 168.63pt>
 File: images/noise_phrases_example.png Graphic file (type png)
 <use images/noise_phrases_example.png>
-Package pdftex.def Info: images/noise_phrases_example.png  used on input line 59.
+Package pdftex.def Info: images/noise_phrases_example.png  used on input line 57.
 (pdftex.def)             Requested size: 266.65927pt x 63.63492pt.
-<images/word_fix_example.png, id=345, 318.18875pt x 169.63374pt>
+<images/word_fix_example.png, id=376, 318.18875pt x 169.63374pt>
 File: images/word_fix_example.png Graphic file (type png)
 <use images/word_fix_example.png>
-Package pdftex.def Info: images/word_fix_example.png  used on input line 60.
+Package pdftex.def Info: images/word_fix_example.png  used on input line 58.
 (pdftex.def)             Requested size: 119.40121pt x 63.6539pt.
- [13 <./images/conjoined_words_example.png>]
-<figures/tokens_count_vx_hist.png, id=355, 722.7pt x 433.62pt>
+ [15 <./images/conjoined_words_example.png>]
+<figures/tokens_count_vx_hist.png, id=386, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 81.
+Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 79.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/reliability_score_hist.png, id=356, 722.7pt x 433.62pt>
+<figures/reliability_score_hist.png, id=387, 722.7pt x 433.62pt>
 File: figures/reliability_score_hist.png Graphic file (type png)
 <use figures/reliability_score_hist.png>
-Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 88.
+Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 86.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/dates_hist.png, id=360, 1156.32pt x 433.62pt>
+<figures/dates_hist.png, id=391, 1156.32pt x 433.62pt>
 File: figures/dates_hist.png Graphic file (type png)
 <use figures/dates_hist.png>
-Package pdftex.def Info: figures/dates_hist.png  used on input line 97.
+Package pdftex.def Info: figures/dates_hist.png  used on input line 95.
 (pdftex.def)             Requested size: 358.19757pt x 134.32156pt.
-<figures/correlation_tokens_reliability_score.png, id=362, 722.7pt x 433.62pt>
+<figures/correlation_tokens_reliability_score.png, id=393, 722.7pt x 433.62pt>
 File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
 <use figures/correlation_tokens_reliability_score.png>
-Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 107.
+Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 105.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
- [14 <./images/noise_phrases_example.png> <./images/word_fix_example.png> <./figures/tokens_count_vx_hist.png>]) [15 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>] [16 <./figures/correlation_tokens_reliability_score.png>]
+ [16 <./images/noise_phrases_example.png> <./images/word_fix_example.png> <./figures/tokens_count_vx_hist.png>]) [17 <./figures/reliability_score_hist.png> <./figures/dates_hist.png>] [18 <./figures/correlation_tokens_reliability_score.png>]
 \openout2 = `chap-5.aux'.
 
- (./chap-5.tex [17
+ (./chap-5.tex [19
 
 
 
 
 ]
-<images/bert_finetuning.png, id=402, 969.6225pt x 417.56pt>
+<images/bert_finetuning.png, id=430, 969.6225pt x 417.56pt>
 File: images/bert_finetuning.png Graphic file (type png)
 <use images/bert_finetuning.png>
-Package pdftex.def Info: images/bert_finetuning.png  used on input line 69.
+Package pdftex.def Info: images/bert_finetuning.png  used on input line 67.
 (pdftex.def)             Requested size: 358.19757pt x 154.25902pt.
-
-Underfull \vbox (badness 2088) has occurred while \output is active []
-
- [18] [19 <./images/bert_finetuning.png>]
-Underfull \vbox (badness 1454) has occurred while \output is active []
-
- [20]
-<figures/class_weight.png, id=448, 722.7pt x 433.62pt>
+ [20] [21 <./images/bert_finetuning.png>] [22]
+<figures/class_weight.png, id=471, 722.7pt x 433.62pt>
 File: figures/class_weight.png Graphic file (type png)
 <use figures/class_weight.png>
-Package pdftex.def Info: figures/class_weight.png  used on input line 239.
+Package pdftex.def Info: figures/class_weight.png  used on input line 237.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-) [21] [22 <./figures/class_weight.png>]
+) [23] [24 <./figures/class_weight.png>]
 \openout2 = `chap-6.aux'.
 
  (./chap-6.tex
 Underfull \vbox (badness 6078) has occurred while \output is active []
 
- [23
+ [25
 
 
 
 
-] [24]) [25]
+] [26]) [27]
 \openout2 = `chap-7.aux'.
 
- (./chap-7.tex [26
+ (./chap-7.tex [28
 
 
 
@@ -1581,90 +1575,90 @@ Underfull \vbox (badness 6078) has occurred while \output is active []
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27]) [28] [29
+ [29]) [30] [31
 
 
 
-] [30]
+] [32]
 \openout2 = `app-A.aux'.
 
  (./app-A.tex
-<figures/tokens_count_vx_split_hist.png, id=504, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_split_hist.png, id=530, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_split_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
 (pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
-<figures/wordcloud_vx.png, id=505, 462.528pt x 346.896pt>
+<figures/wordcloud_vx.png, id=531, 462.528pt x 346.896pt>
 File: figures/wordcloud_vx.png Graphic file (type png)
 <use figures/wordcloud_vx.png>
 Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
 (pdftex.def)             Requested size: 278.59879pt x 208.95964pt.
-<figures/tokens_count_vx_per_class_hist.png, id=506, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_per_class_hist.png, id=532, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_per_class_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 21.
 (pdftex.def)             Requested size: 318.40121pt x 318.39922pt.
-<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=507, 308.352pt x 243.7908pt>
+<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=533, 308.352pt x 243.7908pt>
 File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
 <use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
 Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg  used on input line 29.
 (pdftex.def)             Requested size: 318.40121pt x 251.73972pt.
-<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=508, 1003.75pt x 745.78625pt>
+<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=534, 1003.75pt x 745.78625pt>
 File: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png Graphic file (type png)
 <use images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>
 Package pdftex.def Info: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png  used on input line 36.
 (pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
-<images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png, id=511, 1003.75pt x 2275.50125pt>
+<images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png, id=537, 1003.75pt x 2275.50125pt>
 File: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png Graphic file (type png)
 <use images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>
 Package pdftex.def Info: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png  used on input line 43.
 (pdftex.def)             Requested size: 238.80243pt x 541.33992pt.
-) [31
+) [33
 
 
- <./figures/tokens_count_vx_split_hist.png>] [32 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_per_class_hist.png>] [33 <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg> <./images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>] [34 <./images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>] (./thesis.bbl
+ <./figures/tokens_count_vx_split_hist.png>] [34 <./figures/wordcloud_vx.png> <./figures/tokens_count_vx_per_class_hist.png>] [35 <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg> <./images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>] [36 <./images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>] (./thesis.bbl
 bibitemlist
-[35
+[37
 
 
 
 
-] [36] [37]
-Underfull \hbox (badness 4699) in paragraph at lines 191--194
+] [38] [39]
+Underfull \hbox (badness 4699) in paragraph at lines 197--200
 []\T1/lmr/m/n/10.95 (+20) Reuters In-sti-tute for the Study of Jour-nal-ism.  Share of adults
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 191--194
+Underfull \hbox (badness 1502) in paragraph at lines 197--200
 \T1/lmr/m/n/10.95 (+20) who trust news me-dia most of the time in se-lected coun-tries world-
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 191--194
+Underfull \hbox (badness 2088) in paragraph at lines 197--200
 \T1/lmr/m/n/10.95 (+20) wide as of febru-ary 2023 [graph], June 14 2023.  In Statista. Re-
  []
 
-[38]) [39]
+[40]) [41]
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
  (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 056F87B6470FA3B541AD94CA62409A91;2733.
+(rerunfilecheck)             Checksum: 0D0E54304A4868356696FF3511D32B27;3232.
  ) 
 Here is how much of TeX's memory you used:
- 27959 strings out of 476025
- 512027 string characters out of 5790016
+ 27971 strings out of 476025
+ 512166 string characters out of 5790016
  1884388 words of memory out of 5000000
- 47490 multiletter control sequences out of 15000+600000
- 591342 words of font info for 178 fonts, out of 8000000 for 9000
+ 47495 multiletter control sequences out of 15000+600000
+ 591638 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,3058b,693s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (43 pages, 4451806 bytes).
+Output written on thesis.pdf (45 pages, 4453546 bytes).
 PDF statistics:
- 658 PDF objects out of 1000 (max. 8388607)
- 544 compressed objects within 6 object streams
- 166 named destinations out of 1000 (max. 500000)
- 40233 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 684 PDF objects out of 1000 (max. 8388607)
+ 567 compressed objects within 6 object streams
+ 167 named destinations out of 1000 (max. 500000)
+ 40265 words of extra memory for PDF output out of 42996 (max. 10000000)
 
