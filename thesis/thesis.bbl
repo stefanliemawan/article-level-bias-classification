@@ -154,6 +154,10 @@ C.~Panagopoulos.
 \newblock Polls and elections accuracy and bias in the 2020 u.s. general election polls.
 \newblock {\em Presidential Studies Quarterly}, 51(1):214--227, 2021.
 
+\bibitem{pappagari-2019-hierarchical}
+R.~Pappagari, P.~Żelasko, J.~Villalba, Y.~Carmiel, and N.~Dehak.
+\newblock Hierarchical transformers for long document classification, 2019.
+
 \bibitem{park-2022-efficient}
 H.~H. Park, Y.~Vyas, and K.~Shah.
 \newblock Efficient classification of long documents using transformers, 2022.

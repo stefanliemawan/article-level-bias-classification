@@ -3,31 +3,24 @@
 
 \subsection{Remarks}
 
-Simpler, frequency-based methods such as BoW and TF-IDF with logistic regression already provides decent overall result. Transfomer-based approach
+Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance in media bias classification tasks with this dataset. Transformer-based approaches, while expected to perform better, have only shown slight improvements. The modest performance gains from Transformer models can be attributed to the presence of noise in article content and the massive class imbalance that exist in the dataset, hampering the Transformer models' ability to capture context effectively. It can be hypothesised that addressing these issues—by cleaning the data and balancing the classes would lead to significant performance improvements for Transformer-based approaches, allowing them to moderately outperform conventional methods. With current performances, any the approaches mentioned in this paper should be able to confidently recognise unbiased articles well ('Reliable' class). However, this is not the case for other classes, in other words, the models would be able to classify unbiased articles instead of biased ones.
 
-Given that the dataset imbalance is solved, it is assumed that BERT and MAGPIE methods should
+Incorporating outlet information has generally improved performance across all methods, with some methods benefiting more significantly than others. Performing outlet majority votes has shown to classify media bias far better than any other method mentioned. While it might be tempting to rely solely on outlet information for classification, this approach has its limitations. A model that generalises well over the content of articles rather than relying heavily on outlet metadata is preferable for robust media bias classification. This ensures the model's applicability across different sources and reduces the risk of overfitting to specific outlet biases.
 
-While we can seemingly just take the outlet and use this information to classify media bias...
+The entire dataset used in this study is completely curated by Ad Fontes Media, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects the models trained on it. This underlying bias needs to be considered when interpreting the results.
 
-Overall, including outlet information increase the performance in all methods, some more significant than others.
+\subsection{Future works}
 
-Generally, I argue that it is better to have a model that generalise well over article content rather than relying on outlet and metadata information to classify media bias in articles.
+The dataset need to be extended with a lot more examples of biased articles, particularly for the underrepresented classes 'Problematic' and 'Questionable'. Once a balanced dataset is achieved, the methods need to be reevaluated and retuned, the test set needs to be carefully crafted to include some outlets that are not seen in the training set, enabling diverse representational articles and patterns. This is crucial to assess their the models generalisability and ensuring their robustness in real-world scenarios. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Ideally, it should not rely solely on Ad Fontes selections and annotations.
 
-Furthermore, we have not tested the model with unseen data containing unseen outlets...
+Comparing results with other studies on media bias classification is challenging and practically impossible due to the lack of comparable datasets specifically designed for article-level media bias classification. Therefore, standardising datasets and evaluation metrics across studies would be greatly beneficial for advancing the field of media bias classification.
 
-The whole dataset is build by Ad Fontes, articles are picked by Ad Fontes, annotations are done by people from Ad Fontes, therefore there is an underlying bias that exist original to the dataset, affecting models trained with this dataset.
+Furthermore, The traditional approach of assigning only a single frame label to news articles remains overly simplistic and does not provide much explainability, given that a standard news article often incorporates multiple viewpoints, arguments, or facets, each potentially carrying distinct connotations or framing \cite{vallejo-2023-connecting}. Ultimately, the goal should also be for the model to provide a rationale for its classification decisions. This capability can be achieved through techniques related to question answering and reasoning in NLP, or Machine Reading Comprehension (MRC). These approaches enable the model to not only classify media bias but also explain the underlying reasons and evidence supporting its predictions. This enhances transparency and trust in the model's outputs, making it more useful for interpreting and verifying media bias classifications.
 
-It is really difficult to compare this result with other works on media bias classification as there is no comparable dataset particularly for article-level media bias classification.
 
-\subsection{Future Work}
+Furthermore, a more complex and global approaches such as graph-based methods can also be implemented to encode multiple articles and defining relationships between them. This would allow for a higher granularity and far more detailed representation of articles, allowing the model to generalise according to combined features of the corresponding articles.
 
-The methods need to be reevaluated with a bigger dataset and particularly much more examples of biased articles, as the current dataset is highly-imbalanced.
 
-Classifying media bias right now, in this way, does not provide much explanaibility. Ultimately, we would want a model to also output a reasoning behind the classification.
-
-Implement a more global methods using graph-based approach to encode multiple articles and define relationships between them. This would allow for a bigger and more detailed representation of articles, allowing the model to generalise according to combined features of the corresponding articles.
-
-Carefully tune the test set to enable more representational articles and pattern, include unseen outlets.
 
 %%% Local Variables: 
 %%% mode: latex

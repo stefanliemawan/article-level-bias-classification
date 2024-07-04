@@ -7,11 +7,15 @@ Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendenc
 
 While biases may not always be intentional, they might cause significant consequences, possibly leading to inequalities and injustices. Some news outlets tend to use catchy headlines which trick readers into clicking, known as "clickbait", which are often ambiguous or misleading. Biased information can and has been used as a way to shape and influence public opinion \cite{aires-2020-information}. A survey of journalists from the United States, Great Britain, Germany, Italy, and Sweden found evidence that journalists' personal beliefs substantially influence their news decisions, expressed within the stories they choose and the statements they write \cite{patterson-donsbach-1996-news-decisions}.
 
-Media bias can manifest within different levels, categorised into 4 major types \cite{spinde-2024-taxonomy}, as shown in Figure \ref{fig:bias-types-taxonomy}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/the-economist-biased-article.png}
+    \caption{A recent article from The Economist portraying gender discrimination with negative-framing headline}
+    \label{fig:the-economist-biased-article}
+\end{figure}
 
-\begin{comment}
-Explain types of bias one by one?
-\end{comment}
+An example of a biased article can be seen from a recent article published by The Economist in Figure \ref{fig:the-economist-biased-article}. The headline includes a negative framing of certain groups, which can influence readers' perceptions before they even read the article, suggesting that the existence of these groups is inherently problematic and harmful. Terms like "incels" (involuntary celibates) and "anti-feminists" carry strong negative connotations, which can evoke emotional responses and suggest a negative view of the groups mentioned. This is a strong example of framing bias.
+
 
 \begin{figure}[htbp]
     \centering
@@ -20,17 +24,7 @@ Explain types of bias one by one?
     \label{fig:bias-types-taxonomy}
 \end{figure}
 
-
-An example of a biased article can be seen from a recent article published by The Economist in Figure \ref{fig:the-economist-biased-article}. The headline includes a negative framing of certain groups, which can influence readers' perceptions before they even read the article, suggesting that the existence of these groups is inherently problematic and harmful. Terms like "incels" (involuntary celibates) and "anti-feminists" carry strong negative connotations, which can evoke emotional responses and suggest a negative view of the groups mentioned. This is a strong example of framing bias.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/the-economist-biased-article.png}
-    \caption{A recent article from The Economist portraying gender discrimination with negative-framing headline}
-    \label{fig:the-economist-biased-article}
-\end{figure}
-
-This project will mainly focus to address text-level context bias: phrasing bias, spin bias, and statement bias \cite{spinde-2024-taxonomy}: statement bias refers to “members of the media interjecting their own opinions into the text”, phrasing bias is characterised by inflammatory words, i.e., non-neutral language, spin bias describes a form of bias introduced either by leaving out the necessary information.
+Media bias can manifest within different levels, categorised into 4 major types \cite{spinde-2024-taxonomy}, as shown in Figure \ref{fig:bias-types-taxonomy}. This project will mainly focus to address text-level context bias: phrasing bias, spin bias, and statement bias \cite{spinde-2024-taxonomy}: statement bias refers to “members of the media interjecting their own opinions into the text”, phrasing bias is characterised by inflammatory words, i.e., non-neutral language, spin bias describes a form of bias introduced either by leaving out the necessary information.
 
 \section{Application}
 
@@ -58,14 +52,11 @@ Readers themselves are not exempt from bias, as they are known to prefer to pick
 
 Based on surveys from Reuters and YouGov (shown in Figure \ref{fig:consumers-witnessing-false-information-on-certain-topics-worldwide-2023} and Figure \ref{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}), the United States is shown to have the highest rate in politics, COVID-19, and climate change, with nearly half of the respondents claimed to have seen false or misleading information in the last week. Furthermore, most adults of every age group responded to seeing false or misleading information on a \textbf{daily} basis. These numbers are deeply concerning, highlighting the extent of the misinformation and media bias problem in the US.
 
-
-\section{Goal}
+\section{Solution}
 
 Ideally, unbiased media content that objectively and fairly represents multiple or a range of perspectives is desirable, news sources should remain neutral and let readers build their own opinions on the subject \cite{reuters-2021-digital-news-report}. However, this is often unachievable due to human capabilities and resource limitations; journalists cannot possibly possess complete knowledge on every topic, be physically present everywhere, or interview every relevant individual on a significant subject \cite{allsides-2022-bias-definition}. Truth and journalism objectivity is a complex matter full of choices and dilemmas, where ultimately it falls on the journalists' own preferences and criteria \cite{boudana-2011-journalistic-objectivity}.
 
-Therefore, instead of eliminating media bias, our goal should be to draw attention to its existence, giving readers awareness of such content \cite{spinde-2024-taxonomy}, ultimately building a tool to defend readers from media manipulation, to let readers know the quality of the article, and if they fall under a victim of political agenda or indoctrination.
-
-Therefore, the primary objective of a media bias classifier should be to develop an automated system capable of classifying media bias at the article level. This system should be able to recognise and categorise bias in news articles from diverse sources, ensuring that readers are aware of what they are reading and therefore can make informed choices and opinions. The classification should encompass various dimensions of bias, including political orientation (e.g., left, right, center), sensationalism, and framing techniques.
+Therefore, instead of eliminating media bias, our goal should be to draw attention to its existence and forms, giving readers awareness of such content \cite{spinde-2024-taxonomy}, ultimately building a tool to defend readers from media manipulation, political agenda or indoctrination. This is essential to ensure that readers are able to form their own choices and opinions with utmost honesty and transparency.
 
 %%% Local Variables: 
 %%% mode: latex

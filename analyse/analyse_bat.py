@@ -1,10 +1,12 @@
 import sys
+from collections import Counter
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
 import seaborn as sns
+from sklearn.utils.class_weight import compute_class_weight
 from transformers import BertTokenizer
 
 try:
@@ -17,6 +19,7 @@ df = pd.read_csv(
     f"../dataset/scraped_clean_{DATASET_VERSION}.csv",
     index_col=0,
 )
+train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 
 # outlet_df = pd.read_csv("../dataset/BAT/ad_fontes/outlets_classes_scores.csv", index_col=0)
 
@@ -289,17 +292,53 @@ def plot_outlet_reliability_score(df):
     plt.savefig("figures/outlet_reliability_score.png")
 
 
-# def plot_outlet_reliability_score():
-#     print(outlet_df)
+def plot_class_weights(train_df):
+    train_labels = train_df["labels"]
+    class_weight = np.asarray(
+        compute_class_weight(
+            class_weight="balanced", classes=np.unique(train_labels), y=train_labels
+        )
+    )
+    class_counts = Counter(train_labels)
 
-if "tokens_count" not in df:
-    count_tokens(df)
+    classes = ["Problematic", "Questionable", "Generally Reliable", "Reliable"]
+    counts = [class_counts[i] for i in range(len(classes))]
 
-plot_tokens_count(df)
-plot_tokens_count_split(df)
-plot_tokens_count_per_class(df)
-plot_reliability_score(df)
-plot_dates(df)
-plot_correlation_tokens_reliability(df)
-plot_correlation_bias_reliability(df)
-plot_outlet_reliability_score(df)
+    plt.figure(figsize=(10, 6))
+    plt.bar(classes, class_weight)
+
+    plt.title("Class Weights Visualization")
+    plt.xlabel("Classes")
+    plt.ylabel("Class Weights")
+    plt.ylim(top=5.0)
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+
+    # for i, weight in enumerate(class_weight):
+    #     plt.text(i, weight + 0.05, f"{weight:.2f}", ha="center", va="bottom")
+
+    for i, (weight, count) in enumerate(zip(class_weight, counts)):
+        plt.text(
+            i,
+            weight + 0.05,
+            f"Count: {count}\nWeight: {weight:.2f}",
+            ha="center",
+            va="bottom",
+        )
+
+    # plt.tight_layout()
+
+    plt.savefig("figures/class_weight.png")
+
+
+# if "tokens_count" not in df:
+#     count_tokens(df)
+
+# plot_tokens_count(df)
+# plot_tokens_count_split(df)
+# plot_tokens_count_per_class(df)
+# plot_reliability_score(df)
+# plot_dates(df)
+# plot_correlation_tokens_reliability(df)
+# plot_correlation_bias_reliability(df)
+# plot_outlet_reliability_score(df)
+plot_class_weights(train_df)

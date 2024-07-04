@@ -1,6 +1,7 @@
 \chapter{Evaluation}
 \label{cha:6}
 
+
 For every method, precision, recall, and F1 score is evaluated on both overall and per class performance.
 
 \begin{table}[htbp]
@@ -97,6 +98,8 @@ Table \ref{table:eval} shows the evaluation of all methods given only title and 
 
 Table \ref{table:eval-outlet} shows the evaluation of methods, given the article's outlet information as additional features to the title and content. As a comparison, \textbf{using outlet information as the sole feature without any other information (with majority votes) outperformed all methods on overall recall and f1 scores}. This result signified how influential outlet information can be in terms of classifying media bias, with regards to this specific dataset and circumstances. Out of all the other methods, BERT fine-tuning reigned superior with the best overall precision score and a particularly strong f1 score on the 'Problematic' class, performing slightly better than the sliding window implementation (BERT SW FT). Interestingly, both BERT CLS and MAGPIE CLS methods were not able to capitalise on the outlet information as well as BERT FT and BERT SW FT as both CLS methods only saw little improvement compared to when outlet features were unavailable.
 
+
+All methods seem to perform rather well on the 'Reliable' class with F1 scores above 0.84. We can be quite confident that these approaches can recognise on unbiased articles, to the very least.
 
 %%% Local Variables: 
 %%% mode: latex
