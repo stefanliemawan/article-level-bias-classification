@@ -11,7 +11,7 @@ The BAT dataset \cite{spinde-2023-bat} is chosen instead of NLPCSS \cite{chen-20
 
 Both political bias and reliability scores on each article were rated using defined metrics and multiple sub-factors, performed by three randomly selected analysts from Ad Fontes Media's team of over 60 experts. The corresponding three scores were then averaged, producing the final article scores. Moreover, each group consists of analysts with different beliefs in the political spectrum i.e., left, center, and right.
 
-The reliability score evaluates original fact reporting to analysis, opinion, propaganda, and inaccurate/fabricated information, with scores above 40 generally considered good and scores below 24 typically seen as problematic, scores between 24 and 40 suggest a variety of factors, including a strong presence of opinion and analysis or significant variability in reliability across different articles \cite{adfontes}. This metric is chosen as the main label in this project due to its correlation with textual-level bias: phrasing bias, spin bias, and statement bias described in Section \ref{media-bias-definition}
+The reliability score evaluates original fact reporting to analysis, opinion, propaganda, and inaccurate/fabricated information, with scores above 40 generally considered good and scores below 24 typically seen as problematic, scores between 24 and 40 suggest a variety of factors, including a strong presence of opinion and analysis or significant variability in reliability across different articles \cite{adfontes}. This metric is chosen as the main label in this project due to its correlation with textual-level bias: phrasing bias, spin bias, and statement bias as described in Chapter \ref{cha:2}.
 
 \begin{table}[htbp]
     \centering
@@ -111,6 +111,13 @@ Most articles are written and published within the last 6 years, with only 31 ar
     \label{fig:pearson_correlation}
 \end{figure}
 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/tokens_count_vx_per_class_hist.png}
+    \caption{Average tokens count per class}
+    \label{fig:avg_tokens_count_per_class}
+\end{figure}
 
 Figure \ref{fig:avg_tokens_count_per_class} shows that all classes seem to have similar token count, close to the overall average. Class 'Problematic' and 'Questionable', being the two most biased classes, seem to have lower average token count than the two other classes. However, further analysis (Figure \ref{fig:pearson_correlation}) shows that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient is 0.02. This proves that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
 

@@ -896,7 +896,6 @@
   issn       = {0018-8646},
   url        = {https://doi.org/10.1147/rd.24.0314},
   doi        = {10.1147/rd.24.0314},
-  abstract   = {An automatic system is being developed to disseminate information to the various sections of any industrial, scientific or government organization. This intelligence system will utilize data-processing machines for auto-abstracting and auto-encoding of documents and for creating interest profiles for each of the "action points" in an organization. Both incoming and internally generated documents are automatically abstracted, characterized by a word pattern, and sent automatically to appropriate action points. This paper shows the flexibility of such a system in identifying known information, in finding who needs to know it and in disseminating it efficiently either in abstract form or as a complete document.},
   journal    = {IBM J. Res. Dev.},
   month      = {oct},
   pages      = {314–319},
@@ -916,7 +915,6 @@
   publisher = {Springer Singapore},
   address   = {Singapore},
   pages     = {553--559},
-  abstract  = {The tremendous growth of information emerging from diverse sources has resulted in digital information overwork. The vast information availability has initiated the need for automatic text classification for managing, organizing massive data, and knowledge discovery. Most of these data is in an unstructured form. The main hindrance in achieving good classification accuracy is the natural form of data, i.e., unstructured form. Such issues can be handled by applying preprocessing steps so that unstructured data can be transformed into structured data. In this paper, we have applied different preprocessing steps like bag of words, stemming, and lemmatization on raw data to study the impact of preprocessing in the text classification process. We have verified this by providing preprocessed data to various classifiers like multinominal Naive Bayes, logistic regression, stochastic gradient descent classifier, and k-nearest neighbors and found improvement in classification accuracy results. We have carried out experimentation on the 20-newsgroup dataset.},
   isbn      = {978-981-33-6307-6}
 }
 
@@ -945,8 +943,7 @@
   publisher = {Association for Computational Linguistics},
   url       = {https://aclanthology.org/2021.nllp-1.22},
   doi       = {10.18653/v1/2021.nllp-1.22},
-  pages     = {210--216},
-  abstract  = {Bidirectional Encoder Representations from Transformers (BERT) has achieved state-of-the-art performances on several text classification tasks, such as GLUE and sentiment analysis. Recent work in the legal domain started to use BERT on tasks, such as legal judgement prediction and violation prediction. A common practise in using BERT is to fine-tune a pre-trained model on a target task and truncate the input texts to the size of the BERT input (e.g. at most 512 tokens). However, due to the unique characteristics of legal documents, it is not clear how to effectively adapt BERT in the legal domain. In this work, we investigate how to deal with long documents, and how is the importance of pre-training on documents from the same domain as the target task. We conduct experiments on the two recent datasets: ECHR Violation Dataset and the Overruling Task Dataset, which are multi-label and binary classification tasks, respectively. Importantly, on average the number of tokens in a document from the ECHR Violation Dataset is more than 1,600. While the documents in the Overruling Task Dataset are shorter (the maximum number of tokens is 204). We thoroughly compare several techniques for adapting BERT on long documents and compare different models pre-trained on the legal and other domains. Our experimental results show that we need to explicitly adapt BERT to handle long documents, as the truncation leads to less effective performance. We also found that pre-training on the documents that are similar to the target task would result in more effective performance on several scenario.}
+  pages     = {210--216}
 }
 
 @inproceedings{mishra-2017-structured-unstructured,
@@ -970,4 +967,169 @@
   author  = {Barberá, Pablo and Boydstun, Amber E. and Linn, Suzanna and McMahon, Ryan and Nagler, Jonathan},
   year    = {2021},
   pages   = {19–42}
+}
+
+@misc{adhikari-2019-docbert,
+  title         = {DocBERT: BERT for Document Classification},
+  author        = {Ashutosh Adhikari and Achyudh Ram and Raphael Tang and Jimmy Lin},
+  year          = {2019},
+  eprint        = {1904.08398},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/1904.08398}
+}
+
+@inproceedings{afzal-deepdocclassifier,
+  author    = {Afzal, Muhammad Zeshan and Capobianco, Samuele and Malik, Muhammad Imran and Marinai, Simone and Breuel, Thomas M. and Dengel, Andreas and Liwicki, Marcus},
+  booktitle = {2015 13th International Conference on Document Analysis and Recognition (ICDAR)},
+  title     = {Deepdocclassifier: Document classification with deep Convolutional Neural Network},
+  year      = {2015},
+  volume    = {},
+  number    = {},
+  pages     = {1111-1115},
+  keywords  = {Marine vehicles;Convolutional codes;Electronic mail;Document Image Classification;Deep CNN;Convolutional Neural Network},
+  doi       = {10.1109/ICDAR.2015.7333933}
+}
+
+@inproceedings{yang-2016-han,
+  title     = {Hierarchical Attention Networks for Document Classification},
+  author    = {Yang, Zichao  and
+               Yang, Diyi  and
+               Dyer, Chris  and
+               He, Xiaodong  and
+               Smola, Alex  and
+               Hovy, Eduard},
+  editor    = {Knight, Kevin  and
+               Nenkova, Ani  and
+               Rambow, Owen},
+  booktitle = {Proceedings of the 2016 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies},
+  month     = jun,
+  year      = {2016},
+  address   = {San Diego, California},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/N16-1174},
+  doi       = {10.18653/v1/N16-1174},
+  pages     = {1480--1489}
+}
+
+@inproceedings{liu-2017-xmlcnn,
+  author    = {Liu, Jingzhou and Chang, Wei-Cheng and Wu, Yuexin and Yang, Yiming},
+  title     = {Deep Learning for Extreme Multi-label Text Classification},
+  year      = {2017},
+  isbn      = {9781450350228},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3077136.3080834},
+  doi       = {10.1145/3077136.3080834},
+  booktitle = {Proceedings of the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages     = {115–124},
+  numpages  = {10},
+  keywords  = {convolutional neural network, deep learning, extreme text classification, multi-label},
+  location  = {Shinjuku, Tokyo, Japan},
+  series    = {SIGIR '17}
+}
+
+@misc{mikolov-2013-embeddings,
+  title         = {Efficient Estimation of Word Representations in Vector Space},
+  author        = {Tomas Mikolov and Kai Chen and Greg Corrado and Jeffrey Dean},
+  year          = {2013},
+  eprint        = {1301.3781},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/1301.3781}
+}
+
+@misc{narayanan-2019-word-embeddings,
+  author       = {Hari Narayanan},
+  title        = {Word Embedding},
+  year         = {2019},
+  howpublished = {\url{https://medium.com/@hari4om/word-embedding-d816f643140}},
+  note         = {Accessed: 2024-07-06}
+}
+
+@misc{openai-2024-gpt4,
+  title         = {GPT-4 Technical Report},
+  author        = {OpenAI and Josh Achiam and Steven Adler and Sandhini Agarwal and Lama Ahmad and Ilge Akkaya and Florencia Leoni Aleman and Diogo Almeida and Janko Altenschmidt and Sam Altman and Shyamal Anadkat and Red Avila and Igor Babuschkin and Suchir Balaji and Valerie Balcom and Paul Baltescu and Haiming Bao and Mohammad Bavarian and Jeff Belgum and Irwan Bello and Jake Berdine and Gabriel Bernadett-Shapiro and Christopher Berner and Lenny Bogdonoff and Oleg Boiko and Madelaine Boyd and Anna-Luisa Brakman and Greg Brockman and Tim Brooks and Miles Brundage and Kevin Button and Trevor Cai and Rosie Campbell and Andrew Cann and Brittany Carey and Chelsea Carlson and Rory Carmichael and Brooke Chan and Che Chang and Fotis Chantzis and Derek Chen and Sully Chen and Ruby Chen and Jason Chen and Mark Chen and Ben Chess and Chester Cho and Casey Chu and Hyung Won Chung and Dave Cummings and Jeremiah Currier and Yunxing Dai and Cory Decareaux and Thomas Degry and Noah Deutsch and Damien Deville and Arka Dhar and David Dohan and Steve Dowling and Sheila Dunning and Adrien Ecoffet and Atty Eleti and Tyna Eloundou and David Farhi and Liam Fedus and Niko Felix and Simón Posada Fishman and Juston Forte and Isabella Fulford and Leo Gao and Elie Georges and Christian Gibson and Vik Goel and Tarun Gogineni and Gabriel Goh and Rapha Gontijo-Lopes and Jonathan Gordon and Morgan Grafstein and Scott Gray and Ryan Greene and Joshua Gross and Shixiang Shane Gu and Yufei Guo and Chris Hallacy and Jesse Han and Jeff Harris and Yuchen He and Mike Heaton and Johannes Heidecke and Chris Hesse and Alan Hickey and Wade Hickey and Peter Hoeschele and Brandon Houghton and Kenny Hsu and Shengli Hu and Xin Hu and Joost Huizinga and Shantanu Jain and Shawn Jain and Joanne Jang and Angela Jiang and Roger Jiang and Haozhun Jin and Denny Jin and Shino Jomoto and Billie Jonn and Heewoo Jun and Tomer Kaftan and Łukasz Kaiser and Ali Kamali and Ingmar Kanitscheider and Nitish Shirish Keskar and Tabarak Khan and Logan Kilpatrick and Jong Wook Kim and Christina Kim and Yongjik Kim and Jan Hendrik Kirchner and Jamie Kiros and Matt Knight and Daniel Kokotajlo and Łukasz Kondraciuk and Andrew Kondrich and Aris Konstantinidis and Kyle Kosic and Gretchen Krueger and Vishal Kuo and Michael Lampe and Ikai Lan and Teddy Lee and Jan Leike and Jade Leung and Daniel Levy and Chak Ming Li and Rachel Lim and Molly Lin and Stephanie Lin and Mateusz Litwin and Theresa Lopez and Ryan Lowe and Patricia Lue and Anna Makanju and Kim Malfacini and Sam Manning and Todor Markov and Yaniv Markovski and Bianca Martin and Katie Mayer and Andrew Mayne and Bob McGrew and Scott Mayer McKinney and Christine McLeavey and Paul McMillan and Jake McNeil and David Medina and Aalok Mehta and Jacob Menick and Luke Metz and Andrey Mishchenko and Pamela Mishkin and Vinnie Monaco and Evan Morikawa and Daniel Mossing and Tong Mu and Mira Murati and Oleg Murk and David Mély and Ashvin Nair and Reiichiro Nakano and Rajeev Nayak and Arvind Neelakantan and Richard Ngo and Hyeonwoo Noh and Long Ouyang and Cullen O'Keefe and Jakub Pachocki and Alex Paino and Joe Palermo and Ashley Pantuliano and Giambattista Parascandolo and Joel Parish and Emy Parparita and Alex Passos and Mikhail Pavlov and Andrew Peng and Adam Perelman and Filipe de Avila Belbute Peres and Michael Petrov and Henrique Ponde de Oliveira Pinto and Michael and Pokorny and Michelle Pokrass and Vitchyr H. Pong and Tolly Powell and Alethea Power and Boris Power and Elizabeth Proehl and Raul Puri and Alec Radford and Jack Rae and Aditya Ramesh and Cameron Raymond and Francis Real and Kendra Rimbach and Carl Ross and Bob Rotsted and Henri Roussez and Nick Ryder and Mario Saltarelli and Ted Sanders and Shibani Santurkar and Girish Sastry and Heather Schmidt and David Schnurr and John Schulman and Daniel Selsam and Kyla Sheppard and Toki Sherbakov and Jessica Shieh and Sarah Shoker and Pranav Shyam and Szymon Sidor and Eric Sigler and Maddie Simens and Jordan Sitkin and Katarina Slama and Ian Sohl and Benjamin Sokolowsky and Yang Song and Natalie Staudacher and Felipe Petroski Such and Natalie Summers and Ilya Sutskever and Jie Tang and Nikolas Tezak and Madeleine B. Thompson and Phil Tillet and Amin Tootoonchian and Elizabeth Tseng and Preston Tuggle and Nick Turley and Jerry Tworek and Juan Felipe Cerón Uribe and Andrea Vallone and Arun Vijayvergiya and Chelsea Voss and Carroll Wainwright and Justin Jay Wang and Alvin Wang and Ben Wang and Jonathan Ward and Jason Wei and CJ Weinmann and Akila Welihinda and Peter Welinder and Jiayi Weng and Lilian Weng and Matt Wiethoff and Dave Willner and Clemens Winter and Samuel Wolrich and Hannah Wong and Lauren Workman and Sherwin Wu and Jeff Wu and Michael Wu and Kai Xiao and Tao Xu and Sarah Yoo and Kevin Yu and Qiming Yuan and Wojciech Zaremba and Rowan Zellers and Chong Zhang and Marvin Zhang and Shengjia Zhao and Tianhao Zheng and Juntang Zhuang and William Zhuk and Barret Zoph},
+  year          = {2024},
+  eprint        = {2303.08774},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2303.08774}
+}
+
+@article{rumelhart-1986-ann,
+  author   = {Rumelhart, David E.
+              and Hinton, Geoffrey E.
+              and Williams, Ronald J.},
+  title    = {Learning representations by back-propagating errors},
+  journal  = {Nature},
+  year     = {1986},
+  month    = {Oct},
+  day      = {01},
+  volume   = {323},
+  number   = {6088},
+  pages    = {533-536},
+  abstract = {We describe a new learning procedure, back-propagation, for networks of neurone-like units. The procedure repeatedly adjusts the weights of the connections in the network so as to minimize a measure of the difference between the actual output vector of the net and the desired output vector. As a result of the weight adjustments, internal `hidden' units which are not part of the input or output come to represent important features of the task domain, and the regularities in the task are captured by the interactions of these units. The ability to create useful new features distinguishes back-propagation from earlier, simpler methods such as the perceptron-convergence procedure1.},
+  issn     = {1476-4687},
+  doi      = {10.1038/323533a0},
+  url      = {https://doi.org/10.1038/323533a0}
+}
+
+@misc{vaswani-2023-attention,
+  title         = {Attention Is All You Need},
+  author        = {Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and Aidan N. Gomez and Lukasz Kaiser and Illia Polosukhin},
+  year          = {2023},
+  eprint        = {1706.03762},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/1706.03762}
+}
+
+@article{perez-enciso-2019-guide,
+  title   = {A Guide on Deep Learning for Complex Trait Genomic Prediction},
+  author  = {Miguel P{\'e}rez-Enciso and Laura M. Zingaretti},
+  journal = {Genes},
+  year    = {2019},
+  volume  = {10},
+  url     = {https://api.semanticscholar.org/CorpusID:198172362}
+}
+
+@inproceedings{uzair-2020-hidden-layers,
+  author    = {Uzair, Muhammad and Jamil, Noreen},
+  booktitle = {2020 IEEE 23rd International Multitopic Conference (INMIC)},
+  title     = {Effects of Hidden Layers on the Efficiency of Neural networks},
+  year      = {2020},
+  volume    = {},
+  number    = {},
+  pages     = {1-6},
+  keywords  = {Neural network;Hidden layers;Neurons;Accuracy;Time complexity},
+  doi       = {10.1109/INMIC50486.2020.9318195}
+}
+
+@article{makridakis-2017-ai-revolution,
+  title    = {The forthcoming Artificial Intelligence (AI) revolution: Its impact on society and firms},
+  journal  = {Futures},
+  volume   = {90},
+  pages    = {46-60},
+  year     = {2017},
+  issn     = {0016-3287},
+  doi      = {https://doi.org/10.1016/j.futures.2017.03.006},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0016328717300046},
+  author   = {Spyros Makridakis},
+  keywords = {Artificial Intelligence (AI), Industrial revolution, Digital revolution, AI revolution, Impact of AI revolution, Benefits and dangers of AI technologies},
+  abstract = {The impact of the industrial and digital (information) revolutions has, undoubtedly, been substantial on practically all aspects of our society, life, firms and employment. Will the forthcoming AI revolution produce similar, far-reaching effects? By examining analogous inventions of the industrial, digital and AI revolutions, this article claims that the latter is on target and that it would bring extensive changes that will also affect all aspects of our society and life. In addition, its impact on firms and employment will be considerable, resulting in richly interconnected organizations with decision making based on the analysis and exploitation of “big” data and intensified, global competition among firms. People will be capable of buying goods and obtaining services from anywhere in the world using the Internet, and exploiting the unlimited, additional benefits that will open through the widespread usage of AI inventions. The paper concludes that significant competitive advantages will continue to accrue to those utilizing the Internet widely and willing to take entrepreneurial risks in order to turn innovative products/services into worldwide commercial success stories. The greatest challenge facing societies and firms would be utilizing the benefits of availing AI technologies, providing vast opportunities for both new products/services and immense productivity improvements while avoiding the dangers and disadvantages in terms of increased unemployment and greater wealth inequalities.}
+}
+
+@article{lin-2022-survey-transformers,
+  title    = {A survey of transformers},
+  journal  = {AI Open},
+  volume   = {3},
+  pages    = {111-132},
+  year     = {2022},
+  issn     = {2666-6510},
+  doi      = {https://doi.org/10.1016/j.aiopen.2022.10.001},
+  url      = {https://www.sciencedirect.com/science/article/pii/S2666651022000146},
+  author   = {Tianyang Lin and Yuxin Wang and Xiangyang Liu and Xipeng Qiu},
+  keywords = {Transformer, Self-attention, Pre-trained models, Deep learning},
+  abstract = {Transformers have achieved great success in many artificial intelligence fields, such as natural language processing, computer vision, and audio processing. Therefore, it is natural to attract lots of interest from academic and industry researchers. Up to the present, a great variety of Transformer variants (a.k.a. X-formers) have been proposed, however, a systematic and comprehensive literature review on these Transformer variants is still missing. In this survey, we provide a comprehensive review of various X-formers. We first briefly introduce the vanilla Transformer and then propose a new taxonomy of X-formers. Next, we introduce the various X-formers from three perspectives: architectural modification, pre-training, and applications. Finally, we outline some potential directions for future research.}
 }

@@ -1,5 +1,14 @@
 \begin{thebibliography}{10}
 
+\bibitem{adhikari-2019-docbert}
+A.~Adhikari, A.~Ram, R.~Tang, and J.~Lin.
+\newblock Docbert: Bert for document classification, 2019.
+
+\bibitem{afzal-deepdocclassifier}
+M.~Z. Afzal, S.~Capobianco, M.~I. Malik, S.~Marinai, T.~M. Breuel, A.~Dengel, and M.~Liwicki.
+\newblock Deepdocclassifier: Document classification with deep convolutional neural network.
+\newblock In {\em 2015 13th International Conference on Document Analysis and Recognition (ICDAR)}, pages 1111--1115, 2015.
+
 \bibitem{agarap-2018-relu}
 A.~F. Agarap.
 \newblock Deep learning using rectified linear units (relu).
@@ -111,12 +120,6 @@ S.~jeong Lim, A.~Jatowt, and M.~Yoshikawa.
 \newblock \url{https://www.allsides.com/blog/what-media-bias}, 2022.
 \newblock [Online; accessed 28-April-2024].
 
-\bibitem{pew-2021-election2020}
-S.~Keeter, N.~Hatley, A.~Lau, and C.~Kennedy.
-\newblock What 2020’s election poll errors tell us about the accuracy of issue polling.
-\newblock Technical report, Pew Research Center, 2021.
-\newblock [Online; accessed 30-April-2024].
-
 \bibitem{kulkarni-2018-multi-view}
 V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
 \newblock Multi-view models for political ideology detection of news articles.
@@ -135,6 +138,16 @@ Y.~Lei and R.~Huang.
 Y.~Lei, R.~Huang, L.~Wang, and N.~Beauchamp.
 \newblock Sentence-level media bias analysis informed by discourse structures.
 \newblock In Y.~Goldberg, Z.~Kozareva, and Y.~Zhang, editors, {\em Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing}, pages 10040--10050, Abu Dhabi, United Arab Emirates, Dec. 2022. Association for Computational Linguistics.
+
+\bibitem{lin-2022-survey-transformers}
+T.~Lin, Y.~Wang, X.~Liu, and X.~Qiu.
+\newblock A survey of transformers.
+\newblock {\em AI Open}, 3:111--132, 2022.
+
+\bibitem{liu-2017-xmlcnn}
+J.~Liu, W.-C. Chang, Y.~Wu, and Y.~Yang.
+\newblock Deep learning for extreme multi-label text classification.
+\newblock In {\em Proceedings of the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval}, SIGIR '17, page 115–124, New York, NY, USA, 2017. Association for Computing Machinery.
 
 \bibitem{liu-2019-roberta}
 Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettlemoyer, and V.~Stoyanov.
@@ -158,15 +171,30 @@ I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
 I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
 \newblock Target-aware contextual political bias detection in news, 2023.
 
+\bibitem{makridakis-2017-ai-revolution}
+S.~Makridakis.
+\newblock The forthcoming artificial intelligence (ai) revolution: Its impact on society and firms.
+\newblock {\em Futures}, 90:46--60, 2017.
+
 \bibitem{mali-2021-relevance-of-preprocessing}
 M.~Mali and M.~Atique.
 \newblock The relevance of preprocessing in text classification.
 \newblock In K.~K. Singh~Mer, V.~B. Semwal, V.~Bijalwan, and R.~G. Crespo, editors, {\em Proceedings of Integrated Intelligence Enable Networks and Computing}, pages 553--559, Singapore, 2021. Springer Singapore.
 
+\bibitem{mikolov-2013-embeddings}
+T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
+\newblock Efficient estimation of word representations in vector space, 2013.
+
 \bibitem{mishra-2017-structured-unstructured}
 S.~Mishra and A.~Misra.
 \newblock Structured and unstructured big data analytics.
 \newblock In {\em 2017 International Conference on Current Trends in Computer, Electrical, Electronics and Communication (CTCEEC)}, pages 740--746, 2017.
+
+\bibitem{narayanan-2019-word-embeddings}
+H.~Narayanan.
+\newblock Word embedding.
+\newblock \url{https://medium.com/@hari4om/word-embedding-d816f643140}, 2019.
+\newblock Accessed: 2024-07-06.
 
 \bibitem{reuters-2023-digital-news-report}
 N.~Newman, R.~Fletcher, K.~Eddy, C.~T. Robertson, and R.~K. Nielsen.
@@ -207,6 +235,11 @@ T.~E. Patterson and W.~Donsbach.
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, et~al.
 \newblock Scikit-learn: Machine learning in python.
 \newblock {\em Journal of machine learning research}, 12(Oct):2825--2830, 2011.
+
+\bibitem{perez-enciso-2019-guide}
+M.~P{\'e}rez-Enciso and L.~M. Zingaretti.
+\newblock A guide on deep learning for complex trait genomic prediction.
+\newblock {\em Genes}, 10, 2019.
 
 \bibitem{rafail-2018-tea-party}
 P.~Rafail and J.~D. McCarthy.
@@ -255,6 +288,11 @@ X.~Su, T.~Miller, X.~Ding, M.~Afshar, and D.~Dligach.
 C.~Sun, X.~Qiu, Y.~Xu, and X.~Huang.
 \newblock How to fine-tune bert for text classification?, 2020.
 
+\bibitem{uzair-2020-hidden-layers}
+M.~Uzair and N.~Jamil.
+\newblock Effects of hidden layers on the efficiency of neural networks.
+\newblock In {\em 2020 IEEE 23rd International Multitopic Conference (INMIC)}, pages 1--6, 2020.
+
 \bibitem{vallejo-2023-connecting}
 G.~Vallejo, T.~Baldwin, and L.~Frermann.
 \newblock Connecting the dots in news analysis: A cross-disciplinary survey of media bias and framing, 2023.
@@ -269,6 +307,10 @@ G.~Van~Rossum and F.~L. Drake~Jr.
 \newblock {\em Python reference manual}.
 \newblock Centrum voor Wiskunde en Informatica Amsterdam, 1995.
 
+\bibitem{vaswani-2023-attention}
+A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez, L.~Kaiser, and I.~Polosukhin.
+\newblock Attention is all you need, 2023.
+
 \bibitem{wan-2019-long-length}
 L.~Wan, G.~Papageorgiou, M.~Seddon, and M.~Bernardoni.
 \newblock Long-length legal document classification, 2019.
@@ -281,6 +323,11 @@ D.~M. White.
 \bibitem{wolf-2020-huggingface}
 T.~Wolf, L.~Debut, V.~Sanh, J.~Chaumond, C.~Delangue, A.~Moi, P.~Cistac, T.~Rault, R.~Louf, M.~Funtowicz, J.~Davison, S.~Shleifer, P.~von Platen, C.~Ma, Y.~Jernite, J.~Plu, C.~Xu, T.~L. Scao, S.~Gugger, M.~Drame, Q.~Lhoest, and A.~M. Rush.
 \newblock Huggingface's transformers: State-of-the-art natural language processing, 2020.
+
+\bibitem{yang-2016-han}
+Z.~Yang, D.~Yang, C.~Dyer, X.~He, A.~Smola, and E.~Hovy.
+\newblock Hierarchical attention networks for document classification.
+\newblock In K.~Knight, A.~Nenkova, and O.~Rambow, editors, {\em Proceedings of the 2016 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies}, pages 1480--1489, San Diego, California, June 2016. Association for Computational Linguistics.
 
 \bibitem{yougov-2023-frequency}
 {YouGov}.

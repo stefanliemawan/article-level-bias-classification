@@ -1,6 +1,7 @@
 \chapter{Background Information and Literature Review}
 \label{cha:2}
 
+
 \section{Media Bias}
 
 Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendency of news media to report in a way that reinforces a viewpoint, worldview, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts)". This phenomenon has existed and been researched since the 1950s \cite{white-1950-case-study-selection-news}, highlighting its enduring presence and impact on public perception. Media bias can manifest in various forms, including the selection of stories, framing of issues, and choice of language.
@@ -25,11 +26,15 @@ An example of a biased article can be seen from a recent article published by Th
 
 Media bias can manifest within different levels, categorised into 4 major types \cite{spinde-2024-taxonomy}, as shown in Figure \ref{fig:bias-types-taxonomy}. This project will mainly focus to address text-level context bias: phrasing bias, spin bias, and statement bias \cite{spinde-2024-taxonomy}: statement bias occurs when media personnel insert their personal views into the content, phrasing bias is marked by the use of provocative or non-neutral language, spin bias is introduced when essential information is omitted from the narrative.
 
-Another particularly dangerous example of media bias is its application in relation to elections. According to a survey done by \cite{allcott-2017-socialmedia-2016election}, fake news propagated in social media played a pivotal role in the eventual election of President Trump during the 2016 election. Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals. An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
+Another particularly dangerous example of media bias is its application in relation to elections. According to a survey done by \cite{allcott-2017-socialmedia-2016election}, fake news propagated in social media played a pivotal role in the eventual election of President Trump during the 2016 election. Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
 
-The phenomenon of media bias in media has not gone unnoticed, particularly by readers and consumers, lowering public trust in media outlets. In the United States particularly, trust in news media is at an all time low, falling consistently and significantly over the past 20 years \cite{pew-2021-partisan-divides, gallup-knight-2020-american-views, reuters-2023-digital-news-report}. Approximately half of Americans believe that the media is significantly responsible for the political divisions within the United States, with a growing number of Americans losing faith in the media's objectivity and perceiving it as actively engaging in ideological wars \cite{gallup-knight-2020-american-views}. Reuters Institute reported only less than half of their respondents (40\%) generally trust the majority of news sources, with the US ranked on 29 out of 40 countries (32\%) \cite{reuters-2023-digital-news-report,reuters-2023-trust}, ranking far below developing countries such as Indonesia, Phillipines, and Turkey (full figure shown in Figure \ref{fig:trustworthiness-of-news-media-worldwide-2023}).
+\begin{comment}
+An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
+\end{comment}
 
-Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions. It is essential for readers to seek out a variety of sources and viewpoints to gain a more balanced and comprehensive understanding of the issues at hand.
+The phenomenon of media bias in media has not gone unnoticed, particularly by readers and consumers, lowering public trust in media outlets. In the United States particularly, trust in news media is at an all time low, falling consistently and significantly over the past 20 years \cite{pew-2021-partisan-divides, gallup-knight-2020-american-views, reuters-2023-digital-news-report}. Approximately half of Americans believe that the media is significantly responsible for the political divisions within the United States, with a growing number of Americans losing faith in the media's objectivity and perceiving it as actively engaging in ideological wars \cite{gallup-knight-2020-american-views}. Reuters Institute reported only less than half of their respondents (40\%) generally trust the majority of news sources, with the US ranked on 29 out of 40 countries (32\%) \cite{reuters-2023-digital-news-report,reuters-2023-trust}, ranking far below other countries such as Indonesia, Phillipines, and Turkey (full figure shown in Figure \ref{fig:trustworthiness-of-news-media-worldwide-2023}).
+
+Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
 
 
 \begin{figure}[htbp]
@@ -53,41 +58,103 @@ Ideally, unbiased media content that objectively and fairly represents multiple 
 
 Therefore, instead of eliminating media bias, our goal should be to draw attention to its existence and forms, giving readers awareness of such content \cite{spinde-2024-taxonomy}, ultimately building a tool to defend readers from media manipulation, political agenda or indoctrination. This is essential to ensure that readers are able to form their own choices and opinions with utmost honesty and transparency.
 
+
+\section{Word Embeddings}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/word_embeddings.png}
+    \caption{Word embeddings visualisation \cite{narayanan-2019-word-embeddings}}
+    \label{fig:word-embeddings}
+\end{figure}
+
+Word embeddings are a way to represent words in a continuous vector space where words with similar meanings are placed close to each other, thereby capturing semantic relationships between words. This approach gained significant popularity with the introduction of \textit{word2vec} as a method to generate word embeddings \cite{mikolov-2013-embeddings}. Most Natural Language Processing (NLP) tasks approaches still inherently rely on word embeddings to represent textual data, often serving as the initial input to models. An example of word embeddings is visualised in Figure \ref{fig:word-embeddings}.
+
+
+\section{MultiLayer Perceptron}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/mlp.png}
+    \caption{MultiLayer Perceptron visualisation \cite{perez-enciso-2019-guide}}
+    \label{fig:mlp}
+\end{figure}
+
+A MultiLayer Perceptron (MLP) is a fully connected Artificial Neural Network (ANN) that consists of single or multiple hidden layers, illustrated in Figure \ref{fig:mlp}. Hidden layers refer to the collection of neurons that are between the input and output layers, transforming data from layer to layer \cite{uzair-2020-hidden-layers}. The weighted sum (\( \mathbf{z} \)) in a hidden layer of a neural network is computed as follows (Equation \eqref{eq:z}):
+
+\begin{equation}
+    \label{eq:z}
+    \mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}
+\end{equation}
+
+where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
+
+\begin{equation}
+    \label{eq:h}
+    \mathbf{h} = f(\mathbf{z})
+\end{equation}
+
+MLP is widely used due to to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models. By integrating multiple hidden layers with non-linear activation functions, MLP can learn intricate patterns and relationships within data, making them suitable for a wide range of machine learning tasks. This flexibility is pivotal in capturing the nuanced and intricate structures inherent in real-world datasets, thereby enhancing the model's predictive accuracy and generalisation capabilities.
+
+
+\section{Transformer}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/transformer.png}
+    \caption{Transformer visualisation \cite{vaswani-2023-attention}}
+    \label{fig:transformer}
+\end{figure}
+
+The Transformer architecture relies entirely on attention mechanism to capture global dependencies across input and output sequences, allowing for unprecedented levels of parallelisation instead of sequential processing \cite{vaswani-2023-attention}. Their introduction marks a fundamental shift away from traditional sequence-based models like recurrent neural networks (RNNs) and convolutional neural networks (CNNs), offering unparalleled advancements in handling long-range dependencies and contextual information. Their effectiveness stems from the attention mechanism, specifically through self-attention and multi-head attention mechanisms, defined in Equation \eqref{eq:attention} and \eqref{eq:multihead} \cite{vaswani-2023-attention}. These mechanisms allows the network to weigh and prioritise relevant information across sequences, capturing intricate relationships and semantic nuances.
+
+\begin{equation}
+    \label{eq:attention}
+    \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left( \frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_k}} \right) \mathbf{V}
+\end{equation}
+
+\begin{equation}
+    \label{eq:multihead}
+    \text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O
+\end{equation}
+where
+\[
+    \text{head}_i = \text{Attention}(\mathbf{Q} \mathbf{W}^Q_i, \mathbf{K} \mathbf{W}^K_i, \mathbf{V} \mathbf{W}^V_i)
+\]
+
+Transformers have sparked a revolution in the domain of Artificial Intelligence (AI), having achieved remarkable successes across diverse fieds such as natural language processing, computer vision, and audio processing \cite{lin-2022-survey-transformers}. They have single-handedly catalysed the emergence of a new era in AI capabilities observed today, predicted to have an even greater influence than the Industrial and digital revolutions combined \cite{makridakis-2017-ai-revolution}.
+
+
 \section{Document classification}
 
 Automatic document classification is first mentioned in 1963 \cite{borko-1963-auto-doc-classification}, with earlier text processing concepts and techniques defined in the 1950s \cite{luhn-1958-business-intelligence-system}. Document classification refers to the task of classifying text documents, commonly include large text processing and handling with various structure and content type. Typical use cases may include work with legal and financial documents, reports, and managing digital libraries.
 
 In 2022, according to International Data Corporation (IDC) report, unstructured data accounted for 90\& of the total of organisation-generated data, in forms of purchase orders, product inventories, import/export records, sales agreements, contracts, patents, patient treatment notes, financial earning reports, and employee performance records, among many others \cite{box-2023-untapped}. Unstructured data refers to unorganised data that cannot be stored well into database, commonly in form of large collections of texts, terabytes or petabytes in size and growing exponentially \cite{mishra-2017-structured-unstructured}. Thus, the need to automatically manage and organise large amount of text and retrieve useful knowledge (knowledge discovery) is highly apparent \cite{mali-2021-relevance-of-preprocessing}.
 
-Automatic document classification is a an active area of research, where it is mainly focused on methods that are able to handle long sequences and extract knowledge or information.
+Automatic document classification is a an active area of research, where it is mainly focused on methods that are able to handle long sequences and extract knowledge or information. Convolutional Neural Network (CNN) \cite{afzal-deepdocclassifier,liu-2017-xmlcnn} and attention-based methods \cite{yang-2016-han} dominated the before being outperformed by DocBERT \cite{adhikari-2019-docbert}, achieved through leveraging knowledge distillation from the BERT-large model.
 
-The most straightforward, modern text classification approach of fine-tuning an encoder-based language model is not necessarily effective for document-level processing as they are only able to process a maximum of 512 tokens (BERT), prompting significant information loss. Moreover, classification models that demonstrated significant results have been shown to perform poorly or even fail when they are tested on large documents \cite{wan-2019-long-length}. There exist other LLMs that are designed specifically to handle longer sequences: Longformer \cite{beltagy-2020-longformer}, BigBird \cite{zaheer-2021-bigbird}. However, these models have a different architecture than the high-performing BERT and often do not consistently surpass the baseline models in classification performance, performing only  notably better than the baseline models on only two datasets \cite{park-2022-efficient}.
+Straightforward, transformer-based text classification approach of fine-tuning an encoder-based language model is not necessarily effective for document-level processing as they are only able to process a maximum of 512 tokens (BERT), prompting significant information loss. Moreover, classification models that demonstrated significant results have been shown to perform poorly or even fail when they are tested on large documents \cite{wan-2019-long-length}. There exist other LLMs that are designed specifically to handle longer sequences: Longformer \cite{beltagy-2020-longformer}, BigBird \cite{zaheer-2021-bigbird}. However, these models have a different architecture than the high-performing BERT and often do not consistently surpass the baseline models in classification performance, performing only notably better than the baseline models on only two datasets \cite{park-2022-efficient}.
 
-Su et al. \cite{su-2021-classifying} used chunking methods combined with encoder-based '[CLS] Pooling' to extract representations on the document-level for the task of clinical document classification. Pappagarai et al. \cite{pappagari-2019-hierarchical} are among the first to utilise the Transformer architecture for long sequences classification, introducing chunking and propagation methods.
+Several works have been proposed to combat the problem of handling long sequences. Pappagari et al. \cite{pappagari-2019-hierarchical} are among the first to utilise the Transformer architecture for long sequences classification, introducing chunking and propagation methods. Su et al. \cite{su-2021-classifying} used chunking methods combined with encoder-based '[CLS] Pooling' (as also described in \cite{adhikari-2019-docbert}) to extract representations on the document-level for the task of clinical document classification.
 
 
 \section{Article-level media bias classification}
+
 Article-level classification can be seen as a subset of document classification that specifically targets articles. This field focuses on categorising article-like texts such as news pieces, blogs, and other similar formats that typically comprise multiple paragraphs. Article-level media bias classification refers to the task of detecting and classifying media bias contained within a text. Article contents length generally falls between medium to long sequences, as they are not as lengthy as legal documents or clinical studies that typically contain multiple pages of text. Most news articles stay between several hundred to several thousand words.
 
 Currently available datasets for article-level and media bias classification in general are quite limited, often varying in formats or covering different types of bias. The \textbf{BASIL} dataset \cite{fan-2019-basil} is the most commonly used bias dataset, containing 300 articles with both article-level and phrase-level annotations. This dataset focuses on informational bias in news articles as it appears more frequently than lexical bias. However, the obvious drawback of this dataset is the low amount of articles included as it is not nearly enough data to get a good working detection model. \textbf{NLPCSS} \cite{chen-2020-nlpcss} (6964 rows), annotated via Ad Fontes labels, contains article-level textual content with three bias labels (bias, neutral, or unknown). Focusing on political bias and unfairness, this dataset can potentially serve as a suitable resource for an article-level media bias classification task. The \textbf{BAT} \cite{spinde-2023-bat} dataset (6345 articles, 321 outlets, Ad Fontes labels) is the most suitable for article-level bias detection as it supplies both bias-score and reliability-score for the whole article. However, the dataset itself does not supply the textual content of the articles and therefore needs to be extended, something that I have been working on as well during my Master's Thesis this and last year.
 
 Furthermore, annotating media bias is not a straightforward task. Traditionally, this is done by hiring experts and journalists to manually read and determine how biased the content is. Here it is important to use multiple annotators to minimise introducing another form of bias towards the dataset. This comes with its own set of challenges as annotators might not always agree on biased text \cite{lim-2018-understanding}. As with \cite{spinde-2021-babe}, annotations are generally compiled and majority voted to achieve the final annotation given a particular text. Moreover, annotators' personal background moderately influenced their decisions and should be taken into consideration when building datasets, along with other factors such as topics, reading news habits, and honest mistakes \cite{spinde-2021-bias-words}. Clearly, this is not a cheap procedure and can act as a bottleneck when building a reliable media bias dataset.
 
-Alternatively, organisations such as Allsides and Ad Fontes have their own experts and annotations which can be crawled and made use of. Several papers and datasets \cite{spinde-2023-bat,chen-2020-nlpcss,kulkarni-2018-multi-view} have utilised this approach. However, since these datasets depend on manual labeling from a third-party organisation, the selection of articles likely also introduces bias into the dataset \cite{spinde-2023-bat}.
+Alternatively, organisations such as Allsides and Ad Fontes have their own experts and annotations which can be crawled and exploited. Several papers and datasets \cite{spinde-2023-bat,chen-2020-nlpcss,kulkarni-2018-multi-view} have utilised this approach. However, since these datasets depend on manual labeling from third-party organisations, the selection of articles likely also introduces bias into the dataset \cite{spinde-2023-bat}.
 
-Current State-of-the-Art approaches in media bias classification typically employs a Transformer-based approach, either by fine-tuning or exploiting Large Language Models such as BERT \cite{devlin-2019-bert} or RoBERTa \cite{liu-2019-roberta}. \textbf{MAGPIE} \cite{horych-2024-magpie} is the first large-scale, RoBERTa-based, multi-task learning (MTL) model dedicated to bias-related tasks, a promising approach for media bias detection and can be used to enhance the accuracy and efficiency of existing models. Using the more specific model MAGPIE instead of the general language models for media bias tasks may potentially enhance performance. Unfortunately, the model is only trained for sentence-level classification and also outputs binary results.
+Current State-of-the-Art (SOTA) approaches in media bias classification typically employs a Transformer-based approach, either by fine-tuning or exploiting Large Language Models such as BERT \cite{devlin-2019-bert} or RoBERTa \cite{liu-2019-roberta}. \textbf{MAGPIE} \cite{horych-2024-magpie} is the first large-scale, RoBERTa-based, multi-task learning (MTL) model dedicated to bias-related tasks, a promising approach for media bias detection and can be used to enhance the accuracy and efficiency of existing models. Using the more specific model MAGPIE instead of the general language models for media bias tasks may potentially enhance performance. Unfortunately, the model is only trained for sentence-level classification and also outputs binary results.
 
 Past works on media bias classification typically use the BASIL dataset, operating on a sentence-level and outputting binary result (either biased or not) \cite{maab-2023-lexical-bias-detection, maab-2023-target-aware, guo-2022-modeling, van-den-berg-2020-context,lee-2021-unifying,lei-2022-sentence,lei-2024-event-relation}, complemented by the lack of appropriate and adequate datasets with article-level annotations \cite{demidov-2023-political-bias-classification}.
 
-Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} utilised a Gaussian mixture model, incorporating probability distributions of frequency, positions, and sequential order of lexical and informational sentence-level bias to detect article-level bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} utilised attention mechanism to model a network structure of an article to classify political ideology.
+There are even fewer existing studies on article-level media bias classification. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} utilised a Gaussian mixture model, incorporating probability distributions of frequency, positions, and sequential order of lexical and informational sentence-level bias to detect article-level bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} utilised attention mechanism to model a network structure of an article to classify political ideology.
 
 Given that automated text classification of news articles has been shown to benefit from using article segments instead of sentences as units of analysis, with preferences on supervised machine learning techniques \cite{barbera-2021-article-classification}, it might be advantageous to consider segment-length context information when developing methodologies.
-
-\section{Word Embedding}
-
-\section{MultiLayer Perceptron (MLP)}
-
-\section{Transformer}
 
 %%% Local Variables: 
 %%% mode: latex
