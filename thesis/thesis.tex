@@ -3,9 +3,9 @@
   inputenc=utf8,
   title={Article-level Media Bias Classification},
   author={Stefan Liemawan Adji},
-  promotor={Prof. Miryam de Lhoneux},
+  promotor={Dr. Miryam de Lhoneux},
   assessor={},
-  assistant={Timo Spinde and Tomáš Horych of Media Bias Group}
+  assistant={Dr. Timo Spinde and Tomáš Horych of Media Bias Group}
   }
 % Remove the "%" on the next line for generating the cover page
 %\setup{coverpageonly}
@@ -51,7 +51,7 @@
 \tableofcontents*
 
 \begin{abstract}
-    In today's digital, information-rich society, media bias poses a significant challenge to the objectivity and credibility of news reporting. Media bias can shape our perceptions, influence our opinions, and affect our understanding on various issues. It is crucial to recognise and address this bias to ensure a well-informed and balanced perspective. By being aware of the inherent biases in media sources, individuals can critically evaluate the information they consume and seek out diverse viewpoints to form a more comprehensive understanding of the world. This thesis project aims to identify forms of media bias in articles and build a system to detect and classify media bias at the article level. The BAT dataset, containing articles annotated by Ad Fontes, is extended by scraping article content from individual outlet websites. Using reliability scores as labels, the articles are categorised into four bias classes: Problematic, Questionable, Generally Reliable, and Reliable. Both the titles and content of the articles are used as primary features, with the influence of outlet metadata also examined. Several methods are proposed to tackle the task of article-level media bias classification using the extended BAT dataset. These methods include frequency-based approaches, BERT (sliding window) fine-tuning, and \textbf{BERT/MAGPIE CLS}: feature-based approach and CLS pooling continued with feeding into Transformer layers and Multi-Layer Perceptron (MLP).
+    In today's digital, information-rich society, media bias poses a significant challenge to the objectivity and credibility of news reporting. Media bias can shape our perceptions, influence our opinions, and affect our understanding on various issues. It is crucial to recognise and address this bias to ensure a well-informed and balanced perspective. By being aware of the inherent biases in media sources, individuals can critically evaluate the information they consume and seek out diverse viewpoints to form a more comprehensive understanding of the world. This thesis project aims to identify forms of media bias in articles and build a system to detect and classify media bias at the article level. The BAT \cite{spinde-2023-bat} dataset, containing articles annotated by Ad Fontes \cite{adfontes}, is extended by crawling article content from individual outlet websites. Using reliability scores as labels, the articles are categorised into four bias classes: Problematic, Questionable, Generally Reliable, and Reliable. Both the titles and content of the articles are used as primary features, with the influence of outlet metadata also examined. Several methods are proposed to tackle the task of article-level media bias classification using the extended BAT dataset. These methods include frequency-based approaches, BERT (sliding window) fine-tuning, and \textbf{BERT/MAGPIE CLS}: feature-based approach and CLS pooling continued with feeding into Transformer layers and Multi-Layer Perceptron (MLP).
 \end{abstract}
 
 % % A list of figures and tables is optional

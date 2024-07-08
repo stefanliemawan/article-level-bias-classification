@@ -9,16 +9,24 @@ This thesis project is part of an Advanced Master of Artificial Intelligence pro
 
 Media misinformation and manipulation are rampant in today's landscape. Despite being a major societal issue, there has been insufficient attention and resources dedicated to understanding and addressing media bias in its broader context. While considerable work has been done on fake news and its detection, media bias operates at a more nuanced level and cannot be simply equated with fake news. Fake news involves intentionally spreading false information, whereas media bias refers to the distortion or manipulation of information by media outlets, which may or may not be intentional, to favour certain perspectives or agendas. Unlike fake news, media bias can subtly influence public perception through selective reporting, framing, or sourcing, making it a complex and challenging issue to address comprehensively.
 
-Existing works in media bias classification tend to have major drawbacks. Available datasets are low in quantity, containing only small number of samples, questionable annotations, and each having their own different types of bias, format, and metrics, making the task of training a model for media bias classification even more difficult. Classification is mostly done on the sentence-level with binary output, which is far too naive and may miss the broader context and impact conveyed by an entire article. One of the main problems with sentence-level classification is that different sentences within the same article can exhibit contradictory or varying biases. Media content is typically presented in the form of articles composed of multiple paragraphs, making article-level classification significantly more practical and valuable, in addition to offering a more nuanced and accurate perspective on media bias. Thus, detecting biases at the article-level allows for a more comprehensive understanding of the overall narrative and agenda presented by the media outlet. This approach considers the context and holistic viewpoint provided by the entire article, which is crucial for interpreting the nuanced ways in which biases can manifest. Moreover, article-level detection better aligns with how media consumers engage with and interpret information, as they often read articles in their entirety rather than focusing solely on isolated sentences.
+Existing works in media bias classification tend to have major drawbacks. Available datasets are low in quantity, containing only small number of samples, low-level(binary) annotations, and each having their own different types of bias, format, and metrics, making the task of training a model for media bias classification even more difficult. Classification is mostly done on the sentence-level with binary output, which is far too naive and may miss the broader context and impact conveyed by an entire article. One of the main problems with sentence-level classification is that different sentences within the same article can exhibit contradictory or varying biases. This can introduce inconsistencies and misinterpretations of the article, making it challenging to understand the article's overall bias or perspective.
+
+\begin{comment}
+Find examples of contradictory sentences bias in the same article
+\end{comment}
+
+Media content is typically presented in the form of articles composed of multiple paragraphs, making article-level classification significantly more practical and valuable, in addition to offering a more nuanced and accurate perspective on media bias. Thus, detecting biases at the article-level allows for a more comprehensive understanding of the overall narrative and agenda presented by the media outlet. This approach considers the context and holistic viewpoint provided by the entire article, which is crucial for interpreting the nuanced ways in which biases can manifest.
 
 To combat media bias effectively, it is crucial to develop robust methodologies and technologies for detecting and analysing biased content at the article-level. This approach will aid readers in recognising and identifying potential biases in the information they consume, thereby raising awareness of the associated dangers of media bias and promoting media literacy as well as critical thinking skills, which empower individuals to navigate information effectively in today's complex media landscape. Ultimately, addressing media bias requires coordinated efforts from researchers, policymakers, media organizations, and the public to uphold transparency, accountability, and integrity in news reporting and consumption.
 
-Therefore, to contribute in the effort of addressing media bias, the objectives of this project are outlined as follows:
+Therefore, to contribute in the effort of addressing media bias at the article-level, this project aims to answer the following research questions:
 \begin{enumerate}
-    \item Extend current media bias dataset to make it more suitable for article-level classification.
-    \item Propose methods to effectively represent articles in a space vector.
-    \item Build a system that is able to effectively detect and classify bias at the article-level.
-    \item Evaluate results.
+    \item How can current media bias datasets be improved to better support article-level classification?
+    \item What are the most effective methods to represent articles and preserve contextual information and represent articles for media bias classification task?
+    \item What natural language processing techniques are best suited for article-level bias classification?
+          % \item How effective is the proposed article-level bias classification system compared to existing works?
+    \item What metrics should be used to evaluate the performance of the article-level bias classification system?
+    \item What are the challenges and limitations of article-level bias classification, and how can they be mitigated?
 \end{enumerate}
 
 \section{About the Media Bias Group}

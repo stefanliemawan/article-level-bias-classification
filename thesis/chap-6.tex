@@ -1,104 +1,26 @@
-\chapter{Evaluation}
+\chapter{Conclusion}
 \label{cha:6}
 
+\section{Remarks}
 
-For every method, precision, recall, and F1 score is evaluated on both overall and per class performance.
+Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance in media bias classification tasks with this dataset. Transformer-based approaches, while expected to perform better, have only shown slight improvements. The modest performance gains from Transformer models can be attributed to the presence of noise in article content and the massive class imbalance that exist in the dataset, hampering the Transformer models' ability to capture context effectively. It can be hypothesised that addressing these issues—by cleaning the data and balancing the classes would lead to significant performance improvements for Transformer-based approaches, allowing them to moderately outperform conventional methods. With current performances, any the approaches mentioned in this paper should be able to confidently recognise unbiased articles well ('Reliable' class). However, this is not the case for other classes, in other words, the models would be able to classify unbiased articles instead of biased ones.
 
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{| c | c | c | c | c |}
-        \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1}     \\\cline{1-5}
-        \multirow{5}{*}{BoW + LR}                         & Problematic        & 0.38               & 0.41            & 0.39            \\
-                                                          & Questionable       & 0.34               & 0.31            & 0.33            \\
-                                                          & Generally Reliable & 0.36               & 0.40            & 0.38            \\
-                                                          & Reliable           & 0.85               & 0.83            & 0.84            \\\cline{2-5}
-                                                          & Overall            & 0.6922             & 0.6818          & 0.6865          \\
-        \hline
-        \multirow{5}{*}{TF-IDF + LR}                      & Problematic        & 1.00               & 0.11            & 0.20            \\
-                                                          & Questionable       & 0.47               & 0.17            & 0.25            \\
-                                                          & Generally Reliable & 0.36               & 0.31            & 0.33            \\
-                                                          & Reliable           & 0.79               & 0.94            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.6904             & 0.7117          & 0.6725          \\
-        \hline
-        \multirow{5}{*}{BoW + MLP}                        & Problematic        & 0.38               & 0.44            & 0.41            \\
-                                                          & Questionable       & 0.33               & 0.35            & 0.34            \\
-                                                          & Generally Reliable & 0.41               & 0.42            & 0.42            \\
-                                                          & Reliable           & 0.88               & 0.85            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.7162             & 0.7065          & 0.7110          \\
-        \hline
-        \multirow{5}{*}{BERT FT}                          & Problematic        & 0.43               & 0.44            & 0.44            \\
-                                                          & Questionable       & 0.29               & 0.39            & 0.33            \\
-                                                          & Generally Reliable & 0.44               & 0.48            & 0.46            \\
-                                                          & Reliable           & 0.90               & 0.83            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.7359             & 0.7065          & 0.7193          \\
-        \hline
-        \multirow{5}{*}{BERT SW FT}                       & Problematic        & 0.45               & 0.48            & 0.46            \\
-                                                          & Questionable       & 0.39               & 0.52            & 0.45            \\
-                                                          & Generally Reliable & 0.42               & 0.50            & 0.46            \\
-                                                          & Reliable           & 0.91               & 0.81            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.7472             & 0.7112          & 0.7257          \\
-        \hline
-        \multirow{5}{*}{BERT CLS}                         & Problematic        & 0.44               & 0.67            & 0.53            \\
-                                                          & Questionable       & 0.41               & 0.48            & 0.44            \\
-                                                          & Generally Reliable & 0.39               & 0.50            & 0.44            \\
-                                                          & Reliable           & 0.91               & 0.79            & 0.84            \\\cline{2-5}
-                                                          & Overall            & 0.7440             & 0.6994          & 0.7163          \\
-        \hline
-        \multirow{5}{*}{MAGPIE CLS}                       & Problematic        & 0.46               & 0.63            & 0.53            \\
-                                                          & Questionable       & 0.36               & 0.41            & 0.38            \\
-                                                          & Generally Reliable & 0.41               & 0.55            & 0.47            \\
-                                                          & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
-                                                          & Overall            & \textbf{0.7577}    & \textbf{0.7117} & \textbf{0.7293} \\
-        \hline
-    \end{tabular}
-    \caption{Evaluation table, with title and content of articles as features}
-    \label{table:eval}
-\end{table}
+Incorporating outlet information has generally improved performance across all methods, with some methods benefiting more significantly than others. Performing outlet majority votes has shown to classify media bias far better than any other method mentioned. While it might be tempting to rely solely on outlet information for classification, this approach has its limitations. A model that generalises well over the content of articles rather than relying heavily on outlet metadata is preferable for robust media bias classification. This ensures the model's applicability across different sources and reduces the risk of overfitting to specific outlet biases.
 
-Table \ref{table:eval} shows the evaluation of all methods given only title and content of articles as features. It can be seen that frequency-based approaches such as BoW and TF-IDF performed generally decent. However, looking at per-class metrics, it is evident that the overall scores are heavily influenced by the performance of the 'Reliable' class due to its large support. On all of the other less represented classes, the models' performance suffered with much lower F1 scores with the TF-IDF + LR model having the worst F1 score on the 'Problematic' class. The BoW + MLP model achieved slight improvement in almost all instances compared to its predecessor due to the use of neural network. A typical BERT fine-tuning outperformed all frequency-based methods, though only with a close margin compared to the BoW + MLP model. The BERT sliding window fine-tuning (BERT SW FT) method outperformed all BoW and TF-IDF methods, also performing slightly better to a standard BERT fine-tuning of the first 512 tokens. Similarly, the CLS methods mostly outperformed traditional methods with best F1 score on the 'Problematic' class, able to generalise on the most biased class. While BERT CLS achieved slightly worse performance compared to the two fine-tuning methods, \textbf{MAGPIE CLS performed best among all other methods with the highest overall precision, recall, and F1 score.}
+Additionally, the entire dataset used in this study (BAT dataset) is completely curated by Ad Fontes Media, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects the models trained on it. This underlying bias needs to be considered when interpreting the results.
 
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{| c | c | c | c | c |}
-        \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1}     \\\cline{1-5}
-        \multirow{5}{*}{Outlet majority}                  & Problematic        & 0.56               & 0.70            & 0.62            \\
-                                                          & Questionable       & 0.58               & 0.46            & 0.52            \\
-                                                          & Generally Reliable & 0.56               & 0.53            & 0.54            \\
-                                                          & Reliable           & 0.91               & 0.93            & 0.92            \\\cline{2-5}
-                                                          & Overall            & 0.7945             & \textbf{0.7996} & \textbf{0.7959} \\
-        \hline
-        \multirow{5}{*}{BERT FT}                          & Problematic        & 0.65               & 0.56            & 0.60            \\
-                                                          & Questionable       & 0.45               & 0.50            & 0.47            \\
-                                                          & Generally Reliable & 0.44               & 0.62            & 0.52            \\
-                                                          & Reliable           & 0.94               & 0.84            & 0.88            \\\cline{2-5}
-                                                          & Overall            & \textbf{0.8186}    & 0.7883          & 0.7504          \\
-        \hline
-        \multirow{5}{*}{BERT SW FT}                       & Problematic        & 0.46               & 0.41            & 0.43            \\
-                                                          & Questionable       & 0.41               & 0.48            & 0.44            \\
-                                                          & Generally Reliable & 0.46               & 0.56            & 0.51            \\
-                                                          & Reliable           & 0.91               & 0.84            & 0.87            \\\cline{2-5}
-                                                          & Overall            & 0.7585             & 0.7359          & 0.7451          \\
-        \hline
-        \multirow{5}{*}{BERT CLS}                         & Problematic        & 0.37               & 0.59            & 0.46            \\
-                                                          & Questionable       & 0.32               & 0.43            & 0.37            \\
-                                                          & Generally Reliable & 0.40               & 0.47            & 0.43            \\
-                                                          & Reliable           & 0.92               & 0.79            & 0.85            \\\cline{2-5}
-                                                          & Overall            & 0.7384             & 0.6871          & 0.7071          \\
-        \hline
-        \multirow{5}{*}{MAGPIE CLS}                       & Problematic        & 0.42               & 0.52            & 0.47            \\
-                                                          & Questionable       & 0.35               & 0.43            & 0.38            \\
-                                                          & Generally Reliable & 0.43               & 0.55            & 0.48            \\
-                                                          & Reliable           & 0.93               & 0.82            & 0.87            \\\cline{2-5}
-                                                          & Overall            & 0.76034            & 0.7170          & 0.7342          \\
-        \hline
-    \end{tabular}
-    \caption{Evaluation table, with outlet information as additional features (outlet + title + content)}
-    \label{table:eval-outlet}
-\end{table}
+\section{Future works}
 
-Table \ref{table:eval-outlet} shows the evaluation of methods, given the article's outlet information as additional features to the title and content. As a comparison, \textbf{using outlet information as the sole feature without any other information (with majority votes) outperformed all methods on overall recall and F1 scores}. This result signified how influential outlet information can be in terms of classifying media bias, with regards to this specific dataset and circumstances. Out of all the other methods, BERT fine-tuning reigned superior with the best overall precision score and a particularly strong F1 score on the 'Problematic' class, performing slightly better than the sliding window implementation (BERT SW FT). Interestingly, both BERT CLS and MAGPIE CLS methods were not able to capitalise on the outlet information as well as BERT FT and BERT SW FT as both CLS methods only saw little improvement compared to when outlet features were unavailable.
+The dataset need to be extended with a lot more examples of biased articles, particularly for the underrepresented classes 'Problematic' and 'Questionable'. Once a balanced dataset is achieved, the methods need to be reevaluated and retuned. Considering that the methods were able to generalise well on the highly-represented class ('Reliable'), similar performance improvement can be expected to the other classes, given that more samples are included.
 
-All methods demonstrate reasonably well with overall precision, recall, and F1 scores above 0.67, with a particularly strong performance on the 'Reliable' class, achieving F1 scores consistently above 0.84.
+Additionally, the test set needs to be carefully crafted to include some outlets that are not seen in the training set, enabling diverse representational articles and patterns. This is crucial to assess their the models generalisability and ensuring their robustness in real-world scenarios. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Ideally, it should not rely solely on Ad Fontes selections and annotations.
+
+Comparing results with other studies on media bias classification is currently challenging and practically impossible due to the lack of comparable datasets specifically designed for article-level media bias classification. Therefore, standardising datasets and evaluation metrics across studies would be greatly beneficial for advancing the field of media bias classification.
+
+Furthermore, The traditional approach of assigning only a single frame label to news articles remains overly simplistic and does not provide much explainability, given that a standard news article often incorporates multiple viewpoints, arguments, or facets, each potentially carrying distinct connotations or framing \cite{vallejo-2023-connecting}. Ultimately, the goal should also be for the model to provide a rationale for its classification decisions. This capability can be achieved through techniques related to question answering and reasoning in NLP, or Machine Reading Comprehension (MRC). These approaches enable the model to not only classify media bias but also explain the underlying reasons and evidence supporting its predictions. This enhances transparency and trust in the model's outputs, making it more useful for interpreting and verifying media bias classifications.
+
+Finally, more complex and global approaches such as graph-based methods can also be implemented to encode multiple articles and defining relationships between them. This would allow for a higher granularity and far more detailed representation of articles, allowing the model to generalise according to combined features of the corresponding articles.
+
 
 
 %%% Local Variables: 

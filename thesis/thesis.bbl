@@ -15,9 +15,19 @@ H.~Allcott and M.~Gentzkow.
 \newblock Social media and fake news in the 2016 election.
 \newblock {\em Journal of Economic Perspectives}, 31(2):211--36, 2017.
 
+\bibitem{barbera-2021-article-classification}
+P.~Barberá, A.~E. Boydstun, S.~Linn, R.~McMahon, and J.~Nagler.
+\newblock Automated text classification of news articles: A practical guide.
+\newblock {\em Political Analysis}, 29(1):19–42, 2021.
+
 \bibitem{beltagy-2020-longformer}
 I.~Beltagy, M.~E. Peters, and A.~Cohan.
 \newblock Longformer: The long-document transformer, 2020.
+
+\bibitem{borko-1963-auto-doc-classification}
+H.~Borko and M.~Bernick.
+\newblock Automatic document classification.
+\newblock {\em J. ACM}, 10(2):151–162, apr 1963.
 
 \bibitem{boudana-2011-journalistic-objectivity}
 S.~Boudana.
@@ -134,6 +144,11 @@ Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettle
 I.~Loshchilov and F.~Hutter.
 \newblock Decoupled weight decay regularization, 2019.
 
+\bibitem{luhn-1958-business-intelligence-system}
+H.~P. Luhn.
+\newblock A business intelligence system.
+\newblock {\em IBM J. Res. Dev.}, 2(4):314–319, oct 1958.
+
 \bibitem{maab-2023-lexical-bias-detection}
 I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
 \newblock An effective approach for informational and lexical bias detection.
@@ -142,6 +157,16 @@ I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
 \bibitem{maab-2023-target-aware}
 I.~Maab, E.~Marrese-Taylor, and Y.~Matsuo.
 \newblock Target-aware contextual political bias detection in news, 2023.
+
+\bibitem{mali-2021-relevance-of-preprocessing}
+M.~Mali and M.~Atique.
+\newblock The relevance of preprocessing in text classification.
+\newblock In K.~K. Singh~Mer, V.~B. Semwal, V.~Bijalwan, and R.~G. Crespo, editors, {\em Proceedings of Integrated Intelligence Enable Networks and Computing}, pages 553--559, Singapore, 2021. Springer Singapore.
+
+\bibitem{mishra-2017-structured-unstructured}
+S.~Mishra and A.~Misra.
+\newblock Structured and unstructured big data analytics.
+\newblock In {\em 2017 International Conference on Current Trends in Computer, Electrical, Electronics and Communication (CTCEEC)}, pages 740--746, 2017.
 
 \bibitem{reuters-2023-digital-news-report}
 N.~Newman, R.~Fletcher, K.~Eddy, C.~T. Robertson, and R.~K. Nielsen.
@@ -187,6 +212,11 @@ F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Bl
 P.~Rafail and J.~D. McCarthy.
 \newblock Making the tea party republican: Media bias and framing in newspapers and cable news.
 \newblock {\em Social Currents}, 5(5):421--437, 2018.
+
+\bibitem{box-2023-untapped}
+{Research Desk}.
+\newblock Untapped value: What every executive needs to know about unstructured data, Dec. 2023.
+\newblock Sponsored by BOX.
 
 \bibitem{reuters-2023-false-info}
 {Reuters Institute for the Study of Journalism}.
