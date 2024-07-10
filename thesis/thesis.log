@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  9 JUL 2024 01:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  10 JUL 2024 08:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1275,35 +1275,67 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@cntb=\count361
 \multirow@dima=\skip196
 \bigstrutjot=\dimen311
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count362
+\float@exts=\toks46
+\float@box=\box70
+\@float@everytoks=\toks47
+\@floatcapt=\box71
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 42.
+\@float@every@algorithm=\toks48
+\c@algorithm=\count363
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count364
+\c@ALG@rem=\count365
+\c@ALG@nested=\count366
+\ALG@tlm=\skip197
+\ALG@thistlm=\skip198
+\c@ALG@Lnr=\count367
+\c@ALG@blocknr=\count368
+\c@ALG@storecount=\count369
+\c@ALG@tmpcounter=\count370
+\ALG@tmplength=\skip199
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+)
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 46.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count362
-\l__pdf_internal_box=\box70
+\l__color_backend_stack_int=\count371
+\l__pdf_internal_box=\box72
 ) (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 
 
 ******************************************************
@@ -1327,43 +1359,43 @@ Sidefootvsep and sidefootheight: 13.6pt and 594.32022pt
 
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count363
+\scratchcounter=\count372
 \scratchdimen=\dimen312
-\scratchbox=\box71
-\nofMPsegments=\count364
-\nofMParguments=\count365
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count366
+\scratchbox=\box73
+\nofMPsegments=\count373
+\nofMParguments=\count374
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count375
 \MPscratchDim=\dimen313
-\MPnumerator=\count367
-\makeMPintoPDFobject=\count368
-\everyMPtoPDFconversion=\toks47
+\MPnumerator=\count376
+\makeMPintoPDFobject=\count377
+\everyMPtoPDFconversion=\toks50
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 42.
-Package microtype Info: Applying patch `item' on input line 42.
-Package microtype Info: Applying patch `toc' on input line 42.
-Package microtype Info: Applying patch `eqnum' on input line 42.
-Package microtype Info: Applying patch `footnote' on input line 42.
-Package microtype Info: Applying patch `verbatim' on input line 42.
+LaTeX Info: Redefining \microtypecontext on input line 46.
+Package microtype Info: Applying patch `item' on input line 46.
+Package microtype Info: Applying patch `toc' on input line 46.
+Package microtype Info: Applying patch `eqnum' on input line 46.
+Package microtype Info: Applying patch `footnote' on input line 46.
+Package microtype Info: Applying patch `verbatim' on input line 46.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 42.
+LaTeX Info: Redefining \showhyphens on input line 46.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-Package hyperref Info: Link coloring ON on input line 42.
+Package hyperref Info: Link coloring ON on input line 46.
  (./thesis.out) (./thesis.out)
 \@outlinefile=\write5
 \openout5 = `thesis.out'.
@@ -1375,21 +1407,21 @@ Package microtype Info: Loading generic protrusion settings for font family
 <logokul.pdf, id=115, 159.33528pt x 56.90298pt>
 File: logokul.pdf Graphic file (type pdf)
 <use logokul.pdf>
-Package pdftex.def Info: logokul.pdf  used on input line 42.
+Package pdftex.def Info: logokul.pdf  used on input line 46.
 (pdftex.def)             Requested size: 159.33487pt x 56.90283pt.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <12> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 42.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 46.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <14.4> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 42.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 46.
  [-1
 
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc} </Users/stefanliemawan/Library/texmf/tex/latex/kulemt/logokul.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 42.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 46.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 42.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 46.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1460,7 +1492,361 @@ File: images/bias-types-taxonomy.png Graphic file (type png)
 <use images/bias-types-taxonomy.png>
 Package pdftex.def Info: images/bias-types-taxonomy.png  used on input line 22.
 (pdftex.def)             Requested size: 358.19757pt x 230.54483pt.
- [5] [6 <./images/the-economist-biased-article.png>] [7 <./images/bias-types-taxonomy.png>]
+ [5] [6
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.29 A
+      nother particularly dangerous example of media bias is its application... <./images/the-economist-biased-article.png>] [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.38 
+      <./images/bias-types-taxonomy.png>]
 <images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png, id=262, 1003.75pt x 745.78625pt>
 File: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png Graphic file (type png)
-<use images/statistic_id1317019_consume
+<use images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>
+Package pdftex.def Info: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png  used on input line 42.
+(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
+<images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png, id=265, 1003.75pt x 745.78625pt>
+File: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png Graphic file (type png)
+<use images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>
+Package pdftex.def Info: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png  used on input line 50.
+(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
+ [8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.58 
+      <./images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>]
+<images/word_embeddings.png, id=284, 1304.875pt x 974.64125pt>
+File: images/word_embeddings.png Graphic file (type png)
+<use images/word_embeddings.png>
+Package pdftex.def Info: images/word_embeddings.png  used on input line 66.
+(pdftex.def)             Requested size: 358.19757pt x 267.54384pt.
+<images/mlp.png, id=289, 853.1875pt x 688.5725pt>
+File: images/mlp.png Graphic file (type png)
+<use images/mlp.png>
+Package pdftex.def Info: images/mlp.png  used on input line 78.
+(pdftex.def)             Requested size: 358.19757pt x 289.0934pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.84 
+      <./images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>] [10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.100 \section
+              {Transformer}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc} <./images/word_embeddings.png>]
+<images/transformer.png, id=320, 509.905pt x 682.55pt>
+File: images/transformer.png Graphic file (type png)
+<use images/transformer.png>
+Package pdftex.def Info: images/transformer.png  used on input line 104.
+(pdftex.def)             Requested size: 278.59879pt x 372.94576pt.
+ [11
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.123 \]
+        {/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} <./images/mlp.png>] [12
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.131 
+       <./images/transformer.png>] [13] [14]) [15]
+\openout2 = `chap-3.aux'.
+
+ (./chap-3.tex [16
+
+
+
+
+]
+Underfull \vbox (badness 1708) has occurred while \output is active []
+
+ [17] [18
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.42 
+     
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.42 
+     ]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 54.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 54.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 54.
+<figures/tokens_count_vx_hist.png, id=462, 722.7pt x 433.62pt>
+File: figures/tokens_count_vx_hist.png Graphic file (type png)
+<use figures/tokens_count_vx_hist.png>
+Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 141.
+(pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
+ [19
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.144 \end{figure}
+                  ]
+<figures/reliability_score_hist.png, id=470, 722.7pt x 433.62pt>
+File: figures/reliability_score_hist.png Graphic file (type png)
+<use figures/reliability_score_hist.png>
+Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 148.
+(pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
+<figures/dates_hist.png, id=474, 1156.32pt x 433.62pt>
+File: figures/dates_hist.png Graphic file (type png)
+<use figures/dates_hist.png>
+Package pdftex.def Info: figures/dates_hist.png  used on input line 156.
+(pdftex.def)             Requested size: 358.19757pt x 134.32156pt.
+<figures/correlation_tokens_reliability_score.png, id=476, 722.7pt x 433.62pt>
+File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
+<use figures/correlation_tokens_reliability_score.png>
+Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 165.
+(pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
+ [20
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.168 \end{figure}
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.168 \end{figure}
+                   <./figures/tokens_count_vx_hist.png>]
+<figures/tokens_count_vx_per_class_hist.png, id=487, 867.24pt x 867.24pt>
+File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
+<use figures/tokens_count_vx_per_class_hist.png>
+Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 173.
+(pdftex.def)             Requested size: 318.40121pt x 318.39922pt.
+) [21
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.96 \include{chap-3}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.96 \include{chap-3}
+                      <./figures/reliability_score_hist.png> <./figures/dates_hist.png>] [22
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.96 \include{chap-3}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.96 \include{chap-3}
+                      <./figures/correlation_tokens_reliability_score.png> <./figures/tokens_count_vx_per_class_hist.png>]
+\openout2 = `chap-4.aux'.
+
+ (./chap-4.tex [23
+
+
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.38 
+     ]
+<images/bert_finetuning.png, id=517, 969.6225pt x 417.56pt>
+File: images/bert_finetuning.png Graphic file (type png)
+<use images/bert_finetuning.png>
+Package pdftex.def Info: images/bert_finetuning.png  used on input line 73.
+(pdftex.def)             Requested size: 358.19757pt x 154.25902pt.
+ [24
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.132 \end{figure}
+                  ] [25
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.147 \subsection
+                 {CLS method}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.147 \subsection
+                 {CLS method} <./images/bert_finetuning.png>] [26
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.212 
+      ]
+<figures/class_weight.png, id=559, 722.7pt x 433.62pt>
+File: figures/class_weight.png Graphic file (type png)
+<use figures/class_weight.png>
+Package pdftex.def Info: figures/class_weight.png  used on input line 244.
+(pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
+) [27] [28
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.97 \include{chap-4}
+                      <./figures/class_weight.png>]
+\openout2 = `chap-5.aux'.
+
+ (./chap-5.tex
+Underfull \vbox (badness 6078) has occurred while \output is active []
+
+ [29
+
+
+
+
+] [30
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.101 A
+       ll methods demonstrate reasonably well with overall precision, recall...]) [31
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.98 \include{chap-5}
+                     ]
+\openout2 = `chap-6.aux'.
+
+ (./chap-6.tex [32
+
+
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33]) [34]
+\openout2 = `chap-7.aux'.
+
+
+No file chap-7.tex.
+[35
+
+
+
+
+
+
+] [36]
+\openout2 = `app-A.aux'.
+
+ (./app-A.tex
+<figures/tokens_count_vx_split_hist.png, id=618, 867.24pt x 867.24pt>
+File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
+<use figures/tokens_count_vx_split_hist.png>
+Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
+(pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
+<figures/wordcloud_vx.png, id=619, 462.528pt x 346.896pt>
+File: figures/wordcloud_vx.png Graphic file (type png)
+<use figures/wordcloud_vx.png>
+Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
+(pdftex.def)             Requested size: 278.59879pt x 208.95964pt.
+<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=620, 308.352pt x 243.7908pt>
+File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
+<use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
+Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg  used on input line 23.
+(pdftex.def)             Requested size: 318.40121pt x 251.73972pt.
+<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=621, 1003.75pt x 745.78625pt>
+File: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png Graphic file (type png)
+<use images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>
+Package pdftex.def Info: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png  used on input line 30.
+(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
+<images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png, id=624, 1003.75pt x 2275.50125pt>
+File: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png Graphic file (type png)
+<use images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>
+Package pdftex.def Info: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png  used on input line 37.
+(pdftex.def)             Requested size: 238.80243pt x 541.33992pt.
+) [37
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.105 \include{app-A}
+                      <./figures/tokens_count_vx_split_hist.png>] [38
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.105 \include{app-A}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.105 \include{app-A}
+                      <./figures/wordcloud_vx.png> <./images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>] [39
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.105 \include{app-A}
+                      <./images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>] [40
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.105 \include{app-A}
+                      <./images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>] (./thesis.bbl
+bibitemlist
+[41
+
+
+
+
+] [42] [43]
+Underfull \hbox (badness 3769) in paragraph at lines 204--208
+[]\T1/lmr/m/n/10.95 (+20) H. Narayanan.  Word em-bed-ding.  [][]$\T1/lmtt/m/n/10.95 https : / / medium . com / @hari4om /
+ []
+
+[44]
+Underfull \hbox (badness 4699) in paragraph at lines 270--273
+[]\T1/lmr/m/n/10.95 (+20) Reuters In-sti-tute for the Study of Jour-nal-ism.  Share of adults
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 270--273
+\T1/lmr/m/n/10.95 (+20) who trust news me-dia most of the time in se-lected coun-tries world-
+ []
+
+
+Underfull \hbox (badness 2088) in paragraph at lines 270--273
+\T1/lmr/m/n/10.95 (+20) wide as of febru-ary 2023 [graph], June 14 2023.  In Statista. Re-
+ []
+
+[45] [46]) [47]
+\tf@toc=\write6
+\openout6 = `thesis.toc'.
+
+ (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux))
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 6B59AC6B996A625C355D67AFF40EEBA1;3657.
+ ) 
+Here is how much of TeX's memory you used:
+ 28814 strings out of 476025
+ 525716 string characters out of 5790016
+ 1884388 words of memory out of 5000000
+ 48213 multiletter control sequences out of 15000+600000
+ 625827 words of font info for 227 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 84i,12n,89p,3058b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on thesis.pdf (51 pages, 6852042 bytes).
+PDF statistics:
+ 817 PDF objects out of 1000 (max. 8388607)
+ 678 compressed objects within 7 object streams
+ 200 named destinations out of 1000 (max. 500000)
+ 60745 words of extra memory for PDF output out of 61914 (max. 10000000)
+

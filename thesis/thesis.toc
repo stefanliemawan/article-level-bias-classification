@@ -17,9 +17,9 @@
 \contentsline {section}{\numberline {2.4}Transformer}{11}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Document classification}{12}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Article-level media bias classification}{13}{section.2.6}%
-\contentsline {chapter}{\chapternumberline {3}BAT Dataset}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Characteristics}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Extension}{19}{section.3.2}%
+\contentsline {chapter}{\chapternumberline {3}Dataset Reconstruction}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}BAT dataset}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Reconstruction}{18}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Analysis}{20}{section.3.3}%
 \contentsline {chapter}{\chapternumberline {4}Methodology}{23}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Dataset split}{23}{section.4.1}%
