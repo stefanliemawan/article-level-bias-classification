@@ -27,13 +27,13 @@
 \contentsline {section}{\numberline {4.3}Proposed methods}{24}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{24}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}BERT fine-tuning}{24}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}BERT sliding window fine-tuning}{25}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.3}Chunk-based BERT fine-tuning}{26}{subsection.4.3.3}%
 \contentsline {subsection}{\numberline {4.3.4}CLS method}{26}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Training details}{27}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{27}{subsection.4.4.1}%
-\contentsline {chapter}{\chapternumberline {5}Evaluation}{29}{chapter.5}%
-\contentsline {chapter}{\chapternumberline {6}Conclusion}{33}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Remarks}{33}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future works}{34}{section.6.2}%
-\contentsline {appendix}{\chapternumberline {A}The First Appendix}{37}{appendix.A}%
-\contentsline {chapter}{Bibliography}{41}{appendix*.3}%
+\contentsline {section}{\numberline {4.4}Training details}{29}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{29}{subsection.4.4.1}%
+\contentsline {chapter}{\chapternumberline {5}Evaluation}{31}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {6}Conclusion}{35}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Remarks}{35}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Future works}{36}{section.6.2}%
+\contentsline {appendix}{\chapternumberline {A}The First Appendix}{39}{appendix.A}%
+\contentsline {chapter}{Bibliography}{43}{appendix*.3}%

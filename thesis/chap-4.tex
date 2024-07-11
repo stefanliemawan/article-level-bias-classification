@@ -5,10 +5,10 @@
 
 The dataset reliability scores are grouped and split into 4 classes based on its reliability score as previously described in Section \ref{bat-characteristics}:
 \begin{enumerate}
-    \item Problematic ---> scores between 0.00 and 24.00
-    \item Questionable ---> scores between 24.01 and 32.00
-    \item Generally Reliable ---> scores between 32.01 and 40.00
-    \item Reliable ---> scores between 40.01 and 64
+    \item Problematic: scores between 0.00 and 24.00
+    \item Questionable: scores between 24.01 and 32.00
+    \item Generally Reliable: scores between 32.01 and 40.00
+    \item Reliable: scores between 40.01 and 64
 \end{enumerate}
 
 \begin{table}[htbp]
@@ -34,9 +34,55 @@ The dataset is then split into three sets of train, test, and validation, distri
 
 \section{Features and baselines}
 
-The primary features will include the title and content of the articles. Ideally, a reliable article-level bias classifier should be able to generalise solely or mainly from the content of the articles, capturing the context of the article will be the key element of reliable performance. However, outlet information is also experimented and compared.
+The primary features include the title and content of the articles. Ideally, a reliable article-level media bias classifier should be capable of generalising based predominantly on the content of the articles. Furthermore, outlet information may be incorporated as an additional feature in certain instances, enabling a comparative analysis of the classifier's performance with and without the inclusion of this supplementary data.
 
-As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression as a classifier. In these cases, the validation set are concatenated into the training set. An outlet majority votes is also implemented as a comparison to show the influence of outlet information in this particular task. This method works by simply taking the majority vote over classes for every outlet and use it as a classifier: \textit{an article is from outlet A, majority of articles from outlet A is classified as class X, therefore, article A has a class X}.
+As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression classifier. In these cases, the validation set is concatenated into the training set. Additionally, a majority baseline based on outlet is implemented for comparison, to demonstrate the influence of outlet information on this task. This method works by taking the most frequently occurring class observed among articles from each outlet and use it as the predicted value for the article. \textit{If an article is from outlet A, and the majority of articles from outlet A are classified as class X, then article A is classified as class X}. An illustration can be seen in Figure \ref{fig:majority_baseline}.
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{outlet} = [circle, draw, fill=brown!20, text centered]
+        \tikzstyle{prediction} = [rectangle, draw, fill=red!20, text centered]
+        \tikzstyle{article} = [circle, draw, fill=gray!20, text centered, font=\footnotesize]
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzstyle{label} = [text centered, font=\footnotesize]
+
+        \node[outlet] (outletA) at (0, 6) {Outlet A};
+
+        \node[article] (A1) at (3, 12) {Article 1};
+        \node[article] (A2) at (3, 9) {Article 2};
+        \node[article] (A3) at (3, 6) {Article 3};
+        \node[article] (A4) at (3, 3) {Article 4};
+        \node[article] (A5) at (3, 0) {Article 5};
+
+        \draw[arrow] (outletA) -- (A1);
+        \draw[arrow] (outletA) -- (A2);
+        \draw[arrow] (outletA) -- (A3);
+        \draw[arrow] (outletA) -- (A4);
+        \draw[arrow] (outletA) -- (A5);
+
+        \node[prediction] (ClassA1) at (8, 12) {Predicted class: X};
+        \node[prediction] (ClassA2) at (8, 9) {Predicted class: X};
+        \node[prediction] (ClassA3) at (8, 6) {Predicted class: X};
+        \node[prediction] (ClassA4) at (8, 3) {Predicted class: X};
+        \node[prediction] (ClassA5) at (8, 0) {Predicted class: X};
+
+        \draw[arrow] (A1) -- (ClassA1);
+        \draw[arrow] (A2) -- (ClassA2);
+        \draw[arrow] (A3) -- (ClassA3);
+        \draw[arrow] (A4) -- (ClassA4);
+        \draw[arrow] (A5) -- (ClassA5);
+
+        \node[label] at (4, 11) {Article 1 has class X};
+        \node[label] at (4, 8) {Article 2 has class Y};
+        \node[label] at (4, 5) {Article 3 has class X};
+        \node[label] at (4, 2) {Article 4 has class Z};
+        \node[label] at (4, -1) {Article 5 has class X};
+    \end{tikzpicture}
+    \caption{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}
+    \label{fig:majority_baseline}
+\end{figure}
 
 \section{Proposed methods}
 
@@ -44,27 +90,25 @@ As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are i
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[
-            node distance=1.25cm,
-            every node/.style={fill=white, font=\footnotesize},
-            thick, scale=1, every node/.style={scale=1}]
+    \begin{tikzpicture}
+        \tikzstyle{arrow} = [thick,->,>=stealth]
 
-        \node (input) [draw, align=center] {Bag-of-words Input};
-        \node (dense) [draw, below of=input] {Dense};
-        \draw[->] (input.south) -- (dense.north);
-        \node (dropout) [draw, right of=dense, xshift=2cm] {Dropout};
-        \draw[->] (dense.east) -- node[above, midway] {ReLU} (dropout.west);
-        \node (softmax) [draw, right of=dropout, xshift=2cm] {Softmax};
-        \draw[->] (dropout.east) -- (softmax.west);
-        \node (output) [draw, right of=softmax, xshift=2cm] {Output};
-        \draw[->] (softmax.east) -- (output.west);
+        \node (input) [draw, align=center, fill=brown!20] {Bag-of-words input};
+        \node (dense) [draw, below of=input, fill=green!20] {Dense};
+        \draw[arrow] (input.south) -- (dense.north);
+        \node (dropout) [draw, right of=dense, xshift=2cm, fill=blue!20] {Dropout};
+        \draw[arrow] (dense.east) -- node[above, midway, fill=white] {ReLU} (dropout.west);
+        \node (softmax) [draw, right of=dropout, xshift=2cm, fill=cyan!20] {Softmax};
+        \draw[arrow] (dropout.east) -- (softmax.west);
+        \node (pred) [draw, right of=softmax, xshift=2cm, fill=red!20] {Predicted class};
+        \draw[arrow] (softmax.east) -- (pred.west);
 
     \end{tikzpicture}
     \caption{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}
     \label{fig:bow_mlp_architecture}
 \end{figure}
 
-Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of the BoW + MLP method, combining traditional encoding methods with a simple neural network training. This approach allows for a simple and computationally-cheap implementation, yet effective classifier. The model is trained on 10 epochs with a learning rate of 2e-5. Hidden size for the dense layer is 128 with a dropout probability of 0.2, no warmup steps are applied.
+Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of the BoW + MLP method, combining traditional encoding methods with a simple neural network training. This approach allows for a simple and computationally-cheap implementation, yet effective classifier. The model is trained for 10 epochs with a learning rate of 2e-5. Hidden size for the dense layer is 128 with a dropout probability of 0.2, no warm-up steps are applied.
 
 \subsection{BERT fine-tuning}
 
@@ -77,160 +121,151 @@ Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of the BoW + MLP 
 
 A fine-tuning operation is done as described in the original BERT paper \cite{devlin-2019-bert}, where input texts are tokenised and fed into a pre-trained BERT model for a downstream task. This approach leverages the powerful pre-trained representations from BERT and adapts them to the specific requirements of the downstream task with relatively small amounts of task-specific training data. This method has become a widely common and popular technique for performing various NLP tasks due to its effectiveness in improving performance over traditional models.
 
-Fine-tuning is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warmup steps.
+A fine-tuning operation is conducted as described in the original BERT paper \cite{devlin-2019-bert}. In this process, input texts are tokenised and fed into a pre-trained BERT model, which is then fine-tuned for a specific downstream task. This means that BERT's weights are adjusted based on the training data for the downstream task, allowing the model to adapt its pre-trained representations to the specific requirements of the task. This approach leverages the powerful pre-trained representations from BERT and adapts them with relatively small amounts of task-specific training data. It has become a widely common and popular technique for performing various NLP tasks due to its effectiveness in improving performance over traditional models. Fine-tuning is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warm-up steps.
 
-\subsection{BERT sliding window fine-tuning}
+\subsection{Chunk-based BERT fine-tuning}
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[
-            node distance=1.25cm,
-            every node/.style={fill=white, font=\footnotesize},
-            thick, scale=1, every node/.style={scale=1}
-        ]
+    \begin{tikzpicture}
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzstyle{chunk} = [rectangle, draw, fill=gray!20]
+        \tikzstyle{label} = [text centered, font=\footnotesize, fill=white]
 
-        \node (input) [draw, align=center] {Input};
+        \node[label] at (0, 1) {Text input};
+        \node (input) [draw, align=center, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
 
-        \node (chunk1) [draw, right of=input, xshift=1.5cm, yshift=1cm] {Chunk 1};
-        \node (chunk2) [draw, below of=chunk1] {Chunk 2};
-        \node (chunk3) [draw, below of=chunk2] {Chunk 3};
+        \node[chunk] (chunk1) [draw] at (-5, -2) {Chunk 1};
+        \node[chunk] (chunk2) [draw] at (0, -2) {Chunk 2};
+        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk 3};
 
-        \draw[->] (input.east) -- (chunk1.west);
-        \draw[->] (input.east) -- (chunk2.west);
-        \draw[->] (input.east) -- (chunk3.west);
+        \draw[arrow] (input) -- (chunk1);
+        \draw[arrow] (input) -- (chunk2);
+        \draw[arrow] (input) -- (chunk3);
 
-        \node (bert) [draw, right of=chunk1, xshift=1.5cm] {BERT};
+        \node (bert) [draw, circle, fill=green!20] at (0, -4) {BERT};
+        \node[label] at (1.75, -4) {fine-tune};
 
-        \draw[->] (chunk1.east) -- (bert.west);
-        \draw[->] (chunk2.east) -- (bert.west);
-        \draw[->] (chunk3.east) -- (bert.west);
+        \draw[arrow] (chunk1) -- (bert);
+        \draw[arrow] (chunk2) -- (bert);
+        \draw[arrow] (chunk3) -- (bert);
 
-        \node (logits1) [draw, right of=bert, xshift=1.5cm, yshift=1.5cm] {Logits 1};
-        \node (logits2) [draw, below of=logits1] {Logits 2};
-        \node (logits3) [draw, below of=logits2] {Logits 3};
+        \node[chunk] (logits1) [draw] at (-5, -6) {Logits 1};
+        \node[chunk] (logits2) [draw] at (0, -6) {Logits 2};
+        \node[chunk] (logits3) [draw] at (5, -6) {Logits 3};
 
-        \draw[->] (bert.east) -- (logits1.west);
-        \draw[->] (bert.east) -- (logits2.west);
-        \draw[->] (bert.east) -- (logits3.west);
+        \draw[arrow] (bert) -- (logits1);
+        \draw[arrow] (bert) -- (logits2);
+        \draw[arrow] (bert) -- (logits3);
 
-        \node (pooling) [draw, below of=logits3, xshift=2cm, align=center] {Pooling};
+        \node (pooling) [draw, fill=blue!10] at (0, -8) {Pooled logits};
 
-        \draw[->] (logits1.east) -- ++(0.5cm,0) -| (pooling.north);
-        \draw[->] (logits2.east) -- ++(0.5cm,0) -| (pooling.north);
-        \draw[->] (logits3.east) -- ++(0.5cm,0) -| (pooling.north);
+        \draw[arrow] (logits1) -- (pooling);
+        \draw[arrow] (logits2) -- (pooling);
+        \draw[arrow] (logits3) -- (pooling);
 
-        \node (final_logits) [draw, below of=pooling] {Final Logits};
+        \node (softmax) [draw, fill=cyan!20] at (0, -9.5) {Softmax};
 
-        \draw[->] (pooling.south) -- (final_logits.north);
+        \draw[arrow] (pooling) -- (softmax);
 
-        \node (loss) [draw, below of=final_logits] {Loss Function};
+        \node (pred) [draw, fill=red!20] at (0, -11) {Predicted class};
 
-        \draw[->] (final_logits.south) -- (loss.north);
+        \draw[arrow] (softmax) -- (pred);
+
     \end{tikzpicture}
-    \caption{BERT Sliding window fine-tuning architecture. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying the loss function.}
-    \label{fig:sliding_window_architecture}
+    \caption{Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}
+    \label{fig:chunk_bert_finetuning}
 \end{figure}
 
-Figure \ref{fig:sliding_window_architecture} illustrates the architecture of the sliding window fine-tuning method. Input texts are segmented into chunks, which are then processed as mini-batches by the model. The logits (output scores) produced by each chunk are then pooled together to produce the final logits, to which the loss function is applied. This method bypasses the sequence length limitation of BERT models (512 tokens), allowing for full representation and processing of text input without any loss of information.
+Figure \ref{fig:chunk_bert_finetuning} illustrates the architecture of the chunk-based BERT fine-tuning. Input texts are tokenised and segmented into separate chunks containing parts of the text input, with no overlapping text between chunks. Chunks are padded to a maximum length, and a 'CLS' token is inserted at the beginning of each chunk, acting as a summary representation of the entire chunk sequence. Each chunk is then served as a mini-batch and fed into the network for fine-tuning on a downstream task. The logits (output from BERT model) produced by each chunk are then pooled together using mean pooling to produce the final logits. Finally, a softmax operation is applied to the final logits to obtain the class probabilities.
 
-A window size of 512 is chosen in the implementation with no stride. Similarly, fine-tuning is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warmup steps.
-
-\begin{comment}
-The complexity of this method is as follows:
-\[
-    O(L \cdot T \cdot H)
-\]
-
-where L is the sequence length, T is the number of Transformer layers in the BERT model (typically 12), H is Hidden size of the BERT model (dimension of the Transformer's feedforward networks, typically 768).
-\end{comment}
+The chunking method bypasses the sequence length limitation of BERT, allowing for full representation and processing of text input without any loss of information. In the implementation, a window size of 512 tokens is chosen with no stride. Fine-tuning is conducted over 4 epochs using a weighted loss function, a learning rate of 2e-5, and 500 linear warm-up steps.
 
 \subsection{CLS method}
 
-As in \cite{su-2021-classifying,adhikari-2019-docbert}
-
 \begin{figure}[htbp]
     \centering
+    \begin{tikzpicture}
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzstyle{chunk} = [rectangle, draw, fill=gray!20]
+        \tikzstyle{label} = [text centered, font=\footnotesize, fill=white]
 
-    \begin{tikzpicture}[
-            node distance=1.25cm,
-            every node/.style={fill=white, font=\footnotesize},
-            thick, scale=1, every node/.style={scale=1}]
+        \node[label] at (0, 1) {Text input};
+        \node (input) [draw, align=center, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
 
+        \node[chunk] (chunk1) [draw] at (-5, -2) {Chunk 1};
+        \node[chunk] (chunk2) [draw] at (0, -2) {Chunk 2};
+        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk 3};
 
-        \node (input) [draw, align=center] {Input};
+        \draw[arrow] (input) -- (chunk1);
+        \draw[arrow] (input) -- (chunk2);
+        \draw[arrow] (input) -- (chunk3);
 
-        \node (chunk1) [draw, below of=input, xshift=-2cm] {Chunk 1};
-        \node (chunk2) [draw, below of=input] {Chunk 2};
-        \node (chunk3) [draw, below of=input, xshift=2cm] {Chunk 3};
+        \node (encoder) [draw, circle, fill=green!20] at (0, -4) {LLM encoder};
+        \node[label] at (4, -4.5) {extract last hidden state};
 
-        \draw[->] (input.south) -- (chunk1.north);
-        \draw[->] (input.south) -- (chunk2.north);
-        \draw[->] (input.south) -- (chunk3.north);
+        \draw[arrow] (chunk1) -- (encoder);
+        \draw[arrow] (chunk2) -- (encoder);
+        \draw[arrow] (chunk3) -- (encoder);
 
-        \node (encoder) [draw, below of=chunk2] {Transformer Encoder};
+        \node[chunk] (embedding1) [draw] at (-5, -6) {Embeddings 1};
+        \node[chunk] (embedding2) [draw] at (0, -6) {Embeddings 2};
+        \node[chunk] (embedding3) [draw] at (5, -6) {Embeddings 3};
 
-        \draw[->] (chunk1.south) -- (encoder.north);
-        \draw[->] (chunk2.south) -- (encoder.north);
-        \draw[->] (chunk3.south) -- (encoder.north);
+        \draw[arrow] (encoder) -- (embedding1);
+        \draw[arrow] (encoder) -- (embedding2);
+        \draw[arrow] (encoder) -- (embedding3);
 
-        \node(hidden) [draw, below of=encoder] {Last Hidden State};
+        \node (tf_layer1) [draw, rectangle, fill=green!20] at (0, -8) {Transformer layer 1};
 
-        \draw[->] (encoder.south) -- (hidden.north);
+        \draw[arrow] (embedding1) -- (tf_layer1);
+        \draw[arrow] (embedding2) -- (tf_layer1);
+        \draw[arrow] (embedding3) -- (tf_layer1);
 
-        \node (transformer1) [draw, below of=hidden] {Transformer layer 1};
-        \node (transformer2) [draw, below of=transformer1] {Transformer layer 2};
-        \node (transformern) [draw, below of=transformer2, yshift=-0.25cm] {Transformer layer n};
-        \node (transformer_dots) [below of=transformer2, node distance=0.75cm] {...};
+        \node (tf_layer2) [draw, rectangle, fill=green!20] at (0, -9) {Transformer layer 2};
+        \draw[arrow] (tf_layer1) -- (tf_layer2);
 
-        \draw[->] (hidden.south) -- (transformer1.north);
-        \draw[->] (transformer1.west) -- ++(-0.5cm,0) |- (transformer2.west);
-        \draw[->] (transformer2.east) -- ++(0.5cm,0) |- (transformern.east);
+        \node (dropout) [draw, rectangle, fill=blue!20] at (0, -10) {Dropout};
+        \draw[arrow] (tf_layer2) -- (dropout);
 
-        \node (dropout) [draw, below of=transformern] {Dropout};
+        \node[label] at (4, -10.5) {extract CLS token};
 
-        \draw[->] (transformern.south) -- (dropout.north);
+        \node[chunk] (cls1) [draw] at (-5, -11.5) {CLS repr 1};
+        \node[chunk] (cls2) [draw] at (0, -11.5) {CLS repr 2};
+        \node[chunk] (cls3) [draw] at (5, -11.5) {CLS repr 3};
 
-        \node (cls) [draw, rectangle, below of=dropout] {CLS Pooling};
+        \draw[arrow] (dropout) -- (cls1);
+        \draw[arrow] (dropout) -- (cls2);
+        \draw[arrow] (dropout) -- (cls3);
 
-        \draw[->] (dropout.south) -- (cls.north);
+        \node (mlp) [draw, circle, fill=green!20] at (0, -13.25) {MLP};
+        \node[label] at (4, -13) {two linear layers with ReLU and dropouts};
 
-        \node (mlp) [draw, rectangle, below of=cls] {MLP};
+        \draw[arrow] (cls1) -- (mlp);
+        \draw[arrow] (cls2) -- (mlp);
+        \draw[arrow] (cls3) -- (mlp);
 
-        \draw[->] (cls.south) -- (mlp.north);
+        \node (softmax) [draw, fill=cyan!20] at (0, -14.5) {Softmax};
 
-        \node (output) [draw, rectangle, below of=mlp] {Output};
+        \draw[arrow] (mlp) -- (softmax);
 
-        \draw[->] (mlp.south) -- (output.north);
+        \node (pred) [draw, fill=red!20] at (0, -16) {Predicted class};
 
-
+        \draw[arrow] (softmax) -- (pred);
     \end{tikzpicture}
     \caption{CLS method architecture}
     \label{fig:cls_method}
 \end{figure}
 
-Figure \ref{fig:cls_method} shows the full architecture of the CLS method. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional space features by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into \textit{n}-amount of Transformer layers to enrich their contextual understanding. For each chunk afterwards, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class. Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
+Described in \cite{devlin-2019-bert} and implemented in \cite{su-2021-classifying,su-2021-classifying}, the 'CLS' token from BERT embeddings can be described as the summary representation of the sequence.
 
-Two different language models can be used as the Transformer encoder in this method: BERT \cite{devlin-2019-bert} or MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLu activation function \cite{agarap-2018-relu} and dropouts. Each chunk is set to contain 512 tokens, only 2 Transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warmup steps (10\% of total training steps).
+Figure \ref{fig:cls_method} shows the full architecture of the CLS method. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into \textit{n}-amount of Transformer layers to enrich their contextual understanding. For each chunk afterwards, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class. Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
 
-\begin{comment}
-The complexity of the CLS method can be expressed as:
-\[
-    O(L \cdot TF \cdot T \cdot H_{\text{enc}}^2 \cdot M \cdot H_{\text{mlp}}^2)
-\]
-
-where:
-\begin{align*}
-    L              & : \text{Sequence length (number of tokens)}, \\
-    T              & : \text{Number of Transformer layers},       \\
-    H_{\text{enc}} & : \text{Hidden size of Transformer layers},  \\
-    M              & : \text{Number of layers in the MLP},        \\
-    H_{\text{mlp}} & : \text{Hidden size of the MLP}.             \\
-\end{align*}
-\end{comment}
+Two different language models can be used as the Transformer encoder in this method: BERT \cite{devlin-2019-bert} or MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLu activation function \cite{agarap-2018-relu} and dropouts. Each chunk is set to contain 512 tokens, only 2 Transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warm-up steps (10\% of total training steps).
 
 \section{Training details}
 
-All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and Transformer \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. Batch size is set to 8 for all deep learning methods.
+All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and Transformer \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. The AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. The batch size is set to 8 for all deep learning methods.
 
 \subsection{Weighted loss}
 

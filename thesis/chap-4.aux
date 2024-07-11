@@ -10,39 +10,43 @@
 \citation{devlin-2019-bert}
 \citation{devlin-2019-bert}
 \citation{devlin-2019-bert}
+\citation{devlin-2019-bert}
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Features and baselines}{24}{section.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Proposed methods}{24}{section.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{24}{subsection.4.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{24}{figure.4.1}\protected@file@percent }
-\newlabel{fig:bow_mlp_architecture}{{\M@TitleReference {4.1}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{24}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation}{figure.4.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}BERT fine-tuning}{24}{subsection.4.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces BERT pre-training and fine-tuning procedures \cite  {devlin-2019-bert}}}{25}{figure.4.2}\protected@file@percent }
-\newlabel{fig:bert_finetuning}{{\M@TitleReference {4.2}{BERT pre-training and fine-tuning procedures \cite  {devlin-2019-bert}}}{25}{BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}}{figure.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}BERT sliding window fine-tuning}{25}{subsection.4.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces BERT Sliding window fine-tuning architecture. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying the loss function.}}{25}{figure.4.3}\protected@file@percent }
-\newlabel{fig:sliding_window_architecture}{{\M@TitleReference {4.3}{BERT Sliding window fine-tuning architecture. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying the loss function.}}{25}{BERT Sliding window fine-tuning architecture. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying the loss function}{figure.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}}{25}{figure.4.1}\protected@file@percent }
+\newlabel{fig:majority_baseline}{{\M@TitleReference {4.1}{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}}{25}{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}{figure.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{25}{figure.4.2}\protected@file@percent }
+\newlabel{fig:bow_mlp_architecture}{{\M@TitleReference {4.2}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{25}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation}{figure.4.2}{}}
+\citation{devlin-2019-bert}
 \citation{su-2021-classifying}
-\citation{adhikari-2019-docbert}
+\citation{su-2021-classifying}
 \citation{sun-2020-fine-tune}
 \citation{su-2021-classifying}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces BERT pre-training and fine-tuning procedures \cite  {devlin-2019-bert}}}{26}{figure.4.3}\protected@file@percent }
+\newlabel{fig:bert_finetuning}{{\M@TitleReference {4.3}{BERT pre-training and fine-tuning procedures \cite  {devlin-2019-bert}}}{26}{BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}}{figure.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Chunk-based BERT fine-tuning}{26}{subsection.4.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}CLS method}{26}{subsection.4.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces CLS method architecture}}{26}{figure.4.4}\protected@file@percent }
-\newlabel{fig:cls_method}{{\M@TitleReference {4.4}{CLS method architecture}}{26}{CLS method architecture}{figure.4.4}{}}
 \citation{devlin-2019-bert}
 \citation{horych-2024-magpie}
 \citation{agarap-2018-relu}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}}{27}{figure.4.4}\protected@file@percent }
+\newlabel{fig:chunk_bert_finetuning}{{\M@TitleReference {4.4}{Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}}{27}{Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation}{figure.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces CLS method architecture}}{28}{figure.4.5}\protected@file@percent }
+\newlabel{fig:cls_method}{{\M@TitleReference {4.5}{CLS method architecture}}{28}{CLS method architecture}{figure.4.5}{}}
 \citation{van-1995-python}
 \citation{paszke-2017-pytorch}
 \citation{wolf-2020-huggingface}
 \citation{devlin-2019-bert}
 \citation{loshchilov-2019-adamw}
 \citation{pedregosa-2011-scikit-learn}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Training details}{27}{section.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{27}{subsection.4.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Class weight in the training set}}{28}{figure.4.5}\protected@file@percent }
-\newlabel{fig:class_weight}{{\M@TitleReference {4.5}{Class weight in the training set}}{28}{Class weight in the training set}{figure.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Training details}{29}{section.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{29}{subsection.4.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Class weight in the training set}}{29}{figure.4.6}\protected@file@percent }
+\newlabel{fig:class_weight}{{\M@TitleReference {4.6}{Class weight in the training set}}{29}{Class weight in the training set}{figure.4.6}{}}
 \@setckpt{chap-4}{
-\setcounter{page}{29}
+\setcounter{page}{30}
 \setcounter{equation}{0}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
@@ -89,10 +93,10 @@
 \setcounter{cmsm@mctr}{0}
 \setcounter{bsm@mctr}{0}
 \setcounter{workm@mctr}{0}
-\setcounter{sheetsequence}{33}
-\setcounter{lastsheet}{51}
-\setcounter{lastpage}{47}
-\setcounter{figure}{5}
+\setcounter{sheetsequence}{34}
+\setcounter{lastsheet}{53}
+\setcounter{lastpage}{49}
+\setcounter{figure}{6}
 \setcounter{lofdepth}{1}
 \setcounter{table}{1}
 \setcounter{lotdepth}{1}

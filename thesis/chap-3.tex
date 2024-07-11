@@ -162,20 +162,21 @@ Most articles were written and published within the last six years, with only 31
 
 \begin{figure}[htbp]
     \centering
+    \includegraphics[width=0.6\linewidth]{figures/tokens_count_vx_per_class_hist.png}
+    \caption{Average tokens count per class}
+    \label{fig:avg_tokens_count_per_class}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
     \includegraphics[width=0.9\linewidth]{figures/correlation_tokens_reliability_score.png}
     \caption{Pearson correlation between token count and reliability score}
     \label{fig:pearson_correlation}
 \end{figure}
 
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/tokens_count_vx_per_class_hist.png}
-    \caption{Average tokens count per class}
-    \label{fig:avg_tokens_count_per_class}
-\end{figure}
 
-Figure \ref{fig:avg_tokens_count_per_class} shows that all classes have similar token counts, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token counts than the other two classes. Further analysis(Figure \ref{fig:pearson_correlation}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient of 0.02. This indicates that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
+Figure \ref{fig:avg_tokens_count_per_class} shows that all classes have similar token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. Further analysis(Figure \ref{fig:pearson_correlation}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient of 0.02. This indicates that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
 
 %%% Local Variables: 
 %%% mode: latex
