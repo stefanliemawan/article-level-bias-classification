@@ -5,7 +5,8 @@ import utils.functions as functions
 from transformers import AutoTokenizer
 from utils.chunk_model import ChunkModel
 
-CHUNK_SIZE = 512
+CHUNK_SIZE = 156
+OVERLAP = 0
 NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
 EPOCHS = 3
@@ -21,7 +22,7 @@ print(f"MODEL: {TF_MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, OVERLAP {OVERLAP}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
 )
 
 
@@ -44,10 +45,7 @@ tokeniser = AutoTokenizer.from_pretrained(TF_MODEL_NAME)
 
 tokenised_dataset = dataset.map(
     functions.tokenise_chunks,
-    fn_kwargs={
-        "tokeniser": tokeniser,
-        "chunk_size": CHUNK_SIZE,
-    },
+    fn_kwargs={"tokeniser": tokeniser, "chunk_size": CHUNK_SIZE, "overlap": OVERLAP},
 )
 
 print(tokenised_dataset)

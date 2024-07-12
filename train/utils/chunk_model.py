@@ -119,9 +119,22 @@ class ChunkModel(nn.Module):
 
         transformer_output = self.dropout(transformer_output)
 
-        mlp_output = self.mlp(
-            transformer_output[:, 0, :]
-        )  # Assuming you're only using [CLS] token
+        expanded_attention_mask = (
+            attention_mask.unsqueeze(-1).expand(transformer_output.size()).float()
+        )
+
+        masked_output = transformer_output * expanded_attention_mask
+
+        sum_masked_output = torch.sum(masked_output, dim=1)
+        mean_pooled_output = sum_masked_output / torch.clamp(
+            expanded_attention_mask.sum(dim=1), min=1e-9
+        )
+
+        mlp_output = self.mlp(mean_pooled_output)
+
+        # mlp_output = self.mlp(
+        #     transformer_output[:, 0, :]
+        # )  # Assuming you're only using [CLS] token
 
         return mlp_output
 

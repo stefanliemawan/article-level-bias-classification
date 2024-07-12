@@ -164,21 +164,23 @@ def tokenise_dataset(
     return tokenised_dataset
 
 
-def tokenise_chunks(x, tokeniser, chunk_size):
+def tokenise_chunks(x, tokeniser, chunk_size, overlap=0):
     features = x["features"]
 
     input_ids = tokeniser.encode(features, add_special_tokens=False)
 
     chunk_input_ids = []
     chunk_attention_masks = []
+    # CLS is <s>, SEP is </s>
 
-    for i in range(0, len(input_ids), chunk_size - 2):
+    start = 0
+    while start < len(input_ids):
+        end = min(start + chunk_size - 2, len(input_ids))
         chunk = (
-            [tokeniser.cls_token_id]
-            + input_ids[i : i + chunk_size - 2]
-            + [tokeniser.sep_token_id]
+            [tokeniser.cls_token_id] + input_ids[start:end] + [tokeniser.sep_token_id]
         )
-        # CLS is <s>, SEP is </s>
+
+        start += chunk_size - overlap - 2
 
         attention_mask = [1] * len(chunk)
 

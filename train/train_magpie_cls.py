@@ -5,12 +5,14 @@ import utils.functions as functions
 from transformers import AutoTokenizer
 from utils.chunk_model import ChunkModel
 
-CHUNK_SIZE = 512
+CHUNK_SIZE = 156
+OVERLAP = 0
 NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
 EPOCHS = 3
 DROPOUT_PROB = 0.2
 TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -21,7 +23,7 @@ print(f"MODEL: {TF_MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_SIZE {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, OVERLAP {OVERLAP}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
 )
 
 
@@ -44,10 +46,7 @@ tokeniser = AutoTokenizer.from_pretrained(TF_MODEL_NAME)
 
 tokenised_dataset = dataset.map(
     functions.tokenise_chunks,
-    fn_kwargs={
-        "tokeniser": tokeniser,
-        "chunk_size": CHUNK_SIZE,
-    },
+    fn_kwargs={"tokeniser": tokeniser, "chunk_size": CHUNK_SIZE, "overlap": OVERLAP},
 )
 
 print(tokenised_dataset)
@@ -130,3 +129,18 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.76      0.72      0.73       569
 
 # {'loss': 0.8297753930091858, 'precision': 0.760345238507249, 'recall': 0.7170474516695958, 'f1': 0.7342602984152476}
+
+# vx + rescraped, warmup_steps: 162, outlet + title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+#               precision    recall  f1-score   support
+#               precision    recall  f1-score   support
+
+#            0       0.50      0.70      0.58        27
+#            1       0.42      0.46      0.44        54
+#            2       0.46      0.57      0.51       104
+#            3       0.93      0.83      0.87       384
+
+#     accuracy                           0.74       569
+#    macro avg       0.58      0.64      0.60       569
+# weighted avg       0.77      0.74      0.75       569
+
+# {'loss': 0.8169947266578674, 'precision': 0.7732142516918309, 'recall': 0.7398945518453427, 'f1': 0.7526923090194392}
