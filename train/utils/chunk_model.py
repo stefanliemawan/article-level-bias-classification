@@ -122,9 +122,7 @@ class ChunkModel(nn.Module):
         expanded_attention_mask = (
             attention_mask.unsqueeze(-1).expand(transformer_output.size()).float()
         )
-
         masked_output = transformer_output * expanded_attention_mask
-
         sum_masked_output = torch.sum(masked_output, dim=1)
         mean_pooled_output = sum_masked_output / torch.clamp(
             expanded_attention_mask.sum(dim=1), min=1e-9
@@ -167,7 +165,6 @@ class ChunkModel(nn.Module):
             logits = self.forward(
                 input_ids_combined_tensors, attention_mask_combined_tensors
             )
-
             logits_split = logits.split(num_of_chunks)
 
             pooled_logits = torch.cat(

@@ -130,7 +130,7 @@ model.predict(tokenised_dataset["test"])
 
 # {'loss': 0.8297753930091858, 'precision': 0.760345238507249, 'recall': 0.7170474516695958, 'f1': 0.7342602984152476}
 
-# vx + rescraped, warmup_steps: 162, outlet + title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
 #               precision    recall  f1-score   support
 #               precision    recall  f1-score   support
 

@@ -98,7 +98,7 @@ where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matri
 MLP is widely used due to to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models. By integrating multiple hidden layers with non-linear activation functions, MLP can learn intricate patterns and relationships within data, making them suitable for a wide range of machine learning tasks. This flexibility is pivotal in capturing the nuanced and intricate structures inherent in real-world datasets, thereby enhancing the model's predictive accuracy and generalisation capabilities.
 
 
-\section{Transformer}
+\section{Transformer and Large Language Model (LLM)}
 
 \begin{figure}[htbp]
     \centering
@@ -107,7 +107,9 @@ MLP is widely used due to to its ability to introduce non-linearity into the mod
     \label{fig:transformer}
 \end{figure}
 
-The Transformer architecture relies entirely on attention mechanism to capture global dependencies across input and output sequences, allowing for unprecedented levels of parallelisation instead of sequential processing \cite{vaswani-2023-attention}. Their introduction marks a fundamental shift away from traditional sequence-based models like recurrent neural networks (RNNs) and convolutional neural networks (CNNs), offering unparalleled advancements in handling long-range dependencies and contextual information. Their effectiveness stems from the attention mechanism, specifically through self-attention and multi-head attention mechanisms, defined in Equation \eqref{eq:attention} and \eqref{eq:multihead} \cite{vaswani-2023-attention}. These mechanisms allows the network to weigh and prioritise relevant information across sequences, capturing intricate relationships and semantic nuances.
+The Transformer architecture relies entirely on attention mechanism to capture global dependencies across input and output sequences, allowing for unprecedented levels of parallelisation instead of sequential processing \cite{vaswani-2023-attention}. Their introduction marks a fundamental shift away from traditional sequence-based models like recurrent neural networks (RNNs) and convolutional neural networks (CNNs), offering unparalleled advancements in handling long-range dependencies and contextual information. Their effectiveness stems from the attention mechanism, specifically through self-attention and multi-head attention mechanisms, defined in Equation \eqref{eq:attention} and \eqref{eq:multihead} \cite{vaswani-2023-attention}. These mechanisms allow the network to weigh and prioritise relevant information across sequences, capturing intricate relationships and semantic nuances.
+
+LLMs are artificial neural networks that utilise the transformer architecture...
 
 \begin{equation}
     \label{eq:attention}

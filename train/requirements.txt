@@ -20,6 +20,7 @@ cymem==2.0.8
 datasets==2.17.0
 dill==0.3.8
 english-words==2.0.1
+faiss==1.8.0
 filelock==3.13.1
 flatbuffers==24.3.25
 fonttools==4.49.0
@@ -80,6 +81,7 @@ safetensors==0.4.1
 scikit-learn==1.4.0
 scipy==1.12.0
 seaborn==0.13.2
+sentence-transformers==3.0.1
 sentencepiece==0.2.0
 setuptools==68.2.2
 six==1.16.0
