@@ -24,12 +24,12 @@ train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
 valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
-# train_df, test_df, valid_df = functions.generate_title_content_features(
-#     train_df, test_df, valid_df
-# )
-train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
+# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+#     train_df, test_df, valid_df
+# )
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
@@ -58,6 +58,23 @@ else:
 
 functions.train(tokenised_dataset, model, epochs=4)
 
+# google/bigbird-roberta-base, vx, title + content
+#               precision    recall  f1-score   support
+
+#            0       0.38      0.41      0.39        27
+#            1       0.32      0.46      0.38        54
+#            2       0.40      0.47      0.43       104
+#            3       0.91      0.81      0.86       384
+
+#     accuracy                           0.70       569
+#    macro avg       0.50      0.54      0.52       569
+# weighted avg       0.74      0.70      0.71       569
+
+
+# 100%|██████████| 72/72 [00:19<00:00,  3.65it/s]
+# {'eval_loss': 0.988241970539093, 'eval_precision': 0.7377176580733655, 'eval_recall': 0.6959578207381371, 'eval_f1': 0.7131119371777966, 'eval_runtime': 20.0232, 'eval_samples_per_second': 28.417, 'eval_steps_per_second': 3.596, 'epoch': 4.0}
+
+# google/bigbird-roberta-base, vx, outlet + title + content
 #               precision    recall  f1-score   support
 
 #            0       0.41      0.44      0.43        27

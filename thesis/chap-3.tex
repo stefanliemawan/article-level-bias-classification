@@ -38,15 +38,14 @@ An example of a low-rated article can be seen in Figure \ref{fig:example-biased-
 
 \section{Reconstruction}
 
-The original BAT dataset only contains news titles and links (along with other metadata) and is missing the body content of articles. To overcome this, a Python script is written and executed, iteratively visiting each of the URLs from the dataset and crawling the news content. This was not an easy task as each website has its own unique structures and formats. Furthermore, the scraped text contains noises that are almost impossible to remove through the script. Some outlets required manual intervention as the scraped text was duplicated over themselves. The first round of Extension resulted in 5,270 rows of articles out of the original 6,345 rows, mainly due to unavailable websites and missing articles.
-
 The original BAT dataset includes news titles and links but lacks content of the articles. To address this, a Python script was developed to iteratively visit each URL in the dataset and extract the textual content. The initial round yielded 5,270 articles from the original 6,345, with a substantial loss attributed to unavailable websites, missing articles, and broken links. Additionally, some outlets are unable to be crawled by the script and had to be manually copied and pasted.
 
 The extracted text contains noise, categorised into two different type: \textbf{word-level noise} and \textbf{phrase-level noise} as illustrated in Table \ref{table:conjoined_words} and Table \ref{table:noise_phrases}. Word-level noise includes typing errors and conjoined words, mostly attributed to word links or texts with unusual HTML format that are difficult to cleanly extract. Phrase noises are attributed to the presence author information, subscription prompts, and donation appeals within the article content.
 
-To identify word-level and phrase-level noises, the entire content of every article in the dataset was combined and tokenised, then matched with an English word list \cite{dwyl-english-words}, resulting in an error list containing words that do not exist in the dictionary. Items in the error list are then investigated and fixed, prioritising commonly occurring items. Note that at this point I was unable to completely go through all the error list and completely fix all the underlying noises within the text, doing so would require extensive amount of time and manual labour.
+To identify word-level and phrase-level noises, the entire content of every article in the dataset was combined and tokenised, then matched with an English word list \cite{dwyl-english-words}, resulting in an error list containing words that do not exist in the dictionary. Entries in this error list underwent thorough manual inspection, prioritising commonly occurring items. Subsequently, scripts were developed based on the findings to address both word-level and phrase-level noises. This iterative process was repeated numerous times to ensure comprehensive coverage. However, given the timeframe of this project, it was impractical to fully address all identified and possible noises. Resolving these inaccuracies would have required extensive time and manual effort. A total of 5,761 word-level noises were corrected, and 625 phrase-level noises were identified and stripped from article contents. Pseudocode of the scripts can be seen in Algorithm \ref{alg:phrase_level_noise_fix} and \ref{alg:word_level_noise_fix} (\ref{app:A})
 
-An additional round of extension was conducted by re-examining 1,075 rows of articles that were previously not crawled from the initial round. Problems with these outlets are then investigated and addressed, by searching for missing articles (by searching for specific headlines through public archives for deleted articles/outlets), fixing broken links, manually visiting the websites in a browser, and copy-pasting article contents into a spreadsheet. This effort successfully resulted in an additional 226 rows of articles. The final dataset consists of 5,496 rows of articles.
+
+Lastly, an additional round of extension was conducted by re-examining 1,075 rows of articles that were previously not crawled from the initial round. Problems with these outlets are then investigated and addressed, by searching for missing articles (by searching for specific headlines through public archives for deleted articles/outlets), fixing broken links, manually visiting the websites in a browser, and copy-pasting article contents into a spreadsheet. This effort successfully resulted in an additional 226 rows of articles. The final dataset consists of 5,496 rows of articles.
 
 \begin{table}[htbp]
     \centering
@@ -107,31 +106,6 @@ An additional round of extension was conducted by re-examining 1,075 rows of art
     \caption{Examples of phrase noises, mostly from subscription and donation prompts}
     \label{table:noise_phrases}
 \end{table}
-
-
-\begin{comment}
-\begin{algorithm}
-    \begin{algorithmic}
-        \Require $n \geq 0$
-        \Ensure $y = x^n$
-        \State $y \gets 1$
-        \State $X \gets x$
-        \State $N \gets n$
-        \While{$N \neq 0$}
-        \If{$N$ is even}
-        \State $X \gets X \times X$
-        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-        \ElsIf{$N$ is odd}
-        \State $y \gets y \times X$
-        \State $N \gets N - 1$
-        \EndIf
-        \EndWhile
-    \end{algorithmic}
-    \caption{An algorithm with caption}
-    \label{alg:cap}
-\end{algorithm}
-\end{comment}
-
 
 \section{Analysis}
 

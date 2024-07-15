@@ -72,7 +72,7 @@ Therefore, instead of eliminating media bias, our goal should be to draw attenti
 Word embeddings are a way to represent words in a continuous vector space where words with similar meanings are placed close to each other, thereby capturing semantic relationships between words. This approach gained significant popularity with the introduction of \textit{word2vec} as a method to generate word embeddings \cite{mikolov-2013-embeddings}. Most Natural Language Processing (NLP) tasks approaches still inherently rely on word embeddings to represent textual data, often serving as the initial input to models. An example of word embeddings is visualised in Figure \ref{fig:word-embeddings}.
 
 
-\section{MultiLayer Perceptron}
+\section{MultiLayer Perceptron (MLP)}
 
 \begin{figure}[htbp]
     \centering
@@ -95,7 +95,19 @@ where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matri
     \mathbf{h} = f(\mathbf{z})
 \end{equation}
 
-MLP is widely used due to to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models. By integrating multiple hidden layers with non-linear activation functions, MLP can learn intricate patterns and relationships within data, making them suitable for a wide range of machine learning tasks. This flexibility is pivotal in capturing the nuanced and intricate structures inherent in real-world datasets, thereby enhancing the model's predictive accuracy and generalisation capabilities.
+MLP is widely used due to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models. By integrating multiple hidden layers with non-linear activation functions, MLP can learn intricate patterns and relationships within data, making them suitable for a wide range of machine learning tasks. This flexibility is pivotal in capturing the nuanced and intricate structures inherent in real-world datasets, thereby enhancing the model's predictive accuracy and generalisation capabilities.
+
+
+\section{Long Short-Term Memory (LSTM)}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/lstm.jpeg}
+    \caption{LSTM architecture \cite{rahman-2023-lstm-networks}}
+    \label{fig:lstm}
+\end{figure}
+
+LSTM \cite{hochreiter-1997-lstm} is a type of Recurrent Neural Network (RNN) architecture designed to address the vanishing gradient problem and capture long-term dependencies in sequential data. It incorporates two fundamental components: memory cells and gates. Memory cells maintain a cell state, which can store information over long sequences and allows the model to retain information for longer durations compared to traditional RNNs. Gates control the flow of information into and out of the memory cell, controlled by sigmoid and tanh activation functions, which regulate the information flow based on the input data and the current state. Figure \ref{fig:lstm} shows the full architecture of a LSTM block.
 
 
 \section{Transformer and Large Language Model (LLM)}
@@ -109,7 +121,16 @@ MLP is widely used due to to its ability to introduce non-linearity into the mod
 
 The Transformer architecture relies entirely on attention mechanism to capture global dependencies across input and output sequences, allowing for unprecedented levels of parallelisation instead of sequential processing \cite{vaswani-2023-attention}. Their introduction marks a fundamental shift away from traditional sequence-based models like recurrent neural networks (RNNs) and convolutional neural networks (CNNs), offering unparalleled advancements in handling long-range dependencies and contextual information. Their effectiveness stems from the attention mechanism, specifically through self-attention and multi-head attention mechanisms, defined in Equation \eqref{eq:attention} and \eqref{eq:multihead} \cite{vaswani-2023-attention}. These mechanisms allow the network to weigh and prioritise relevant information across sequences, capturing intricate relationships and semantic nuances.
 
-LLMs are artificial neural networks that utilise the transformer architecture...
+LLMs are artificial neural networks that utilise the transformer architecture, designed to understand and generate human language. They are trained on vast amounts of diverse text data using unsupervised learning techniques, often containing millions or even billions of parameters. Two of the most popular and widely used LLMs are \textbf{Bidirectional Encoder Representations from Transformers (BERT)} \cite{devlin-2019-bert}, comprised of 110 million parameters, and GPT, particularly GPT-4 \cite{openai-2024-gpt4}, which is reported to have an astonishing 1.76 trillion parameters, based on a report by SemiAnalysis in 2023 \cite{semianalysis-gpt4}.
+
+\textbf{Fine-tuning} is a way to optimise pre-trained LLMs to for specific tasks or domains, aiming to achieve improved inference quality with limited resources. \cite{oracle-finetuning-blog}. During this process, the model weights are adjusted based on the training data for the downstream task, allowing the model to adapt its pre-trained representations to the specific requirements of the task. This approach leverages the powerful pre-trained representations from LLMs and adapts them with relatively small amounts of task-specific training data. It has become a widely common and popular technique for performing various NLP tasks due to its effectiveness in improving performance over traditional models.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/bert_finetuning.png}
+    \caption{BERT pre-training and fine-tuning procedures \cite{devlin-2019-bert}}
+    \label{fig:bert_finetuning}
+\end{figure}
 
 \begin{equation}
     \label{eq:attention}
@@ -125,33 +146,71 @@ where
     \text{head}_i = \text{Attention}(\mathbf{Q} \mathbf{W}^Q_i, \mathbf{K} \mathbf{W}^K_i, \mathbf{V} \mathbf{W}^V_i)
 \]
 
-Transformers have sparked a revolution in the domain of Artificial Intelligence (AI), having achieved remarkable successes across diverse fieds such as natural language processing, computer vision, and audio processing \cite{lin-2022-survey-transformers}. They have single-handedly catalysed the emergence of a new era in AI capabilities observed today, predicted to have an even greater influence than the Industrial and digital revolutions combined \cite{makridakis-2017-ai-revolution}.
+Transformers and LLMs have sparked a revolution in the domain of Artificial Intelligence (AI), having achieved remarkable successes across diverse fields such as natural language processing, computer vision, and audio processing \cite{lin-2022-survey-transformers}. They have single-handedly catalysed the emergence of a new era in AI capabilities observed today, predicted to have an even greater influence than the Industrial and digital revolutions combined \cite{makridakis-2017-ai-revolution}.
 
 
-\section{Document classification}
+\section{Chunking and Hierarchical Techniques}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzstyle{chunk} = [rectangle, draw, fill=gray!20, font=\tiny, text width=0.6\linewidth, align=left]
+        \tikzstyle{label} = [text centered,font=\footnotesize]
+
+        \node[label] at (0, 1) {Text input};
+        \node (input) [draw, align=left, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
+
+        \node[chunk] (chunk1) [draw] at (-1, -1.5) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June};
+        \node[chunk] (chunk2) [draw] at (-1, -2.5) {the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump};
+        \node[chunk] (chunk3) [draw] at (-1, -3.5) {According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border};
+
+        \draw[arrow] (input.west) |- (chunk1.west);
+        \draw[arrow] (input.west) |- (chunk2.west);
+        \draw[arrow] (input.west) |- (chunk3.west);
+    \end{tikzpicture}
+    \caption{Illustration of chunking}
+    \label{fig:chunking}
+\end{figure}
+
+
+\textbf{Chunking} is a technique used to break down text into smaller, more manageable units. This technique can be applied to segment documents into smaller paragraphs or sentences, as illustrated in Figure \ref{fig:chunking}, facilitating more efficient processing and analysis. \textbf{Hierarchical models} incorporate multiple levels of abstraction or granularity to capture complex relationships within data. These models are particularly useful when dealing with structured data that naturally falls into a hierarchical organisation, such as documents composed of paragraphs and sentences. Furthermore, \textbf{hierarchical transformer model} is a variant of the transformer architecture that incorporate hierarchical structures to handle long sequences more efficiently. These models process data at different levels, such as sentences within paragraphs, to capture hierarchical relationships. Figure \ref{fig:hi_transformer} shows an example of hierarchical transformer modelused to produce document embeddings by utilising sentence-level and word-level information \cite{wu-2021-hi-transformer}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/hi_transformer.png}
+    \caption{An example of hierarchical transformer model, Hi-Transformer\cite{wu-2021-hi-transformer}, to model long document}
+    \label{fig:hi_transformer}
+\end{figure}
+
+\section{Document Classification}
 
 Automatic document classification is first mentioned in 1963 \cite{borko-1963-auto-doc-classification}, with earlier text processing concepts and techniques defined in the 1950s \cite{luhn-1958-business-intelligence-system}. Document classification refers to the task of classifying text documents, commonly include large text processing and handling with various structure and content type. Typical use cases may include work with legal and financial documents, reports, and managing digital libraries.
 
 In 2022, according to International Data Corporation (IDC) report, unstructured data accounted for 90\& of the total of organisation-generated data, in forms of purchase orders, product inventories, import/export records, sales agreements, contracts, patents, patient treatment notes, financial earning reports, and employee performance records, among many others \cite{box-2023-untapped}. Unstructured data refers to unorganised data that cannot be stored well into database, commonly in form of large collections of texts, terabytes or petabytes in size and growing exponentially \cite{mishra-2017-structured-unstructured}. Thus, the need to automatically manage and organise large amount of text and retrieve useful knowledge (knowledge discovery) is highly apparent \cite{mali-2021-relevance-of-preprocessing}.
 
-Automatic document classification is a an active area of research, where it is mainly focused on methods that are able to handle long sequences and extract knowledge or information. Convolutional Neural Network (CNN) \cite{afzal-deepdocclassifier,liu-2017-xmlcnn} and attention-based methods \cite{yang-2016-han} dominated the before being outperformed by DocBERT \cite{adhikari-2019-docbert}, achieved through leveraging knowledge distillation from the BERT-large model.
+Automatic document classification is an active area of research, with a primary focus on methods capable of handling long sequences and extracting relevant knowledge or information. Convolutional Neural Networks (CNN) \cite{afzal-deepdocclassifier,liu-2017-xmlcnn} and Hierarchical Attention Networks (HAN) \cite{yang-2016-han} have been traditionally used for this task. However, these approaches were later outperformed by DocBERT \cite{adhikari-2019-docbert}, which achieved superior results by leveraging knowledge distillation from the BERT-large model.
 
-Straightforward, transformer-based text classification approach of fine-tuning an encoder-based language model is not necessarily effective for document-level processing as they are only able to process a maximum of 512 tokens (BERT), prompting significant information loss. Moreover, classification models that demonstrated significant results have been shown to perform poorly or even fail when they are tested on large documents \cite{wan-2019-long-length}. There exist other LLMs that are designed specifically to handle longer sequences: Longformer \cite{beltagy-2020-longformer}, BigBird \cite{zaheer-2021-bigbird}. However, these models have a different architecture than the high-performing BERT and often do not consistently surpass the baseline models in classification performance, performing only notably better than the baseline models on only two datasets \cite{park-2022-efficient}.
+Straightforward, fine-tuning an encoder-based language model such as BERT is not necessarily effective for document-level processing as they are only able to process a maximum of 512 tokens, prompting significant information loss. Moreover, classification models that demonstrated significant results have been shown to perform poorly or even fail when they are tested on large documents \cite{wan-2019-long-length}.
 
-Several works have been proposed to combat the problem of handling long sequences. Pappagari et al. \cite{pappagari-2019-hierarchical} are among the first to utilise the Transformer architecture for long sequences classification, introducing chunking and propagation methods. Su et al. \cite{su-2021-classifying} used chunking methods combined with encoder-based '[CLS] Pooling' (as also described in \cite{adhikari-2019-docbert}) to extract representations on the document-level for the task of clinical document classification.
+There exist other LLMs that are designed specifically to handle longer sequences: Longformer \cite{beltagy-2020-longformer}, BigBird \cite{zaheer-2021-bigbird}. Both are hierarchical transformer models that utilises combination of global and local attention mechanisms. However, Longformer has been reported to not consistently surpass the baseline models in classification of long documents, performing only notably better than the baseline models on only two datasets \cite{park-2022-efficient}.
+
+Several techniques have been implemented to combat the problem of handling long sequences, namely chunking and hierarchical techniques, as described in Section.
+
+Pappagari et al. \cite{pappagari-2019-hierarchical} are among the first to utilise the transformer architecture for long sequences classification, introducing chunking and propagation methods. Su et al. \cite{su-2021-classifying} used chunking methods in a hierarchical transformer model with 'CLS-Pooling' (as also described in \cite{adhikari-2019-docbert}) to extract representations on the document-level for the task of clinical document classification. Khandve et al. \cite{khandve-2022-hierarchical-longdoc} also implemented a hierarchical model by utilising BERT and Bi-LSTM layers for long document classification tasks.
 
 
-\section{Article-level media bias classification}
+\section{Article-Level Media Bias Classification}
 
 Article-level classification can be seen as a subset of document classification that specifically targets articles. This field focuses on categorising article-like texts such as news pieces, blogs, and other similar formats that typically comprise multiple paragraphs. Article-level media bias classification refers to the task of detecting and classifying media bias contained within a text. Article contents length generally falls between medium to long sequences, as they are not as lengthy as legal documents or clinical studies that typically contain multiple pages of text. Most news articles stay between several hundred to several thousand words.
 
-Currently available datasets for article-level and media bias classification in general are quite limited, often varying in formats or covering different types of bias. The \textbf{BASIL} dataset \cite{fan-2019-basil} is the most commonly used bias dataset, containing 300 articles with both article-level and phrase-level annotations. This dataset focuses on informational bias in news articles as it appears more frequently than lexical bias. However, the obvious drawback of this dataset is the low amount of articles included as it is not nearly enough data to get a good working detection model. \textbf{NLPCSS} \cite{chen-2020-nlpcss} (6964 articles), annotated via Ad Fontes labels, contains article-level textual content with three bias labels (bias, neutral, or unknown). Focusing on political bias and unfairness, this dataset can potentially serve as a suitable resource for an article-level media bias classification task. The \textbf{BAT} \cite{spinde-2023-bat} dataset (6345 articles, 321 outlets, Ad Fontes labels) is the most suitable for article-level bias detection as it supplies both bias-score and reliability-score for the whole article. However, the dataset itself does not supply the textual content of the articles and therefore needs to be extended, something that I have been working on as well during my Master's Thesis this and last year.
+Current available datasets for article-level and media bias classification in general are quite limited, often varying in formats or covering different types of bias. The \textbf{BASIL} dataset \cite{fan-2019-basil} is the most commonly used bias dataset, containing 300 articles with both article-level and phrase-level annotations. This dataset focuses on informational bias in news articles as it appears more frequently than lexical bias. However, the obvious drawback of this dataset is the low amount of articles included as it is not nearly enough data to get a good working detection model. \textbf{NLPCSS} \cite{chen-2020-nlpcss} (6964 articles), annotated via Ad Fontes labels, contains article-level textual content with three bias labels (bias, neutral, or unknown). Focusing on political bias and unfairness, this dataset can potentially serve as a suitable resource for an article-level media bias classification task. The \textbf{BAT} \cite{spinde-2023-bat} dataset (6345 articles, 321 outlets, Ad Fontes labels) is the most suitable for article-level bias detection as it supplies both bias-score and reliability-score for the whole article. However, the dataset itself does not supply the textual content of the articles and therefore needs to be extended, something that I have been working on as well during my Master's Thesis this and last year.
 
 Furthermore, annotating media bias is not a straightforward task. Traditionally, this is done by hiring experts and journalists to manually read and determine how biased the content is. Here it is important to use multiple annotators to minimise introducing another form of bias towards the dataset. This comes with its own set of challenges as annotators might not always agree on biased text \cite{lim-2018-understanding}. As with \cite{spinde-2021-babe}, annotations are generally compiled and majority voted to achieve the final annotation given a particular text. Moreover, annotators' personal background moderately influenced their decisions and should be taken into consideration when building datasets, along with other factors such as topics, reading news habits, and honest mistakes \cite{spinde-2021-bias-words}. Clearly, this is not a cheap procedure and can act as a bottleneck when building a reliable media bias dataset.
 
 Alternatively, organisations such as Allsides and Ad Fontes have their own experts and annotations which can be crawled and exploited. Several papers and datasets \cite{spinde-2023-bat,chen-2020-nlpcss,kulkarni-2018-multi-view} have utilised this approach. However, since these datasets depend on manual labeling from third-party organisations, the selection of articles likely also introduces bias into the dataset \cite{spinde-2023-bat}.
 
-Current State-of-the-Art (SOTA) approaches in media bias classification typically employs a Transformer-based approach, either by fine-tuning or exploiting Large Language Models such as BERT \cite{devlin-2019-bert} or RoBERTa \cite{liu-2019-roberta}. \textbf{MAGPIE} \cite{horych-2024-magpie} is the first large-scale, RoBERTa-based, multi-task learning (MTL) model dedicated to bias-related tasks, a promising approach for media bias detection and can be used to enhance the accuracy and efficiency of existing models. Using the more specific model MAGPIE instead of the general language models for media bias tasks may potentially enhance performance. Unfortunately, the model is only trained for sentence-level classification and also outputs binary results.
+Current State-of-the-Art (SOTA) approaches in media bias classification typically employs a transformer-based approach, either by fine-tuning or exploiting Large Language Models such as BERT \cite{devlin-2019-bert} or RoBERTa \cite{liu-2019-roberta}. \textbf{MAGPIE} \cite{horych-2024-magpie} is the first large-scale, RoBERTa-based, multitask learning (MTL) model dedicated to bias-related tasks, a promising approach for media bias detection and can be used to enhance the accuracy and efficiency of existing models. Using the more specific model MAGPIE instead of the general language models for media bias tasks may potentially enhance performance. Unfortunately, the model is only trained for sentence-level classification and also outputs binary results.
 
 Past works on media bias classification typically use the BASIL dataset, operating on a sentence-level and outputting binary result (either biased or not) \cite{maab-2023-lexical-bias-detection, maab-2023-target-aware, guo-2022-modeling, van-den-berg-2020-context,lee-2021-unifying,lei-2022-sentence,lei-2024-event-relation}, complemented by the lack of appropriate and adequate datasets with article-level annotations \cite{demidov-2023-political-bias-classification}.
 

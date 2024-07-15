@@ -2,51 +2,46 @@
 \providecommand\hyper@newdestlabel[2]{}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\@writefile{toc}{\contentsline {chapter}{\chapternumberline {4}Methodology}{23}{chapter.4}\protected@file@percent }
-\newlabel{cha:4}{{\M@TitleReference {4}{Methodology}}{23}{Methodology}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Dataset split}{23}{section.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Number of total samples and on each class in train, test, and validation set}}{23}{table.4.1}\protected@file@percent }
-\newlabel{table:dataset_split}{{\M@TitleReference {4.1}{Number of total samples and on each class in train, test, and validation set}}{23}{Number of total samples and on each class in train, test, and validation set}{table.4.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {4}Methodology}{27}{chapter.4}\protected@file@percent }
+\newlabel{cha:4}{{\M@TitleReference {4}{Methodology}}{27}{Methodology}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Dataset split}{27}{section.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Number of total samples and on each class in train, test, and validation set}}{27}{table.4.1}\protected@file@percent }
+\newlabel{table:dataset_split}{{\M@TitleReference {4.1}{Number of total samples and on each class in train, test, and validation set}}{27}{Number of total samples and on each class in train, test, and validation set}{table.4.1}{}}
 \citation{devlin-2019-bert}
+\citation{beltagy-2020-longformer}
+\citation{zaheer-2021-bigbird}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Features and baselines}{28}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Proposed methods}{28}{section.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{28}{subsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Fine-tuning}{28}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Chunked fine-tuning}{28}{subsection.4.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}}{29}{figure.4.1}\protected@file@percent }
+\newlabel{fig:majority_baseline}{{\M@TitleReference {4.1}{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}}{29}{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}{figure.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{29}{figure.4.2}\protected@file@percent }
+\newlabel{fig:bow_mlp_architecture}{{\M@TitleReference {4.2}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{29}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation}{figure.4.2}{}}
 \citation{devlin-2019-bert}
-\citation{devlin-2019-bert}
-\citation{devlin-2019-bert}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Features and baselines}{24}{section.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Proposed methods}{24}{section.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{24}{subsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}BERT fine-tuning}{24}{subsection.4.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}}{25}{figure.4.1}\protected@file@percent }
-\newlabel{fig:majority_baseline}{{\M@TitleReference {4.1}{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}}{25}{Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A}{figure.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{25}{figure.4.2}\protected@file@percent }
-\newlabel{fig:bow_mlp_architecture}{{\M@TitleReference {4.2}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}}{25}{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation}{figure.4.2}{}}
-\citation{devlin-2019-bert}
-\citation{su-2021-classifying}
 \citation{su-2021-classifying}
 \citation{sun-2020-fine-tune}
-\citation{su-2021-classifying}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces BERT pre-training and fine-tuning procedures \cite  {devlin-2019-bert}}}{26}{figure.4.3}\protected@file@percent }
-\newlabel{fig:bert_finetuning}{{\M@TitleReference {4.3}{BERT pre-training and fine-tuning procedures \cite  {devlin-2019-bert}}}{26}{BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}}{figure.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Chunk-based BERT fine-tuning}{26}{subsection.4.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}CLS method}{26}{subsection.4.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Chunked fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}}{30}{figure.4.3}\protected@file@percent }
+\newlabel{fig:chunk_bert_finetuning}{{\M@TitleReference {4.3}{Chunked fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}}{30}{Chunked fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation}{figure.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Hierarchical transformer model}{30}{subsection.4.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces CLS method architecture}}{31}{figure.4.4}\protected@file@percent }
+\newlabel{fig:cls_method}{{\M@TitleReference {4.4}{CLS method architecture}}{31}{CLS method architecture}{figure.4.4}{}}
 \citation{devlin-2019-bert}
 \citation{horych-2024-magpie}
 \citation{agarap-2018-relu}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}}{27}{figure.4.4}\protected@file@percent }
-\newlabel{fig:chunk_bert_finetuning}{{\M@TitleReference {4.4}{Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}}{27}{Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation}{figure.4.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces CLS method architecture}}{28}{figure.4.5}\protected@file@percent }
-\newlabel{fig:cls_method}{{\M@TitleReference {4.5}{CLS method architecture}}{28}{CLS method architecture}{figure.4.5}{}}
 \citation{van-1995-python}
 \citation{paszke-2017-pytorch}
 \citation{wolf-2020-huggingface}
 \citation{devlin-2019-bert}
 \citation{loshchilov-2019-adamw}
 \citation{pedregosa-2011-scikit-learn}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Training details}{29}{section.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{29}{subsection.4.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Class weight in the training set}}{29}{figure.4.6}\protected@file@percent }
-\newlabel{fig:class_weight}{{\M@TitleReference {4.6}{Class weight in the training set}}{29}{Class weight in the training set}{figure.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Training details}{32}{section.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{32}{subsection.4.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Class weight in the training set}}{33}{figure.4.5}\protected@file@percent }
+\newlabel{fig:class_weight}{{\M@TitleReference {4.5}{Class weight in the training set}}{33}{Class weight in the training set}{figure.4.5}{}}
 \@setckpt{chap-4}{
-\setcounter{page}{30}
+\setcounter{page}{34}
 \setcounter{equation}{0}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
@@ -93,17 +88,17 @@
 \setcounter{cmsm@mctr}{0}
 \setcounter{bsm@mctr}{0}
 \setcounter{workm@mctr}{0}
-\setcounter{sheetsequence}{34}
-\setcounter{lastsheet}{53}
-\setcounter{lastpage}{49}
-\setcounter{figure}{6}
+\setcounter{sheetsequence}{38}
+\setcounter{lastsheet}{60}
+\setcounter{lastpage}{56}
+\setcounter{figure}{5}
 \setcounter{lofdepth}{1}
 \setcounter{table}{1}
 \setcounter{lotdepth}{1}
 \setcounter{section@level}{2}
 \setcounter{Item}{9}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{21}
+\setcounter{bookmark@seq@number}{23}
 \setcounter{memhycontfloat}{0}
 \setcounter{Hpagenote}{0}
 \setcounter{parentequation}{0}

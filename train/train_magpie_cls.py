@@ -130,7 +130,7 @@ model.predict(tokenised_dataset["test"])
 
 # {'loss': 0.8297753930091858, 'precision': 0.760345238507249, 'recall': 0.7170474516695958, 'f1': 0.7342602984152476}
 
-# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, mean pooling
 #               precision    recall  f1-score   support
 #               precision    recall  f1-score   support
 
@@ -144,3 +144,17 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.77      0.74      0.75       569
 
 # {'loss': 0.8169947266578674, 'precision': 0.7732142516918309, 'recall': 0.7398945518453427, 'f1': 0.7526923090194392}
+
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, NO DROPOUT,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, mean pooling
+#               precision    recall  f1-score   support
+
+#            0       0.50      0.63      0.56        27
+#            1       0.46      0.50      0.48        54
+#            2       0.47      0.59      0.52       104
+#            3       0.92      0.83      0.87       384
+
+#     accuracy                           0.74       569
+#    macro avg       0.59      0.64      0.61       569
+# weighted avg       0.77      0.74      0.76       569
+
+# {'loss': 0.8172813057899475, 'precision': 0.7743184031806093, 'recall': 0.7434094903339191, 'f1': 0.7554627857699413}

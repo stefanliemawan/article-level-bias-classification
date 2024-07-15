@@ -134,9 +134,24 @@ def replace_words(text, replacement_dict):
     return " ".join(replaced_words)
 
 
+REPLACEMENT_COUNT = 0
+
+
 def fix_words_by_dict(content):
+    # global REPLACEMENT_COUNT
+
+    # replaced_words = []
+    # for word in words:
+    #     if word in WORD_FIX_DICT:
+    #         replaced_words.append(WORD_FIX_DICT[word])
+    #         REPLACEMENT_COUNT += 1
+    #     else:
+    #         replaced_words.append(word)
+
+    # fixed_content = " ".join(replaced_words)
+    # print(REPLACEMENT_COUNT)
+
     words = content.split()
-    # words = re.findall(r"(\w+)", content)
 
     replaced_words = [WORD_FIX_DICT.get(word, word) for word in words]
     fixed_content = " ".join(replaced_words)
@@ -145,6 +160,16 @@ def fix_words_by_dict(content):
 
 
 def remove_noise_phrases(content):
+    # global REPLACEMENT_COUNT
+
+    # fixed_content = content
+    # for word, fixed_word in PHRASE_NOISE_DICT.items():
+    #     occurrences = fixed_content.count(word)
+    #     if occurrences > 0:
+    #         REPLACEMENT_COUNT += occurrences
+    #         fixed_content = fixed_content.replace(word, fixed_word)
+    # print(REPLACEMENT_COUNT)
+
     fixed_content = content
     for word, fixed_word in PHRASE_NOISE_DICT.items():
         fixed_content = fixed_content.replace(word, fixed_word)

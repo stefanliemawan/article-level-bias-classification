@@ -117,8 +117,6 @@ class ChunkModel(nn.Module):
         for layer in self.transformer_layers:
             transformer_output = layer(transformer_output)
 
-        transformer_output = self.dropout(transformer_output)
-
         expanded_attention_mask = (
             attention_mask.unsqueeze(-1).expand(transformer_output.size()).float()
         )

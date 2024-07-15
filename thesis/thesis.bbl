@@ -115,6 +115,11 @@ M.~B. Group.
 S.~Guo and K.~Q. Zhu.
 \newblock Modeling multi-level context for informational bias detection by contrastive learning and sentential graph network, 2022.
 
+\bibitem{hochreiter-1997-lstm}
+S.~Hochreiter and J.~Schmidhuber.
+\newblock Long short-term memory.
+\newblock {\em Neural computation}, 9:1735--80, 12 1997.
+
 \bibitem{horych-2024-magpie}
 T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
 \newblock Magpie: Multi-task media-bias analysis generalization for pre-trained identification of expressions, 2024.
@@ -129,6 +134,11 @@ S.~jeong Lim, A.~Jatowt, and M.~Yoshikawa.
 \newblock What is media bias?
 \newblock \url{https://www.allsides.com/blog/what-media-bias}, 2022.
 \newblock [Online; accessed 28-April-2024].
+
+\bibitem{khandve-2022-hierarchical-longdoc}
+S.~I. Khandve, V.~K. Wagh, A.~D. Wani, I.~M. Joshi, and R.~B. Joshi.
+\newblock Hierarchical neural network approaches for long document classification.
+\newblock In {\em 2022 14th International Conference on Machine Learning and Computing (ICMLC)}, ICMLC 2022. ACM, Feb. 2022.
 
 \bibitem{kulkarni-2018-multi-view}
 V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
@@ -218,6 +228,15 @@ N.~Newman, R.~Fletcher, A.~Schulz, S.~Andı, C.~T. Robertson, and R.~K. Nielsen.
 \newblock Technical report, Reuters Institute for the Study of Journalism, 2021.
 \newblock [Online; accessed 29-April-2024].
 
+\bibitem{openai-2024-gpt4}
+OpenAI, J.~Achiam, S.~Adler, S.~Agarwal, L.~Ahmad, I.~Akkaya, F.~L. Aleman, D.~Almeida, J.~Altenschmidt, S.~Altman, S.~Anadkat, R.~Avila, I.~Babuschkin, S.~Balaji, V.~Balcom, P.~Baltescu, H.~Bao, M.~Bavarian, J.~Belgum, I.~Bello, J.~Berdine, G.~Bernadett-Shapiro, C.~Berner, L.~Bogdonoff, O.~Boiko, M.~Boyd, A.-L. Brakman, G.~Brockman, T.~Brooks, M.~Brundage, K.~Button, T.~Cai, R.~Campbell, A.~Cann, B.~Carey, C.~Carlson, R.~Carmichael, B.~Chan, C.~Chang, F.~Chantzis, D.~Chen, S.~Chen, R.~Chen, J.~Chen, M.~Chen, B.~Chess, C.~Cho, C.~Chu, H.~W. Chung, D.~Cummings, J.~Currier, Y.~Dai, C.~Decareaux, T.~Degry, N.~Deutsch, D.~Deville, A.~Dhar, D.~Dohan, S.~Dowling, S.~Dunning, A.~Ecoffet, A.~Eleti, T.~Eloundou, D.~Farhi, L.~Fedus, N.~Felix, S.~P. Fishman, J.~Forte, I.~Fulford, L.~Gao, E.~Georges, C.~Gibson, V.~Goel, T.~Gogineni, G.~Goh, R.~Gontijo-Lopes, J.~Gordon, M.~Grafstein, S.~Gray, R.~Greene, J.~Gross, S.~S. Gu, Y.~Guo, C.~Hallacy, J.~Han, J.~Harris, Y.~He, M.~Heaton, J.~Heidecke, C.~Hesse, A.~Hickey, W.~Hickey, P.~Hoeschele, B.~Houghton, K.~Hsu, S.~Hu, X.~Hu, J.~Huizinga, S.~Jain, S.~Jain, J.~Jang, A.~Jiang, R.~Jiang, H.~Jin, D.~Jin, S.~Jomoto, B.~Jonn, H.~Jun, T.~Kaftan, Łukasz Kaiser, A.~Kamali, I.~Kanitscheider, N.~S. Keskar, T.~Khan, L.~Kilpatrick, J.~W. Kim, C.~Kim, Y.~Kim, J.~H. Kirchner, J.~Kiros, M.~Knight, D.~Kokotajlo, Łukasz Kondraciuk, A.~Kondrich, A.~Konstantinidis, K.~Kosic, G.~Krueger, V.~Kuo, M.~Lampe, I.~Lan, T.~Lee, J.~Leike, J.~Leung, D.~Levy, C.~M. Li, R.~Lim, M.~Lin, S.~Lin, M.~Litwin, T.~Lopez, R.~Lowe, P.~Lue, A.~Makanju, K.~Malfacini, S.~Manning, T.~Markov, Y.~Markovski, B.~Martin, K.~Mayer, A.~Mayne, B.~McGrew, S.~M. McKinney, C.~McLeavey, P.~McMillan, J.~McNeil, D.~Medina, A.~Mehta, J.~Menick, L.~Metz, A.~Mishchenko, P.~Mishkin, V.~Monaco, E.~Morikawa, D.~Mossing, T.~Mu, M.~Murati, O.~Murk, D.~Mély, A.~Nair, R.~Nakano, R.~Nayak, A.~Neelakantan, R.~Ngo, H.~Noh, L.~Ouyang, C.~O'Keefe, J.~Pachocki, A.~Paino, J.~Palermo, A.~Pantuliano, G.~Parascandolo, J.~Parish, E.~Parparita, A.~Passos, M.~Pavlov, A.~Peng, A.~Perelman, F.~de~Avila Belbute~Peres, M.~Petrov, H.~P. de~Oliveira~Pinto, Michael, Pokorny, M.~Pokrass, V.~H. Pong, T.~Powell, A.~Power, B.~Power, E.~Proehl, R.~Puri, A.~Radford, J.~Rae, A.~Ramesh, C.~Raymond, F.~Real, K.~Rimbach, C.~Ross, B.~Rotsted, H.~Roussez, N.~Ryder, M.~Saltarelli, T.~Sanders, S.~Santurkar, G.~Sastry, H.~Schmidt, D.~Schnurr, J.~Schulman, D.~Selsam, K.~Sheppard, T.~Sherbakov, J.~Shieh, S.~Shoker, P.~Shyam, S.~Sidor, E.~Sigler, M.~Simens, J.~Sitkin, K.~Slama, I.~Sohl, B.~Sokolowsky, Y.~Song, N.~Staudacher, F.~P. Such, N.~Summers, I.~Sutskever, J.~Tang, N.~Tezak, M.~B. Thompson, P.~Tillet, A.~Tootoonchian, E.~Tseng, P.~Tuggle, N.~Turley, J.~Tworek, J.~F.~C. Uribe, A.~Vallone, A.~Vijayvergiya, C.~Voss, C.~Wainwright, J.~J. Wang, A.~Wang, B.~Wang, J.~Ward, J.~Wei, C.~Weinmann, A.~Welihinda, P.~Welinder, J.~Weng, L.~Weng, M.~Wiethoff, D.~Willner, C.~Winter, S.~Wolrich, H.~Wong, L.~Workman, S.~Wu, J.~Wu, M.~Wu, K.~Xiao, T.~Xu, S.~Yoo, K.~Yu, Q.~Yuan, W.~Zaremba, R.~Zellers, C.~Zhang, M.~Zhang, S.~Zhao, T.~Zheng, J.~Zhuang, W.~Zhuk, and B.~Zoph.
+\newblock Gpt-4 technical report, 2024.
+
+\bibitem{oracle-finetuning-blog}
+S.~Padgaonkar and S.~Ghoshal.
+\newblock Fine-tuning in large language models.
+\newblock \url{https://blogs.oracle.com/ai-and-datascience/post/finetuning-in-large-language-models}, Accessed: July 2024.
+
 \bibitem{panagopoulos-2020}
 C.~Panagopoulos.
 \newblock Polls and elections accuracy and bias in the 2020 u.s. general election polls.
@@ -256,6 +275,12 @@ P.~Rafail and J.~D. McCarthy.
 \newblock Making the tea party republican: Media bias and framing in newspapers and cable news.
 \newblock {\em Social Currents}, 5(5):421--437, 2018.
 
+\bibitem{rahman-2023-lstm-networks}
+A.~A. Rahman.
+\newblock Lstm networks.
+\newblock \url{https://www.linkedin.com/pulse/lstm-networks-abdullah-al-rahman/}, 2023.
+\newblock [Online; accessed 16-July-2024].
+
 \bibitem{box-2023-untapped}
 {Research Desk}.
 \newblock Untapped value: What every executive needs to know about unstructured data, Dec. 2023.
@@ -270,6 +295,11 @@ P.~Rafail and J.~D. McCarthy.
 {Reuters Institute for the Study of Journalism}.
 \newblock Share of adults who trust news media most of the time in selected countries worldwide as of february 2023 [graph], June 14 2023.
 \newblock In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/308468/importance-brand-journalist-creating-trust-news/}.
+
+\bibitem{semianalysis-gpt4}
+SemiAnalysis.
+\newblock Gpt-4: Architecture \& infrastructure.
+\newblock \url{https://www.semianalysis.com/p/gpt-4-architecture-infrastructure}, Accessed: July 2024.
 
 \bibitem{spinde-2024-taxonomy}
 T.~Spinde, S.~Hinterreiter, F.~Haak, T.~Ruas, H.~Giese, N.~Meuschke, and B.~Gipp.
@@ -333,6 +363,11 @@ D.~M. White.
 \bibitem{wolf-2020-huggingface}
 T.~Wolf, L.~Debut, V.~Sanh, J.~Chaumond, C.~Delangue, A.~Moi, P.~Cistac, T.~Rault, R.~Louf, M.~Funtowicz, J.~Davison, S.~Shleifer, P.~von Platen, C.~Ma, Y.~Jernite, J.~Plu, C.~Xu, T.~L. Scao, S.~Gugger, M.~Drame, Q.~Lhoest, and A.~M. Rush.
 \newblock Huggingface's transformers: State-of-the-art natural language processing, 2020.
+
+\bibitem{wu-2021-hi-transformer}
+C.~Wu, F.~Wu, T.~Qi, and Y.~Huang.
+\newblock Hi-transformer: Hierarchical interactive transformer for efficient and effective long document modeling.
+\newblock {\em ArXiv}, abs/2106.01040, 2021.
 
 \bibitem{yang-2016-han}
 Z.~Yang, D.~Yang, C.~Dyer, X.~He, A.~Smola, and E.~Hovy.

@@ -36,9 +36,44 @@
     \centering
     \includegraphics[width=0.6\linewidth]{images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png}
     \caption{Trustworthiness of news media worldwide, as of February 2023 \cite{reuters-2023-trust}}
-\label{fig:trustworthiness-of-news-media-worldwide-2023}
+    \label{fig:trustworthiness-of-news-media-worldwide-2023}
 \end{figure}
 
+
+
+\begin{algorithm}
+    \begin{algorithmic}[1]
+        \Procedure{FixWordsByDict}{content}
+        \State $\text{words} \gets \text{Split content into list of words}$ \Comment{Using whitespace as delimiter}
+        \State $\text{replaced\_words} \gets [\,]$
+        \ForAll{$\text{word}$ \textbf{in} $\text{words}$}
+        \State $\text{replaced\_word} \gets \text{WORD\_FIX\_DICT[word]}$ \Comment{Retrieve fixed word from dictionary}
+        \If{$\text{replaced\_word}$ \textbf{is} $\text{None}$}
+        \State $\text{replaced\_word} \gets \text{word}$ \Comment{Use original word if not found in dictionary}
+        \EndIf
+        \State $\text{replaced\_words.append(replaced\_word)}$
+        \EndFor
+        \State $\text{fixed\_content} \gets \text{Join replaced\_words into a single string with spaces}$
+        \State \textbf{return} $\text{fixed\_content}$
+        \EndProcedure
+    \end{algorithmic}
+    \caption{Fix word-level noise}
+    \label{alg:word_level_noise_fix}
+\end{algorithm}
+
+\begin{algorithm}
+    \begin{algorithmic}[1]
+        \Procedure{RemoveNoisePhrases}{content}
+        \State $\text{fixed\_content} \gets \text{content}$
+        \ForAll{$(\text{word}, \text{fixed\_word})$ \textbf{in} $\text{PHRASE\_NOISE\_DICT}$}
+        \State $\text{fixed\_content} \gets \text{fixed\_content.replace(word, fixed\_word)}$
+        \EndFor
+        \State \textbf{return} $\text{fixed\_content}$
+        \EndProcedure
+    \end{algorithmic}
+    \caption{Remove phrase-level noise}
+    \label{alg:phrase_level_noise_fix}
+\end{algorithm}
 
 
 %%% Local Variables: 

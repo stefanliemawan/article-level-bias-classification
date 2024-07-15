@@ -110,40 +110,32 @@ As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are i
 
 Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of the BoW + MLP method, combining traditional encoding methods with a simple neural network training. This approach allows for a simple and computationally-cheap implementation, yet effective classifier. The model is trained for 10 epochs with a learning rate of 2e-5. Hidden size for the dense layer is 128 with a dropout probability of 0.2, no warm-up steps are applied.
 
-\subsection{BERT fine-tuning}
+\subsection{Fine-tuning}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/bert_finetuning.png}
-    \caption{BERT pre-training and fine-tuning procedures \cite{devlin-2019-bert}}
-    \label{fig:bert_finetuning}
-\end{figure}
+In this process, input texts are tokenised and fed into a pre-trained model, which is then fine-tuned for a specific downstream task. Three pre-trained models are used in this method: BERT \cite{devlin-2019-bert}, Longformer \cite{beltagy-2020-longformer}, and BigBird \cite{zaheer-2021-bigbird}. For BERT, only the first 512 tokens are fed into the model, due to its token limitations, while both Longformer and BigBird allows for up to 4096 tokens. Training is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warm-up steps.
 
-A fine-tuning operation is done as described in the original BERT paper \cite{devlin-2019-bert}, where input texts are tokenised and fed into a pre-trained BERT model for a downstream task. This approach leverages the powerful pre-trained representations from BERT and adapts them to the specific requirements of the downstream task with relatively small amounts of task-specific training data. This method has become a widely common and popular technique for performing various NLP tasks due to its effectiveness in improving performance over traditional models.
-
-A fine-tuning operation is conducted as described in the original BERT paper \cite{devlin-2019-bert}. In this process, input texts are tokenised and fed into a pre-trained BERT model, which is then fine-tuned for a specific downstream task. This means that BERT's weights are adjusted based on the training data for the downstream task, allowing the model to adapt its pre-trained representations to the specific requirements of the task. This approach leverages the powerful pre-trained representations from BERT and adapts them with relatively small amounts of task-specific training data. It has become a widely common and popular technique for performing various NLP tasks due to its effectiveness in improving performance over traditional models. Fine-tuning is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warm-up steps.
-
-\subsection{Chunk-based BERT fine-tuning}
+\subsection{Chunked fine-tuning}
 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzstyle{chunk} = [rectangle, draw, fill=gray!20]
-        \tikzstyle{label} = [text centered, font=\footnotesize, fill=white]
+        \tikzstyle{label} = [text centered,font=\footnotesize]
 
         \node[label] at (0, 1) {Text input};
-        \node (input) [draw, align=center, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
+        \node (input) [draw, align=left, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
 
         \node[chunk] (chunk1) [draw] at (-5, -2) {Chunk 1};
         \node[chunk] (chunk2) [draw] at (0, -2) {Chunk 2};
-        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk 3};
+        \node[label] at (2.25, -2) {.......};
+        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk n};
 
         \draw[arrow] (input) -- (chunk1);
         \draw[arrow] (input) -- (chunk2);
         \draw[arrow] (input) -- (chunk3);
 
-        \node (bert) [draw, circle, fill=green!20] at (0, -4) {BERT};
+        \node (bert) [draw, circle, fill=green!20] at (0, -4) {LLM};
         \node[label] at (1.75, -4) {fine-tune};
 
         \draw[arrow] (chunk1) -- (bert);
@@ -152,7 +144,8 @@ A fine-tuning operation is conducted as described in the original BERT paper \ci
 
         \node[chunk] (logits1) [draw] at (-5, -6) {Logits 1};
         \node[chunk] (logits2) [draw] at (0, -6) {Logits 2};
-        \node[chunk] (logits3) [draw] at (5, -6) {Logits 3};
+        \node[label] at (2.25, -6) {.......};
+        \node[chunk] (logits3) [draw] at (5, -6) {Logits n};
 
         \draw[arrow] (bert) -- (logits1);
         \draw[arrow] (bert) -- (logits2);
@@ -173,36 +166,38 @@ A fine-tuning operation is conducted as described in the original BERT paper \ci
         \draw[arrow] (softmax) -- (pred);
 
     \end{tikzpicture}
-    \caption{Chunk-based BERT fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}
+    \caption{Chunked fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.}
     \label{fig:chunk_bert_finetuning}
 \end{figure}
 
-Figure \ref{fig:chunk_bert_finetuning} illustrates the architecture of the chunk-based BERT fine-tuning. Input texts are tokenised and segmented into separate chunks containing parts of the text input, with no overlapping text between chunks. Chunks are padded to a maximum length, and a 'CLS' token is inserted at the beginning of each chunk, acting as a summary representation of the entire chunk sequence. Each chunk is then served as a mini-batch and fed into the network for fine-tuning on a downstream task. The logits (output from BERT model) produced by each chunk are then pooled together using mean pooling to produce the final logits. Finally, a softmax operation is applied to the final logits to obtain the class probabilities.
+Figure \ref{fig:chunk_bert_finetuning} illustrates the architecture of the chunked fine-tuning for LLMs. Input texts are tokenised and segmented into separate chunks containing parts of text input. Chunks have a fixed linear size, with the final chunk padded accordingly. A 'CLS' token is inserted at the beginning of each chunk, acting as a summary representation of the entire chunk sequence, and a 'SEP' token is inserted at the end of each chunk. Chunks are then stacked together and fed into the model as mini-batches for the fine-tuning process. The logits (output scores) produced by each chunk are then pooled together using mean pooling to produce the final logits. Finally, a softmax operation is applied to the final logits to obtain the class probabilities.
 
-The chunking method bypasses the sequence length limitation of BERT, allowing for full representation and processing of text input without any loss of information. In the implementation, a window size of 512 tokens is chosen with no stride. Fine-tuning is conducted over 4 epochs using a weighted loss function, a learning rate of 2e-5, and 500 linear warm-up steps.
+The chunking method bypasses the sequence length limitation of most LLMs such as BERT \cite{devlin-2019-bert}, allowing for full representation and processing of text input without any loss of information. In the implementation, a window size of 512 tokens is chosen with no overlap. Fine-tuning is conducted over 4 epochs using a weighted loss function, a learning rate of 2e-5, and 500 linear warm-up steps.
 
-\subsection{CLS method}
+\subsection{Hierarchical transformer model}
 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzstyle{chunk} = [rectangle, draw, fill=gray!20]
-        \tikzstyle{label} = [text centered, font=\footnotesize, fill=white]
+        \tikzstyle{label} = [text centered, font=\footnotesize]
 
         \node[label] at (0, 1) {Text input};
-        \node (input) [draw, align=center, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
+        \node (input) [draw, align=left, text width=0.9\linewidth, font=\tiny, fill=brown!20] at (0, 0) {Nearly 190,000 people tried to illegally enter the United States from its southern border with Mexico in June – the highest number in more than 20 years, and as much as ten times the total recorded during some months under Trump. According to data from US Customs and Border Protection, June saw 188,829 illegal immigrants attempt to cross the border...};
 
         \node[chunk] (chunk1) [draw] at (-5, -2) {Chunk 1};
         \node[chunk] (chunk2) [draw] at (0, -2) {Chunk 2};
-        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk 3};
+        \node[label] at (2.25, -2) {.......};
+        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk n};
+        \node[label] at (6, -2.5) {size of \(l\)};
 
         \draw[arrow] (input) -- (chunk1);
         \draw[arrow] (input) -- (chunk2);
         \draw[arrow] (input) -- (chunk3);
 
         \node (encoder) [draw, circle, fill=green!20] at (0, -4) {LLM encoder};
-        \node[label] at (4, -4.5) {extract last hidden state};
+        \node[label] at (4, -4.75) {extract last hidden state};
 
         \draw[arrow] (chunk1) -- (encoder);
         \draw[arrow] (chunk2) -- (encoder);
@@ -210,7 +205,9 @@ The chunking method bypasses the sequence length limitation of BERT, allowing fo
 
         \node[chunk] (embedding1) [draw] at (-5, -6) {Embeddings 1};
         \node[chunk] (embedding2) [draw] at (0, -6) {Embeddings 2};
-        \node[chunk] (embedding3) [draw] at (5, -6) {Embeddings 3};
+        \node[label] at (2.25, -6) {.......};
+        \node[chunk] (embedding3) [draw] at (5, -6) {Embeddings n};
+        \node[label] at (6, -6.5) {size of \( l \times d \)};
 
         \draw[arrow] (encoder) -- (embedding1);
         \draw[arrow] (encoder) -- (embedding2);
@@ -225,27 +222,26 @@ The chunking method bypasses the sequence length limitation of BERT, allowing fo
         \node (tf_layer2) [draw, rectangle, fill=green!20] at (0, -9) {Transformer layer 2};
         \draw[arrow] (tf_layer1) -- (tf_layer2);
 
-        \node (dropout) [draw, rectangle, fill=blue!20] at (0, -10) {Dropout};
-        \draw[arrow] (tf_layer2) -- (dropout);
+        \node[label] at (4, -10.5) {pooling operation};
 
-        \node[label] at (4, -10.5) {extract CLS token};
+        \node[chunk] (pooled1) [draw] at (-5, -11) {Pooled emb 1};
+        \node[chunk] (pooled2) [draw] at (0, -11) {Pooled emb 2};
+        \node[label] at (2.25, -11) {.......};
+        \node[chunk] (pooled3) [draw] at (5, -11) {Pooled emb 3};
+        \node[label] at (6, -11.5) {size of \(d\)};
 
-        \node[chunk] (cls1) [draw] at (-5, -11.5) {CLS repr 1};
-        \node[chunk] (cls2) [draw] at (0, -11.5) {CLS repr 2};
-        \node[chunk] (cls3) [draw] at (5, -11.5) {CLS repr 3};
-
-        \draw[arrow] (dropout) -- (cls1);
-        \draw[arrow] (dropout) -- (cls2);
-        \draw[arrow] (dropout) -- (cls3);
+        \draw[arrow] (tf_layer2) -- (pooled1);
+        \draw[arrow] (tf_layer2) -- (pooled2);
+        \draw[arrow] (tf_layer2) -- (pooled3);
 
         \node (mlp) [draw, circle, fill=green!20] at (0, -13.25) {MLP};
-        \node[label] at (4, -13) {two linear layers with ReLU and dropouts};
+        \node[label] at (4, -13.25) {two linear layers with ReLU and dropouts};
 
-        \draw[arrow] (cls1) -- (mlp);
-        \draw[arrow] (cls2) -- (mlp);
-        \draw[arrow] (cls3) -- (mlp);
+        \draw[arrow] (pooled1) -- (mlp);
+        \draw[arrow] (pooled2) -- (mlp);
+        \draw[arrow] (pooled3) -- (mlp);
 
-        \node (softmax) [draw, fill=cyan!20] at (0, -14.5) {Softmax};
+        \node (softmax) [draw, fill=cyan!20] at (0, -14.75) {Softmax};
 
         \draw[arrow] (mlp) -- (softmax);
 
@@ -257,15 +253,14 @@ The chunking method bypasses the sequence length limitation of BERT, allowing fo
     \label{fig:cls_method}
 \end{figure}
 
-Described in \cite{devlin-2019-bert} and implemented in \cite{su-2021-classifying,su-2021-classifying}, the 'CLS' token from BERT embeddings can be described as the summary representation of the sequence.
 
-Figure \ref{fig:cls_method} shows the full architecture of the CLS method. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into \textit{n}-amount of Transformer layers to enrich their contextual understanding. For each chunk afterwards, only the representation of the CLS token (the first token) is retained (CLS Pooling, as in \cite{su-2021-classifying}), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class. Using a LLM as an encoder and taking its last hidden state allows for a good contextual representation of each chunk. By only using the CLS token representation instead of the whole chunk, this method allows for a more effective, yet simpler approach compared to other chunk pooling methods.
+Figure \ref{fig:cls_method} shows the full architecture of the hierarchical transformer model, similarly implemented by Su et al. \cite{su-2021-classifying} for classifying long clinical documents. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into two transformer layers. Afterwards, each chunk is pooled together, resulting in embedding of size \(d\), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class.
 
-Two different language models can be used as the Transformer encoder in this method: BERT \cite{devlin-2019-bert} or MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLu activation function \cite{agarap-2018-relu} and dropouts. Each chunk is set to contain 512 tokens, only 2 Transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warm-up steps (10\% of total training steps).
+Two different pre-trained models are experimented as the LLM encoder in this method: BERT \cite{devlin-2019-bert} and MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLU activation function \cite{agarap-2018-relu} and dropouts. Chunk size is set to 156 tokens, two transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warm-up steps (10\% of total training steps).
 
 \section{Training details}
 
-All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and Transformer \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. The AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. The batch size is set to 8 for all deep learning methods.
+All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and transformers \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words, which may be crucial \cite{devlin-2019-bert}. The AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. The batch size is set to 8 for all deep learning methods.
 
 \subsection{Weighted loss}
 

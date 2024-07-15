@@ -13,27 +13,29 @@
 \contentsline {chapter}{\chapternumberline {2}Background Information and Literature Review}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Media Bias}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Word Embeddings}{9}{section.2.2}%
-\contentsline {section}{\numberline {2.3}MultiLayer Perceptron}{10}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Transformer and Large Language Model (LLM)}{11}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Document classification}{13}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Article-level media bias classification}{13}{section.2.6}%
-\contentsline {chapter}{\chapternumberline {3}Dataset Reconstruction}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}BAT dataset}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Reconstruction}{18}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Analysis}{20}{section.3.3}%
-\contentsline {chapter}{\chapternumberline {4}Methodology}{23}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Dataset split}{23}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Features and baselines}{24}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Proposed methods}{24}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{24}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}BERT fine-tuning}{24}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Chunk-based BERT fine-tuning}{26}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}CLS method}{26}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Training details}{29}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{29}{subsection.4.4.1}%
-\contentsline {chapter}{\chapternumberline {5}Evaluation}{31}{chapter.5}%
-\contentsline {chapter}{\chapternumberline {6}Conclusion}{35}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Remarks}{35}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future works}{36}{section.6.2}%
-\contentsline {appendix}{\chapternumberline {A}The First Appendix}{39}{appendix.A}%
-\contentsline {chapter}{Bibliography}{43}{appendix*.3}%
+\contentsline {section}{\numberline {2.3}MultiLayer Perceptron (MLP)}{10}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Long Short-Term Memory (LSTM)}{11}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Transformer and Large Language Model (LLM)}{11}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Chunking and Hierarchical Techniques}{14}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Document Classification}{15}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Article-Level Media Bias Classification}{16}{section.2.8}%
+\contentsline {chapter}{\chapternumberline {3}Dataset Reconstruction}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}BAT dataset}{19}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Reconstruction}{20}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Analysis}{23}{section.3.3}%
+\contentsline {chapter}{\chapternumberline {4}Methodology}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Dataset split}{27}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Features and baselines}{28}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Proposed methods}{28}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{28}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Fine-tuning}{28}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Chunked fine-tuning}{28}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Hierarchical transformer model}{30}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Training details}{32}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Weighted loss}{32}{subsection.4.4.1}%
+\contentsline {chapter}{\chapternumberline {5}Evaluation}{35}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {6}Conclusion}{39}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Remarks}{39}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Future works}{40}{section.6.2}%
+\contentsline {appendix}{\chapternumberline {A}The First Appendix}{43}{appendix.A}%
+\contentsline {chapter}{Bibliography}{49}{appendix*.3}%

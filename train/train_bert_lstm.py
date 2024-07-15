@@ -8,9 +8,8 @@ from torch import nn
 from transformers import AutoModel, AutoTokenizer
 from utils.chunk_model import ChunkModel
 
-CHUNK_SIZE = 156
+CHUNK_SIZE = 50
 OVERLAP = 0
-HIDDEN_DIM = 256
 EPOCHS = 4
 DROPOUT_PROB = 0.2
 TF_MODEL_NAME = "bert-base-cased"
@@ -24,7 +23,7 @@ print(f"MODEL: {TF_MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, OVERLAP {OVERLAP}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, OVERLAP {OVERLAP}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
 )
 
 train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)

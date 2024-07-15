@@ -4,8 +4,7 @@ from tqdm import tqdm
 
 tqdm.pandas()
 
-df = pd.read_csv("../dataset/scraped_clean_v1_+rescraped.csv", index_col=0)
-# df = pd.read_csv("../dataset/scraped_clean_v1.csv", index_col=0)
+df = pd.read_csv("../dataset/scraped_clean_v1.csv", index_col=0)
 df.dropna(subset=["content"], inplace=True)
 
 df["content"] = df["content"].progress_apply(utils.strip_url)
