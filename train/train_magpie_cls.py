@@ -35,6 +35,7 @@ valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
+
 # train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
 #     train_df, test_df, valid_df
 # )
@@ -72,7 +73,7 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
 
-# vx + rescraped, title + content, no warmup steps, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# vx + rescraped, title + content, no warmup steps, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, CLS pooling
 #               precision    recall  f1-score   support
 
 #            0       0.56      0.19      0.28        27
@@ -86,7 +87,7 @@ model.predict(tokenised_dataset["test"])
 
 # {'loss': 1.036009430885315, 'precision': 0.7515373221663202, 'recall': 0.7328646748681898, 'f1': 0.736117275094499}
 
-# vx + rescraped, title + content, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft,
+# vx + rescraped, title + content, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, CLS pooling
 #               precision    recall  f1-score   support
 
 #            0       0.46      0.63      0.53        27
@@ -101,7 +102,7 @@ model.predict(tokenised_dataset["test"])
 # {'loss': 0.8415158987045288, 'precision': 0.7577533590596234, 'recall': 0.7117750439367311, 'f1': 0.7293065634451941}
 # worse with 500 warmup
 
-# vx + rescraped, title + content, learning_rate 2e-5, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# vx + rescraped, title + content, learning_rate 2e-5, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, CLS pooling
 #               precision    recall  f1-score   support
 
 #            0       0.45      0.48      0.46        27
@@ -116,7 +117,7 @@ model.predict(tokenised_dataset["test"])
 # {'loss': 0.8991358280181885, 'precision': 0.7558342374893745, 'recall': 0.7012302284710018, 'f1': 0.7225577730868136}
 
 
-# vx + rescraped, warmup_steps: 162, outlet + title + content , CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft
+# vx + rescraped, warmup_steps: 162, outlet + title + content , CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, CLS pooling
 #               precision    recall  f1-score   support
 
 #            0       0.42      0.52      0.47        27
@@ -158,3 +159,17 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.77      0.74      0.76       569
 
 # {'loss': 0.8172813057899475, 'precision': 0.7743184031806093, 'recall': 0.7434094903339191, 'f1': 0.7554627857699413}
+
+# vx + rescraped, warmup_steps: 162, outlet + title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, NO DROPOUT, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, mean pooling
+#               precision    recall  f1-score   support
+
+#            0       0.42      0.59      0.49        27
+#            1       0.35      0.41      0.38        54
+#            2       0.42      0.56      0.48       104
+#            3       0.93      0.80      0.86       384
+
+#     accuracy                           0.71       569
+#    macro avg       0.53      0.59      0.55       569
+# weighted avg       0.76      0.71      0.73       569
+
+# {'loss': 0.8227108120918274, 'precision': 0.7591502615412127, 'recall': 0.7117750439367311, 'f1': 0.7298321588425787}

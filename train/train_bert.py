@@ -184,3 +184,21 @@ functions.train(tokenised_dataset, model, epochs=4)
 # weighted avg       0.75      0.72      0.73       569
 
 # {'eval_loss': 0.8919610977172852, 'eval_precision': 0.7456408683529249, 'eval_recall': 0.7152899824253075, 'eval_f1': 0.7280234470927682, 'eval_runtime': 47.3076, 'eval_samples_per_second': 12.028, 'eval_steps_per_second': 1.522, 'epoch': 4.0}
+
+# =========================================================================================================================
+
+# v1 + rescraped, learning rate 1e-5, title + content
+#   precision    recall  f1-score   support
+
+#            0       0.43      0.37      0.40        27
+#            1       0.33      0.39      0.36        54
+#            2       0.39      0.53      0.45       104
+#            3       0.91      0.81      0.86       384
+
+#     accuracy                           0.70       569
+#    macro avg       0.52      0.53      0.52       569
+# weighted avg       0.74      0.70      0.71       569
+
+
+# 100%|██████████| 72/72 [00:01<00:00, 39.17it/s]
+# {'eval_loss': 0.9790899157524109, 'eval_precision': 0.7379450508494285, 'eval_recall': 0.6994727592267135, 'eval_f1': 0.7147020380239645, 'eval_runtime': 1.867, 'eval_samples_per_second': 304.765, 'eval_steps_per_second': 38.564, 'epoch': 4.0}

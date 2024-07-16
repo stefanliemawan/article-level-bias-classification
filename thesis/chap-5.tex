@@ -6,49 +6,68 @@ For every method, precision, recall, and F1 score is evaluated on both overall a
 
 \begin{table}[htbp]
     \centering
+    \footnotesize
     \begin{tabular}{| c | c | c | c | c |}
-        \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1}     \\\cline{1-5}
-        \multirow{5}{*}{BoW + LR}                         & Problematic        & 0.38               & 0.41            & 0.39            \\
-                                                          & Questionable       & 0.34               & 0.31            & 0.33            \\
-                                                          & Generally Reliable & 0.36               & 0.40            & 0.38            \\
-                                                          & Reliable           & 0.85               & 0.83            & 0.84            \\\cline{2-5}
-                                                          & Overall            & 0.6922             & 0.6818          & 0.6865          \\
+        \hline                            \textbf{Method}  & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1}     \\\cline{1-5}
+        \multirow{5}{*}{BoW + LR}                          & Problematic        & 0.38               & 0.41            & 0.39            \\
+                                                           & Questionable       & 0.34               & 0.31            & 0.33            \\
+                                                           & Generally Reliable & 0.36               & 0.40            & 0.38            \\
+                                                           & Reliable           & 0.85               & 0.83            & 0.84            \\\cline{2-5}
+                                                           & Overall            & 0.6922             & 0.6818          & 0.6865          \\
         \hline
-        \multirow{5}{*}{TF-IDF + LR}                      & Problematic        & 1.00               & 0.11            & 0.20            \\
-                                                          & Questionable       & 0.47               & 0.17            & 0.25            \\
-                                                          & Generally Reliable & 0.36               & 0.31            & 0.33            \\
-                                                          & Reliable           & 0.79               & 0.94            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.6904             & 0.7117          & 0.6725          \\
+        \multirow{5}{*}{TF-IDF + LR}                       & Problematic        & 1.00               & 0.11            & 0.20            \\
+                                                           & Questionable       & 0.47               & 0.17            & 0.25            \\
+                                                           & Generally Reliable & 0.36               & 0.31            & 0.33            \\
+                                                           & Reliable           & 0.79               & 0.94            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.6904             & 0.7117          & 0.6725          \\
         \hline
-        \multirow{5}{*}{BoW + MLP}                        & Problematic        & 0.38               & 0.44            & 0.41            \\
-                                                          & Questionable       & 0.33               & 0.35            & 0.34            \\
-                                                          & Generally Reliable & 0.41               & 0.42            & 0.42            \\
-                                                          & Reliable           & 0.88               & 0.85            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.7162             & 0.7065          & 0.7110          \\
+        \multirow{5}{*}{BoW + MLP}                         & Problematic        & 0.38               & 0.44            & 0.41            \\
+                                                           & Questionable       & 0.33               & 0.35            & 0.34            \\
+                                                           & Generally Reliable & 0.41               & 0.42            & 0.42            \\
+                                                           & Reliable           & 0.88               & 0.85            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.7162             & 0.7065          & 0.7110          \\
         \hline
-        \multirow{5}{*}{BERT FT}                          & Problematic        & 0.43               & 0.44            & 0.44            \\
-                                                          & Questionable       & 0.29               & 0.39            & 0.33            \\
-                                                          & Generally Reliable & 0.44               & 0.48            & 0.46            \\
-                                                          & Reliable           & 0.90               & 0.83            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.7359             & 0.7065          & 0.7193          \\
+        \multirow{5}{*}{BERT FT}                           & Problematic        & 0.43               & 0.44            & 0.44            \\
+                                                           & Questionable       & 0.29               & 0.39            & 0.33            \\
+                                                           & Generally Reliable & 0.44               & 0.48            & 0.46            \\
+                                                           & Reliable           & 0.90               & 0.83            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.7359             & 0.7065          & 0.7193          \\
         \hline
-        \multirow{5}{*}{BERT SW FT}                       & Problematic        & 0.45               & 0.48            & 0.46            \\
-                                                          & Questionable       & 0.39               & 0.52            & 0.45            \\
-                                                          & Generally Reliable & 0.42               & 0.50            & 0.46            \\
-                                                          & Reliable           & 0.91               & 0.81            & 0.86            \\\cline{2-5}
-                                                          & Overall            & 0.7472             & 0.7112          & 0.7257          \\
+        \multirow{5}{*}{Longformer FT}                     & Problematic        & 0.48               & 0.48            & 0.48            \\
+                                                           & Questionable       & 0.44               & 0.50            & 0.47            \\
+                                                           & Generally Reliable & 0.47               & 0.59            & 0.52            \\
+                                                           & Reliable           & 0.92               & 0.84            & 0.88            \\\cline{2-5}
+                                                           & Overall            & 0.7708             & 0.7434          & 0.7544          \\
         \hline
-        \multirow{5}{*}{BERT CLS}                         & Problematic        & 0.44               & 0.67            & 0.53            \\
-                                                          & Questionable       & 0.41               & 0.48            & 0.44            \\
-                                                          & Generally Reliable & 0.39               & 0.50            & 0.44            \\
-                                                          & Reliable           & 0.91               & 0.79            & 0.84            \\\cline{2-5}
-                                                          & Overall            & 0.7440             & 0.6994          & 0.7163          \\
+        \multirow{5}{*}{Bigbird FT}                        & Problematic        & 0.38               & 0.41            & 0.39            \\
+                                                           & Questionable       & 0.32               & 0.46            & 0.38            \\
+                                                           & Generally Reliable & 0.40               & 0.47            & 0.43            \\
+                                                           & Reliable           & 0.91               & 0.81            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.7377             & 0.6959          & 0.7131          \\
         \hline
-        \multirow{5}{*}{MAGPIE CLS}                       & Problematic        & 0.46               & 0.63            & 0.53            \\
-                                                          & Questionable       & 0.36               & 0.41            & 0.38            \\
-                                                          & Generally Reliable & 0.41               & 0.55            & 0.47            \\
-                                                          & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
-                                                          & Overall            & \textbf{0.7577}    & \textbf{0.7117} & \textbf{0.7293} \\
+        \multirow{5}{*}{BERT C-FT}                         & Problematic        & 0.45               & 0.48            & 0.46            \\
+                                                           & Questionable       & 0.39               & 0.52            & 0.45            \\
+                                                           & Generally Reliable & 0.42               & 0.50            & 0.46            \\
+                                                           & Reliable           & 0.91               & 0.81            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.7472             & 0.7112          & 0.7257          \\
+        \hline
+        % \multirow{5}{*}{Hierarchical BERT, CLS-Pooling}    & Problematic        & 0.44               & 0.67            & 0.53            \\
+        %                                                    & Questionable       & 0.41               & 0.48            & 0.44            \\
+        %                                                    & Generally Reliable & 0.39               & 0.50            & 0.44            \\
+        %                                                    & Reliable           & 0.91               & 0.79            & 0.84            \\\cline{2-5}
+        %                                                    & Overall            & 0.7440             & 0.6994          & 0.7163          \\
+        % \hline
+        % \multirow{5}{*}{Hierarchical MAGPIE, CLS-Pooling}  & Problematic        & 0.46               & 0.63            & 0.53            \\
+        %                                                    & Questionable       & 0.36               & 0.41            & 0.38            \\
+        %                                                    & Generally Reliable & 0.41               & 0.55            & 0.47            \\
+        %                                                    & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
+        %                                                    & Overall            & 0.7577             & 0.7117          & 0.7293          \\
+        % \hline
+        \multirow{5}{*}{Hierarchical MAGPIE, Mean-Pooling} & Problematic        & 0.50               & 0.63            & 0.56            \\
+                                                           & Questionable       & 0.46               & 0.50            & 0.48            \\
+                                                           & Generally Reliable & 0.47               & 0.59            & 0.52            \\
+                                                           & Reliable           & 0.92               & 0.83            & 0.87            \\\cline{2-5}
+                                                           & Overall            & \textbf{0.7743}    & \textbf{0.7434} & \textbf{0.7554} \\
         \hline
     \end{tabular}
     \caption{Evaluation table, with title and content of articles as features}
@@ -59,37 +78,56 @@ Table \ref{table:eval} shows the evaluation of all methods given only title and 
 
 \begin{table}[htbp]
     \centering
+    \footnotesize
     \begin{tabular}{| c | c | c | c | c |}
-        \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1}     \\\cline{1-5}
-        \multirow{5}{*}{Outlet majority}                  & Problematic        & 0.56               & 0.70            & 0.62            \\
-                                                          & Questionable       & 0.58               & 0.46            & 0.52            \\
-                                                          & Generally Reliable & 0.56               & 0.53            & 0.54            \\
-                                                          & Reliable           & 0.91               & 0.93            & 0.92            \\\cline{2-5}
-                                                          & Overall            & 0.7945             & \textbf{0.7996} & \textbf{0.7959} \\
+        \hline                            \textbf{Method}  & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1}     \\\cline{1-5}
+        \multirow{5}{*}{Outlet majority}                   & Problematic        & 0.56               & 0.70            & 0.62            \\
+                                                           & Questionable       & 0.58               & 0.46            & 0.52            \\
+                                                           & Generally Reliable & 0.56               & 0.53            & 0.54            \\
+                                                           & Reliable           & 0.91               & 0.93            & 0.92            \\\cline{2-5}
+                                                           & Overall            & 0.7945             & \textbf{0.7996} & \textbf{0.7959} \\
         \hline
-        \multirow{5}{*}{BERT FT}                          & Problematic        & 0.65               & 0.56            & 0.60            \\
-                                                          & Questionable       & 0.45               & 0.50            & 0.47            \\
-                                                          & Generally Reliable & 0.44               & 0.62            & 0.52            \\
-                                                          & Reliable           & 0.94               & 0.84            & 0.88            \\\cline{2-5}
-                                                          & Overall            & \textbf{0.8186}    & 0.7883          & 0.7504          \\
+        \multirow{5}{*}{BERT FT}                           & Problematic        & 0.65               & 0.56            & 0.60            \\
+                                                           & Questionable       & 0.45               & 0.50            & 0.47            \\
+                                                           & Generally Reliable & 0.44               & 0.62            & 0.52            \\
+                                                           & Reliable           & 0.94               & 0.84            & 0.88            \\\cline{2-5}
+                                                           & Overall            & \textbf{0.8186}    & 0.7883          & 0.7504          \\
         \hline
-        \multirow{5}{*}{BERT SW FT}                       & Problematic        & 0.46               & 0.41            & 0.43            \\
-                                                          & Questionable       & 0.41               & 0.48            & 0.44            \\
-                                                          & Generally Reliable & 0.46               & 0.56            & 0.51            \\
-                                                          & Reliable           & 0.91               & 0.84            & 0.87            \\\cline{2-5}
-                                                          & Overall            & 0.7585             & 0.7359          & 0.7451          \\
+        \multirow{5}{*}{Longformer FT}                     & Problematic        & 0.60               & 0.44            & 0.51            \\
+                                                           & Questionable       & 0.45               & 0.56            & 0.50            \\
+                                                           & Generally Reliable & 0.44               & 0.53            & 0.48            \\
+                                                           & Reliable           & 0.91               & 0.85            & 0.88            \\\cline{2-5}
+                                                           & Overall            & 0.7676             & 0.7434          & 0.7529          \\
         \hline
-        \multirow{5}{*}{BERT CLS}                         & Problematic        & 0.37               & 0.59            & 0.46            \\
-                                                          & Questionable       & 0.32               & 0.43            & 0.37            \\
-                                                          & Generally Reliable & 0.40               & 0.47            & 0.43            \\
-                                                          & Reliable           & 0.92               & 0.79            & 0.85            \\\cline{2-5}
-                                                          & Overall            & 0.7384             & 0.6871          & 0.7071          \\
+        \multirow{5}{*}{Bigbird FT}                        & Problematic        & 0.41               & 0.44            & 0.43            \\
+                                                           & Questionable       & 0.39               & 0.52            & 0.45            \\
+                                                           & Generally Reliable & 0.43               & 0.53            & 0.48            \\
+                                                           & Reliable           & 0.92               & 0.82            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.7538             & 0.7170          & 0.7318          \\
         \hline
-        \multirow{5}{*}{MAGPIE CLS}                       & Problematic        & 0.42               & 0.52            & 0.47            \\
-                                                          & Questionable       & 0.35               & 0.43            & 0.38            \\
-                                                          & Generally Reliable & 0.43               & 0.55            & 0.48            \\
-                                                          & Reliable           & 0.93               & 0.82            & 0.87            \\\cline{2-5}
-                                                          & Overall            & 0.76034            & 0.7170          & 0.7342          \\
+        \multirow{5}{*}{BERT C-FT}                         & Problematic        & 0.46               & 0.41            & 0.43            \\
+                                                           & Questionable       & 0.41               & 0.48            & 0.44            \\
+                                                           & Generally Reliable & 0.46               & 0.56            & 0.51            \\
+                                                           & Reliable           & 0.91               & 0.84            & 0.87            \\\cline{2-5}
+                                                           & Overall            & 0.7585             & 0.7359          & 0.7451          \\
+        \hline
+        % \multirow{5}{*}{Hierarchical BERT, CLS-Pooling}   & Problematic        & 0.37               & 0.59            & 0.46            \\
+        %                                                   & Questionable       & 0.32               & 0.43            & 0.37            \\
+        %                                                   & Generally Reliable & 0.40               & 0.47            & 0.43            \\
+        %                                                   & Reliable           & 0.92               & 0.79            & 0.85            \\\cline{2-5}
+        %                                                   & Overall            & 0.7384             & 0.6871          & 0.7071          \\
+        % \hline
+        % \multirow{5}{*}{Hierarchical MAGPIE, CLS-Pooling} & Problematic        & 0.42               & 0.52            & 0.47            \\
+        %                                                   & Questionable       & 0.35               & 0.43            & 0.38            \\
+        %                                                   & Generally Reliable & 0.43               & 0.55            & 0.48            \\
+        %                                                   & Reliable           & 0.93               & 0.82            & 0.87            \\\cline{2-5}
+        %                                                   & Overall            & 0.76034            & 0.7170          & 0.7342          \\
+        % \hline
+        \multirow{5}{*}{Hierarchical MAGPIE, Mean-Pooling} & Problematic        & 0.42               & 0.59            & 0.49            \\
+                                                           & Questionable       & 0.35               & 0.41            & 0.38            \\
+                                                           & Generally Reliable & 0.42               & 0.56            & 0.48            \\
+                                                           & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
+                                                           & Overall            & 0.7591             & 0.7117          & 0.7298          \\
         \hline
     \end{tabular}
     \caption{Evaluation table, with outlet information as additional features (outlet + title + content)}

@@ -56,16 +56,11 @@ class ChunkModelM(nn.Module):
 
         self.dropout = nn.Dropout(self.dropout_prob)
 
-        self.linear = nn.Sequential(
-            nn.Linear(self.tf_model.config.hidden_size, hidden_dim),
-            nn.ReLU(),
-        )
-
         self.mlp = nn.Sequential(
-            nn.Linear(hidden_dim + 8, hidden_dim + 8),
+            nn.Linear(hidden_dim + 128, hidden_dim + 128),
             nn.ReLU(),
             nn.Dropout(self.dropout_prob),
-            nn.Linear(hidden_dim + 8, num_classes),
+            nn.Linear(hidden_dim + 128, num_classes),
         )
 
     def init_loss_optimiser(self):
@@ -132,15 +127,19 @@ class ChunkModelM(nn.Module):
             expanded_attention_mask.sum(dim=1), min=1e-9
         )
 
-        linear_output = self.linear(mean_pooled_output)  # torch.Size([77, 768])
-
         metadata = metadata.to(mean_pooled_output.dtype)
-
         expanded_metadata = (
-            metadata.unsqueeze(-1).expand(-1, linear_output.size(0)).t()
-        )  # torch.Size([77, 8]) --> this needs to be ([77, 1])?
+            metadata.unsqueeze(1)
+            .expand(-1, mean_pooled_output.shape[0] // len(metadata) + 1)
+            .reshape(-1)[: mean_pooled_output.shape[0]]
+        )
+        expanded_metadata = expanded_metadata.unsqueeze(1)
 
-        combined_output = torch.cat((linear_output, expanded_metadata), dim=1)
+        linear_metadata = nn.Sequential(nn.Linear(1, 128), nn.ReLU()).to(self.device)(
+            expanded_metadata
+        )
+
+        combined_output = torch.cat((mean_pooled_output, linear_metadata), dim=1)
 
         mlp_output = self.mlp(combined_output)
 
@@ -242,7 +241,7 @@ class ChunkModelM(nn.Module):
         loss = loss / (len(valid_dataloader))
 
         labels = []
-        for _, _, batch_labels in valid_dataloader:
+        for _, _, batch_labels, _ in valid_dataloader:
             labels.extend(batch_labels.tolist())
 
         metrics = {"loss": loss, **self.compute_metrics(all_pooled_logits, labels)}

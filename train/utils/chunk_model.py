@@ -21,6 +21,7 @@ class ChunkModel(nn.Module):
         hidden_dim,
         num_classes,
         train_labels,
+        pooling_strategy="mean",
         dropout_prob=0.2,
     ):
         super(ChunkModel, self).__init__()
@@ -33,6 +34,7 @@ class ChunkModel(nn.Module):
 
         self.tf_model_name = tf_model_name
         self.dropout_prob = dropout_prob
+        self.pooling_strategy = pooling_strategy
 
         self.init_layers(num_tf_layers, hidden_dim, num_classes)
         self.calculate_class_weights(train_labels)
@@ -52,8 +54,6 @@ class ChunkModel(nn.Module):
                 for _ in range(num_tf_layers)
             ]
         )
-
-        self.dropout = nn.Dropout(self.dropout_prob)
 
         self.mlp = nn.Sequential(
             nn.Linear(self.tf_model.config.hidden_size, hidden_dim),
@@ -126,11 +126,12 @@ class ChunkModel(nn.Module):
             expanded_attention_mask.sum(dim=1), min=1e-9
         )
 
-        mlp_output = self.mlp(mean_pooled_output)
-
-        # mlp_output = self.mlp(
-        #     transformer_output[:, 0, :]
-        # )  # Assuming you're only using [CLS] token
+        if self.pooling_strategy == "cls":
+            mlp_output = self.mlp(
+                transformer_output[:, 0, :]
+            )  # Assuming you're only using [CLS] token
+        else:
+            mlp_output = self.mlp(mean_pooled_output)
 
         return mlp_output
 
