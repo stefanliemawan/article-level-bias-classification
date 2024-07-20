@@ -18,7 +18,7 @@ The dataset reliability scores are grouped and split into 4 classes based on its
         Class              & Train Set & Test Set & Validation Set \\
         \hline
         Problematic        & 287       & 27       & 34             \\
-        Questionnable      & 611       & 1033     & 2394           \\
+        Questionable       & 611       & 1033     & 2394           \\
         Generally Reliable & 54        & 104      & 384            \\
         Reliable           & 70        & 128      & 371            \\
         \hline
@@ -129,7 +129,7 @@ In this process, input texts are tokenised and fed into a pre-trained model, whi
         \node[chunk] (chunk1) [draw] at (-5, -2) {Chunk 1};
         \node[chunk] (chunk2) [draw] at (0, -2) {Chunk 2};
         \node[label] at (2.25, -2) {.......};
-        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk n};
+        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk \(n\)};
 
         \draw[arrow] (input) -- (chunk1);
         \draw[arrow] (input) -- (chunk2);
@@ -145,7 +145,7 @@ In this process, input texts are tokenised and fed into a pre-trained model, whi
         \node[chunk] (logits1) [draw] at (-5, -6) {Logits 1};
         \node[chunk] (logits2) [draw] at (0, -6) {Logits 2};
         \node[label] at (2.25, -6) {.......};
-        \node[chunk] (logits3) [draw] at (5, -6) {Logits n};
+        \node[chunk] (logits3) [draw] at (5, -6) {Logits \(n\)};
 
         \draw[arrow] (bert) -- (logits1);
         \draw[arrow] (bert) -- (logits2);
@@ -189,7 +189,7 @@ The chunking method bypasses the sequence length limitation of most LLMs such as
         \node[chunk] (chunk1) [draw] at (-5, -2) {Chunk 1};
         \node[chunk] (chunk2) [draw] at (0, -2) {Chunk 2};
         \node[label] at (2.25, -2) {.......};
-        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk n};
+        \node[chunk] (chunk3) [draw] at (5, -2) {Chunk \(n\)};
         \node[label] at (6, -2.5) {size of \(l\)};
 
         \draw[arrow] (input) -- (chunk1);
@@ -206,7 +206,7 @@ The chunking method bypasses the sequence length limitation of most LLMs such as
         \node[chunk] (embedding1) [draw] at (-5, -6) {Embeddings 1};
         \node[chunk] (embedding2) [draw] at (0, -6) {Embeddings 2};
         \node[label] at (2.25, -6) {.......};
-        \node[chunk] (embedding3) [draw] at (5, -6) {Embeddings n};
+        \node[chunk] (embedding3) [draw] at (5, -6) {Embeddings \(n\)};
         \node[label] at (6, -6.5) {size of \( l \times d \)};
 
         \draw[arrow] (encoder) -- (embedding1);
@@ -227,7 +227,7 @@ The chunking method bypasses the sequence length limitation of most LLMs such as
         \node[chunk] (pooled1) [draw] at (-5, -11) {Pooled emb 1};
         \node[chunk] (pooled2) [draw] at (0, -11) {Pooled emb 2};
         \node[label] at (2.25, -11) {.......};
-        \node[chunk] (pooled3) [draw] at (5, -11) {Pooled emb 3};
+        \node[chunk] (pooled3) [draw] at (5, -11) {Pooled emb \(n\)};
         \node[label] at (6, -11.5) {size of \(d\)};
 
         \draw[arrow] (tf_layer2) -- (pooled1);
