@@ -24,10 +24,20 @@ A.~F. Agarap.
 \newblock Deep learning using rectified linear units (relu).
 \newblock {\em arXiv preprint arXiv:1803.08375}, 2018.
 
+\bibitem{aghajanyan-2021-muppet}
+A.~Aghajanyan, A.~Gupta, A.~Shrivastava, X.~Chen, L.~Zettlemoyer, and S.~Gupta.
+\newblock {M}uppet: Massive multi-task representations with pre-finetuning.
+\newblock In M.-F. Moens, X.~Huang, L.~Specia, and S.~W.-t. Yih, editors, {\em Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing}, pages 5799--5811, Online and Punta Cana, Dominican Republic, Nov. 2021. Association for Computational Linguistics.
+
 \bibitem{aires-2020-information}
 V.~P. Aires, J.~Freire, F.~G. Nakamura, A.~S. da~Silva, and E.~F. Nakamura.
 \newblock An information theory approach to detect media bias in news websites.
 \newblock In {\em WISDOM 2020}, 2020.
+
+\bibitem{alkhawaldeh-2023-challenges}
+I.~M. Alkhawaldeh, I.~Albalkhi, and A.~J. Naswhan.
+\newblock Challenges and limitations of synthetic minority oversampling techniques in machine learning.
+\newblock {\em World Journal of Methodology}, 13(5):373--378, 2023.
 
 \bibitem{allcott-2017-socialmedia-2016election}
 H.~Allcott and M.~Gentzkow.

@@ -37,6 +37,16 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 train_df = pd.concat((train_df, valid_df))
 
 tfidf_vectorizer = TfidfVectorizer()
+# tfidf_vectorizer = TfidfVectorizer(
+#     max_df=0.95,  # Ignore terms that appear in more than 95% of documents
+#     min_df=2,  # Ignore terms that appear in fewer than 2 documents
+#     ngram_range=(1, 2),  # Include both unigrams and bigrams
+#     max_features=10000,  # Limit to the top 1000 most frequent terms
+#     stop_words="english",  # Use built-in English stop words
+#     norm="l2",  # Apply L2 normalization
+#     sublinear_tf=True,  # Use sublinear term frequency scaling
+#     smooth_idf=True,  # Apply smoothing to IDF weights
+# )
 
 x_train = tfidf_vectorizer.fit_transform(train_df["features"].values)
 x_test = tfidf_vectorizer.transform(test_df["features"].values)

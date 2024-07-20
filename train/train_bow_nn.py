@@ -35,9 +35,8 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
 
-
-# vectorizer = CountVectorizer()
-vectorizer = TfidfVectorizer()
+vectorizer = CountVectorizer()
+# vectorizer = TfidfVectorizer()
 
 x_train = vectorizer.fit_transform(train_df["features"].values)
 x_test = vectorizer.transform(test_df["features"].values)
@@ -94,7 +93,7 @@ model.compile(
 model.fit(
     x_train,
     y_train,
-    epochs=10,
+    epochs=15,
     batch_size=8,
     validation_data=(x_valid, y_valid),
     class_weight=class_weights_dict,

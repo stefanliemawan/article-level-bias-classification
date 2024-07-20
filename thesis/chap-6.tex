@@ -3,9 +3,21 @@
 
 \section{Remarks}
 
-Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance in media bias classification tasks with this dataset. transformer-based approaches, while expected to perform better, have only shown slight improvements. The modest performance gains from transformer models can be attributed to the presence of noise in article content and the massive class imbalance that exist in the dataset, hampering the transformer models' ability to capture context effectively. It can be hypothesised that addressing these issues—by cleaning the data and balancing the classes would lead to significant performance improvements for transformer-based approaches, allowing them to moderately outperform conventional methods. With current performances, any the approaches mentioned in this paper should be able to confidently recognise unbiased articles well ('Reliable' class). However, this is not the case for other classes, in other words, the models would be able to classify unbiased articles instead of biased ones.
+The result of this study indicates that...
+
+Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance in media bias classification tasks with this dataset. Transformer-based approaches and hierarchical models, while expected to perform better, have only shown slight to moderate improvements. The modest performance gains from transformer models may be attributed to the presence of noise in article contents, hampering the transformer models' ability to capture context effectively. It can be hypothesised that addressing these issues—by cleaning the data might lead to significant performance improvements for context-reliant approaches, allowing them to moderately outperform conventional methods. With current performances, any the approaches mentioned in this paper should be able to confidently recognise unbiased articles well ('Reliable' class). However, this is not the case for other classes, in other words, the models would be able to classify unbiased articles instead of biased ones.
 
 Incorporating outlet information has generally improved performance across all methods, with some methods benefiting more significantly than others. Performing outlet majority votes has shown to classify media bias far better than any other method mentioned. While it might be tempting to rely solely on outlet information for classification, this approach has its limitations. A model that generalises well over the content of articles rather than relying heavily on outlet metadata is preferable for robust media bias classification. This ensures the model's applicability across different sources and reduces the risk of overfitting to specific outlet biases.
+
+While incorporating outlet metadata may lead to performance improvement, relying highly on outlet information is not advisable, particularly over time.
+
+\begin{comment}
+This seems a weird way of phrasing this. Of course relying on outlet is not a
+reliable classifier, especially over time! It would be a completely useless tool too
+as you don't need to run a model anymore, you can just tell the users how
+trustworthy each outlet is. Which means outlets can't evolve...
+I think this can be worded very differently.
+\end{comment}
 
 Additionally, the entire dataset used in this study (BAT dataset) is completely curated by Ad Fontes Media, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects the models trained on it. This underlying bias needs to be considered when interpreting the results.
 
@@ -17,11 +29,13 @@ Additionally, the test set needs to be carefully crafted to include some outlets
 
 Comparing results with other studies on media bias classification is currently challenging and practically impossible due to the lack of comparable datasets specifically designed for article-level media bias classification. Therefore, standardising datasets and evaluation metrics across studies would be greatly beneficial for advancing the field of media bias classification.
 
-Furthermore, The traditional approach of assigning only a single frame label to news articles remains overly simplistic and does not provide much explainability, given that a standard news article often incorporates multiple viewpoints, arguments, or facets, each potentially carrying distinct connotations or framing \cite{vallejo-2023-connecting}. Ultimately, the goal should also be for the model to provide a rationale for its classification decisions. This capability can be achieved through techniques related to question answering and reasoning in NLP, or Machine Reading Comprehension (MRC). These approaches enable the model to not only classify media bias but also explain the underlying reasons and evidence supporting its predictions. This enhances transparency and trust in the model's outputs, making it more useful for interpreting and verifying media bias classifications.
+Include more metadata through correct implementation may lead to better performance. Outlet information can be added as supplemental features, provided that contextual information remains the primary basis for generalization and classification. Additionally, incorporating sentiment analysis results as additional features can aid in detecting media bias within the text.
+
+Furthermore, the traditional approach of assigning only a single frame label to news articles remains overly simplistic and does not provide much explainability, given that a standard news article often incorporates multiple viewpoints, arguments, or facets, each potentially carrying distinct connotations or framing \cite{vallejo-2023-connecting}. Ultimately, the goal should also be for the model to provide a rationale for its classification decisions. This capability can be achieved through techniques related to question answering and reasoning in NLP, or Machine Reading Comprehension (MRC). These approaches enable the model to not only classify media bias but also explain the underlying reasons and evidence supporting its predictions. This enhances transparency and trust in the model's outputs, making it more useful for interpreting and verifying media bias classifications.
+
+% Higher hierarchical models that 
 
 Finally, more complex and global approaches such as graph-based methods can also be implemented to encode multiple articles and defining relationships between them. This would allow for a higher granularity and far more detailed representation of articles, allowing the model to generalise according to combined features of the corresponding articles.
-
-
 
 %%% Local Variables: 
 %%% mode: latex

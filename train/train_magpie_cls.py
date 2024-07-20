@@ -6,13 +6,12 @@ from transformers import AutoTokenizer
 from utils.chunk_model import ChunkModel
 
 CHUNK_SIZE = 156
-OVERLAP = 0
 NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
 EPOCHS = 3
 DROPOUT_PROB = 0.2
 TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
-
+POOLING_STRATEGY = "mean"
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -23,7 +22,7 @@ print(f"MODEL: {TF_MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, OVERLAP {OVERLAP}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, POOLING_STRATEGY {POOLING_STRATEGY}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
 )
 
 
@@ -47,7 +46,7 @@ tokeniser = AutoTokenizer.from_pretrained(TF_MODEL_NAME)
 
 tokenised_dataset = dataset.map(
     functions.tokenise_chunks,
-    fn_kwargs={"tokeniser": tokeniser, "chunk_size": CHUNK_SIZE, "overlap": OVERLAP},
+    fn_kwargs={"tokeniser": tokeniser, "chunk_size": CHUNK_SIZE},
 )
 
 print(tokenised_dataset)
@@ -61,6 +60,7 @@ model = ChunkModel(
     hidden_dim=HIDDEN_DIM,
     num_classes=num_labels,
     train_labels=train_labels,
+    pooling_strategy=POOLING_STRATEGY,
     dropout_prob=DROPOUT_PROB,
 )
 model = model.to(model.device)
@@ -72,6 +72,8 @@ valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
+
+# 132,926,212 parameters according to GPT
 
 # vx + rescraped, title + content, no warmup steps, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, CLS pooling
 #               precision    recall  f1-score   support
@@ -173,3 +175,47 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.76      0.71      0.73       569
 
 # {'loss': 0.8227108120918274, 'precision': 0.7591502615412127, 'recall': 0.7117750439367311, 'f1': 0.7298321588425787}
+
+# worse with 78 chunk size, even worse with 102
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 78, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, NO DROPOUT, TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, mean pooling
+#               precision    recall  f1-score   support
+
+#            0       0.49      0.63      0.55        27
+#            1       0.39      0.43      0.41        54
+#            2       0.46      0.55      0.50       104
+#            3       0.91      0.84      0.88       384
+
+#     accuracy                           0.74       569
+#    macro avg       0.56      0.61      0.58       569
+# weighted avg       0.76      0.74      0.75       569
+
+# {'loss': 0.850915253162384, 'precision': 0.7620966298697005, 'recall': 0.7363796133567663, 'f1': 0.7469557599081315}
+
+
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, NO DROPOUT,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, cls pooling
+#               precision    recall  f1-score   support
+
+#            0       0.47      0.63      0.54        27
+#            1       0.38      0.43      0.40        54
+#            2       0.44      0.57      0.49       104
+#            3       0.93      0.81      0.87       384
+
+#     accuracy                           0.72       569
+#    macro avg       0.55      0.61      0.57       569
+# weighted avg       0.76      0.72      0.74       569
+
+# {'loss': 0.8463671803474426, 'precision': 0.7628749748774759, 'recall': 0.7223198594024605, 'f1': 0.7378859890489406}
+
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 1, HIDDEN_SIZE 768, EPOCHS 5, NO DROPOUT,TRANSFORMER_MODEL_NAME mediabiasgroup/magpie-babe-ft, cls pooling
+#               precision    recall  f1-score   support
+
+#            0       0.50      0.48      0.49        27
+#            1       0.41      0.54      0.46        54
+#            2       0.46      0.62      0.53       104
+#            3       0.94      0.81      0.87       384
+
+#     accuracy                           0.74       569
+#    macro avg       0.58      0.61      0.59       569
+# weighted avg       0.78      0.74      0.75       569
+
+# {'loss': 0.8838070034980774, 'precision': 0.782877512068557, 'recall': 0.7363796133567663, 'f1': 0.7532728105721062}

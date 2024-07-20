@@ -55,6 +55,8 @@ else:
 
 functions.train(tokenised_dataset, model, epochs=4)
 
+# 109,062,912 parameters according to GPT
+
 # new split, vx, 4 classes, not done, this is valid on epoch 4, laptop heating. test later, but i think 4 classes is better.
 # {'eval_loss': 1.358709454536438, 'eval_precision': 0.732512403908757, 'eval_recall': 0.7028753993610224, 'eval_f1': 0.7107864589046988, 'eval_runtime': 49.3262, 'eval_samples_per_second': 12.691, 'eval_steps_per_second': 1.602, 'epoch': 4.0}
 #

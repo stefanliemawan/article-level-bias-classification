@@ -86,9 +86,7 @@ A MultiLayer Perceptron (MLP) is a fully connected Artificial Neural Network (AN
 \begin{equation}
     \label{eq:z}
     \mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}
-\end{equation}
-
-where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
+\end{equation} where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
 
 \begin{equation}
     \label{eq:h}
@@ -147,6 +145,19 @@ where
 \]
 
 Transformers and LLMs have sparked a revolution in the domain of Artificial Intelligence (AI), having achieved remarkable successes across diverse fields such as natural language processing, computer vision, and audio processing \cite{lin-2022-survey-transformers}. They have single-handedly catalysed the emergence of a new era in AI capabilities observed today, predicted to have an even greater influence than the Industrial and digital revolutions combined \cite{makridakis-2017-ai-revolution}.
+
+\section{MAGPIE}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/magpie.png}
+    \caption{MAGPIE containing a pre-trained representation of various biases \cite{horych-2024-magpie}.}
+    \label{fig:magpie}
+\end{figure}
+
+\textbf{MAGPIE} \cite{horych-2024-magpie} is a large-scale, RoBERTa-based, multitask pre-training approach specifically designed for media bias detection, pre-fine-tuned on fifty-nine bias-related tasks covering a broad spectrum of biases. Pre-fine-tuning is a large-scale training phase situated between language model pre-training and fine-tuning. It involves extensive multitask learning (MTL) and aims to foster the development of representations that generalise more effectively across various tasks \cite{aghajanyan-2021-muppet}. Pre-fine-tuning allows multitask-approach such as MAGPIE to generalise better on various tasks related to media bias, enabling better performance on these tasks compared to single-task RoBERTa approach \cite{horych-2024-magpie}.
+
+Unfortunately, MAGPIE is only trained to output binary classification (biased or unbiased) and mostly trained on sentences, therefore unable to be fine-tuned for article-level media bias classification task. However, the model and its feature representations can still be utilised for a feature-based approach \cite{sun-2020-fine-tune}.
 
 
 \section{Chunking and Hierarchical Techniques}
@@ -208,9 +219,10 @@ Furthermore, annotating media bias is not a straightforward task. Traditionally,
 
 Alternatively, organisations such as Allsides \cite{allsides} and Ad Fontes \cite{adfontes} have their own experts and annotations which can be crawled and exploited. Several papers and datasets \cite{spinde-2023-bat,chen-2020-nlpcss,kulkarni-2018-multi-view} have utilised this approach. However, since these datasets depend on manual labeling from third-party organisations, the selection of articles likely also introduces bias into the dataset \cite{spinde-2023-bat}.
 
-Current State-of-the-Art (SOTA) approaches in media bias classification typically employs a transformer-based approach, either by fine-tuning or exploiting Large Language Models such as BERT \cite{devlin-2019-bert} or RoBERTa \cite{liu-2019-roberta}. \textbf{MAGPIE} \cite{horych-2024-magpie} is the first large-scale, RoBERTa-based, multitask learning (MTL) model dedicated to bias-related tasks, a promising approach for media bias detection and can be used to enhance the accuracy and efficiency of existing models. Using the more specific model MAGPIE instead of the general language models for media bias tasks may potentially enhance performance. Unfortunately, the model is only trained for sentence-level classification and also outputs binary results.
+Current State-of-the-Art (SOTA) approaches in media bias classification typically employs a transformer-based approach, either by fine-tuning or exploiting Large Language Models such as BERT \cite{devlin-2019-bert} or RoBERTa \cite{liu-2019-roberta}.
 
 Past works on media bias classification typically use the BASIL dataset, operating on a sentence-level and outputting binary result (either biased or not) \cite{maab-2023-lexical-bias-detection, maab-2023-target-aware, guo-2022-modeling, van-den-berg-2020-context,lee-2021-unifying,lei-2022-sentence,lei-2024-event-relation}, complemented by the lack of appropriate and adequate datasets with article-level annotations \cite{demidov-2023-political-bias-classification}. Hence, \textbf{There are only a few existing studies on article-level media bias classification}. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} utilised a Gaussian mixture model, incorporating probability distributions of frequency, positions, and sequential order of lexical and informational sentence-level bias to detect article-level bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} proposed a more complex model that leverages signals from multiple views to predict the political ideology of news articles, demonstrating that incorporating cues from the title, link structure, and content surpasses the state-of-the-art performance significantly. Given that automated text classification of news articles has been shown to benefit from using article segments instead of sentences as units of analysis, with preferences on supervised machine learning techniques \cite{barbera-2021-article-classification}, it may be advantageous to consider segment-length window size when developing methodologies.
+
 
 %%% Local Variables: 
 %%% mode: latex

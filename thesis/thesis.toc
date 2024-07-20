@@ -16,9 +16,10 @@
 \contentsline {section}{\numberline {2.3}MultiLayer Perceptron (MLP)}{10}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Long Short-Term Memory (LSTM)}{11}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Transformer and Large Language Model (LLM)}{11}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Chunking and Hierarchical Techniques}{14}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Document Classification}{15}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Article-Level Media Bias Classification}{16}{section.2.8}%
+\contentsline {section}{\numberline {2.6}MAGPIE}{14}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Chunking and Hierarchical Techniques}{15}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Document Classification}{15}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Article-Level Media Bias Classification}{17}{section.2.9}%
 \contentsline {chapter}{\chapternumberline {3}Dataset Reconstruction}{19}{chapter.3}%
 \contentsline {section}{\numberline {3.1}BAT dataset}{19}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Reconstruction}{20}{section.3.2}%

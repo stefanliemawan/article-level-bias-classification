@@ -8,12 +8,13 @@ from transformers import AutoTokenizer
 from utils.chunk_model_m import ChunkModelM
 
 CHUNK_SIZE = 156
-OVERLAP = 0
 NUM_TF_LAYERS = 2
-HIDDEN_DIM = 768
+HIDDEN_DIM = 384
+METADATA_HIDDEN_DIM = 128
 EPOCHS = 3
 DROPOUT_PROB = 0.2
 TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+POOLING_STRATEGY = "mean"
 
 
 try:
@@ -25,7 +26,7 @@ print(f"MODEL: {TF_MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
 print(
-    f"CHUNK_SIZE {CHUNK_SIZE}, OVERLAP {OVERLAP}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
+    f"CHUNK_SIZE {CHUNK_SIZE}, POOLING_STRATEGY {POOLING_STRATEGY}, NUM_TF_LAYERS {NUM_TF_LAYERS}, HIDDEN_DIM {HIDDEN_DIM}, EPOCHS {EPOCHS}, DROPOUT {DROPOUT_PROB}"
 )
 
 
@@ -51,7 +52,7 @@ tokeniser = AutoTokenizer.from_pretrained(TF_MODEL_NAME)
 
 tokenised_dataset = dataset.map(
     functions.tokenise_chunks,
-    fn_kwargs={"tokeniser": tokeniser, "chunk_size": CHUNK_SIZE, "overlap": OVERLAP},
+    fn_kwargs={"tokeniser": tokeniser, "chunk_size": CHUNK_SIZE},
 )
 
 print(tokenised_dataset)
@@ -63,7 +64,7 @@ model = ChunkModelM(
     tf_model_name=TF_MODEL_NAME,
     num_tf_layers=NUM_TF_LAYERS,
     hidden_dim=HIDDEN_DIM,
-    metadata_hidden_dim=int(HIDDEN_DIM / 3),
+    metadata_hidden_dim=METADATA_HIDDEN_DIM,
     num_classes=num_labels,
     train_labels=train_labels,
     dropout_prob=DROPOUT_PROB,

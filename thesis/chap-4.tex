@@ -264,16 +264,13 @@ All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the Py
 
 \subsection{Weighted loss}
 
-Weighted loss addresses the problem of training models on an imbalanced dataset by assigning higher weights to classes with fewer instances and lower weights to classes with more instances. This adjustment ensures that the model pays more attention to correctly predicting the minority class, thereby improving overall performance metrics. Using weighted loss during training is preferred over oversampling the minority class. Oversampling can introduce abstract examples that may not accurately represent real-world articles, potentially leading to less effective model performance.
-
-Weighted loss is calculated through the scikit-learn library \cite{pedregosa-2011-scikit-learn} and inserted into the loss function. Figure \ref{fig:class_weight} shows the calculated class weight for each class in the training set.
-
+Weighted loss addresses the problem of training models on an imbalanced dataset by assigning higher weights to classes with fewer instances and lower weights to classes with more instances. This adjustment ensures that the model pays more attention to correctly predicting the minority class, thereby improving overall performance metrics. Using weighted loss during training is preferred over oversampling the minority class. Oversampling can generate synthetic examples that may not accurately represent real-world articles, potentially leading to less robust model performance \cite{alkhawaldeh-2023-challenges}. Additionally, undersampling is also not ideal due to the small size of the dataset and the significant disparity between the majority and minority classes. The weighted loss is gained by calculating class weights (as seen in Figure \ref{fig:class_weights}) through the scikit-learn library \cite{pedregosa-2011-scikit-learn}, which are then inserted into the loss function.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/class_weight.png}
-    \caption{Class weight in the training set}
-    \label{fig:class_weight}
+    \includegraphics[width=0.9\linewidth]{figures/class_weights.png}
+    \caption{Class weights in the training set}
+    \label{fig:class_weights}
 \end{figure}
 
 

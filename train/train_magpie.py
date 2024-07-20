@@ -1,5 +1,6 @@
 import os
 import platform
+import sys
 
 import nltk
 import pandas as pd
@@ -10,11 +11,19 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 MAX_LENGTH = 512
+MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 
-train_df = pd.read_csv("dataset/train.csv", index_col=0)
-test_df = pd.read_csv("dataset/test.csv", index_col=0)
-valid_df = pd.read_csv("dataset/valid.csv", index_col=0)
+try:
+    DATASET_VERSION = sys.argv[1]
+except IndexError:
+    DATASET_VERSION = "vx"
 
+print(f"MODEL: {MODEL_NAME}")
+print(f"dataset {DATASET_VERSION}")
+
+train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
+test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
+valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 train_df, test_df, valid_df = functions.generate_title_content_features(
     train_df, test_df, valid_df
 )
