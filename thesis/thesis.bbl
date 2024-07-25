@@ -39,7 +39,7 @@ I.~M. Alkhawaldeh, I.~Albalkhi, and A.~J. Naswhan.
 \newblock Challenges and limitations of synthetic minority oversampling techniques in machine learning.
 \newblock {\em World Journal of Methodology}, 13(5):373--378, 2023.
 
-\bibitem{allcott-2017-socialmedia-2016election}
+\bibitem{allcott-2017-fake-news-election}
 H.~Allcott and M.~Gentzkow.
 \newblock Social media and fake news in the 2016 election.
 \newblock {\em Journal of Economic Perspectives}, 31(2):211--36, 2017.
@@ -68,6 +68,11 @@ H.~Borko and M.~Bernick.
 S.~Boudana.
 \newblock A definition of journalistic objectivity as a performance.
 \newblock {\em Media, Culture \& Society}, 33(3):385--398, 2011.
+
+\bibitem{mbfc}
+M.~B.~F. Check.
+\newblock Media bias fact check, 2024.
+\newblock Accessed: 2024-07-24.
 
 \bibitem{chen-2020-detecting-media-bias-gaussian}
 W.-F. Chen, K.~Al~Khatib, B.~Stein, and H.~Wachsmuth.
@@ -99,10 +104,20 @@ T.~Economist.
 \newblock {\em The Economist}, June 27 2024.
 \newblock [Accessed: July 4, 2024].
 
+\bibitem{enders-2020-covid19-misinformation}
+A.~M. Enders, J.~E. Uscinski, C.~Klofstad, and J.~Stoler.
+\newblock The different forms of covid-19 misinformation and their consequences.
+\newblock {\em The Harvard Kennedy School (HKS) Misinformation Review}, 1(8), 2020.
+
 \bibitem{fan-2019-basil}
 L.~Fan, M.~White, E.~Sharma, R.~Su, P.~K. Choubey, R.~Huang, and L.~Wang.
 \newblock In plain sight: Media bias through the lens of factual reporting.
 \newblock In {\em Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing}. Association for Computational Linguistics, 2019.
+
+\bibitem{fleming-2023-climate-disinformation}
+M.~Fleming.
+\newblock Rampant climate disinformation online is distorting dangers, delaying climate action.
+\newblock {\em Medium}, 2023.
 
 \bibitem{adfontes}
 A.~Fontes.
@@ -115,6 +130,12 @@ K.~Foundation.
 \newblock American views 2020: Trust, media and democracy.
 \newblock Technical report, Gallup and Knight Foundation, 2020.
 
+\bibitem{froehlich-2024-misinformation}
+T.~J. Froehlich.
+\newblock Misinformation in the world today.
+\newblock {\em Kent State University, College of Communication \& Information}, 2024.
+\newblock Accessed: 2024-07-24.
+
 \bibitem{pew-2021-partisan-divides}
 J.~Gottfried and J.~Liedke.
 \newblock Partisan divides in media trust widen, driven by a decline among republicans.
@@ -126,6 +147,10 @@ M.~B. Group.
 \newblock Home - media bias group.
 \newblock \url{https://media-bias-research.org/}.
 \newblock Accessed: 2024-05-29.
+
+\bibitem{gruppi-2023-nelagt2022}
+M.~Gruppi, B.~D. Horne, and S.~Adalı.
+\newblock Nela-gt-2022: A large multi-labelled news dataset for the study of misinformation in news articles, 2023.
 
 \bibitem{guo-2022-modeling}
 S.~Guo and K.~Q. Zhu.
@@ -226,6 +251,11 @@ S.~Mishra and A.~Misra.
 \newblock Structured and unstructured big data analytics.
 \newblock In {\em 2017 International Conference on Current Trends in Computer, Electrical, Electronics and Communication (CTCEEC)}, pages 740--746, 2017.
 
+\bibitem{muhammed-2022-disaster-of-misinformation}
+S.~Muhammed~T and S.~K. Mathew.
+\newblock The disaster of misinformation: a review of research in social media.
+\newblock {\em International Journal of Data Science and Analytics}, 13(4):271--285, 2022.
+
 \bibitem{narayanan-2019-word-embeddings}
 H.~Narayanan.
 \newblock Word embedding.
@@ -252,11 +282,6 @@ OpenAI, J.~Achiam, S.~Adler, S.~Agarwal, L.~Ahmad, I.~Akkaya, F.~L. Aleman, D.~A
 S.~Padgaonkar and S.~Ghoshal.
 \newblock Fine-tuning in large language models.
 \newblock \url{https://blogs.oracle.com/ai-and-datascience/post/finetuning-in-large-language-models}, Accessed: July 2024.
-
-\bibitem{panagopoulos-2020}
-C.~Panagopoulos.
-\newblock Polls and elections accuracy and bias in the 2020 u.s. general election polls.
-\newblock {\em Presidential Studies Quarterly}, 51(1):214--227, 2021.
 
 \bibitem{pappagari-2019-hierarchical}
 R.~Pappagari, P.~Żelasko, J.~Villalba, Y.~Carmiel, and N.~Dehak.
@@ -286,11 +311,6 @@ M.~P{\'e}rez-Enciso and L.~M. Zingaretti.
 \newblock A guide on deep learning for complex trait genomic prediction.
 \newblock {\em Genes}, 10, 2019.
 
-\bibitem{rafail-2018-tea-party}
-P.~Rafail and J.~D. McCarthy.
-\newblock Making the tea party republican: Media bias and framing in newspapers and cable news.
-\newblock {\em Social Currents}, 5(5):421--437, 2018.
-
 \bibitem{rahman-2023-lstm-networks}
 A.~A. Rahman.
 \newblock Lstm networks.
@@ -311,6 +331,11 @@ A.~A. Rahman.
 {Reuters Institute for the Study of Journalism}.
 \newblock Share of adults who trust news media most of the time in selected countries worldwide as of february 2023 [graph], June 14 2023.
 \newblock In Statista. Retrieved July 01, 2024, from \url{https://www.statista.com/statistics/308468/importance-brand-journalist-creating-trust-news/}.
+
+\bibitem{rodrigo-2024-systematic-review-media-bias}
+F.-J. Rodrigo-Ginés, J.~C. de~Albornoz, and L.~Plaza.
+\newblock A systematic review on media bias detection: What is media bias, how it is expressed, and how to detect it.
+\newblock {\em Expert Systems with Applications}, 237:121641, 2024.
 
 \bibitem{semianalysis-gpt4}
 SemiAnalysis.
@@ -340,9 +365,20 @@ T.~Spinde, L.~Rudnitckaia, J.~Mitrović, F.~Hamborg, M.~Granitzer, B.~Gipp, and 
 X.~Su, T.~Miller, X.~Ding, M.~Afshar, and D.~Dligach.
 \newblock Classifying long clinical documents with pre-trained transformers, 2021.
 
+\bibitem{suarez-2021-prevalence-health-misinformation}
+V.~Suarez-Lledo and J.~Alvarez-Galvez.
+\newblock Prevalence of health misinformation on social media: Systematic review.
+\newblock {\em J Med Internet Res}, 23(1):e17187, Jan 2021.
+
 \bibitem{sun-2020-fine-tune}
 C.~Sun, X.~Qiu, Y.~Xu, and X.~Huang.
 \newblock How to fine-tune bert for text classification?, 2020.
+
+\bibitem{tiedemann-2024-misinformation-democracy}
+A.~Tiedemann.
+\newblock Why americans crave fake news.
+\newblock {\em New America}, 2024.
+\newblock Accessed: 2024-07-24.
 
 \bibitem{uzair-2020-hidden-layers}
 M.~Uzair and N.~Jamil.
@@ -370,6 +406,12 @@ A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez, L.~Kaise
 \bibitem{wan-2019-long-length}
 L.~Wan, G.~Papageorgiou, M.~Seddon, and M.~Bernardoni.
 \newblock Long-length legal document classification, 2019.
+
+\bibitem{wang-2024-health-misinformation}
+M.~L. Wang.
+\newblock Health misinformation is rampant on social media.
+\newblock {\em BU Today}, 2024.
+\newblock Accessed: 2024-07-24.
 
 \bibitem{white-1950-case-study-selection-news}
 D.~M. White.

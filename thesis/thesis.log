@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  20 JUL 2024 06:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  25 JUL 2024 02:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1482,163 +1482,160 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 \openout2 = `chap-1.aux'.
 
- (./chap-1.tex [1
-
-
-
-
-]
+ (./chap-1.tex
+<images/the-economist-biased-article.png, id=201, 722.7pt x 984.67876pt>
+File: images/the-economist-biased-article.png Graphic file (type png)
+<use images/the-economist-biased-article.png>
+Package pdftex.def Info: images/the-economist-biased-article.png  used on input line 15.
+(pdftex.def)             Requested size: 278.59879pt x 379.5908pt.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [2]) [3]
+ [1
+
+
+
+
+] [2
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.25 
+      <./images/the-economist-biased-article.png>] [3]) [4]
 \openout2 = `chap-2.aux'.
 
- (./chap-2.tex [4
+ (./chap-2.tex
+<images/bias-types-taxonomy.png, id=288, 929.4725pt x 598.235pt>
+File: images/bias-types-taxonomy.png Graphic file (type png)
+<use images/bias-types-taxonomy.png>
+Package pdftex.def Info: images/bias-types-taxonomy.png  used on input line 15.
+(pdftex.def)             Requested size: 358.19757pt x 230.54483pt.
+ [5
 
 
 
 
 ]
-<images/the-economist-biased-article.png, id=223, 722.7pt x 984.67876pt>
-File: images/the-economist-biased-article.png Graphic file (type png)
-<use images/the-economist-biased-article.png>
-Package pdftex.def Info: images/the-economist-biased-article.png  used on input line 14.
-(pdftex.def)             Requested size: 358.19757pt x 488.04103pt.
-<images/bias-types-taxonomy.png, id=229, 929.4725pt x 598.235pt>
-File: images/bias-types-taxonomy.png Graphic file (type png)
-<use images/bias-types-taxonomy.png>
-Package pdftex.def Info: images/bias-types-taxonomy.png  used on input line 23.
-(pdftex.def)             Requested size: 358.19757pt x 230.54483pt.
- [5] [6
+<images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png, id=313, 1003.75pt x 745.78625pt>
+File: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png Graphic file (type png)
+<use images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>
+Package pdftex.def Info: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png  used on input line 37.
+(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
+<images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png, id=316, 1003.75pt x 745.78625pt>
+File: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png Graphic file (type png)
+<use images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>
+Package pdftex.def Info: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png  used on input line 45.
+(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
+<images/word_embeddings.png, id=321, 1304.875pt x 974.64125pt>
+File: images/word_embeddings.png Graphic file (type png)
+<use images/word_embeddings.png>
+Package pdftex.def Info: images/word_embeddings.png  used on input line 58.
+(pdftex.def)             Requested size: 358.19757pt x 267.54384pt.
+ [6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.30 A
-      nother particularly dangerous example of media bias is its application... <./images/the-economist-biased-article.png>] [7
+l.64 
+      <./images/bias-types-taxonomy.png>]
+<images/mlp.png, id=336, 853.1875pt x 688.5725pt>
+File: images/mlp.png Graphic file (type png)
+<use images/mlp.png>
+Package pdftex.def Info: images/mlp.png  used on input line 70.
+(pdftex.def)             Requested size: 358.19757pt x 289.0934pt.
+ [7
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.39 
-      <./images/bias-types-taxonomy.png>]
-<images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png, id=277, 1003.75pt x 745.78625pt>
-File: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png Graphic file (type png)
-<use images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>
-Package pdftex.def Info: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png  used on input line 43.
-(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
-<images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png, id=280, 1003.75pt x 745.78625pt>
-File: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png Graphic file (type png)
-<use images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>
-Package pdftex.def Info: images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png  used on input line 51.
-(pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
+l.88 
+     {/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc} <./images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>]
+<images/lstm.jpeg, id=360, 891.33pt x 485.815pt>
+File: images/lstm.jpeg Graphic file (type jpg)
+<use images/lstm.jpeg>
+Package pdftex.def Info: images/lstm.jpeg  used on input line 94.
+(pdftex.def)             Requested size: 358.19757pt x 195.23434pt.
+<images/transformer.png, id=365, 509.905pt x 682.55pt>
+File: images/transformer.png Graphic file (type png)
+<use images/transformer.png>
+Package pdftex.def Info: images/transformer.png  used on input line 106.
+(pdftex.def)             Requested size: 278.59879pt x 372.94576pt.
  [8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.59 
-      <./images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png>]
-<images/word_embeddings.png, id=299, 1304.875pt x 974.64125pt>
-File: images/word_embeddings.png Graphic file (type png)
-<use images/word_embeddings.png>
-Package pdftex.def Info: images/word_embeddings.png  used on input line 67.
-(pdftex.def)             Requested size: 358.19757pt x 267.54384pt.
-<images/mlp.png, id=304, 853.1875pt x 688.5725pt>
-File: images/mlp.png Graphic file (type png)
-<use images/mlp.png>
-Package pdftex.def Info: images/mlp.png  used on input line 79.
-(pdftex.def)             Requested size: 358.19757pt x 289.0934pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+l.109 \end{figure}
+                   <./images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>]
+Underfull \vbox (badness 1314) has occurred while \output is active []
 
  [9
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.82 \end{figure}
-                  <./images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png>] [10
+l.116 
+       <./images/word_embeddings.png>] [10
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.99 \section
-             {Long Short-Term Memory (LSTM)}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc} <./images/word_embeddings.png>]
-<images/lstm.jpeg, id=336, 891.33pt x 485.815pt>
-File: images/lstm.jpeg Graphic file (type jpg)
-<use images/lstm.jpeg>
-Package pdftex.def Info: images/lstm.jpeg  used on input line 103.
-(pdftex.def)             Requested size: 358.19757pt x 195.23434pt.
-<images/transformer.png, id=341, 509.905pt x 682.55pt>
-File: images/transformer.png Graphic file (type png)
-<use images/transformer.png>
-Package pdftex.def Info: images/transformer.png  used on input line 115.
-(pdftex.def)             Requested size: 278.59879pt x 372.94576pt.
- [11
+l.116 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.121 
-       <./images/mlp.png>]
-<images/bert_finetuning.png, id=359, 969.6225pt x 417.56pt>
+l.116 
+       <./images/mlp.png> <./images/lstm.jpeg>]
+<images/bert_finetuning.png, id=403, 969.6225pt x 417.56pt>
 File: images/bert_finetuning.png Graphic file (type png)
 <use images/bert_finetuning.png>
-Package pdftex.def Info: images/bert_finetuning.png  used on input line 128.
+Package pdftex.def Info: images/bert_finetuning.png  used on input line 119.
 (pdftex.def)             Requested size: 358.19757pt x 154.25902pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12
+ [11
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.136 \end{equation}
-                     <./images/lstm.jpeg>] [13
+l.136 \]
+        {/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} <./images/transformer.png>]
+<images/magpie.png, id=420, 432.61626pt x 303.1325pt>
+File: images/magpie.png Graphic file (type png)
+<use images/magpie.png>
+Package pdftex.def Info: images/magpie.png  used on input line 144.
+(pdftex.def)             Requested size: 358.19757pt x 250.9986pt.
+ [12
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.136 \end{equation}
-                    
+l.180 
+       <./images/bert_finetuning.png>] [13
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.136 \end{equation}
-                     <./images/transformer.png> <./images/bert_finetuning.png>]
-<images/magpie.png, id=384, 432.61626pt x 303.1325pt>
-File: images/magpie.png Graphic file (type png)
-<use images/magpie.png>
-Package pdftex.def Info: images/magpie.png  used on input line 153.
-(pdftex.def)             Requested size: 358.19757pt x 250.9986pt.
- [14{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
+l.180 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.159 
+l.180 
        <./images/magpie.png>]
-<images/hi_transformer.png, id=408, 1240.635pt x 981.6675pt>
+<images/hi_transformer.png, id=450, 1240.635pt x 981.6675pt>
 File: images/hi_transformer.png Graphic file (type png)
 <use images/hi_transformer.png>
-Package pdftex.def Info: images/hi_transformer.png  used on input line 192.
+Package pdftex.def Info: images/hi_transformer.png  used on input line 183.
 (pdftex.def)             Requested size: 358.19757pt x 283.41805pt.
- [15
+ [14
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.11}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.200 
-      ] [16
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.206 
-       <./images/hi_transformer.png>] [17]) [18]
+l.192 I
+       n 2022, according to International Data Corporation (IDC) report, uns... <./images/hi_transformer.png>] [15] [16]) [17]
 \openout2 = `chap-3.aux'.
 
- (./chap-3.tex
+ (./chap-3.tex [18
+
+
+
+
+]
 Underfull \vbox (badness 1708) has occurred while \output is active []
 
- [19
-
-
-
-
-] [20
+ [19] [20
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1655,12 +1652,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 53.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 53.
-<figures/tokens_count_vx_hist.png, id=535, 722.7pt x 433.62pt>
+<figures/tokens_count_vx_hist.png, id=565, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 115.
 (pdftex.def)             Requested size: 358.19757pt x 214.91714pt.
-<figures/reliability_score_hist.png, id=536, 722.7pt x 433.62pt>
+<figures/reliability_score_hist.png, id=566, 722.7pt x 433.62pt>
 File: figures/reliability_score_hist.png Graphic file (type png)
 <use figures/reliability_score_hist.png>
 Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 122.
@@ -1684,17 +1681,17 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4}) h
                                                   \__shipout_drop_firstpage_...
 l.128 
        <./figures/tokens_count_vx_hist.png> <./figures/reliability_score_hist.png>]
-<figures/dates_hist.png, id=558, 1156.32pt x 433.62pt>
+<figures/dates_hist.png, id=588, 1156.32pt x 433.62pt>
 File: figures/dates_hist.png Graphic file (type png)
 <use figures/dates_hist.png>
 Package pdftex.def Info: figures/dates_hist.png  used on input line 130.
 (pdftex.def)             Requested size: 358.19757pt x 134.32156pt.
-<figures/tokens_count_vx_per_class_hist.png, id=560, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_per_class_hist.png, id=590, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_per_class_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 139.
 (pdftex.def)             Requested size: 238.80243pt x 238.80272pt.
-<figures/correlation_tokens_reliability_score.png, id=561, 722.7pt x 433.62pt>
+<figures/correlation_tokens_reliability_score.png, id=591, 722.7pt x 433.62pt>
 File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
 <use figures/correlation_tokens_reliability_score.png>
 Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 146.
@@ -1756,7 +1753,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) h
                                                   \__shipout_drop_firstpage_...
 l.258 
       ]
-<figures/class_weights.png, id=647, 722.7pt x 433.62pt>
+<figures/class_weights.png, id=677, 722.7pt x 433.62pt>
 File: figures/class_weights.png Graphic file (type png)
 <use figures/class_weights.png>
 Package pdftex.def Info: figures/class_weights.png  used on input line 271.
@@ -1811,27 +1808,27 @@ No file chap-7.tex.
 \openout2 = `app-A.aux'.
 
  (./app-A.tex
-<figures/tokens_count_vx_split_hist.png, id=712, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_split_hist.png, id=742, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_split_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
 (pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
-<figures/wordcloud_vx.png, id=713, 462.528pt x 346.896pt>
+<figures/wordcloud_vx.png, id=743, 462.528pt x 346.896pt>
 File: figures/wordcloud_vx.png Graphic file (type png)
 <use figures/wordcloud_vx.png>
 Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
 (pdftex.def)             Requested size: 278.59879pt x 208.95964pt.
-<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=714, 308.352pt x 243.7908pt>
+<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=744, 308.352pt x 243.7908pt>
 File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
 <use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
 Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg  used on input line 23.
 (pdftex.def)             Requested size: 318.40121pt x 251.73972pt.
-<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=715, 1003.75pt x 745.78625pt>
+<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=745, 1003.75pt x 745.78625pt>
 File: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png Graphic file (type png)
 <use images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>
 Package pdftex.def Info: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png  used on input line 30.
 (pdftex.def)             Requested size: 358.19757pt x 266.13861pt.
-<images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png, id=718, 1003.75pt x 2275.50125pt>
+<images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png, id=748, 1003.75pt x 2275.50125pt>
 File: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png Graphic file (type png)
 <use images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png>
 Package pdftex.def Info: images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png  used on input line 37.
@@ -1873,67 +1870,67 @@ l.104 \include{app-A}
 bibitemlist
 [49
 
-] [50] [51]
-Underfull \hbox (badness 3769) in paragraph at lines 230--234
+] [50] [51] [52]
+Underfull \hbox (badness 3769) in paragraph at lines 260--264
 []\T1/lmr/m/n/10.95 (+20) H. Narayanan.  Word em-bed-ding.  [][]$\T1/lmtt/m/n/10.95 https : / / medium . com / @hari4om /
  []
 
-[52] [53]
-Underfull \hbox (badness 6961) in paragraph at lines 252--255
+[53]
+Underfull \hbox (badness 6961) in paragraph at lines 282--285
 []\T1/lmr/m/n/10.95 (+20) S. Padgaonkar and S. Ghoshal.  Fine-tuning in large lan-guage
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--255
+Underfull \hbox (badness 10000) in paragraph at lines 282--285
 \T1/lmr/m/n/10.95 (+20) mod-els.  [][]$\T1/lmtt/m/n/10.95 https : / / blogs . oracle . com / ai-[]and-[]datascience / post /
  []
 
-
-Underfull \hbox (badness 1377) in paragraph at lines 295--299
+[54]
+Underfull \hbox (badness 1377) in paragraph at lines 315--319
 []\T1/lmr/m/n/10.95 (+20) A. A. Rah-man.  Lstm net-works.  [][]$\T1/lmtt/m/n/10.95 https : / / www . linkedin . com / pulse /
  []
 
 
-Underfull \hbox (badness 4699) in paragraph at lines 311--314
+Underfull \hbox (badness 4699) in paragraph at lines 331--334
 []\T1/lmr/m/n/10.95 (+20) Reuters In-sti-tute for the Study of Jour-nal-ism.  Share of adults
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 311--314
+Underfull \hbox (badness 1502) in paragraph at lines 331--334
 \T1/lmr/m/n/10.95 (+20) who trust news me-dia most of the time in se-lected coun-tries world-
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 311--314
+Underfull \hbox (badness 2088) in paragraph at lines 331--334
 \T1/lmr/m/n/10.95 (+20) wide as of febru-ary 2023 [graph], June 14 2023.  In Statista. Re-
  []
 
-[54]
-Underfull \hbox (badness 2035) in paragraph at lines 316--319
+
+Underfull \hbox (badness 2035) in paragraph at lines 341--344
 []\T1/lmr/m/n/10.95 (+20) SemiAnalysis.  Gpt-4: Ar-chi-tec-ture & in-fras-truc-ture.  [][]$\T1/lmtt/m/n/10.95 https : / / www .
  []
 
-[55]) [56]
+[55] [56]) [57]
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
  (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 2761668DB0433BDDBFA3DD4246B0438A;4416.
+(rerunfilecheck)             Checksum: E8353D0652A9D8BA8B89207301055D12;4416.
  ) 
 Here is how much of TeX's memory you used:
- 29190 strings out of 476025
- 531838 string characters out of 5790016
+ 29214 strings out of 476025
+ 532538 string characters out of 5790016
  1902388 words of memory out of 5000000
- 48526 multiletter control sequences out of 15000+600000
- 642228 words of font info for 244 fonts, out of 8000000 for 9000
+ 48534 multiletter control sequences out of 15000+600000
+ 642676 words of font info for 248 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,3281b,776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (60 pages, 6989610 bytes).
+Output written on thesis.pdf (61 pages, 6993051 bytes).
 PDF statistics:
- 960 PDF objects out of 1000 (max. 8388607)
- 794 compressed objects within 8 object streams
- 230 named destinations out of 1000 (max. 500000)
+ 997 PDF objects out of 1000 (max. 8388607)
+ 829 compressed objects within 9 object streams
+ 238 named destinations out of 1000 (max. 500000)
  71024 words of extra memory for PDF output out of 74296 (max. 10000000)
 
