@@ -12,7 +12,7 @@ Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendenc
     \label{fig:media-bias-taxonomy}
 \end{figure}
 
-Many works and authors have tried to categorise media bias based on its types and characteristics \cite{rodrigo-2024-systematic-review-media-bias,eberl-2017-bias-political,spinde-2024-taxonomy,allsides-media-bias-types}. This project will follow The Media Bias Taxonomy by Spinde et al. (Figure \ref{fig:media-bias-taxonomy}), focusing on \textbf{Text-level Context Bias}, which pertains to the context of a text and the manner in which it is conveyed \cite{spinde-2024-taxonomy}.
+Many works and authors have tried to categorise media bias based on its types and characteristics \cite{rodrigo-2024-systematic-review-media-bias,eberl-2017-bias-political,spinde-2024-taxonomy,allsides-media-bias-types}. This project will follow The Media Bias Taxonomy by Spinde et al. (Figure \ref{fig:media-bias-taxonomy}), primarily focusing on \textbf{Text-level Context Bias}, which pertains to the context of a text and the manner in which it is conveyed \cite{spinde-2024-taxonomy}.
 
 \begin{figure}[htbp]
     \centering
@@ -23,7 +23,7 @@ Many works and authors have tried to categorise media bias based on its types an
     \label{fig:bias-examples}
 \end{figure}
 
-Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \cite{allsides-media-bias-types} referring to the three types of text-level context bias: phrasing bias, spin bias, and statement bias. Phrasing bias is characterised by the use of provocative, inflammatory, or non-neutral language, using words that may evoke specific feelings or emotions in the reader \cite{spinde-2024-taxonomy,hube-2019-neural-biased-language}. The top article snippet in Figure \ref{fig:bias-examples} shows the phrase "it's going to be a bloodbath". The phrase can be considered phrasing bias as it evokes a violent image and may lead readers to perceive the election as extremely chaotic or violent, even though it is not literal. Spin bias is introduced when essential information is omitted from the narrative, or when irrelevant information is added instead \cite{spinde-2024-taxonomy}, often as an effort to craft a memorable story \cite{mullainathan-2002-media-bias}. The middle article in Figure \ref{fig:bias-examples} purposefully omitted the crucial information that the number of agencies reporting hate crime incidents has also increased. This creates a false narrative that hate crimes are on the rise, despite the possibility that the increase in reported incidents might be attributed due to higher number of reporting agencies. Statement bias occurs when media personnel insert their personal views into the content, resulting in certain news being presented in a manner that is more or less favourable towards a particular view or position \cite{spinde-2024-taxonomy,d-alessio-2000-meta-analysis}. The sentence "He's a delicate snowflake" shown in the example (Figure \ref{fig:bias-examples} bottom article) is clearly a personal opinion of the author of the post.
+Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \cite{allsides-media-bias-types} referring to the three types of text-level context bias: phrasing bias, spin bias, and statement bias. \textit{Phrasing bias} is characterised by the use of provocative, inflammatory, or non-neutral language, using words that may evoke specific feelings or emotions in the reader \cite{spinde-2024-taxonomy,hube-2019-neural-biased-language}. The top article snippet in Figure \ref{fig:bias-examples} shows the phrase "it's going to be a bloodbath". The phrase can be considered phrasing bias as it evokes a violent image and may lead readers to perceive the election as extremely chaotic or violent, even though it is not literal.\textit{Spin bias} is introduced when essential information is omitted from the narrative, or when irrelevant information is added instead \cite{spinde-2024-taxonomy}, often as an effort to craft a memorable story \cite{mullainathan-2002-media-bias}. The middle article in Figure \ref{fig:bias-examples} purposefully omitted the crucial information that the number of agencies reporting hate crime incidents has also increased. This creates a false narrative that hate crimes are on the rise, despite the possibility that the increase in reported incidents might be attributed due to higher number of reporting agencies. \textit{Statement bias} occurs when media personnel insert their personal views into the content, resulting in certain news being presented in a manner that is more or less favourable towards a particular view or position \cite{spinde-2024-taxonomy,d-alessio-2000-meta-analysis}. The sentence "He's a delicate snowflake" shown in the example (Figure \ref{fig:bias-examples} bottom article) is clearly a personal opinion of the author of the post.
 
 \begin{figure}[htbp]
     \centering
@@ -52,7 +52,7 @@ Furthermore, Trust in news media in the US is at an all-time low, declining cons
     \label{fig:trustworthiness-of-news-media-worldwide-2023}
 \end{figure}
 
-These findings highlight the severity of media bias in the United States. Given that the majority of resources on media bias are generally US-centric \cite{allsides,adfontes}, it is practically efficient to focus this project on US-based articles and domains. Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is both practical and reasonable for this project to concentrate on US-based articles and domains.
+Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is both practical and reasonable for this project to concentrate on US-based articles and domains.
 
 \begin{comment}
 Objectivity itself is defined by Cambridge Dictionary as "the fact of being based on facts and not influenced by personal beliefs or feelings" \cite{cambridge-dictionary-objectivity}.
@@ -68,7 +68,11 @@ An analysis by Pew Research Center \cite{pew-2021-election2020} found that misca
 Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
 \end{comment}
 
-\section{Word Embeddings}
+\section{Machine Learning Concepts and Techniques}
+
+This section will introduce general machine learning concepts and techniques, in correlation to media bias classification and article-level media bias classification.
+
+\subsection{Word Embeddings}
 
 \begin{figure}[htbp]
     \centering
@@ -80,7 +84,7 @@ Readers themselves are not exempt from bias, as they are known to prefer to pick
 Word embeddings are a way to represent words in a continuous vector space where words with similar meanings are placed close to each other, thereby capturing semantic relationships between words. This approach gained significant popularity with the introduction of \textit{word2vec} as a method to generate word embeddings \cite{mikolov-2013-embeddings}. Most Natural Language Processing (NLP) tasks approaches still inherently rely on word embeddings to represent textual data, often serving as the initial input to models. An example of word embeddings is visualised in Figure \ref{fig:word-embeddings}.
 
 
-\section{MultiLayer Perceptron (MLP)}
+\subsection{MultiLayer Perceptron (MLP)}
 
 \begin{figure}[htbp]
     \centering
@@ -104,7 +108,7 @@ A MultiLayer Perceptron (MLP) is a fully connected Artificial Neural Network (AN
 MLP is widely used due to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models. By integrating multiple hidden layers with non-linear activation functions, MLP can learn intricate patterns and relationships within data, making them suitable for a wide range of machine learning tasks. This flexibility is pivotal in capturing the nuanced and intricate structures inherent in real-world datasets, thereby enhancing the model's predictive accuracy and generalisation capabilities.
 
 
-\section{Long Short-Term Memory (LSTM)}
+\subsection{Long Short-Term Memory (LSTM)}
 
 \begin{figure}[htbp]
     \centering
@@ -116,7 +120,7 @@ MLP is widely used due to its ability to introduce non-linearity into the model,
 LSTM \cite{hochreiter-1997-lstm} is a type of Recurrent Neural Network (RNN) architecture designed to address the vanishing gradient problem and capture long-term dependencies in sequential data. It incorporates two fundamental components: memory cells and gates. Memory cells maintain a cell state, which can store information over long sequences and allows the model to retain information for longer durations compared to traditional RNNs. Gates control the flow of information into and out of the memory cell, controlled by sigmoid and tanh activation functions, which regulate the information flow based on the input data and the current state. Figure \ref{fig:lstm} shows the full architecture of a LSTM block.
 
 
-\section{Transformer and Large Language Model (LLM)}
+\subsection{Transformer and Large Language Model (LLM)}
 
 \begin{figure}[htbp]
     \centering
@@ -154,7 +158,7 @@ where
 
 Transformers and LLMs have sparked a revolution in the domain of Artificial Intelligence (AI), having achieved remarkable successes across diverse fields such as natural language processing, computer vision, and audio processing \cite{lin-2022-survey-transformers}. They have single-handedly catalysed the emergence of a new era in AI capabilities observed today, predicted to have an even greater influence than the Industrial and digital revolutions combined \cite{makridakis-2017-ai-revolution}.
 
-\section{MAGPIE}
+\subsection{MAGPIE}
 
 \begin{figure}[htbp]
     \centering
@@ -168,7 +172,7 @@ Transformers and LLMs have sparked a revolution in the domain of Artificial Inte
 Unfortunately, MAGPIE is only trained to output binary classification (biased or unbiased) and mostly trained on sentences, therefore unable to be fine-tuned for article-level media bias classification task. However, the model and its feature representations can still be utilised for a feature-based approach \cite{sun-2020-fine-tune}.
 
 
-\section{Chunking and Hierarchical Techniques}
+\subsection{Chunking and Hierarchical Techniques}
 
 \begin{figure}[htbp]
     \centering
@@ -202,7 +206,11 @@ Unfortunately, MAGPIE is only trained to output binary classification (biased or
     \label{fig:hi_transformer}
 \end{figure}
 
-\section{Document Classification}
+\section{Literature Review}
+
+This section will discuss related works within the domain of document classification, media bias classification, and article-level media bias classification.
+
+\subsection{Document Classification}
 
 Automatic document classification is first mentioned in 1963 \cite{borko-1963-auto-doc-classification}, with earlier text processing concepts and techniques defined in the 1950s \cite{luhn-1958-business-intelligence-system}. Document classification refers to the task of classifying text documents, commonly include large text processing and handling with various structure and content type. Typical use cases may include work with legal and financial documents, reports, and managing digital libraries.
 
@@ -217,7 +225,7 @@ There exist other LLMs that are designed specifically to handle longer sequences
 Several techniques have been implemented to combat the problem of handling long sequences, namely chunking and hierarchical techniques, as described previously. Pappagari et al. \cite{pappagari-2019-hierarchical} are among the first to utilise the transformer architecture for long sequences classification, introducing chunking and propagation methods. Su et al. \cite{su-2021-classifying} used chunking methods in a hierarchical transformer model with 'CLS-Pooling' (as also described in \cite{adhikari-2019-docbert}) to extract representations on the document-level for the task of clinical document classification. Khandve et al. \cite{khandve-2022-hierarchical-longdoc} also implemented a hierarchical model by utilising BERT and Bi-LSTM layers for long document classification tasks.
 
 
-\section{Article-Level Media Bias Classification}
+\subsection{Article-Level Media Bias Classification}
 
 Article-level classification can be seen as a subset of document classification that specifically targets articles. This field focuses on categorising article-like texts such as news pieces, blogs, and other similar formats that typically comprise multiple paragraphs. Article-level media bias classification refers to the task of detecting and classifying media bias contained within a text. Article contents length generally falls between medium to long sequences, as they are not as lengthy as legal documents or clinical studies that typically contain multiple pages of text. Most news articles stay between several hundred to several thousand words.
 
@@ -232,6 +240,7 @@ Article-level classification can be seen as a subset of document classification 
     \label{fig:media-bias-dataset-overview}
 \end{figure}
 
+NELA
 \end{comment}
 
 Current available datasets for article-level and media bias classification in general are quite limited, often varying in formats or covering different types of bias. The \textbf{BASIL} dataset \cite{fan-2019-basil} is the most commonly used bias dataset, containing 300 articles with both article-level and phrase-level annotations. This dataset focuses on informational bias in news articles as it appears more frequently than lexical bias. However, the obvious drawback of this dataset is the low amount of articles included as it is not nearly enough data to get a good working detection model. \textbf{NLPCSS} \cite{chen-2020-nlpcss} (6964 articles), annotated via Ad Fontes labels, contains article-level textual content with three bias labels (bias, neutral, or unknown). Focusing on political bias and unfairness, this dataset can potentially serve as a suitable resource for an article-level media bias classification task. The \textbf{BAT} \cite{spinde-2023-bat} dataset (6345 articles, 321 outlets, Ad Fontes labels) is the most suitable for article-level bias detection as it supplies both bias-score and reliability-score for the whole article. However, the dataset itself does not supply the textual content of the articles and therefore needs to be extended, something that I have been working on as well during my Master's Thesis this and last year.
