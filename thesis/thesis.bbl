@@ -84,6 +84,11 @@ W.-F. Chen, K.~Al~Khatib, H.~Wachsmuth, and B.~Stein.
 \newblock Analyzing political bias and unfairness in news articles at different levels of granularity.
 \newblock In D.~Bamman, D.~Hovy, D.~Jurgens, B.~O'Connor, and S.~Volkova, editors, {\em Proceedings of the Fourth Workshop on Natural Language Processing and Computational Social Science}, pages 149--154, Online, Nov. 2020. Association for Computational Linguistics.
 
+\bibitem{d-alessio-2000-meta-analysis}
+D.~D'Alessio and M.~Allen.
+\newblock Media bias in presidential elections: a meta-analysis.
+\newblock {\em Journal of Communication}, 50(4):133--156, 2000.
+
 \bibitem{demidov-2023-political-bias-classification}
 D.~Demidov.
 \newblock Political bias of news content: Classification based on individual articles and media, 03 2023.
@@ -98,11 +103,10 @@ dwyl.
 \newblock english-words.
 \newblock \url{https://github.com/dwyl/english-words}, 2022.
 
-\bibitem{economist-2024-incels}
-T.~Economist.
-\newblock Meet the incels and anti-feminists of asia.
-\newblock {\em The Economist}, June 27 2024.
-\newblock [Accessed: July 4, 2024].
+\bibitem{eberl-2017-bias-political}
+J.-M. Eberl, H.~G. Boomgaarden, and M.~Wagner.
+\newblock One bias fits all? three types of media bias and their effects on party preferences.
+\newblock {\em Communication Research}, 44(8):1125--1148, 2017.
 
 \bibitem{enders-2020-covid19-misinformation}
 A.~M. Enders, J.~E. Uscinski, C.~Klofstad, and J.~Stoler.
@@ -165,16 +169,15 @@ S.~Hochreiter and J.~Schmidhuber.
 T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
 \newblock Magpie: Multi-task media-bias analysis generalization for pre-trained identification of expressions, 2024.
 
+\bibitem{hube-2019-neural-biased-language}
+C.~Hube and B.~Fetahu.
+\newblock Neural based statement classification for biased language.
+\newblock In {\em Proceedings of the Twelfth ACM International Conference on Web Search and Data Mining}, WSDM ’19. ACM, Jan. 2019.
+
 \bibitem{lim-2018-understanding}
 S.~jeong Lim, A.~Jatowt, and M.~Yoshikawa.
 \newblock Understanding characteristics of biased sentences in news articles.
 \newblock In {\em CIKM Workshops}, 2018.
-
-\bibitem{allsides-2022-bias-definition}
-{Julie Mastrine}.
-\newblock What is media bias?
-\newblock \url{https://www.allsides.com/blog/what-media-bias}, 2022.
-\newblock [Online; accessed 28-April-2024].
 
 \bibitem{khandve-2022-hierarchical-longdoc}
 S.~I. Khandve, V.~K. Wagh, A.~D. Wani, I.~M. Joshi, and R.~B. Joshi.
@@ -242,6 +245,16 @@ M.~Mali and M.~Atique.
 \newblock The relevance of preprocessing in text classification.
 \newblock In K.~K. Singh~Mer, V.~B. Semwal, V.~Bijalwan, and R.~G. Crespo, editors, {\em Proceedings of Integrated Intelligence Enable Networks and Computing}, pages 553--559, Singapore, 2021. Springer Singapore.
 
+\bibitem{allsides-2022-bias-definition}
+J.~Mastrine.
+\newblock What is media bias?, 2022.
+\newblock [Online; accessed 28-April-2024].
+
+\bibitem{allsides-media-bias-types}
+J.~Mastrine.
+\newblock How to spot types of media bias, 2024.
+\newblock Accessed: 2024-07-25.
+
 \bibitem{mikolov-2013-embeddings}
 T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
 \newblock Efficient estimation of word representations in vector space, 2013.
@@ -255,6 +268,11 @@ S.~Mishra and A.~Misra.
 S.~Muhammed~T and S.~K. Mathew.
 \newblock The disaster of misinformation: a review of research in social media.
 \newblock {\em International Journal of Data Science and Analytics}, 13(4):271--285, 2022.
+
+\bibitem{mullainathan-2002-media-bias}
+S.~Mullainathan and A.~Shleifer.
+\newblock Media bias.
+\newblock NBER Working Paper w9295, National Bureau of Economic Research, 2002.
 
 \bibitem{narayanan-2019-word-embeddings}
 H.~Narayanan.
@@ -295,11 +313,6 @@ H.~H. Park, Y.~Vyas, and K.~Shah.
 A.~Paszke, S.~Gross, S.~Chintala, G.~Chanan, E.~Yang, Z.~DeVito, Z.~Lin, A.~Desmaison, L.~Antiga, and A.~Lerer.
 \newblock Automatic differentiation in pytorch.
 \newblock In {\em NIPS-W}, 2017.
-
-\bibitem{patterson-donsbach-1996-news-decisions}
-T.~E. Patterson and W.~Donsbach.
-\newblock News decisions: Journalists as partisan actors.
-\newblock {\em Political Communication}, 13(4):455--468, 1996.
 
 \bibitem{pedregosa-2011-scikit-learn}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, et~al.

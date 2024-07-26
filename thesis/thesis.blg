@@ -11,44 +11,44 @@ A level-1 auxiliary file: chap-7.aux
 A level-1 auxiliary file: app-A.aux
 The style file: abbrv.bst
 Database file #1: references.bib
-You've used 91 entries,
+You've used 94 entries,
             2118 wiz_defined-function locations,
-            962 strings with 27881 characters,
-and the built_in function-call counts, 40971 in all, are:
-= -- 3525
-> -- 3416
-< -- 16
-+ -- 1352
-- -- 1248
-* -- 3338
-:= -- 7093
-add.period$ -- 279
-call.type$ -- 91
-change.case$ -- 872
+            978 strings with 28340 characters,
+and the built_in function-call counts, 41853 in all, are:
+= -- 3608
+> -- 3460
+< -- 17
++ -- 1369
+- -- 1262
+* -- 3396
+:= -- 7240
+add.period$ -- 287
+call.type$ -- 94
+change.case$ -- 888
 chr.to.int$ -- 0
-cite$ -- 91
-duplicate$ -- 1058
-empty$ -- 2351
-format.name$ -- 1248
-if$ -- 8136
+cite$ -- 94
+duplicate$ -- 1089
+empty$ -- 2428
+format.name$ -- 1262
+if$ -- 8324
 int.to.chr$ -- 0
-int.to.str$ -- 91
-missing$ -- 49
-newline$ -- 449
-num.names$ -- 206
-pop$ -- 1064
+int.to.str$ -- 94
+missing$ -- 50
+newline$ -- 462
+num.names$ -- 212
+pop$ -- 1085
 preamble$ -- 1
-purify$ -- 778
+purify$ -- 791
 quote$ -- 0
-skip$ -- 881
+skip$ -- 903
 stack$ -- 0
-substring$ -- 1384
-swap$ -- 265
-text.length$ -- 16
+substring$ -- 1426
+swap$ -- 269
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 362
+type$ -- 374
 warning$ -- 0
-while$ -- 257
-width$ -- 93
-write$ -- 961
+while$ -- 264
+width$ -- 96
+write$ -- 991

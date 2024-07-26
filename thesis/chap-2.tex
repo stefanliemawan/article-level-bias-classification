@@ -1,36 +1,29 @@
 \chapter{Background Information and Literature Review}
 \label{cha:2}
 
-
 \section{Media Bias}
 
-Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendency of news media to report in a way that reinforces a viewpoint, world-view, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts)". This phenomenon has existed and been researched since the 1950s \cite{white-1950-case-study-selection-news}, highlighting its enduring presence and impact on public perception. Media bias can manifest in various forms, including the selection of stories, framing of issues, and choice of language.
-
-While biases may not always be intentional, they might cause significant consequences, possibly leading to inequalities and injustices. Some news outlets tend to use catchy headlines which trick readers into clicking, known as "clickbait", which are often ambiguous or misleading.
-
-A survey of journalists from the United States, Great Britain, Germany, Italy, and Sweden found evidence that journalists' personal beliefs substantially influence their news decisions, expressed within the stories they choose and the statements they write \cite{patterson-donsbach-1996-news-decisions}.
+Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendency of news media to report in a way that reinforces a viewpoint, world-view, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts)". Media bias has existed and been researched since the 1950s \cite{white-1950-case-study-selection-news}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{images/bias-types-taxonomy.png}
-    \caption{Media bias types as defined in the Media Bias Taxonomy \cite{spinde-2024-taxonomy}}
-    \label{fig:bias-types-taxonomy}
+    \caption{Media bias types as defined in The Media Bias Taxonomy \cite{spinde-2024-taxonomy}}
+    \label{fig:media-bias-taxonomy}
 \end{figure}
 
-Media bias can manifest within different levels, categorised into 4 major types \cite{spinde-2024-taxonomy}, as shown in Figure \ref{fig:bias-types-taxonomy}. This project will mainly focus to address text-level context bias: phrasing bias, spin bias, and statement bias \cite{spinde-2024-taxonomy}: statement bias occurs when media personnel insert their personal views into the content, phrasing bias is marked by the use of provocative or non-neutral language, spin bias is introduced when essential information is omitted from the narrative.
+Many works and authors have tried to categorise media bias based on its types and characteristics \cite{rodrigo-2024-systematic-review-media-bias,eberl-2017-bias-political,spinde-2024-taxonomy,allsides-media-bias-types}. This project will follow The Media Bias Taxonomy by Spinde et al. (Figure \ref{fig:media-bias-taxonomy}), focusing on \textbf{Text-level Context Bias}, which pertains to the context of a text and the manner in which it is conveyed \cite{spinde-2024-taxonomy}.
 
-\begin{comment}
-Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
-\end{comment}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{images/phrasing_bias_example.png}
+    \includegraphics[width=0.95\linewidth]{images/spin_bias_example.png}
+    \includegraphics[width=0.95\linewidth]{images/statement_bias_example.png}
+    \caption{Example of phrasing bias (top), spin bias (middle), and statement bias (bottom) \cite{allsides-media-bias-types}}
+    \label{fig:bias-examples}
+\end{figure}
 
-\begin{comment}
-An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
-\end{comment}
-
-The phenomenon of media bias in media has not gone unnoticed, particularly by readers and consumers, lowering public trust in media outlets. In the United States particularly, trust in news media is at an all time low, falling consistently and significantly over the past 20 years \cite{pew-2021-partisan-divides, gallup-knight-2020-american-views, reuters-2023-digital-news-report}. Approximately half of Americans believe that the media is significantly responsible for the political divisions within the United States, with a growing number of Americans losing faith in the media's objectivity and perceiving it as actively engaging in ideological wars \cite{gallup-knight-2020-american-views}. Reuters Institute reported only less than half of their respondents (40\%) generally trust the majority of news sources, with the US ranked on 29 out of 40 countries (32\%) \cite{reuters-2023-digital-news-report,reuters-2023-trust}, ranking far below other countries such as Indonesia, Phillipines, and Turkey (full figure shown in Figure \ref{fig:trustworthiness-of-news-media-worldwide-2023}).
-
-Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
-
+Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \cite{allsides-media-bias-types} referring to the three types of text-level context bias: phrasing bias, spin bias, and statement bias. Phrasing bias is characterised by the use of provocative, inflammatory, or non-neutral language, using words that may evoke specific feelings or emotions in the reader \cite{spinde-2024-taxonomy,hube-2019-neural-biased-language}. The top article snippet in Figure \ref{fig:bias-examples} shows the phrase "it's going to be a bloodbath". The phrase can be considered phrasing bias as it evokes a violent image and may lead readers to perceive the election as extremely chaotic or violent, even though it is not literal. Spin bias is introduced when essential information is omitted from the narrative, or when irrelevant information is added instead \cite{spinde-2024-taxonomy}, often as an effort to craft a memorable story \cite{mullainathan-2002-media-bias}. The middle article in Figure \ref{fig:bias-examples} purposefully omitted the crucial information that the number of agencies reporting hate crime incidents has also increased. This creates a false narrative that hate crimes are on the rise, despite the possibility that the increase in reported incidents might be attributed due to higher number of reporting agencies. Statement bias occurs when media personnel insert their personal views into the content, resulting in certain news being presented in a manner that is more or less favourable towards a particular view or position \cite{spinde-2024-taxonomy,d-alessio-2000-meta-analysis}. The sentence "He's a delicate snowflake" shown in the example (Figure \ref{fig:bias-examples} bottom article) is clearly a personal opinion of the author of the post.
 
 \begin{figure}[htbp]
     \centering
@@ -47,9 +40,33 @@ Readers themselves are not exempt from bias, as they are known to prefer to pick
     \label{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}
 \end{figure}
 
-Based on surveys from Reuters and YouGov (shown in Figure \ref{fig:consumers-witnessing-false-information-on-certain-topics-worldwide-2023} and Figure \ref{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}), the United States is shown to have the highest rate in politics, COVID-19, and climate change, with nearly half of the respondents claimed to have seen false or misleading information in the last week. Furthermore, most adults of every age group responded to seeing false or misleading information on a \textbf{daily} basis. These numbers are deeply concerning, highlighting the extent of the misinformation and media bias problem in the US.
 
+Media bias and misinformation are particularly prominent and visible within the United States, compared to other countries. Based on surveys from Reuters \cite{reuters-2023-false-info} and YouGov \cite{yougov-2023-frequency} (Figure \ref{fig:consumers-witnessing-false-information-on-certain-topics-worldwide-2023} and Figure \ref{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}), the United States is shown to have the highest rate of encountering false or misleading information related to politics, COVID-19, and climate change. Nearly half of the respondents reported seeing such information in the week prior to the survey. Additionally, most adults across all age groups reported seeing false or misleading information on a \textbf{daily} basis.
 
+Furthermore, Trust in news media in the US is at an all-time low, declining consistently and significantly over the past 20 years \cite{pew-2021-partisan-divides, gallup-knight-2020-american-views, reuters-2023-digital-news-report}. Approximately half of Americans believe that the media is significantly responsible for the political divisions within the United States, with a growing number of Americans losing faith in the media's objectivity and perceiving it as actively engaging in ideological wars \cite{gallup-knight-2020-american-views}. Reuters Institute also reported less than half of their respondents (40\%) generally trust the majority of news sources, with the US ranked on 29\textsuperscript{th} out of 40 countries (32\%) in terms of trust \cite{reuters-2023-digital-news-report,reuters-2023-trust} (full figure shown in Figure \ref{fig:trustworthiness-of-news-media-worldwide-2023}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png}
+    \caption{Trustworthiness of news media worldwide, as of February 2023 \cite{reuters-2023-trust}}
+    \label{fig:trustworthiness-of-news-media-worldwide-2023}
+\end{figure}
+
+These findings highlight the severity of media bias in the United States. Given that the majority of resources on media bias are generally US-centric \cite{allsides,adfontes}, it is practically efficient to focus this project on US-based articles and domains. Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is both practical and reasonable for this project to concentrate on US-based articles and domains.
+
+\begin{comment}
+Objectivity itself is defined by Cambridge Dictionary as "the fact of being based on facts and not influenced by personal beliefs or feelings" \cite{cambridge-dictionary-objectivity}.
+
+(Journalism has abandoned the idea of seeking neutrality and objectivity, aiming instead to adopt a more engaged and committed approach) Objectivity in the media has been rejected both as an impossible standard and as an undesirable norm. \cite{boudana-2011-journalistic-objectivity}.
+
+A survey of journalists from the United States, Great Britain, Germany, Italy, and Sweden found evidence that journalists' personal beliefs substantially influence their news decisions, expressed within the stories they choose and the statements they write \cite{patterson-donsbach-1996-news-decisions}.
+
+Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
+
+An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
+
+Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
+\end{comment}
 
 \section{Word Embeddings}
 
