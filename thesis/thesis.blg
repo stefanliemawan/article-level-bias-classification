@@ -11,44 +11,47 @@ A level-1 auxiliary file: chap-7.aux
 A level-1 auxiliary file: app-A.aux
 The style file: abbrv.bst
 Database file #1: references.bib
-You've used 94 entries,
+Warning--empty title in caruana-1997-mtl
+Warning--can't use both volume and number fields in mikolov-2014-doc2vec
+You've used 97 entries,
             2118 wiz_defined-function locations,
-            978 strings with 28340 characters,
-and the built_in function-call counts, 41853 in all, are:
-= -- 3608
-> -- 3460
-< -- 17
-+ -- 1369
-- -- 1262
-* -- 3396
-:= -- 7240
-add.period$ -- 287
-call.type$ -- 94
-change.case$ -- 888
+            1008 strings with 29012 characters,
+and the built_in function-call counts, 43366 in all, are:
+= -- 3768
+> -- 3512
+< -- 20
++ -- 1388
+- -- 1277
+* -- 3532
+:= -- 7464
+add.period$ -- 297
+call.type$ -- 97
+change.case$ -- 902
 chr.to.int$ -- 0
-cite$ -- 94
-duplicate$ -- 1089
-empty$ -- 2428
-format.name$ -- 1262
-if$ -- 8324
+cite$ -- 99
+duplicate$ -- 1160
+empty$ -- 2549
+format.name$ -- 1277
+if$ -- 8658
 int.to.chr$ -- 0
-int.to.str$ -- 94
-missing$ -- 50
-newline$ -- 462
-num.names$ -- 212
-pop$ -- 1085
+int.to.str$ -- 97
+missing$ -- 55
+newline$ -- 475
+num.names$ -- 222
+pop$ -- 1093
 preamble$ -- 1
-purify$ -- 791
+purify$ -- 803
 quote$ -- 0
-skip$ -- 903
+skip$ -- 948
 stack$ -- 0
-substring$ -- 1426
-swap$ -- 269
-text.length$ -- 17
+substring$ -- 1560
+swap$ -- 295
+text.length$ -- 20
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 374
-warning$ -- 0
-while$ -- 264
-width$ -- 96
-write$ -- 991
+type$ -- 386
+warning$ -- 2
+while$ -- 281
+width$ -- 99
+write$ -- 1029
+(There were 2 warnings)

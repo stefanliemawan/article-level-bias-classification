@@ -50,6 +50,11 @@ Allsides.
 \newblock \url{https://www.allsides.com//}.
 \newblock Accessed: 2024-07-16.
 
+\bibitem{aws-neural-network}
+{Amazon Web Services}.
+\newblock What is a neural network?, n.d.
+\newblock Accessed: 2024-07-26.
+
 \bibitem{barbera-2021-article-classification}
 P.~Barberá, A.~E. Boydstun, S.~Linn, R.~McMahon, and J.~Nagler.
 \newblock Automated text classification of news articles: A practical guide.
@@ -68,6 +73,15 @@ H.~Borko and M.~Bernick.
 S.~Boudana.
 \newblock A definition of journalistic objectivity as a performance.
 \newblock {\em Media, Culture \& Society}, 33(3):385--398, 2011.
+
+\bibitem{camacho-collados-2020-embeddings}
+J.~Camacho-Collados and M.~T. Pilehvar.
+\newblock Embeddings in natural language processing.
+\newblock In L.~Specia and D.~Beck, editors, {\em Proceedings of the 28th International Conference on Computational Linguistics: Tutorial Abstracts}, pages 10--15, Barcelona, Spain (Online), Dec. 2020. International Committee for Computational Linguistics.
+
+\bibitem{caruana-1997-mtl}
+R.~Caruana.
+\newblock {\em Mach. Learn.}, 28(1):41--75, 1997.
 
 \bibitem{mbfc}
 M.~B.~F. Check.
@@ -160,11 +174,6 @@ M.~Gruppi, B.~D. Horne, and S.~Adalı.
 S.~Guo and K.~Q. Zhu.
 \newblock Modeling multi-level context for informational bias detection by contrastive learning and sentential graph network, 2022.
 
-\bibitem{hochreiter-1997-lstm}
-S.~Hochreiter and J.~Schmidhuber.
-\newblock Long short-term memory.
-\newblock {\em Neural computation}, 9:1735--80, 12 1997.
-
 \bibitem{horych-2024-magpie}
 T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
 \newblock Magpie: Multi-task media-bias analysis generalization for pre-trained identification of expressions, 2024.
@@ -188,6 +197,11 @@ S.~I. Khandve, V.~K. Wagh, A.~D. Wani, I.~M. Joshi, and R.~B. Joshi.
 V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
 \newblock Multi-view models for political ideology detection of news articles.
 \newblock In E.~Riloff, D.~Chiang, J.~Hockenmaier, and J.~Tsujii, editors, {\em Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, pages 3518--3527, Brussels, Belgium, 7 2018. Association for Computational Linguistics.
+
+\bibitem{mikolov-2014-doc2vec}
+Q.~Le and T.~Mikolov.
+\newblock Distributed representations of sentences and documents.
+\newblock In E.~P. Xing and T.~Jebara, editors, {\em Proceedings of the 31st International Conference on Machine Learning}, volume~32 of {\em Proceedings of Machine Learning Research}, pages 1188--1196, Bejing, China, 22--24 Jun 2014. PMLR.
 
 \bibitem{lee-2021-unifying}
 N.~Lee, B.~Z. Li, S.~Wang, P.~Fung, H.~Ma, W.-t. Yih, and M.~Khabsa.
@@ -213,9 +227,9 @@ J.~Liu, W.-C. Chang, Y.~Wu, and Y.~Yang.
 \newblock Deep learning for extreme multi-label text classification.
 \newblock In {\em Proceedings of the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval}, SIGIR '17, page 115–124, New York, NY, USA, 2017. Association for Computing Machinery.
 
-\bibitem{liu-2019-roberta}
-Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettlemoyer, and V.~Stoyanov.
-\newblock Roberta: A robustly optimized bert pretraining approach, 2019.
+\bibitem{liu-2020-survey-contextual-embeddings}
+Q.~Liu, M.~J. Kusner, and P.~Blunsom.
+\newblock A survey on contextual embeddings, 2020.
 
 \bibitem{loshchilov-2019-adamw}
 I.~Loshchilov and F.~Hutter.
@@ -240,11 +254,6 @@ S.~Makridakis.
 \newblock The forthcoming artificial intelligence (ai) revolution: Its impact on society and firms.
 \newblock {\em Futures}, 90:46--60, 2017.
 
-\bibitem{mali-2021-relevance-of-preprocessing}
-M.~Mali and M.~Atique.
-\newblock The relevance of preprocessing in text classification.
-\newblock In K.~K. Singh~Mer, V.~B. Semwal, V.~Bijalwan, and R.~G. Crespo, editors, {\em Proceedings of Integrated Intelligence Enable Networks and Computing}, pages 553--559, Singapore, 2021. Springer Singapore.
-
 \bibitem{allsides-2022-bias-definition}
 J.~Mastrine.
 \newblock What is media bias?, 2022.
@@ -258,11 +267,6 @@ J.~Mastrine.
 \bibitem{mikolov-2013-embeddings}
 T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
 \newblock Efficient estimation of word representations in vector space, 2013.
-
-\bibitem{mishra-2017-structured-unstructured}
-S.~Mishra and A.~Misra.
-\newblock Structured and unstructured big data analytics.
-\newblock In {\em 2017 International Conference on Current Trends in Computer, Electrical, Electronics and Communication (CTCEEC)}, pages 740--746, 2017.
 
 \bibitem{muhammed-2022-disaster-of-misinformation}
 S.~Muhammed~T and S.~K. Mathew.
@@ -296,11 +300,6 @@ N.~Newman, R.~Fletcher, A.~Schulz, S.~Andı, C.~T. Robertson, and R.~K. Nielsen.
 OpenAI, J.~Achiam, S.~Adler, S.~Agarwal, L.~Ahmad, I.~Akkaya, F.~L. Aleman, D.~Almeida, J.~Altenschmidt, S.~Altman, S.~Anadkat, R.~Avila, I.~Babuschkin, S.~Balaji, V.~Balcom, P.~Baltescu, H.~Bao, M.~Bavarian, J.~Belgum, I.~Bello, J.~Berdine, G.~Bernadett-Shapiro, C.~Berner, L.~Bogdonoff, O.~Boiko, M.~Boyd, A.-L. Brakman, G.~Brockman, T.~Brooks, M.~Brundage, K.~Button, T.~Cai, R.~Campbell, A.~Cann, B.~Carey, C.~Carlson, R.~Carmichael, B.~Chan, C.~Chang, F.~Chantzis, D.~Chen, S.~Chen, R.~Chen, J.~Chen, M.~Chen, B.~Chess, C.~Cho, C.~Chu, H.~W. Chung, D.~Cummings, J.~Currier, Y.~Dai, C.~Decareaux, T.~Degry, N.~Deutsch, D.~Deville, A.~Dhar, D.~Dohan, S.~Dowling, S.~Dunning, A.~Ecoffet, A.~Eleti, T.~Eloundou, D.~Farhi, L.~Fedus, N.~Felix, S.~P. Fishman, J.~Forte, I.~Fulford, L.~Gao, E.~Georges, C.~Gibson, V.~Goel, T.~Gogineni, G.~Goh, R.~Gontijo-Lopes, J.~Gordon, M.~Grafstein, S.~Gray, R.~Greene, J.~Gross, S.~S. Gu, Y.~Guo, C.~Hallacy, J.~Han, J.~Harris, Y.~He, M.~Heaton, J.~Heidecke, C.~Hesse, A.~Hickey, W.~Hickey, P.~Hoeschele, B.~Houghton, K.~Hsu, S.~Hu, X.~Hu, J.~Huizinga, S.~Jain, S.~Jain, J.~Jang, A.~Jiang, R.~Jiang, H.~Jin, D.~Jin, S.~Jomoto, B.~Jonn, H.~Jun, T.~Kaftan, Łukasz Kaiser, A.~Kamali, I.~Kanitscheider, N.~S. Keskar, T.~Khan, L.~Kilpatrick, J.~W. Kim, C.~Kim, Y.~Kim, J.~H. Kirchner, J.~Kiros, M.~Knight, D.~Kokotajlo, Łukasz Kondraciuk, A.~Kondrich, A.~Konstantinidis, K.~Kosic, G.~Krueger, V.~Kuo, M.~Lampe, I.~Lan, T.~Lee, J.~Leike, J.~Leung, D.~Levy, C.~M. Li, R.~Lim, M.~Lin, S.~Lin, M.~Litwin, T.~Lopez, R.~Lowe, P.~Lue, A.~Makanju, K.~Malfacini, S.~Manning, T.~Markov, Y.~Markovski, B.~Martin, K.~Mayer, A.~Mayne, B.~McGrew, S.~M. McKinney, C.~McLeavey, P.~McMillan, J.~McNeil, D.~Medina, A.~Mehta, J.~Menick, L.~Metz, A.~Mishchenko, P.~Mishkin, V.~Monaco, E.~Morikawa, D.~Mossing, T.~Mu, M.~Murati, O.~Murk, D.~Mély, A.~Nair, R.~Nakano, R.~Nayak, A.~Neelakantan, R.~Ngo, H.~Noh, L.~Ouyang, C.~O'Keefe, J.~Pachocki, A.~Paino, J.~Palermo, A.~Pantuliano, G.~Parascandolo, J.~Parish, E.~Parparita, A.~Passos, M.~Pavlov, A.~Peng, A.~Perelman, F.~de~Avila Belbute~Peres, M.~Petrov, H.~P. de~Oliveira~Pinto, Michael, Pokorny, M.~Pokrass, V.~H. Pong, T.~Powell, A.~Power, B.~Power, E.~Proehl, R.~Puri, A.~Radford, J.~Rae, A.~Ramesh, C.~Raymond, F.~Real, K.~Rimbach, C.~Ross, B.~Rotsted, H.~Roussez, N.~Ryder, M.~Saltarelli, T.~Sanders, S.~Santurkar, G.~Sastry, H.~Schmidt, D.~Schnurr, J.~Schulman, D.~Selsam, K.~Sheppard, T.~Sherbakov, J.~Shieh, S.~Shoker, P.~Shyam, S.~Sidor, E.~Sigler, M.~Simens, J.~Sitkin, K.~Slama, I.~Sohl, B.~Sokolowsky, Y.~Song, N.~Staudacher, F.~P. Such, N.~Summers, I.~Sutskever, J.~Tang, N.~Tezak, M.~B. Thompson, P.~Tillet, A.~Tootoonchian, E.~Tseng, P.~Tuggle, N.~Turley, J.~Tworek, J.~F.~C. Uribe, A.~Vallone, A.~Vijayvergiya, C.~Voss, C.~Wainwright, J.~J. Wang, A.~Wang, B.~Wang, J.~Ward, J.~Wei, C.~Weinmann, A.~Welihinda, P.~Welinder, J.~Weng, L.~Weng, M.~Wiethoff, D.~Willner, C.~Winter, S.~Wolrich, H.~Wong, L.~Workman, S.~Wu, J.~Wu, M.~Wu, K.~Xiao, T.~Xu, S.~Yoo, K.~Yu, Q.~Yuan, W.~Zaremba, R.~Zellers, C.~Zhang, M.~Zhang, S.~Zhao, T.~Zheng, J.~Zhuang, W.~Zhuk, and B.~Zoph.
 \newblock Gpt-4 technical report, 2024.
 
-\bibitem{oracle-finetuning-blog}
-S.~Padgaonkar and S.~Ghoshal.
-\newblock Fine-tuning in large language models.
-\newblock \url{https://blogs.oracle.com/ai-and-datascience/post/finetuning-in-large-language-models}, Accessed: July 2024.
-
 \bibitem{pappagari-2019-hierarchical}
 R.~Pappagari, P.~Żelasko, J.~Villalba, Y.~Carmiel, and N.~Dehak.
 \newblock Hierarchical transformers for long document classification, 2019.
@@ -319,21 +318,25 @@ F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Bl
 \newblock Scikit-learn: Machine learning in python.
 \newblock {\em Journal of machine learning research}, 12(Oct):2825--2830, 2011.
 
+\bibitem{pennington-2014-glove}
+J.~Pennington, R.~Socher, and C.~Manning.
+\newblock {G}lo{V}e: Global vectors for word representation.
+\newblock In A.~Moschitti, B.~Pang, and W.~Daelemans, editors, {\em Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing ({EMNLP})}, pages 1532--1543, Doha, Qatar, Oct. 2014. Association for Computational Linguistics.
+
 \bibitem{perez-enciso-2019-guide}
 M.~P{\'e}rez-Enciso and L.~M. Zingaretti.
 \newblock A guide on deep learning for complex trait genomic prediction.
 \newblock {\em Genes}, 10, 2019.
 
-\bibitem{rahman-2023-lstm-networks}
-A.~A. Rahman.
-\newblock Lstm networks.
-\newblock \url{https://www.linkedin.com/pulse/lstm-networks-abdullah-al-rahman/}, 2023.
-\newblock [Online; accessed 16-July-2024].
+\bibitem{popescue-2009-mlp}
+M.-C. Popescu, V.~E. Balas, L.~Perescu-Popescu, and N.~Mastorakis.
+\newblock Multilayer perceptron and neural networks.
+\newblock {\em WSEAS Trans. Cir. and Sys.}, 8(7):579–588, jul 2009.
 
-\bibitem{box-2023-untapped}
-{Research Desk}.
-\newblock Untapped value: What every executive needs to know about unstructured data, Dec. 2023.
-\newblock Sponsored by BOX.
+\bibitem{qader-2019-bow}
+W.~A. Qader, M.~M. Ameen, and B.~I. Ahmed.
+\newblock An overview of bag of words;importance, implementation, applications, and challenges.
+\newblock In {\em 2019 International Engineering Conference (IEC)}, pages 200--204, 2019.
 
 \bibitem{reuters-2023-false-info}
 {Reuters Institute for the Study of Journalism}.
@@ -349,6 +352,11 @@ A.~A. Rahman.
 F.-J. Rodrigo-Ginés, J.~C. de~Albornoz, and L.~Plaza.
 \newblock A systematic review on media bias detection: What is media bias, how it is expressed, and how to detect it.
 \newblock {\em Expert Systems with Applications}, 237:121641, 2024.
+
+\bibitem{rumelhart-1986-ann}
+D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
+\newblock Learning representations by back-propagating errors.
+\newblock {\em Nature}, 323(6088):533--536, Oct 1986.
 
 \bibitem{semianalysis-gpt4}
 SemiAnalysis.
@@ -430,6 +438,11 @@ M.~L. Wang.
 D.~M. White.
 \newblock The “gate keeper”: A case study in the selection of news.
 \newblock {\em Journalism Quarterly}, 27(4):383--390, 1950.
+
+\bibitem{white-2015-how-well-sentence-embeddings}
+L.~White, R.~Togneri, W.~Liu, and M.~Bennamoun.
+\newblock How well sentence embeddings capture meaning.
+\newblock In {\em Proceedings of the 20th Australasian Document Computing Symposium}, ADCS '15, New York, NY, USA, 2015. Association for Computing Machinery.
 
 \bibitem{wolf-2020-huggingface}
 T.~Wolf, L.~Debut, V.~Sanh, J.~Chaumond, C.~Delangue, A.~Moi, P.~Cistac, T.~Rault, R.~Louf, M.~Funtowicz, J.~Davison, S.~Shleifer, P.~von Platen, C.~Ma, Y.~Jernite, J.~Plu, C.~Xu, T.~L. Scao, S.~Gugger, M.~Drame, Q.~Lhoest, and A.~M. Rush.
