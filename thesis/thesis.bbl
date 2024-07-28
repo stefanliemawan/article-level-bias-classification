@@ -81,6 +81,7 @@ J.~Camacho-Collados and M.~T. Pilehvar.
 
 \bibitem{caruana-1997-mtl}
 R.~Caruana.
+\newblock Multitask learning.
 \newblock {\em Mach. Learn.}, 28(1):41--75, 1997.
 
 \bibitem{mbfc}
@@ -111,6 +112,11 @@ D.~Demidov.
 J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova.
 \newblock {BERT}: Pre-training of deep bidirectional transformers for language understanding.
 \newblock In J.~Burstein, C.~Doran, and T.~Solorio, editors, {\em Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)}, pages 4171--4186, Minneapolis, Minnesota, June 2019. Association for Computational Linguistics.
+
+\bibitem{dien-2019-article-classification}
+T.~T. Dien, B.~H. Loc, and N.~Thai-Nghe.
+\newblock Article classification using natural language processing and machine learning.
+\newblock In {\em 2019 International Conference on Advanced Computing and Applications (ACOMP)}, pages 78--84, 2019.
 
 \bibitem{dwyl-english-words}
 dwyl.
@@ -166,7 +172,7 @@ M.~B. Group.
 \newblock \url{https://media-bias-research.org/}.
 \newblock Accessed: 2024-05-29.
 
-\bibitem{gruppi-2023-nelagt2022}
+\bibitem{gruppi-2023-nela-gt-2022}
 M.~Gruppi, B.~D. Horne, and S.~Adalı.
 \newblock Nela-gt-2022: A large multi-labelled news dataset for the study of misinformation in news articles, 2023.
 
@@ -182,11 +188,6 @@ T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~A
 C.~Hube and B.~Fetahu.
 \newblock Neural based statement classification for biased language.
 \newblock In {\em Proceedings of the Twelfth ACM International Conference on Web Search and Data Mining}, WSDM ’19. ACM, Jan. 2019.
-
-\bibitem{lim-2018-understanding}
-S.~jeong Lim, A.~Jatowt, and M.~Yoshikawa.
-\newblock Understanding characteristics of biased sentences in news articles.
-\newblock In {\em CIKM Workshops}, 2018.
 
 \bibitem{khandve-2022-hierarchical-longdoc}
 S.~I. Khandve, V.~K. Wagh, A.~D. Wani, I.~M. Joshi, and R.~B. Joshi.
@@ -296,6 +297,11 @@ N.~Newman, R.~Fletcher, A.~Schulz, S.~Andı, C.~T. Robertson, and R.~K. Nielsen.
 \newblock Technical report, Reuters Institute for the Study of Journalism, 2021.
 \newblock [Online; accessed 29-April-2024].
 
+\bibitem{newswhip-2013-article-length}
+NewsWhip.
+\newblock I thought long form was dead – then i saw these awesome stats, Dec. 2013.
+\newblock Accessed: 2024-07-27.
+
 \bibitem{openai-2024-gpt4}
 OpenAI, J.~Achiam, S.~Adler, S.~Agarwal, L.~Ahmad, I.~Akkaya, F.~L. Aleman, D.~Almeida, J.~Altenschmidt, S.~Altman, S.~Anadkat, R.~Avila, I.~Babuschkin, S.~Balaji, V.~Balcom, P.~Baltescu, H.~Bao, M.~Bavarian, J.~Belgum, I.~Bello, J.~Berdine, G.~Bernadett-Shapiro, C.~Berner, L.~Bogdonoff, O.~Boiko, M.~Boyd, A.-L. Brakman, G.~Brockman, T.~Brooks, M.~Brundage, K.~Button, T.~Cai, R.~Campbell, A.~Cann, B.~Carey, C.~Carlson, R.~Carmichael, B.~Chan, C.~Chang, F.~Chantzis, D.~Chen, S.~Chen, R.~Chen, J.~Chen, M.~Chen, B.~Chess, C.~Cho, C.~Chu, H.~W. Chung, D.~Cummings, J.~Currier, Y.~Dai, C.~Decareaux, T.~Degry, N.~Deutsch, D.~Deville, A.~Dhar, D.~Dohan, S.~Dowling, S.~Dunning, A.~Ecoffet, A.~Eleti, T.~Eloundou, D.~Farhi, L.~Fedus, N.~Felix, S.~P. Fishman, J.~Forte, I.~Fulford, L.~Gao, E.~Georges, C.~Gibson, V.~Goel, T.~Gogineni, G.~Goh, R.~Gontijo-Lopes, J.~Gordon, M.~Grafstein, S.~Gray, R.~Greene, J.~Gross, S.~S. Gu, Y.~Guo, C.~Hallacy, J.~Han, J.~Harris, Y.~He, M.~Heaton, J.~Heidecke, C.~Hesse, A.~Hickey, W.~Hickey, P.~Hoeschele, B.~Houghton, K.~Hsu, S.~Hu, X.~Hu, J.~Huizinga, S.~Jain, S.~Jain, J.~Jang, A.~Jiang, R.~Jiang, H.~Jin, D.~Jin, S.~Jomoto, B.~Jonn, H.~Jun, T.~Kaftan, Łukasz Kaiser, A.~Kamali, I.~Kanitscheider, N.~S. Keskar, T.~Khan, L.~Kilpatrick, J.~W. Kim, C.~Kim, Y.~Kim, J.~H. Kirchner, J.~Kiros, M.~Knight, D.~Kokotajlo, Łukasz Kondraciuk, A.~Kondrich, A.~Konstantinidis, K.~Kosic, G.~Krueger, V.~Kuo, M.~Lampe, I.~Lan, T.~Lee, J.~Leike, J.~Leung, D.~Levy, C.~M. Li, R.~Lim, M.~Lin, S.~Lin, M.~Litwin, T.~Lopez, R.~Lowe, P.~Lue, A.~Makanju, K.~Malfacini, S.~Manning, T.~Markov, Y.~Markovski, B.~Martin, K.~Mayer, A.~Mayne, B.~McGrew, S.~M. McKinney, C.~McLeavey, P.~McMillan, J.~McNeil, D.~Medina, A.~Mehta, J.~Menick, L.~Metz, A.~Mishchenko, P.~Mishkin, V.~Monaco, E.~Morikawa, D.~Mossing, T.~Mu, M.~Murati, O.~Murk, D.~Mély, A.~Nair, R.~Nakano, R.~Nayak, A.~Neelakantan, R.~Ngo, H.~Noh, L.~Ouyang, C.~O'Keefe, J.~Pachocki, A.~Paino, J.~Palermo, A.~Pantuliano, G.~Parascandolo, J.~Parish, E.~Parparita, A.~Passos, M.~Pavlov, A.~Peng, A.~Perelman, F.~de~Avila Belbute~Peres, M.~Petrov, H.~P. de~Oliveira~Pinto, Michael, Pokorny, M.~Pokrass, V.~H. Pong, T.~Powell, A.~Power, B.~Power, E.~Proehl, R.~Puri, A.~Radford, J.~Rae, A.~Ramesh, C.~Raymond, F.~Real, K.~Rimbach, C.~Ross, B.~Rotsted, H.~Roussez, N.~Ryder, M.~Saltarelli, T.~Sanders, S.~Santurkar, G.~Sastry, H.~Schmidt, D.~Schnurr, J.~Schulman, D.~Selsam, K.~Sheppard, T.~Sherbakov, J.~Shieh, S.~Shoker, P.~Shyam, S.~Sidor, E.~Sigler, M.~Simens, J.~Sitkin, K.~Slama, I.~Sohl, B.~Sokolowsky, Y.~Song, N.~Staudacher, F.~P. Such, N.~Summers, I.~Sutskever, J.~Tang, N.~Tezak, M.~B. Thompson, P.~Tillet, A.~Tootoonchian, E.~Tseng, P.~Tuggle, N.~Turley, J.~Tworek, J.~F.~C. Uribe, A.~Vallone, A.~Vijayvergiya, C.~Voss, C.~Wainwright, J.~J. Wang, A.~Wang, B.~Wang, J.~Ward, J.~Wei, C.~Weinmann, A.~Welihinda, P.~Welinder, J.~Weng, L.~Weng, M.~Wiethoff, D.~Willner, C.~Winter, S.~Wolrich, H.~Wong, L.~Workman, S.~Wu, J.~Wu, M.~Wu, K.~Xiao, T.~Xu, S.~Yoo, K.~Yu, Q.~Yuan, W.~Zaremba, R.~Zellers, C.~Zhang, M.~Zhang, S.~Zhao, T.~Zheng, J.~Zhuang, W.~Zhuk, and B.~Zoph.
 \newblock Gpt-4 technical report, 2024.
@@ -376,11 +382,6 @@ T.~Spinde, M.~Plank, J.-D. Krieger, T.~Ruas, B.~Gipp, and A.~Aizawa.
 T.~Spinde, E.~Richter, M.~Wessel, J.~Kulshrestha, and K.~Donnay.
 \newblock What do twitter comments tell about news article bias? assessing the impact of news article bias on its perception on twitter.
 \newblock {\em Online Social Networks and Media}, 37-38:100264, 2023.
-
-\bibitem{spinde-2021-bias-words}
-T.~Spinde, L.~Rudnitckaia, J.~Mitrović, F.~Hamborg, M.~Granitzer, B.~Gipp, and K.~Donnay.
-\newblock Automated identification of bias inducing words in news articles using linguistic and context-oriented features.
-\newblock {\em Information Processing \& Management}, 58(3):102505, 2021.
 
 \bibitem{su-2021-classifying}
 X.~Su, T.~Miller, X.~Ding, M.~Afshar, and D.~Dligach.

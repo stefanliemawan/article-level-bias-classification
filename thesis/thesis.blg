@@ -11,47 +11,47 @@ A level-1 auxiliary file: chap-7.aux
 A level-1 auxiliary file: app-A.aux
 The style file: abbrv.bst
 Database file #1: references.bib
-Warning--empty title in caruana-1997-mtl
+Warning--I didn't find a database entry for "gruppi-2023-nelagt2022"
 Warning--can't use both volume and number fields in mikolov-2014-doc2vec
 You've used 97 entries,
             2118 wiz_defined-function locations,
-            1008 strings with 29012 characters,
-and the built_in function-call counts, 43366 in all, are:
-= -- 3768
-> -- 3512
-< -- 20
-+ -- 1388
-- -- 1277
-* -- 3532
-:= -- 7464
-add.period$ -- 297
+            1009 strings with 28961 characters,
+and the built_in function-call counts, 43244 in all, are:
+= -- 3765
+> -- 3481
+< -- 21
++ -- 1376
+- -- 1265
+* -- 3500
+:= -- 7429
+add.period$ -- 298
 call.type$ -- 97
-change.case$ -- 902
+change.case$ -- 897
 chr.to.int$ -- 0
-cite$ -- 99
-duplicate$ -- 1160
-empty$ -- 2549
-format.name$ -- 1277
-if$ -- 8658
+cite$ -- 98
+duplicate$ -- 1163
+empty$ -- 2555
+format.name$ -- 1265
+if$ -- 8653
 int.to.chr$ -- 0
 int.to.str$ -- 97
-missing$ -- 55
-newline$ -- 475
+missing$ -- 54
+newline$ -- 476
 num.names$ -- 222
-pop$ -- 1093
+pop$ -- 1091
 preamble$ -- 1
-purify$ -- 803
+purify$ -- 797
 quote$ -- 0
-skip$ -- 948
+skip$ -- 959
 stack$ -- 0
-substring$ -- 1560
-swap$ -- 295
-text.length$ -- 20
+substring$ -- 1562
+swap$ -- 302
+text.length$ -- 21
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 386
-warning$ -- 2
-while$ -- 281
+warning$ -- 1
+while$ -- 282
 width$ -- 99
-write$ -- 1029
+write$ -- 1031
 (There were 2 warnings)
