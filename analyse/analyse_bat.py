@@ -341,4 +341,6 @@ def plot_class_weights(train_df):
 # plot_correlation_tokens_reliability(df)
 # plot_correlation_bias_reliability(df)
 # plot_outlet_reliability_score(df)
-plot_class_weights(train_df)
+# plot_class_weights(train_df)
+
+print(df[df["reliability_score"] < 10])

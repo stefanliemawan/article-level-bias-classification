@@ -3,25 +3,13 @@
 
 \section{BAT dataset} \label{bat-characteristics}
 
-The BAT dataset \cite{spinde-2023-bat} is selected for this project due to its suitability for article-level analysis (contains titles, URLs of articles, and outlet information) and better labelled with reliability score instead of binary label or political alignment (left, right). The dataset contains 6345 rows of manually labelled news articles from 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website along with their respective \textbf{political bias} and \textbf{reliability scores}. Articles in the dataset encompassed a wide range of topics such as COVID-19, politics, and lifestyle. The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right). The reliability score reflects the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting).
+The BAT dataset \cite{spinde-2023-bat} contains 6,345 rows of manually labelled news articles published by 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website. Articles in the dataset encompassed a wide range of topics such as COVID-19, politics, and lifestyle. This dataset was chosen for this project primarily because of its political bias and reliability scores, which provide a clear and useful label for classifying media bias at the article level.
 
-Both political bias and reliability scores on each article were rated using defined metrics and multiple sub-factors. Each article is rated by a politically balanced panel (right-leaning, centre, and left-leaning) of at least three analysts, selected from Ad Fontes Media's team of over 60 experts. Scores are then compared, discrepancies discussed and adjusted if necessary, before averaging for the final rating \cite{adfontes-methodology}. The reliability score evaluates original fact reporting to analysis, opinion, propaganda, and inaccurate/fabricated information, with scores above 40 generally considered good and scores below 24 typically seen as problematic, scores between 24 and 40 suggest a variety of factors, including a strong presence of opinion and analysis or significant variability in reliability across different articles \cite{adfontes-bias-reliability}. No further information can be found regarding the specific values and range of these rating, it can be safely assumed that this is an inherent part of their algorithms and methodology. Nevertheless, reliability score is chosen as the main label in this project due to its correlation with textual-level bias: phrasing bias, spin bias, and statement bias as described in Chapter \ref{cha:2}.
+The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right), reflecting the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting) \cite{adfontes-bias-reliability}. The reliability score evaluates original fact reporting to analysis, opinion, propaganda, and inaccurate/fabricated information, with scores above 40 generally considered good and scores below 24 typically seen as problematic, scores between 24 and 40 suggest a variety of factors, including a strong presence of opinion and analysis or significant variability in reliability across different articles \cite{adfontes-bias-reliability}.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}{0.9\linewidth}
-        \begin{center}
-            \small{Trump Win Validated by Quantum Blockchain System Recount of Votes}
-        \end{center}
-        \scriptsize{
-            A recount of voting ballots nationwide was being done by elite units of the National Guard by early Sun. morning 8 Nov. To prevent fraud official ballots had been printed with an invisible, unbreakable code watermark and registered on a Quantum Blockchain System. As of this writing, in five states 14 million ballots had been put through a laser scanner – 78\% of which failed because there was no watermark to verify the ballot. Of those that failed 100\% had checked for Biden. An initial test showed that according to water marks on validated ballots fed into the Quantum Computer, Trump won re-election by over 80\% of the legal ballot cast. The final validated vote tallied in that test: Trump 73.5 million votes to Biden’s 25.9 million – and that didn’t even account for Trump votes that people observed being tossed and never accounted for. Interesting enough, those figures corresponded with the two men’s Twitter accounts: Trump had 88.8 million followers to Biden’s 16.6 million. Using ‘infrared’ equipment that read which ballots were real, or fake the elite National Guardsmen had been deployed to the twelve targeted states of Alabama, Arizona, Pennsylvania, Colorado, Texas, Wisconsin, Tennessee, Washington, Virginia, Delaware, Illinois and Kentucky. In all nationwide, over 500 National Guardsmen were on guard over all ballot counting units. There was much more to the tests for fraudulent voting. In addition to the watermark these official ballots also contained ink made of corn, which created an electronic radiation circuit ID that could trace the location of that ballot through GPS transmission. In other words, they could trace if the ballot was filled out by the person named on the ballot. The Trump team would be filing a number of lawsuits onThey had been preparing for this for a long time under an election fraud investigation called Project Veritas. Judicial Watch:“Our new study shows 1.8M excess, or ‘ghost’ voters in 353 counties across 29 states. The data highlights the recklessness of mailing blindly ballots/ballot applications to voter registration lists,”@TomFitton Watch more: at http://judicialwatch.org Pennsylvania alone Trump’s legal counsel Rudy Guliani had testimony of 50-60 poll watchers who claimed being deprived of an ability to inspect mail in ballots. Nationally, noted attorney Sydney Powell (rumored to be appointed the next FBI director) said, “Hammer and Scorecard – the NSA Security Software turned illegal Election Software – ran an algorithm that gave Biden a 3\% vote advantage in Wisconsin, Michigan, Pennsylvania, Georgia, Nevada and Arizona.”Rest assured, all legal issues would be accounted for by the time the Electoral College met on. By then real election results – post court battles – would determine all legally cast ballots. The joint session of Congress would make the election official on 3 Jan. 2021.}
-    \end{minipage}
-    \caption{Example of a biased article, reliability score: 4.67}
-    \label{fig:example-biased-article-1}
-\end{figure}
+Ad Fontes rates articles using a politically balanced panel consisting of at least three analysts representing right-leaning, centrist, and left-leaning perspectives. The scores from each analyst are compared, and any discrepancies are discussed and adjusted if necessary, before averaging to obtain the final rating \cite{adfontes-methodology}. No further information can be found regarding their specific values and range of these rating, it can be safely assumed that this is an inherent part of their algorithms and methodology.
 
-An example of a low-rated article can be seen in Figure \ref{fig:example-biased-article-1}. The deceptive article contains many wrongful claims and blatantly fabricated events. In contrast, Figure \ref{fig:example-nonbiased-article-1} shows an example of a high-rated article. The content reports only facts regarding the event and statements from people related to the incident. Journalist opinions or political innuendos are non-existent.
-
+The reliability score is selected as the label in this project because it measures truthfulness and original fact reporting. Articles with high reliability scores typically do not exhibit any textual-level biases, such as phrasing bias, spin bias, or statement bias, as described in Chapter \ref{cha:2}. An example of a highly-rated article can be seen in Figure \ref{fig:example-nonbiased-article-1}. The article reports only factual information regarding the event and includes statements from people related to the incident. It contains no journalist opinions or political innuendos. In contrast, an example of a low-rated article can be seen in Figure \ref{fig:example-biased-article-1}. The article refers to the event as "the most recent slap in the face," which exemplifies phrasing bias. Additionally, the author's negative view of the FBI is evident, indicating a statement bias.
 
 \begin{figure}[htbp]
     \centering
@@ -36,16 +24,28 @@ An example of a low-rated article can be seen in Figure \ref{fig:example-biased-
     \label{fig:example-nonbiased-article-1}
 \end{figure}
 
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.9\linewidth}
+        \begin{center}
+            \small{Is the FBI corrupt beyond repair?}
+        \end{center}
+        \scriptsize{
+            Last week, the most recent slap in the face to the American people came in the form of a corrupt FBI lawyer getting a fine less than seatbelt ticket for falsifying documents to violate the civil rights of American citizens. Unfortunately, this is the latest in a laundry list of issues with the FBI. The most glaring problem with the FBI is its actions during the Russia Collusion hoax. The FBI allowed itself to become the enforcement arm of the Democratic Party. There is a slim chance the law enforcement agency did not know it was being used initially, but it had to know it was being used shortly after the 2016 election...
+        }
+    \end{minipage}
+    \caption{Example of a biased article, reliability score: 4.67}
+    \label{fig:example-biased-article-1}
+\end{figure}
+
+
 \section{Reconstruction}
 
-The original BAT dataset includes news titles and links but lacks content of the articles. To address this, a Python script was developed to iteratively visit each URL in the dataset and extract the textual content. The initial round yielded 5,270 articles from the original 6,345, with a substantial loss attributed to unavailable websites, missing articles, and broken links. Additionally, some outlets are unable to be crawled by the script and had to be manually copied and pasted.
+The original BAT dataset contains the titles and URLs of articles but missing the full content. Therefore, it is necessary to crawl the websites to retrieve the complete article content. To address this, a Python script was developed to iteratively visit each URL in the dataset and extract the textual content. The initial round yielded 5,270 articles from the original 6,345 articles, with substantial data loss attributed to unavailable websites, missing articles, and broken links. Additionally, some pages could not be crawled by the script due to structural differences and had to be manually copied and pasted.
 
-The extracted text contains noise, categorised into two different type: \textbf{word-level noise} and \textbf{phrase-level noise} as illustrated in Table \ref{table:conjoined_words} and Table \ref{table:noise_phrases}. Word-level noise includes typing errors and conjoined words, mostly attributed to word links or texts with unusual HTML format that are difficult to cleanly extract. Phrase noises are attributed to the presence author information, subscription prompts, and donation appeals within the article content.
+Subsequently, a second round of data retrieval was conducted by re-examining 1,075 articles that were not successfully crawled in the initial round. Each of these cases was individually investigated: missing articles were sought through public archives, broken links were repaired, using proxies to bypass geographical restrictions. Articles that were successfully retrieved were added to the dataset, resulting in an additional 226 articles. Thus, the final dataset contains 5,496 articles.
 
-To identify word-level and phrase-level noises, the entire content of every article in the dataset was combined and tokenised, then matched with an English word list \cite{dwyl-english-words}, resulting in an error list containing words that do not exist in the dictionary. Entries in this error list underwent thorough manual inspection, prioritising commonly occurring items. Subsequently, scripts were developed based on the findings to address both word-level and phrase-level noises. This iterative process was repeated numerous times to ensure comprehensive coverage. However, given the timeframe of this project, it was impractical to fully address all identified and possible noises. Resolving these inaccuracies would have required extensive time and manual effort. A total of 5,761 word-level noises were corrected, and 625 phrase-level noises were identified and stripped from article contents. Pseudocode of the scripts can be seen in Algorithm \ref{alg:phrase_level_noise_fix} and \ref{alg:word_level_noise_fix} (Appendix \ref{app:A})
-
-
-Lastly, an additional round of extension was conducted by re-examining 1,075 rows of articles that were previously not crawled from the initial round. Problems with these outlets are then investigated and addressed, by searching for missing articles (by searching for specific headlines through public archives for deleted articles/outlets), fixing broken links, manually visiting the websites in a browser, and copy-pasting article contents into a spreadsheet. This effort successfully resulted in an additional 226 rows of articles. The final dataset consists of 5,496 rows of articles.
+The extracted text contains noise, which upon inspection is categorised into two different types: \textbf{word-level noise} and \textbf{phrase-level noise} as illustrated in Table \ref{table:conjoined_words} and Table \ref{table:noise_phrases}. Word-level noise includes typing errors and conjoined words, mostly attributed to word links or texts with unusual HTML format that are difficult to cleanly extract. Phrase-level noises are attributed to extraneous content such as author information, subscription prompts, and donation appeals within the article text.
 
 \begin{table}[htbp]
     \centering
@@ -71,7 +71,7 @@ Lastly, an additional round of extension was conducted by re-examining 1,075 row
         haspreviously          & Postcolumnist & 2ndAmendment       \\
         \hline
     \end{tabular}
-    \caption{Example of word-level noise, over 60 thousand occurrences are found within the dataset article contents}
+    \caption{Example of word-level noise, over sixty-thousand occurrences are found within the dataset article contents}
     \label{table:conjoined_words}
 \end{table}
 
@@ -107,24 +107,38 @@ Lastly, an additional round of extension was conducted by re-examining 1,075 row
     \label{table:noise_phrases}
 \end{table}
 
+To identify word-level and phrase-level noises, the entire content of every article in the dataset was combined and tokenised, then matched with an English word list \cite{dwyl-english-words}, generating an error list that includes words found in the articles but not present in the dictionary. Entries in this error list were manually inspected, prioritising commonly occurring items. Based on these findings, scripts were developed to address both word-level and phrase-level noise. This process was iteratively repeated to correct as many issues as possible. However, due to project time constraints, it was impractical to resolve all identified and potential noises, which would have required extensive time and manual effort.
+
+A total of 5,761 word-level noises were corrected, and 625 phrase-level noises were identified and stripped from article contents. The total of word-level noises that exist within the dataset is predicted to be over sixty-thousands occurrences, based on the error list. Pseudocode of the scripts can be seen in Algorithm \ref{alg:phrase_level_noise_fix} and \ref{alg:word_level_noise_fix} (Appendix \ref{app:A}).
+
+To show the effects of the noise-cleaning procedure, I compare the performance of fine-tuning BERT model with and without noises within the dataset. As can be seen in Table \ref{table:noise_performance_comparison}, the clean dataset results in a slight improvement on both recall and F1 scores, alongside a minor reduction in precision. This outcome is anticipated, as only a fraction of the noise in the dataset was addressed. It is expected that further noise cleaning would lead to more substantial improvements in performance.
+
+
+\begin{table}[htbp]
+    \centering
+    \scriptsize
+    \begin{tabular}{| c | c | c | c | c |}
+        \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\\cline{1-5}
+
+        \multirow{5}{*}{BERT FT, before noise cleaning}   & Problematic        & 0.43               & 0.37            & 0.40        \\
+                                                          & Questionable       & 0.33               & 0.39            & 0.36        \\
+                                                          & Generally Reliable & 0.39               & 0.53            & 0.45        \\
+                                                          & Reliable           & 0.91               & 0.81            & 0.86        \\\cline{2-5}
+                                                          & Overall            & 0.7379             & 0.6994          & 0.7147      \\
+        \hline
+        \multirow{5}{*}{BERT FT, after noise cleaning}    & Problematic        & 0.43               & 0.44            & 0.44        \\
+                                                          & Questionable       & 0.29               & 0.39            & 0.33        \\
+                                                          & Generally Reliable & 0.44               & 0.48            & 0.46        \\
+                                                          & Reliable           & 0.90               & 0.83            & 0.86        \\\cline{2-5}
+                                                          & Overall            & 0.7359             & 0.7065          & 0.7193      \\
+        \hline
+    \end{tabular}
+    \caption{Performance before and after noise cleaning of BERT fine-tuning}
+    \label{table:noise_performance_comparison}
+\end{table}
+
+
 \section{Analysis}
-
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/tokens_count_vx_hist.png}
-    \caption{Articles token count distribution}
-    \label{fig:tokens_hist}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/reliability_score_hist.png}
-    \caption{Reliability score distribution}
-    \label{fig:reliability_score_hist}
-\end{figure}
-
-Sub-words instead of words are used as tokens in this analysis. The length of article content tokens ranges from 17 to 16,139, with an average length of 1,207.07 and a median value of 908 tokens. Only 9 articles have more than 10,000 tokens, while 106 articles have fewer than 100 tokens. Furthermore, only 1,209 articles contain 512 tokens or fewer, which is the limit for BERT input. The articles' reliability scores range from 1.0 to 58.67, with the majority scoring between 20 and 50. No articles were rated higher than 60, despite the highest possible score being 64. Visualisations can be seen in both Figure \ref{fig:tokens_hist} and Figure \ref{fig:reliability_score_hist}, as well as Figure \ref{fig:tokens_hist_split}
 
 \begin{figure}[htbp]
     \includegraphics[width=0.9\linewidth]{figures/dates_hist.png}
@@ -133,6 +147,13 @@ Sub-words instead of words are used as tokens in this analysis. The length of ar
 \end{figure}
 
 Most articles were written and published within the last six years, with only 31 articles published before 2019, as shown in Figure \ref{fig:dates_hist}. Looking at these 31 articles individually, they generally cover similar topics to those published after 2019 and therefore should not exhibit consequential differences in behaviour and characteristics.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/tokens_count_vx_hist.png}
+    \caption{Articles' token count distribution}
+    \label{fig:tokens_hist}
+\end{figure}
 
 \begin{figure}[htbp]
     \centering
@@ -148,9 +169,19 @@ Most articles were written and published within the last six years, with only 31
     \label{fig:pearson_correlation}
 \end{figure}
 
+Sub-words instead of words are used as tokens in this analysis. The length of article content tokens ranges from 17 to 16,139, with an average length of 1,207.07 and a median value of 908 tokens. Only 9 articles have more than 10,000 tokens, while 106 articles have fewer than 100 tokens. Furthermore, 1,209 articles contain 512 tokens or fewer, which is the maximum input length for BERT. Thus, when using BERT in its standard configuration, significant information loss is to be expected due to the token limit. Visualisation of the articles' token count can be seen in Figure \ref{fig:tokens_hist}
 
+Figure \ref{fig:avg_tokens_count_per_class} shows that all classes have similar average token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. However, further analysis (Figure \ref{fig:pearson_correlation}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient of 0.02. This indicates that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
 
-Figure \ref{fig:avg_tokens_count_per_class} shows that all classes have similar token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. Further analysis(Figure \ref{fig:pearson_correlation}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient of 0.02. This indicates that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
+The articles' reliability scores range from 1.0 to 58.67, with the majority scoring between 20 and 50. No articles  exceed a score of 60, despite the highest possible score being 64. A histogram of the reliability scores is shown in Figure \ref{fig:reliability_score_hist}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/reliability_score_hist.png}
+    \caption{Reliability score distribution}
+    \label{fig:reliability_score_hist}
+\end{figure}
+
 
 %%% Local Variables: 
 %%% mode: latex
