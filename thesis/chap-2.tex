@@ -54,19 +54,19 @@ Furthermore, Trust in news media in the US is at an all-time low, declining cons
 
 Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is therefore both reasonable and practical for this project to concentrate on US-based articles and domains.
 
-\begin{comment}
-Objectivity itself is defined by Cambridge Dictionary as "the fact of being based on facts and not influenced by personal beliefs or feelings" \cite{cambridge-dictionary-objectivity}.
+% \begin{comment}
+% Objectivity itself is defined by Cambridge Dictionary as "the fact of being based on facts and not influenced by personal beliefs or feelings" \cite{cambridge-dictionary-objectivity}.
 
-(Journalism has abandoned the idea of seeking neutrality and objectivity, aiming instead to adopt a more engaged and committed approach) Objectivity in the media has been rejected both as an impossible standard and as an undesirable norm. \cite{boudana-2011-journalistic-objectivity}.
+% (Journalism has abandoned the idea of seeking neutrality and objectivity, aiming instead to adopt a more engaged and committed approach) Objectivity in the media has been rejected both as an impossible standard and as an undesirable norm. \cite{boudana-2011-journalistic-objectivity}.
 
-A survey of journalists from the United States, Great Britain, Germany, Italy, and Sweden found evidence that journalists' personal beliefs substantially influence their news decisions, expressed within the stories they choose and the statements they write \cite{patterson-donsbach-1996-news-decisions}.
+% A survey of journalists from the United States, Great Britain, Germany, Italy, and Sweden found evidence that journalists' personal beliefs substantially influence their news decisions, expressed within the stories they choose and the statements they write \cite{patterson-donsbach-1996-news-decisions}.
 
-Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
+% Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
 
-An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
+% An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
 
-Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
-\end{comment}
+% Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
+% \end{comment}
 
 \section{Machine Learning Concepts and Techniques}
 
@@ -74,7 +74,18 @@ This section introduces general machine learning concepts and techniques relevan
 
 \subsection{Text Representation}
 
-\textbf{Bag-of-words (BoW)} one of the most common techniques to represent text. In text classification, the BoW method works by counting the occurrences of each word for each instance and ignoring the order of the words and grammatical structure \cite{qader-2019-bow}. The biggest advantage of this technique is that it is computationally cheap and conceptually simple.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/bow_illustration.png}
+    \caption{An illustration of how Bag-of-Words work \cite{rahul-2023-bow-medium}}
+    \label{fig:bow_illustration}
+\end{figure}
+
+\textbf{Bag-of-words (BoW)} one of the most straightforward techniques to represent text. It works by counting the occurrences of each word for each instance and ignoring the order of the words and grammatical structure \cite{qader-2019-bow}. A simple illustration is shown in Figure \ref{fig:bow_illustration}. The biggest advantage of this technique is that it is computationally cheap and conceptually simple, however, semantic meanings of words and context are highly-disregarded.
+
+Embeddings, which represent knowledge through low-dimensional vectors that integrate easily into modern machine learning models, have been a crucial topic in NLP \cite{camacho-collados-2020-embeddings}. This approach gained significant popularity with the introduction of \textit{word2vec} and GloVE \cite{pennington-2014-glove} as methods to generate word embeddings \cite{mikolov-2013-embeddings}, which map each word to a fixed vector (visualised in Figure \ref{fig:word-embeddings}). Embeddings can be extended further to encode sentences and documents instead of words (sentence embeddings and document embeddings). Paragraph vector, or \textit(doc2vec), is a continuation from word2vec, which learns fixed-length feature representations from text segments of varying lengths, including sentences, paragraphs, and documents \cite{mikolov-2014-doc2vec}. However, word embeddings and bag-of-words have been shown to perform better than paragraph vectors models for sentence classification \cite{white-2015-how-well-sentence-embeddings}.
+
+% OOV?
 
 \begin{figure}[htbp]
     \centering
@@ -83,11 +94,6 @@ This section introduces general machine learning concepts and techniques relevan
     \label{fig:word-embeddings}
 \end{figure}
 
-Embeddings, which represent knowledge through low-dimensional vectors that integrate easily into modern machine learning models, have been a crucial topic in NLP \cite{camacho-collados-2020-embeddings}. This approach gained significant popularity with the introduction of \textit{word2vec} and GloVE \cite{pennington-2014-glove} as methods to generate word embeddings \cite{mikolov-2013-embeddings}, which map each word to a fixed vector (visualised in Figure \ref{fig:word-embeddings}). Embeddings can be extended further to encode sentences and documents instead of words (sentence embeddings and document embeddings). Paragraph vector, or \textit(doc2vec), is a continuation from word2vec, which learns fixed-length feature representations from text segments of varying lengths, including sentences, paragraphs, and documents \cite{mikolov-2014-doc2vec}. However, word embeddings and bag-of-words have been shown to perform better than paragraph vectors models for sentence classification \cite{white-2015-how-well-sentence-embeddings}.
-
-\begin{comment}
-Therefore, word-level embeddings remain as the commonly used technique for most NLP tasks for a while.
-\end{comment}
 
 Nevertheless, word embeddings have an important limitation. Since every word is mapped into a fixed single vector, word embeddings are considered static or non-contextualised, therefore, unable to distinguish between different meanings of a word \cite{camacho-collados-2020-embeddings}. Words such as 'break,' 'cut,' or 'duck' can have multiple meanings depending on their context, and thus require better modelling to achieve an accurate semantic representation. This problem is solved by \textbf{contextualised word embeddings}, which assign each word with a representation based on its context, allowing it to capture usage in different contexts and encode knowledge that can be transferred across languages \cite{liu-2020-survey-contextual-embeddings}. The embedding is typically encoded dynamically through the use of a pre-trained language model, illustrated in Figure \ref{fig:contextualised-word-embeddings}.
 
@@ -117,32 +123,34 @@ Neural Networks or Artificial Neural Networks (ANNs) saw a resurgence of interes
 
 \textbf{A MultiLayer Perceptron (MLP)} is a fully connected ANN that consists of single or multiple hidden layers, illustrated in Figure \ref{fig:mlp}. Hidden layers refer to the collection of neurons that are between the input and output layers, transforming data from layer to layer \cite{uzair-2020-hidden-layers}. MLP is widely used due to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models \cite{popescue-2009-mlp}.
 
-\begin{comment}
-The weighted sum (\( \mathbf{z} \)) in a hidden layer of a neural network is computed as follows (Equation \eqref{eq:z}):
+% ReLU?
 
-\begin{equation}
-    \label{eq:z}
-    \mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}
-\end{equation} where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
+% \begin{comment}
+% The weighted sum (\( \mathbf{z} \)) in a hidden layer of a neural network is computed as follows (Equation \eqref{eq:z}):
 
-\begin{equation}
-    \label{eq:h}
-    \mathbf{h} = f(\mathbf{z})
-\end{equation}
-\end{comment}
+% \begin{equation}
+%     \label{eq:z}
+%     \mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}
+% \end{equation} where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
 
-\begin{comment}
-\subsection{Long Short-Term Memory (LSTM)}
+% \begin{equation}
+%     \label{eq:h}
+%     \mathbf{h} = f(\mathbf{z})
+% \end{equation}
+% \end{comment}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{images/lstm.jpeg}
-    \caption{LSTM architecture \cite{rahman-2023-lstm-networks}}
-    \label{fig:lstm}
-\end{figure}
+% \begin{comment}
+% \subsection{Long Short-Term Memory (LSTM)}
 
-LSTM \cite{hochreiter-1997-lstm} is a type of Recurrent Neural Network (RNN) architecture designed to address the vanishing gradient problem and capture long-term dependencies in sequential data. It incorporates two fundamental components: memory cells and gates. Memory cells maintain a cell state, which can store information over long sequences and allows the model to retain information for longer durations compared to traditional RNNs. Gates control the flow of information into and out of the memory cell, controlled by sigmoid and tanh activation functions, which regulate the information flow based on the input data and the current state. Figure \ref{fig:lstm} shows the full architecture of a LSTM block.
-\end{comment}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{images/lstm.jpeg}
+%     \caption{LSTM architecture \cite{rahman-2023-lstm-networks}}
+%     \label{fig:lstm}
+% \end{figure}
+
+% LSTM \cite{hochreiter-1997-lstm} is a type of Recurrent Neural Network (RNN) architecture designed to address the vanishing gradient problem and capture long-term dependencies in sequential data. It incorporates two fundamental components: memory cells and gates. Memory cells maintain a cell state, which can store information over long sequences and allows the model to retain information for longer durations compared to traditional RNNs. Gates control the flow of information into and out of the memory cell, controlled by sigmoid and tanh activation functions, which regulate the information flow based on the input data and the current state. Figure \ref{fig:lstm} shows the full architecture of a LSTM block.
+% \end{comment}
 
 \subsection{Transformer and Large Language Model (LLM)}
 

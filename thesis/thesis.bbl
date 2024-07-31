@@ -364,6 +364,11 @@ D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
 \newblock Learning representations by back-propagating errors.
 \newblock {\em Nature}, 323(6088):533--536, Oct 1986.
 
+\bibitem{rahul-2023-bow-medium}
+R.~S.
+\newblock Nlp: Bag of words, 2023.
+\newblock Accessed: 2024-07-31.
+
 \bibitem{semianalysis-gpt4}
 SemiAnalysis.
 \newblock Gpt-4: Architecture \& infrastructure.

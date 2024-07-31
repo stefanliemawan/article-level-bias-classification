@@ -1,7 +1,7 @@
-\chapter{Dataset Reconstruction}
+\chapter{Dataset Reconstruction and Analysis}
 \label{cha:3}
 
-\section{BAT dataset} \label{bat-characteristics}
+\section{The BAT dataset} \label{bat-characteristics}
 
 The BAT dataset \cite{spinde-2023-bat} contains 6,345 rows of manually labelled news articles published by 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website. Articles in the dataset encompassed a wide range of topics such as COVID-19, politics, and lifestyle. This dataset was chosen for this project primarily because of its political bias and reliability scores, which provide a clear and useful label for classifying media bias at the article level.
 
@@ -43,7 +43,7 @@ The reliability score is selected as the label in this project because it measur
 
 The original BAT dataset contains the titles and URLs of articles but missing the full content. Therefore, it is necessary to crawl the websites to retrieve the complete article content. To address this, a Python script was developed to iteratively visit each URL in the dataset and extract the textual content. The initial round yielded 5,270 articles from the original 6,345 articles, with substantial data loss attributed to unavailable websites, missing articles, and broken links. Additionally, some pages could not be crawled by the script due to structural differences and had to be manually copied and pasted.
 
-Subsequently, a second round of data retrieval was conducted by re-examining 1,075 articles that were not successfully crawled in the initial round. Each of these cases was individually investigated: missing articles were sought through public archives, broken links were repaired, using proxies to bypass geographical restrictions. Articles that were successfully retrieved were added to the dataset, resulting in an additional 226 articles. Thus, the final dataset contains 5,496 articles.
+Subsequently, a second round of data retrieval was conducted by re-examining 1,075 articles that were not successfully crawled in the initial round. Each of these cases was individually investigated: missing articles were sought through public archives, broken links were repaired, using proxies to bypass geographical restrictions. Articles that were successfully retrieved were added to the dataset, resulting in an additional 226 articles. Thus, the final dataset contains 5,497 articles.
 
 The extracted text contains noise, which upon inspection is categorised into two different types: \textbf{word-level noise} and \textbf{phrase-level noise} as illustrated in Table \ref{table:conjoined_words} and Table \ref{table:noise_phrases}. Word-level noise includes typing errors and conjoined words, mostly attributed to word links or texts with unusual HTML format that are difficult to cleanly extract. Phrase-level noises are attributed to extraneous content such as author information, subscription prompts, and donation appeals within the article text.
 

@@ -3,40 +3,56 @@
 
 \section{Dataset split}
 
-The dataset reliability scores are grouped and split into 4 classes based on its reliability score as previously described in Section \ref{bat-characteristics}:
-\begin{enumerate}
-    \item Problematic: scores between 0.00 and 24.00
-    \item Questionable: scores between 24.01 and 32.00
-    \item Generally Reliable: scores between 32.01 and 40.00
-    \item Reliable: scores between 40.01 and 64
-\end{enumerate}
+The dataset reliability scores are divided into 4 classes, in alignment with the evaluation criteria set forth by Ad Fontes \cite{adfontes-bias-reliability}, as also previously described in Section \ref{bat-characteristics}. Scores below 24 will be grouped as 'Problematic' while scores above 40 will be regarded as 'Reliable'. As scores between 24 and 40 is described to suggest a variety of factor, this range is equally split into half, the lower-half (24-32) as 'Questionable', and the higher-half with (31-40) as 'Generally Reliable'. The full class split is shown in Table \ref{table:label_split}.
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{| c | c | c | c |}
+    \begin{tabular}{| l | l |}
         \hline
-        Class              & Train Set & Test Set & Validation Set \\
+        Class              & Range         \\
         \hline
-        Problematic        & 287       & 27       & 34             \\
-        Questionable       & 611       & 1033     & 2394           \\
-        Generally Reliable & 54        & 104      & 384            \\
-        Reliable           & 70        & 128      & 371            \\
-        \hline
-        Total              & 4325      & 569      & 603            \\
+        Problematic        & 0.00 - 24.00  \\
+        Questionable       & 24.01 - 32.00 \\
+        Generally Reliable & 32.01 - 40.00 \\
+        Reliable           & 40.01 - 64    \\
         \hline
     \end{tabular}
-    \caption{Number of total samples and on each class in train, test, and validation set}
+    \caption{Reliability scores are divided into four classes based on their values: Problematic, Questionable, Generally Reliable, and Reliable.}
+    \label{table:label_split}
+\end{table}
+
+As can be seen in Table \ref{table:dataset_split}, the dataset is highly imbalanced with over half of the articles rated within the 'Reliable' class. The class percentage is as follows: Problematic: 6.34\%, Questionable: 13.37\%, Generally Reliable: 23.01\%, Reliable: 57.28\%.
+
+The dataset is split into train, test, and validation sets, distributed as seen in Table \ref{table:dataset_split}. The split is done in a manner that ensure that articles from different outlets are distributed equally across the three sets. A significant drawback of this balanced approach is that neither the test set nor the validation set contains articles from unseen outlets. This limitation could potentially introduce bias in the performance evaluation and test metrics, as models trained on this dataset are not exposed to articles from outlets not seen in the training set. Ideally, a test set should contain information not included in the training set to better assess model performance. However, given the imbalance within the dataset, it is preferable to make full use of the available data by exposing models to as many patterns as possible. Additionally, since new outlets are rarely introduced in real life, it may instead be advantageous to slightly overfit models to patterns of existing outlets.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{| l | c | c | c | l |}
+        \hline
+        Class              & Train Set & Test Set & Validation Set & Total           \\
+        \hline
+        Problematic        & 287       & 27       & 34             & 348   (6.34\%)  \\
+        Questionable       & 611       & 54       & 70             & 735   (13.37\%) \\
+        Generally Reliable & 1033      & 104      & 128            & 1265  (23.01\%) \\
+        Reliable           & 2394      & 384      & 371            & 3149  (57.28\%) \\
+        \hline
+        Total              & 4325      & 569      & 603            & 5497            \\
+        \hline
+    \end{tabular}
+    \caption{Number of total samples in the dataset and number of samples for each class in train, test, and validation set}
     \label{table:dataset_split}
 \end{table}
 
-The dataset is then split into three sets of train, test, and validation, distributed as can be seen in Table \ref{table:dataset_split}. The split is done in a way to ensure that articles from different outlets are distributed equally between the three sets. A major drawback of this 'balance' splitting is that there is no unseen outlet in the test set and validation set. This can influence the final test metrics and may hinder the model's ability to generalise to new, unseen articles from unseen outlets. However, considering that new outlets are rarely introduced in the real life, it might be beneficial to slightly overfit on the patterns of existing outlets.
 
+\section{Features and Baselines}
 
-\section{Features and baselines}
+The primary features are the titles and contents of the articles, each concatenated into a single sequence, which is then tokenised.  Outlet information is incorporated as an additional feature in certain cases, to enable a comparative analysis of classifiers' performance with and without the inclusion of this supplementary data.
 
-The primary features include the title and content of the articles. Ideally, a reliable article-level media bias classifier should be capable of generalising based predominantly on the content of the articles. Furthermore, outlet information may be incorporated as an additional feature in certain instances, enabling a comparative analysis of the classifier's performance with and without the inclusion of this supplementary data.
+As baselines, traditional frequency-based encoding methods such as Bag-of-Words and TF-IDF are implemented, each combined with a simple logistic regression classifier. In these methods, the validation set is merged with the training set, as no validation step is performed.
 
-As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are implemented, combined with a simple logistic regression classifier. In these cases, the validation set is concatenated into the training set. Additionally, a majority baseline based on outlet is implemented for comparison, to demonstrate the influence of outlet information on this task. This method works by taking the most frequently occurring class observed among articles from each outlet and use it as the predicted value for the article. \textit{If an article is from outlet A, and the majority of articles from outlet A are classified as class X, then article A is classified as class X}. An illustration can be seen in Figure \ref{fig:majority_baseline}.
+Additionally, an \textbf{outlet majority baseline} is implemented as a comparison to analyse the influence of including outlet information as an additional feature. This baseline method predicts the class of an article based on the most frequently occurring class among articles from the same outlet. Specifically, if an article comes from outlet A, and the majority of articles from outlet A are classified as class X, then the article from outlet A is also classified as class X. An illustration can be seen in Figure \ref{fig:majority_baseline}.
+
+For baselines and frequency-based approaches (BoW and TF-IDF), tokenisation is done on the word-level, whereas transformer-approaches will utilise sub-word tokenisation as implemented in BERT \cite{devlin-2019-bert}. No additional text preprocessing is performed for any of the methods.
 
 
 \begin{figure}[htbp]
@@ -108,11 +124,15 @@ As baselines, traditional encoding methods such as Bag-of-Words and TF-IDF are i
     \label{fig:bow_mlp_architecture}
 \end{figure}
 
-Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of the BoW + MLP method, combining traditional encoding methods with a simple neural network training. This approach allows for a simple and computationally-cheap implementation, yet effective classifier. The model is trained for 10 epochs with a learning rate of 2e-5. Hidden size for the dense layer is 128 with a dropout probability of 0.2, no warm-up steps are applied.
+The BoW + MLP combines Bag-of-Words encoding method with a neural network, Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of this method. First, the text input is encoded using the Bag-of-Words (BoW) method, resulting in a vector representing the frequency of each word. This vector is then passed through a dense layer with a ReLU activation function, followed by a dropout layer. Finally, the output is processed through a softmax function to produce the prediction probabilities. 
+
+The model is trained for 10 epochs with a learning rate of 2e-5. The hidden size for the dense layer is 128 with a dropout probability of 0.2, no warm-up steps are applied.
 
 \subsection{Fine-tuning}
 
-In this process, input texts are tokenised and fed into a pre-trained model, which is then fine-tuned for a specific downstream task. Three pre-trained models are used in this method: BERT \cite{devlin-2019-bert}, Longformer \cite{beltagy-2020-longformer}, and BigBird \cite{zaheer-2021-bigbird}. For BERT, only the first 512 tokens are fed into the model, due to its token limitations, while both Longformer and BigBird allows for up to 4096 tokens. Training is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warm-up steps.
+In this process, input texts are tokenised and fed into a pre-trained model, which is then fine-tuned for a specific downstream task. Three pre-trained models are used in this method: BERT \cite{devlin-2019-bert}, Longformer \cite{beltagy-2020-longformer}, and BigBird \cite{zaheer-2021-bigbird}. For BERT, only the first 512 tokens are fed into the model, due to its token limitations, while both Longformer and BigBird allows for up to 4096 tokens. 
+
+Training is done over 4 epochs with weighted loss, 2e-5 learning rate, and 500 linear warm-up steps.
 
 \subsection{Chunked fine-tuning}
 

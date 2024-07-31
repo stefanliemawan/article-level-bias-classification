@@ -13,45 +13,45 @@ The style file: abbrv.bst
 Database file #1: references.bib
 Warning--I didn't find a database entry for "gruppi-2023-nelagt2022"
 Warning--can't use both volume and number fields in mikolov-2014-doc2vec
-You've used 97 entries,
+You've used 98 entries,
             2118 wiz_defined-function locations,
-            1009 strings with 28961 characters,
-and the built_in function-call counts, 43244 in all, are:
-= -- 3765
-> -- 3481
+            1013 strings with 29028 characters,
+and the built_in function-call counts, 43450 in all, are:
+= -- 3784
+> -- 3488
 < -- 21
-+ -- 1376
-- -- 1265
-* -- 3500
-:= -- 7429
-add.period$ -- 298
-call.type$ -- 97
-change.case$ -- 897
++ -- 1379
+- -- 1267
+* -- 3506
+:= -- 7463
+add.period$ -- 301
+call.type$ -- 98
+change.case$ -- 901
 chr.to.int$ -- 0
-cite$ -- 98
-duplicate$ -- 1163
-empty$ -- 2555
-format.name$ -- 1265
-if$ -- 8653
+cite$ -- 99
+duplicate$ -- 1170
+empty$ -- 2577
+format.name$ -- 1267
+if$ -- 8698
 int.to.chr$ -- 0
-int.to.str$ -- 97
+int.to.str$ -- 98
 missing$ -- 54
-newline$ -- 476
-num.names$ -- 222
-pop$ -- 1091
+newline$ -- 481
+num.names$ -- 224
+pop$ -- 1100
 preamble$ -- 1
-purify$ -- 797
+purify$ -- 800
 quote$ -- 0
-skip$ -- 959
+skip$ -- 966
 stack$ -- 0
-substring$ -- 1562
-swap$ -- 302
+substring$ -- 1567
+swap$ -- 303
 text.length$ -- 21
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 386
+type$ -- 390
 warning$ -- 1
-while$ -- 282
-width$ -- 99
-write$ -- 1031
+while$ -- 284
+width$ -- 100
+write$ -- 1041
 (There were 2 warnings)
