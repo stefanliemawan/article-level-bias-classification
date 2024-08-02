@@ -80,7 +80,14 @@ For every method, precision, recall, and F1 score is evaluated on both overall a
     \label{table:eval}
 \end{table}
 
-Table \ref{table:eval} shows the evaluation of all methods given only title and content of articles as features. Looking at the per-class metrics, it is evident that \textbf{the overall scores are heavily influenced by the performance of the 'Reliable' class due to its large support.} Less represented classes such as 'Problematic' and 'Questionable' suffered the most, staying below 0.50 F1 scores on all cases. Frequency-based approach with Bag-of-Words (BoW) performed generally decent. BoW combined with a linear regression classifier (BoW + LR) reached almost 0.7 on overall precision, recall, and F1. TF-IDF + LR performed similarly to BoW with weaker performance in two of the less represented classes ('Problematic' and 'Questionable'). Naturally, replacing the linear regression with a single layer of multilayer perceptron (BoW + MLP) slightly improved the performance. BERT fine-tuning (BERT FT) outperformed all frequency-based methods by only a close margin, particularly compared to the BoW + MLP model. BERT chunked-fine-tuning (BERT C-FT) method performed slightly better to a standard BERT fine-tuning and achieved a more balanced scores on each class metrics, mostly scoring above 0.4. Bigbird fine-tuning (Bigbird FT) performed comparably to BERT-FT, while Longformer fine-tuning (Longformer FT) outperformed every fine-tuning methods by a large difference. Hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best. Although the overall scores are comparable to Longformer FT, Hi-MAGPIE achieved significantly higher and more balanced scores on each class metrics, able to generalise better on the most biased 'Problematic' class.
+Table \ref{table:eval} presents the results of all methods given the title and content of articles as features. Looking at the per-class metrics, it is evident that \textbf{the overall scores are heavily influenced by the performance of the 'Reliable' class due to its large support}. Underrepresented classes such as 'Problematic' and 'Questionable' suffered the most, achieving below 0.50 F1 scores on most methods. This outcome is expected given the highly imbalanced class distribution. Although weighted loss was applied to mitigate this issue, it appears to be insufficient.
+
+Frequency-based approach with Bag-of-Words (BoW) and TF-IDF performed generally decent. BoW combined with a linear regression classifier (BoW + LR) reached a F1 score of 0.68. TF-IDF + LR achieved slightly worse in F1 but better precision. Although the F1 scores of 'Problematic' and 'Questionable' classes suffered greatly. A hypothesis on the low TF-IDF score might be attributed to word-level noises that could disrupt these words from being included in the TF-IDF vocabulary, despite their potential importance. Naturally, replacing the linear regression with a single layer of multilayer perceptron (BoW + MLP) improved the performance on all metrics.
+
+BERT fine-tuning (BERT FT) outperformed all frequency-based methods, although only by a close margin compared to the BoW + MLP model. BERT chunked-fine-tuning (BERT C-FT) method performed slightly better to the standard BERT fine-tuning and achieved a more balanced scores on each class metrics, mostly scoring above 0.4 F1. Bigbird fine-tuning (Bigbird FT) performed comparably to BERT-FT, while Longformer fine-tuning (Longformer FT) outperformed every fine-tuning methods by a large difference. This result suggests that a combination of global and local attention patterns, as used in Longformer, is more effective than the combination of global, local, and random attention patterns used in BigBird. The inclusion of random attention patterns in BigBird could potentially be detrimental to performance.
+
+Experiments with different pooling strategies and different chunk size for hierarchical methods concluded that mean-pooling works best with low chunk size (156 tokens) while CLS-pooling works better with longer window (512 tokens). Hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved comparable results to Longformer FT. Hierarchical model with BERT encoder performed worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLMs.
+
 
 \begin{table}[htbp]
     \centering
@@ -99,12 +106,12 @@ Table \ref{table:eval} shows the evaluation of all methods given only title and 
                                                           & Reliable           & 0.94               & 0.84            & 0.88            \\\cline{2-5}
                                                           & Overall            & \textbf{0.8186}    & 0.7883          & 0.7504          \\
         \hline
-        \multirow{5}{*}{BERT C-FT}                        & Problematic        & 0.46               & 0.41            & 0.43            \\
-                                                          & Questionable       & 0.41               & 0.48            & 0.44            \\
-                                                          & Generally Reliable & 0.46               & 0.56            & 0.51            \\
-                                                          & Reliable           & 0.91               & 0.84            & 0.87            \\\cline{2-5}
-                                                          & Overall            & 0.7585             & 0.7359          & 0.7451          \\
-        \hline
+        % \multirow{5}{*}{BERT C-FT}                        & Problematic        & 0.46               & 0.41            & 0.43            \\
+        %                                                   & Questionable       & 0.41               & 0.48            & 0.44            \\
+        %                                                   & Generally Reliable & 0.46               & 0.56            & 0.51            \\
+        %                                                   & Reliable           & 0.91               & 0.84            & 0.87            \\\cline{2-5}
+        %                                                   & Overall            & 0.7585             & 0.7359          & 0.7451          \\
+        % \hline
         \multirow{5}{*}{Bigbird FT}                       & Problematic        & 0.41               & 0.44            & 0.43            \\
                                                           & Questionable       & 0.39               & 0.52            & 0.45            \\
                                                           & Generally Reliable & 0.43               & 0.53            & 0.48            \\
@@ -117,33 +124,40 @@ Table \ref{table:eval} shows the evaluation of all methods given only title and 
                                                           & Reliable           & 0.91               & 0.85            & 0.88            \\\cline{2-5}
                                                           & Overall            & 0.7676             & 0.7434          & 0.7529          \\
         \hline
-        % \multirow{5}{*}{Hierarchical BERT, CLS-Pooling}   & Problematic        & 0.37               & 0.59            & 0.46            \\
+        % \multirow{5}{*}{Hi-BERT, CLS-Pooling}             & Problematic        & 0.37               & 0.59            & 0.46            \\
         %                                                   & Questionable       & 0.32               & 0.43            & 0.37            \\
         %                                                   & Generally Reliable & 0.40               & 0.47            & 0.43            \\
         %                                                   & Reliable           & 0.92               & 0.79            & 0.85            \\\cline{2-5}
         %                                                   & Overall            & 0.7384             & 0.6871          & 0.7071          \\
         % \hline
-        % \multirow{5}{*}{Hierarchical MAGPIE, CLS-Pooling} & Problematic        & 0.42               & 0.52            & 0.47            \\
+        % \multirow{5}{*}{Hi-BERT, Mean-Pooling}            & Problematic        & 0.0                & 0.0             & 0.0             \\
+        %                                                   & Questionable       & 0.0                & 0.0             & 0.0             \\
+        %                                                   & Generally Reliable & 0.0                & 0.0             & 0.0             \\
+        %                                                   & Reliable           & 0.0                & 0.0             & 0.0             \\\cline{2-5}
+        %                                                   & Overall            & 0.0                & 0.0             & 0.0             \\
+        % \hline
+        % \multirow{5}{*}{Hi-MAGPIE, CLS-Pooling}           & Problematic        & 0.42               & 0.52            & 0.47            \\
         %                                                   & Questionable       & 0.35               & 0.43            & 0.38            \\
         %                                                   & Generally Reliable & 0.43               & 0.55            & 0.48            \\
         %                                                   & Reliable           & 0.93               & 0.82            & 0.87            \\\cline{2-5}
         %                                                   & Overall            & 0.76034            & 0.7170          & 0.7342          \\
         % \hline
-        % \multirow{5}{*}{Hierarchical MAGPIE, Mean-Pooling} & Problematic        & 0.42               & 0.59            & 0.49            \\
-        %                                                    & Questionable       & 0.35               & 0.41            & 0.38            \\
-        %                                                    & Generally Reliable & 0.42               & 0.56            & 0.48            \\
-        %                                                    & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
-        %                                                    & Overall            & 0.7591             & 0.7117          & 0.7298          \\
+        % \multirow{5}{*}{Hi-MAGPIE, Mean-Pooling}          & Problematic        & 0.42               & 0.59            & 0.49            \\
+        %                                                   & Questionable       & 0.35               & 0.41            & 0.38            \\
+        %                                                   & Generally Reliable & 0.42               & 0.56            & 0.48            \\
+        %                                                   & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
+        %                                                   & Overall            & 0.7591             & 0.7117          & 0.7298          \\
         % \hline
     \end{tabular}
     \caption{Evaluation table, with outlet information as additional features (outlet + title + content)}
     \label{table:eval-outlet}
 \end{table}
 
-Table \ref{table:eval-outlet} shows the evaluation of methods, given the article's outlet information as additional features to the title and content. As a comparison, \textbf{using outlet information as the sole feature without any other information (Outlet majority method) outperformed all methods on overall recall and F1 scores}. This result signified how influential outlet information can be in terms of classifying media bias, in regard to this specific dataset and circumstances. Out of all the other methods, BERT FT reigned superior with the best overall precision score and a particularly strong F1 score on the 'Problematic' class, performing slightly better than the chunked implementation (BERT C-FT). BERT C-FT, BigBird FT, and Longformer FT utilised chunking techniques, which might limit their ability to fully leverage additional information from metadata. Specifically, metadata is added as a prefix to the input sequence and therefore only exist in the first chunk. As a result, the benefits of the metadata may not be reflected as thoroughly compared to BERT FT, which gained major increase in scores.
+Additionally, Table \ref{table:eval-outlet} presents the results of the outlet majority baseline compared with fine-tuning methods given articles' outlet information as an additional feature alongside the title and content. For FT implementations, outlet information is appended to the beginning of the title and content, forming a single input sequence. Hierarchical and chunked-fine-tuning methods are not implemented here, as they rely on chunking input sequences and therefore require a more sophisticated approach to effectively handle metadata.
 
+The outlet majority baseline method achieved the highest result compared to other methods. Thus, \textbf{relying solely on outlet information outperformed other methods on overall recall and F1 scores}. This result highlights the significant influence of outlet information in classifying media bias in regard to this specific dataset and circumstances. However, despite the strong performance on these metrics, relying solely on outlet information is not a comprehensive solution, as will be discussed further in the next chapter.
 
-% Interestingly, both BERT CLS and MAGPIE CLS methods were not able to capitalise on the outlet information as well as BERT FT and BERT SW FT as both CLS methods only saw little improvement compared to when outlet features were unavailable.
+Among the methods evaluated, Longformer FT achieved the best results overall, although its F1 score is slightly lower than its performance without the additional outlet metadata (see Table \ref{table:eval}). BERT FT achieved the highest overall precision score and a comparable F1 score to Longformer, with a particularly strong F1 score on the 'Problematic' class. BigBird FT scored the lowest overall. Notably, both BERT FT and BigBird FT showed the largest improvement due to the inclusion of outlet metadata.
 
 
 %%% Local Variables: 

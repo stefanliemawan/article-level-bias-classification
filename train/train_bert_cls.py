@@ -8,10 +8,10 @@ from utils.chunk_model import ChunkModel
 CHUNK_SIZE = 156
 NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
-EPOCHS = 5
+EPOCHS = 3
 TF_MODEL_NAME = "bert-base-cased"
 DROPOUT_PROB = 0.2
-POOLING_STRATEGY = "cls"
+POOLING_STRATEGY = "mean"
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -31,12 +31,12 @@ test_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/test.csv", index_col=0)
 valid_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/valid.csv", index_col=0)
 
 
-train_df, test_df, valid_df = functions.generate_title_content_features(
-    train_df, test_df, valid_df
-)
-# train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+# train_df, test_df, valid_df = functions.generate_title_content_features(
 #     train_df, test_df, valid_df
 # )
+train_df, test_df, valid_df = functions.generate_outlet_title_content_features(
+    train_df, test_df, valid_df
+)
 
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 

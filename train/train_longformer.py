@@ -73,7 +73,7 @@ functions.train(tokenised_dataset, model, epochs=4)
 
 # {'eval_loss': 0.7925838828086853, 'eval_precision': 0.7708420391217801, 'eval_recall': 0.7434094903339191, 'eval_f1': 0.7544174735254525, 'eval_runtime': 24.3887, 'eval_samples_per_second': 23.331, 'eval_steps_per_second': 2.952, 'epoch': 4.0}
 
-# outlet + title, vx
+# outlet + title + content, vx
 #               precision    recall  f1-score   support
 
 #            0       0.60      0.44      0.51        27

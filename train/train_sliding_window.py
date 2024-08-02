@@ -13,16 +13,15 @@ os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 MODEL_NAME = "bert-base-cased"
 
-WINDOW_SIZE = 512
-STRIDE = 256
-MAX_CHUNKS = 3
+WINDOW_SIZE = 156
+STRIDE = 0
 
 try:
     DATASET_VERSION = sys.argv[1]
 except IndexError:
     DATASET_VERSION = "vx"
 
-print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}, MAX_CHUNKS: {MAX_CHUNKS}")
+print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}")
 print(f"MODEL: {MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
@@ -88,7 +87,7 @@ def collate_fn_pooled_tokens(features):
 functions.train(
     tokenised_dataset,
     model,
-    epochs=4,
+    epochs=1,
     trainer_class=SlidingWindowTrainer,
     data_collator=collate_fn_pooled_tokens,
 )
