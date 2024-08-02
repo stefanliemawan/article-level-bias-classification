@@ -36,7 +36,6 @@
 \contentsline {section}{\numberline {4.4}Training details}{33}{section.4.4}%
 \contentsline {chapter}{\chapternumberline {5}Evaluation}{35}{chapter.5}%
 \contentsline {chapter}{\chapternumberline {6}Conclusion}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Remarks}{39}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future works}{40}{section.6.2}%
+\contentsline {section}{\numberline {6.1}Future works}{40}{section.6.1}%
 \contentsline {appendix}{\chapternumberline {A}The First Appendix}{43}{appendix.A}%
 \contentsline {chapter}{Bibliography}{47}{appendix*.3}%

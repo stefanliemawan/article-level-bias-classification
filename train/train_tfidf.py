@@ -34,6 +34,11 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 #     train_df, test_df, valid_df
 # )
 
+
+train_df["content"] = train_df["content"].apply(functions.preprocess_content)
+test_df["content"] = test_df["content"].apply(functions.preprocess_content)
+valid_df["content"] = valid_df["content"].apply(functions.preprocess_content)
+
 train_df = pd.concat((train_df, valid_df))
 
 tfidf_vectorizer = TfidfVectorizer()

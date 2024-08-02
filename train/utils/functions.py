@@ -71,8 +71,7 @@ def print_class_distribution(dataset):
         print()
 
 
-def preprocess_content(row):
-    content = row["content"]
+def preprocess_content(content):
     content = re.sub(r"[\.\?\!\,\:\;\"]", "", content)
     # content = re.sub(r"[\?\!\,\:\;\"]", "", content)
     tokenised_content = word_tokenize(content)
