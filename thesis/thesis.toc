@@ -9,33 +9,33 @@
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Overview}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Motivation and Goals}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}About the Media Bias Group}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.3}About the Media Bias Group}{4}{section.1.3}%
 \contentsline {chapter}{\chapternumberline {2}Background Information and Literature Review}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Media Bias}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Machine Learning Concepts and Techniques}{8}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Text Representation}{8}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Neural Networks}{11}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.2}Machine Learning Concepts and Techniques}{9}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Text Representation}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Neural Networks}{10}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Transformer and Large Language Model (LLM)}{12}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}MAGPIE}{14}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Chunking and Hierarchical Techniques}{15}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}Literature Review}{16}{section.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}MAGPIE}{13}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Chunking and Hierarchical Techniques}{14}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}Literature Review}{15}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Document Classification}{16}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Media Bias Classification}{17}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.2}Media Bias Classification}{16}{subsection.2.3.2}%
 \contentsline {chapter}{\chapternumberline {3}Dataset Reconstruction and Analysis}{19}{chapter.3}%
 \contentsline {section}{\numberline {3.1}The BAT dataset}{19}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Reconstruction}{20}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Analysis}{22}{section.3.3}%
-\contentsline {chapter}{\chapternumberline {4}Methodology}{27}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Dataset split}{27}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Features and Baselines}{28}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Proposed methods}{28}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{30}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Fine-tuning}{30}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Chunked fine-tuning}{30}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Hierarchical transformer model}{31}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Training details}{33}{section.4.4}%
-\contentsline {chapter}{\chapternumberline {5}Evaluation}{35}{chapter.5}%
-\contentsline {chapter}{\chapternumberline {6}Conclusion}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Future works}{40}{section.6.1}%
-\contentsline {appendix}{\chapternumberline {A}The First Appendix}{43}{appendix.A}%
-\contentsline {chapter}{Bibliography}{47}{appendix*.3}%
+\contentsline {chapter}{\chapternumberline {4}Methodology}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Dataset split}{25}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Features and Baselines}{26}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Proposed methods}{26}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{28}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Fine-tuning}{28}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Chunked fine-tuning}{28}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Hierarchical transformer model}{29}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Training details}{31}{section.4.4}%
+\contentsline {chapter}{\chapternumberline {5}Evaluation}{33}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {6}Conclusion}{37}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Future works}{38}{section.6.1}%
+\contentsline {appendix}{\chapternumberline {A}The First Appendix}{41}{appendix.A}%
+\contentsline {chapter}{Bibliography}{45}{appendix*.38}%

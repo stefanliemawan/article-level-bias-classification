@@ -149,7 +149,7 @@ def plot_tokens_count_split(df):
 
 def plot_tokens_count_per_class(df):
     plt.clf()
-    # plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6))
 
     custom_sort_order = [
         "Problematic",
@@ -335,7 +335,7 @@ def plot_class_weights(train_df):
 
 # plot_tokens_count(df)
 # plot_tokens_count_split(df)
-# plot_tokens_count_per_class(df)
+plot_tokens_count_per_class(df)
 # plot_reliability_score(df)
 # plot_dates(df)
 # plot_correlation_tokens_reliability(df)
@@ -343,4 +343,4 @@ def plot_class_weights(train_df):
 # plot_outlet_reliability_score(df)
 # plot_class_weights(train_df)
 
-print(df[df["reliability_score"] < 10])
+# print(df[df["reliability_score"] < 10])

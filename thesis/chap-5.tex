@@ -153,7 +153,7 @@ Experiments with different pooling strategies and different chunk size for hiera
     \label{table:eval-outlet}
 \end{table}
 
-Additionally, Table \ref{table:eval-outlet} presents the results of the outlet majority baseline compared with fine-tuning methods given articles' outlet information as an additional feature alongside the title and content. For FT implementations, outlet information is appended to the beginning of the title and content, forming a single input sequence. Hierarchical and chunked-fine-tuning methods are not implemented here, as they rely on chunking input sequences and therefore require a more sophisticated approach to effectively handle metadata.
+Additionally, Table \ref{table:eval-outlet} presents the results of the outlet majority baseline compared with fine-tuning methods given articles outlet information as an additional feature alongside the title and content. For FT implementations, outlet information is appended to the beginning of the title and content, forming a single input sequence. Hierarchical and chunked-fine-tuning methods are not implemented here, as they rely on chunking input sequences and therefore require a more sophisticated approach to effectively handle metadata.
 
 The outlet majority baseline method achieved the highest result compared to other methods. Thus, \textbf{relying solely on outlet information outperformed other methods on overall recall and F1 scores}. This result highlights the significant influence of outlet information in classifying media bias in regard to this specific dataset and circumstances. However, despite the strong performance on these metrics, relying solely on outlet information is not a comprehensive solution, as will be discussed further in the next chapter.
 

@@ -137,6 +137,12 @@ J.-M. Eberl, H.~G. Boomgaarden, and M.~Wagner.
 \newblock One bias fits all? three types of media bias and their effects on party preferences.
 \newblock {\em Communication Research}, 44(8):1125--1148, 2017.
 
+\bibitem{economist-2024-incels}
+T.~Economist.
+\newblock Meet the incels and anti-feminists of asia.
+\newblock {\em The Economist}, June 27 2024.
+\newblock [Accessed: July 4, 2024].
+
 \bibitem{enders-2020-covid19-misinformation}
 A.~M. Enders, J.~E. Uscinski, C.~Klofstad, and J.~Stoler.
 \newblock The different forms of covid-19 misinformation and their consequences.
@@ -207,6 +213,11 @@ S.~I. Khandve, V.~K. Wagh, A.~D. Wani, I.~M. Joshi, and R.~B. Joshi.
 M.~Y. Kim and K.~M. Johnson.
 \newblock {CL}o{SE}: Contrastive learning of subframe embeddings for political bias classification of news media.
 \newblock In N.~Calzolari, C.-R. Huang, H.~Kim, J.~Pustejovsky, L.~Wanner, K.-S. Choi, P.-M. Ryu, H.-H. Chen, L.~Donatelli, H.~Ji, S.~Kurohashi, P.~Paggio, N.~Xue, S.~Kim, Y.~Hahm, Z.~He, T.~K. Lee, E.~Santus, F.~Bond, and S.-H. Na, editors, {\em Proceedings of the 29th International Conference on Computational Linguistics}, pages 2780--2793, Gyeongju, Republic of Korea, Oct. 2022. International Committee on Computational Linguistics.
+
+\bibitem{krieger-2022-domain}
+J.-D. Krieger, T.~Spinde, T.~Ruas, J.~Kulshrestha, and B.~Gipp.
+\newblock A domain-adaptive pre-training approach for language bias detection in news.
+\newblock In {\em Proceedings of the 22nd ACM/IEEE Joint Conference on Digital Libraries}, JCDL ’22. ACM, June 2022.
 
 \bibitem{kulkarni-2018-multi-view}
 V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
@@ -332,6 +343,11 @@ H.~H. Park, Y.~Vyas, and K.~Shah.
 A.~Paszke, S.~Gross, S.~Chintala, G.~Chanan, E.~Yang, Z.~DeVito, Z.~Lin, A.~Desmaison, L.~Antiga, and A.~Lerer.
 \newblock Automatic differentiation in pytorch.
 \newblock In {\em NIPS-W}, 2017.
+
+\bibitem{patterson-donsbach-1996-news-decisions}
+T.~E. Patterson and W.~Donsbach.
+\newblock News decisions: Journalists as partisan actors.
+\newblock {\em Political Communication}, 13(4):455--468, 1996.
 
 \bibitem{pedregosa-2011-scikit-learn}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, et~al.

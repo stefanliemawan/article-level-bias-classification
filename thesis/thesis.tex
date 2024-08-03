@@ -39,6 +39,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{longtable}
+\usepackage{subcaption}
 
 
 %\includeonly{chap-n}
@@ -54,7 +55,7 @@
 \tableofcontents*
 
 \begin{abstract}
-    In today's digital, information-rich society, media bias poses a significant challenge to the objectivity and credibility of news reporting. Media bias can shape our perceptions, influence our opinions, and affect our understanding on various issues. It is crucial to recognise and address this bias to ensure a well-informed and balanced perspective. By being aware of the inherent biases in media sources, individuals can critically evaluate the information they consume and seek out diverse viewpoints to form a more comprehensive understanding of the world. This thesis project aims to identify forms of media bias in articles and build a system to detect and classify media bias at the article-level. The BAT \cite{spinde-2023-bat} dataset, containing articles annotated by Ad Fontes \cite{adfontes}, is extended by crawling article content from individual outlet websites. Using reliability scores as labels, the articles are categorised into four bias classes: Problematic, Questionable, Generally Reliable, and Reliable. Both the titles and content of the articles are used as primary features, with the influence of outlet metadata also examined. Based on state-of-the-art (SOTA) techniques and successful document classification methods, transformer-based approaches and hierarchical models were trained and evaluated using the extended BAT dataset. The results show that hierarchical models achieved the best performance, with fine-tuning Longformer also providing comparable results.
+    In today's digital, information-rich society, media bias presents a significant challenge to the objectivity and credibility of news reporting. Media bias can shape perceptions, influence opinions, and affect understanding of various issues. Recognizing and addressing this bias is crucial for ensuring a well-informed and balanced perspective. Existing research on automatic media bias detection largely focuses on sentence-level analysis and produce binary outputs, thus this thesis aims to develop a system for detecting and classifying media bias at the article level with multi-class output. The BAT dataset \cite{spinde-2023-bat} was reconstructed by crawling article content and introducing four-class labels derived from reliability scores that measure the truthfulness of the articles. By leveraging state-of-the-art (SOTA) techniques and successful document classification methods, transformer-based approaches and hierarchical models were trained and evaluated using the reconstructed BAT dataset. These methods were also compared against an outlet majority baseline, which classifies articles based on the majority class of their outlet. The results indicate that hierarchical models achieved the best performance, with fine-tuning Longformer providing comparable results. Additionally, mean-pooling with smaller chunk sizes was found to outperform CLS-pooling.
 \end{abstract}
 
 % % A list of figures and tables is optional

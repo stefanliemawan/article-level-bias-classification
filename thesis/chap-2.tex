@@ -16,14 +16,14 @@ Many works and authors have tried to categorise media bias based on its types an
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\linewidth]{images/phrasing_bias_example.png}
-    \includegraphics[width=0.95\linewidth]{images/spin_bias_example.png}
-    \includegraphics[width=0.95\linewidth]{images/statement_bias_example.png}
+    \fbox{\includegraphics[width=0.95\linewidth]{images/phrasing_bias_example.png}}
+    \fbox{\includegraphics[width=0.95\linewidth]{images/spin_bias_example.png}}
+    \fbox{\includegraphics[width=0.95\linewidth]{images/statement_bias_example.png}}
     \caption{Example of phrasing bias (top), spin bias (middle), and statement bias (bottom) \cite{allsides-media-bias-types}}
     \label{fig:bias-examples}
 \end{figure}
 
-Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \cite{allsides-media-bias-types} referring to the three types of text-level context bias: phrasing bias, spin bias, and statement bias. \textit{Phrasing bias} is characterised by the use of provocative, inflammatory, or non-neutral language, using words that may evoke specific feelings or emotions in the reader \cite{spinde-2024-taxonomy,hube-2019-neural-biased-language}. The top article snippet in Figure \ref{fig:bias-examples} shows the phrase "it's going to be a bloodbath". The phrase can be considered phrasing bias as it evokes a violent image and may lead readers to perceive the election as extremely chaotic or violent, even though it is not literal.\textit{Spin bias} is introduced when essential information is omitted from the narrative, or when irrelevant information is added instead \cite{spinde-2024-taxonomy}, often as an effort to craft a memorable story \cite{mullainathan-2002-media-bias}. The middle article in Figure \ref{fig:bias-examples} purposefully omitted the crucial information that the number of agencies reporting hate crime incidents has also increased. This creates a false narrative that hate crimes are on the rise, despite the possibility that the increase in reported incidents might be attributed due to higher number of reporting agencies. \textit{Statement bias} occurs when media personnel insert their personal views into the content, resulting in certain news being presented in a manner that is more or less favourable towards a particular view or position \cite{spinde-2024-taxonomy,d-alessio-2000-meta-analysis}. The sentence "He's a delicate snowflake" shown in the example (Figure \ref{fig:bias-examples} bottom article) is clearly a personal opinion of the author of the post.
+Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \cite{allsides-media-bias-types} referring to the three types of text-level context bias: phrasing bias, spin bias, and statement bias. \textit{Phrasing bias} is characterised by the use of provocative, inflammatory, or non-neutral language, using words that may evoke specific feelings or emotions in the reader \cite{spinde-2024-taxonomy,hube-2019-neural-biased-language}. The top article snippet in Figure \ref{fig:bias-examples} shows the phrase "it's going to be a bloodbath". The phrase can be considered phrasing bias as it evokes a violent image and may lead readers to perceive the election as extremely chaotic or violent, even though it is not literal. \textit{Spin bias} is introduced when essential information is omitted from the narrative, or when irrelevant information is added instead \cite{spinde-2024-taxonomy}, often as an effort to craft a memorable story \cite{mullainathan-2002-media-bias}. The middle article in Figure \ref{fig:bias-examples} purposefully omitted the crucial information that the number of agencies reporting hate crime incidents has also increased. This creates a false narrative that hate crimes are on the rise, despite the possibility that the increase in reported incidents might be attributed due to higher number of reporting agencies. \textit{Statement bias} occurs when media personnel insert their personal views into the content, resulting in certain news being presented in a manner that is more or less favourable towards a particular view or position \cite{spinde-2024-taxonomy,d-alessio-2000-meta-analysis}. The sentence "He's a delicate snowflake" shown in the example (Figure \ref{fig:bias-examples} bottom article) is clearly a personal opinion of the author of the post.
 
 \begin{figure}[htbp]
     \centering
@@ -47,26 +47,19 @@ Furthermore, Trust in news media in the US is at an all-time low, declining cons
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png}
-    \caption{Trustworthiness of news media worldwide, as of February 2023 \cite{reuters-2023-trust}}
+    \includegraphics[width=1\linewidth]{images/statistic_id308468_trustworthiness-of-news-media-worldwide-2023.png}
+    \caption{Trustworthiness of news media worldwide by country, as of February 2023 \cite{reuters-2023-trust}}
     \label{fig:trustworthiness-of-news-media-worldwide-2023}
 \end{figure}
 
-Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is therefore both reasonable and practical for this project to concentrate on US-based articles and domains.
+Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is therefore both reasonable and practical for this project to focus on US-based articles and domains.
 
-% \begin{comment}
-% Objectivity itself is defined by Cambridge Dictionary as "the fact of being based on facts and not influenced by personal beliefs or feelings" \cite{cambridge-dictionary-objectivity}.
 
-% (Journalism has abandoned the idea of seeking neutrality and objectivity, aiming instead to adopt a more engaged and committed approach) Objectivity in the media has been rejected both as an impossible standard and as an undesirable norm. \cite{boudana-2011-journalistic-objectivity}.
+% Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. 
 
-% A survey of journalists from the United States, Great Britain, Germany, Italy, and Sweden found evidence that journalists' personal beliefs substantially influence their news decisions, expressed within the stories they choose and the statements they write \cite{patterson-donsbach-1996-news-decisions}.
-
-% Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
-
-% An analysis by Pew Research Center \cite{pew-2021-election2020} found that miscalculations observed in the 2020 U.S. election polls would adjust public opinion on issues by an average of just under 1 percentage point. Although errors of such scale would not have produced substantial differences on the American public opinions, this shows the underlying bias within polls specifically and the failure of accurately representing surveys.
+% Rafail et al. \cite{rafail-2018-tea-party} examined 201,678 media documents from Tea Party organizations, Fox News, MSNBC, and 785 newspapers, revealing significant differences in how the Tea Party frames itself compared to how other media sources frame the movement, MSNBC portrays it as the worst aspect of the Republican Party, while Fox News sees it as the best, sharply in contrasts with how activists frame the movement as conservative but not strictly Republican, often clashing with Republican Party goals.
 
 % Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
-% \end{comment}
 
 \section{Machine Learning Concepts and Techniques}
 
@@ -97,7 +90,7 @@ Embeddings represent knowledge through low-dimensional vectors that integrate ea
 \end{figure}
 
 
-Nevertheless, word embeddings have an important limitation. Since every word is mapped into a fixed single vector, word embeddings are considered static or non-contextualised, therefore, unable to distinguish between different meanings of a word \cite{camacho-collados-2020-embeddings}. Words such as 'break,' 'cut,' or 'duck' can have multiple meanings depending on their context, and thus require better modelling to achieve an accurate semantic representation. This problem is solved by \textbf{contextualised word embeddings}, which assign each word with a representation based on its context, allowing it to capture usage in different contexts and encode knowledge that can be transferred across languages \cite{liu-2020-survey-contextual-embeddings}. The embedding is typically encoded dynamically through the use of a pre-trained language model, illustrated in Figure \ref{fig:contextualised-word-embeddings}.
+Nevertheless, word embeddings have an important limitation. Since every word is mapped into a fixed single vector, word embeddings are considered static or non-contextualised, therefore, unable to distinguish between different meanings of a word \cite{camacho-collados-2020-embeddings}. Words such as 'break,' 'cut,' or 'duck' can have multiple meanings depending on their context, and thus require better modelling to achieve an accurate semantic representation. This problem is solved by contextualised word embeddings, which assign each word with a representation based on its context, allowing it to capture usage in different contexts and encode knowledge that can be transferred across languages \cite{liu-2020-survey-contextual-embeddings}. The embedding is typically encoded dynamically through the use of a pre-trained language model, illustrated in Figure \ref{fig:contextualised-word-embeddings}.
 
 \begin{comment}
 Sentence embeddings generated by pre-trained language models often fail to effectively capture the semantic meaning of sentences \cite{li-2020-sentence-embeddings-pretrained-language}
@@ -176,27 +169,27 @@ Transformers and LLMs have sparked a revolution in the domain of Artificial Inte
     \label{fig:bert_finetuning}
 \end{figure}
 
-\begin{comment}
-\begin{equation}
-    \label{eq:attention}
-    \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left( \frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_k}} \right) \mathbf{V}
-\end{equation}
+% \begin{comment}
+% \begin{equation}
+%     \label{eq:attention}
+%     \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left( \frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_k}} \right) \mathbf{V}
+% \end{equation}
 
-\begin{equation}
-    \label{eq:multihead}
-    \text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O
-\end{equation}
-where
-\[
-    \text{head}_i = \text{Attention}(\mathbf{Q} \mathbf{W}^Q_i, \mathbf{K} \mathbf{W}^K_i, \mathbf{V} \mathbf{W}^V_i)
-\]
-\end{comment}
+% \begin{equation}
+%     \label{eq:multihead}
+%     \text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O
+% \end{equation}
+% where
+% \[
+%     \text{head}_i = \text{Attention}(\mathbf{Q} \mathbf{W}^Q_i, \mathbf{K} \mathbf{W}^K_i, \mathbf{V} \mathbf{W}^V_i)
+% \]
+% \end{comment}
 
 \subsection{MAGPIE}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{images/magpie.png}
+    \includegraphics[width=0.7\linewidth]{images/magpie.png}
     \caption{MAGPIE containing a pre-trained representation of various biases \cite{horych-2024-magpie}.}
     \label{fig:magpie}
 \end{figure}
@@ -240,9 +233,11 @@ Unfortunately, MAGPIE is only trained to output binary classification (biased or
     \label{fig:hi_transformer}
 \end{figure}
 
+
 \section{Literature Review}
 
 This section will discuss related works within the domain of document classification, media bias classification, and article-level media bias classification.
+
 
 \subsection{Document Classification}
 
@@ -252,9 +247,6 @@ A limitation with transformer-based approach for document classification, is tha
 
 Therefore, chunking and hierarchical techniques have been implemented to combat the problem of handling long sequences. Pappagari et al. \cite{pappagari-2019-hierarchical} are among the first to utilise the transformer architecture for long sequences classification, introducing chunking and propagation methods. Su et al. \cite{su-2021-classifying} used chunking methods in a hierarchical transformer model with 'CLS-Pooling' (as also described in \cite{adhikari-2019-docbert}) to extract representations on the document-level for the task of clinical document classification. Khandve et al. \cite{khandve-2022-hierarchical-longdoc} also implemented a hierarchical model by utilising BERT and Bi-LSTM layers for long document classification tasks.
 
-% \begin{comment}
-% In 2022, according to International Data Corporation (IDC) report, unstructured data accounted for 90\& of the total of organisation-generated data, in forms of purchase orders, product inventories, import/export records, sales agreements, contracts, patents, patient treatment notes, financial earning reports, and employee performance records, among many others \cite{box-2023-untapped}. Unstructured data refers to unorganised data that cannot be stored well into database, commonly in form of large collections of texts, terabytes or petabytes in size and growing exponentially \cite{mishra-2017-structured-unstructured}. Thus, the need to automatically manage and organise large amount of text and retrieve useful knowledge (knowledge discovery) is highly apparent \cite{mali-2021-relevance-of-preprocessing}.
-% \end{comment}
 
 \subsection{Media Bias Classification}
 
@@ -268,7 +260,6 @@ Article classification can be seen as a subset of document classification, focus
     \label{fig:media-bias-datasets-overview}
 \end{figure}
 
-
 Current available datasets for article-level and media bias classification often vary in formats or incorporate different types of bias \cite{rodrigo-2024-systematic-review-media-bias} (Figure \ref{fig:media-bias-datasets-overview}). Consequently, it is challenging to compare these datasets directly in terms of their quality and usefulness.
 
 The \textbf{BASIL} dataset \cite{fan-2019-basil} is the most commonly used bias dataset, containing 300 articles with both article-level and phrase-level annotations. The \textbf{NLPCSS} \cite{chen-2020-nlpcss} dataset, with 6,964 articles annotated via Ad Fontes labels, includes article-level textual content with three bias labels (bias, neutral, or unknown).
@@ -279,9 +270,9 @@ The \textbf{BAT} dataset \cite{spinde-2023-bat} which includes 6,345 articles fr
 
 Other datasets shown in Figure \ref{fig:media-bias-datasets-overview} either have a political compass rating or are annotated at the sentence level, making them unsuitable for this project.
 
-Past works on media bias classification typically use the BASIL dataset, operating on a sentence-level and outputting binary result (either biased or not) \cite{maab-2023-lexical-bias-detection, maab-2023-target-aware, guo-2022-modeling, van-den-berg-2020-context,lee-2021-unifying,lei-2022-sentence,lei-2024-event-relation,krieger-2022-domain-bias}, complemented by the lack of appropriate and adequate datasets with article-level annotations \cite{demidov-2023-political-bias-classification}.
+Past works on media bias classification typically use the BASIL dataset, operating on a sentence-level and outputting binary result (either biased or not) \cite{maab-2023-lexical-bias-detection, maab-2023-target-aware, guo-2022-modeling, van-den-berg-2020-context,lee-2021-unifying,lei-2022-sentence,lei-2024-event-relation,krieger-2022-domain}, complemented by the lack of appropriate and adequate datasets with article-level annotations \cite{demidov-2023-political-bias-classification}.
 
-Hence, There are only a few existing works on article-level media bias classification, with most works focusing on detecting political bias (leaning-left, right, or centre) or ideology instead of purely media bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} proposed a method that incorporates cues from the title, link structure, and content of articles to predict political ideology. Baly et al. \cite{baly-2020-we-can-detect-your-bias} adversarial media adaptation approach to detect political bias in news articles. Kim and Johnson \cite{kim-johnson-2022-close} proposed an MTL model (CloSE) that consisted of either a BERT-based or RoBERTa-based encoder, followed by a pooling layer to create a sentence embedding, which is then fed into a classifier to predict political bias. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} employed a Gaussian mixture model that exploits sentence-level bias information to detect article-level bias. Chen et al.'s definition and approach to media bias closely align with this project; however, it does not incorporate any transformer-based or state-of-the-art (SOTA) methods.
+Consequently, There are only a few existing works on article-level media bias classification, with most works focusing on detecting political bias (leaning-left, right, or centre) or ideology instead of purely media bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} proposed a method that incorporates cues from the title, link structure, and content of articles to predict political ideology. Baly et al. \cite{baly-2020-we-can-detect-your-bias} adversarial media adaptation approach to detect political bias in news articles. Kim and Johnson \cite{kim-johnson-2022-close} proposed an MTL model (CLoSE) that consisted of either a BERT-based or RoBERTa-based encoder, followed by a pooling layer to create a sentence embedding, which is then fed into a classifier to predict political bias. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} employed a Gaussian mixture model that exploits sentence-level bias information to detect article-level bias. Chen et al.'s definition and approach to media bias closely align with this project; however, it does not incorporate any transformer-based or state-of-the-art (SOTA) methods.
 
 
 % \begin{comment}
@@ -289,7 +280,6 @@ Hence, There are only a few existing works on article-level media bias classific
 
 % Alternatively, organisations such as Allsides \cite{allsides} and Ad Fontes \cite{adfontes} have their own experts and annotations which can be crawled and exploited. Several papers and datasets \cite{spinde-2023-bat,chen-2020-nlpcss,kulkarni-2018-multi-view} have utilised this approach. However, since these datasets depend on manual labelling from third-party organisations, the selection of articles likely also introduces bias into the dataset \cite{spinde-2023-bat}.
 
-% (transformer-based classification approaches have led to significant improvements in recent years) \cite{spinde-2024-taxonomy}
 % \end{comment}
 
 
