@@ -87,7 +87,7 @@ model.predict(tokenised_dataset["test"])
 
 # {'loss': 0.9091169238090515, 'precision': 0.7440445027139698, 'recall': 0.6994727592267135, 'f1': 0.7163546531981585}
 
-# vx + rescraped, outlet + title + content, bert-base-cased, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2
+# vx + rescraped, outlet + title + content, bert-base-cased, warmup_steps: 162, CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2, cls pooling
 
 #               precision    recall  f1-score   support
 
@@ -116,6 +116,21 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.75      0.70      0.72       569
 
 # {'loss': 0.8756080269813538, 'precision': 0.7458683741531709, 'recall': 0.6977152899824253, 'f1': 0.7161957054659971}
+
+
+# vx + rescraped, outlet + title + content, bert-base-cased, warmup_steps: 162, CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, DROPOUT 0.2, mean pooling
+#               precision    recall  f1-score   support
+
+#            0       0.40      0.63      0.49        27
+#            1       0.42      0.46      0.44        54
+#            2       0.43      0.56      0.49       104
+#            3       0.92      0.80      0.86       384
+
+#     accuracy                           0.72       569
+#    macro avg       0.54      0.61      0.57       569
+# weighted avg       0.76      0.72      0.73       569
+
+# {'loss': 0.8718634247779846, 'precision': 0.7602613671845464, 'recall': 0.7152899824253075, 'f1': 0.7320456708927142}
 
 # vx+, title + content, CHUNK_SIZE 156, POOLING_STRATEGY cls, NUM_TF_LAYERS 2, HIDDEN_DIM 768, EPOCHS 3, DROPOUT 0.2
 #               precision    recall  f1-score   support

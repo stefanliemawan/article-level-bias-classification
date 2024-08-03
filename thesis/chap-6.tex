@@ -1,40 +1,31 @@
 \chapter{Conclusion}
 \label{cha:6}
 
-This thesis project makes three main contributions: (1) it investigates the current state of article-level media bias classification; (2) it enhances the existing BAT dataset by crawling articles content, making the dataset more comprehensive and usable; and (3) it examines various natural language processing (NLP) techniques for article-level media bias classification, emphasising on state-of-the-art (SOTA) methods and established approaches in document classification.
+This thesis project makes three main contributions: (1) it investigates the current state of article-level media bias classification; (2) it reconstructs the existing BAT dataset by crawling articles content, making the dataset more comprehensive and usable; and (3) it examines various natural language processing (NLP) techniques for article-level media bias classification, emphasising on state-of-the-art (SOTA) methods and established approaches in document classification.
 
-Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance in media bias classification tasks with this dataset. Transformer-based approaches and hierarchical models, while expected to perform much better, have only shown slight to moderate improvements. 
+Using only articles' title and content as features, frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance. Transformer-based approaches and hierarchical models, while expected to perform much better, have only shown slight to moderate improvements. Nevertheless, hierarchical models with MAGPIE encoder and mean-pooling with shorter chunk sizes perform the best. Fine-tuning Longformer with the first 4096 tokens also yields comparable results and should therefore be used if a more straightforward approach is preferred.
 
-The low performance gains from transformer models may be partly attributed to the presence of noise in article contents, as they disrupt the context from being effectively used. Frequency-based methods are not be affected as much since they only count words and neglect the context.
+Furthermore, the experiments also found out that mean-pooling strategy performs better with smaller chunk size, while CLS-pooling performs better with bigger chunk size. Overall, mean-pooling with smaller chunk size beats CLS-pooling with any chunk size. This is in alignment with other findings \cite{rodrigo-2024-systematic-review-media-bias,reimers-2019-sentencebert}
 
-Nevertheless, hierarchical models with MAGPIE encoder and mean-pooling with shorter chunk sizes perform the best. Fine-tuning Longformer with the first 4096 tokens also yields comparable results and should therefore be used if a more straightforward approach is preferred.
+Incorporating outlet information leads to performance improvement on almost all fine-tuning methods. Although the outlet majority baseline achieves the highest recall and F1 score, relying solely on outlet information as a classifier is not an optimal solution. This method disregards the articles' content and stereotypes outlets based on their perceived bias. Additionally, over-time it may become problematic as outlets may change and evolve.
 
-The outlet majority baseline achieves the highest F1 score among all methods by relying on outlet information as a classifier. However, depending solely on outlet metadata is not an optimal solution, as it disregards the article itself and stereotypes outlets based on their perceived bias. Additionally, over-time this method may become problematic as outlets can change and evolve. The title and content are the primary components of articles; therefore, classifiers should primarily be based on this information to ensure a meaningful classification.
+There are a couple of limitations with this project. The BAT dataset used is completely curated through Ad Fontes Media \cite{adfontes}, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects trained models. Additionally, since no other work has used the BAT dataset, comparing results with other studies is practically impossible. These factors should be considered when interpreting the results.
 
-Additionally, the entire dataset used in this study (BAT dataset) is completely curated by Ad Fontes Media, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects the models trained on it. This underlying bias needs to be considered when interpreting the results.
-
-% With current performances, any the approaches mentioned in this paper should be able to confidently recognise unbiased articles well ('Reliable' class). However, this is not the case for other classes, in other words, the models would be able to classify unbiased articles instead of biased ones.
-
-\section{Future works}
-
+% The low performance gains from transformer models may be partly attributed to the presence of noise in article contents, as they disrupt the context from being effectively used. Frequency-based methods are not be affected as much since they only count words and neglect the context.
 
 % It can be hypothesised that addressing these issues by cleaning the data might lead to significant performance improvements for context-reliant approaches, allowing them to moderately outperform conventional methods. 
 
-The dataset need to be extended with a lot more examples of biased articles, particularly for the underrepresented classes 'Problematic' and 'Questionable'. Once a balanced dataset is achieved, the methods need to be reevaluated and retuned. Considering that the methods were able to generalise well on the highly-represented class ('Reliable'), similar performance improvement can be expected to the other classes, given that more samples are included.
 
-Additionally, the test set needs to be carefully crafted to include some outlets that are not seen in the training set, enabling diverse representational articles and patterns. This is crucial to assess their the models generalisability and ensuring their robustness in real-world scenarios. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Ideally, it should not rely solely on Ad Fontes selections and annotations.
+\section{Future works}
 
-Comparing results with other studies on media bias classification is currently challenging and practically impossible due to the lack of comparable datasets specifically designed for article-level media bias classification. Therefore, standardising datasets and evaluation metrics across studies would be greatly beneficial for advancing the field of media bias classification.
+The BAT dataset requires more samples, particularly for the underrepresented classes, and necessitates further and thorough text cleaning of the crawled article contents. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Crowdsourcing is a promising alternative in this regard (cite). Additionally, evaluation can be improved by carefully crafting the test set by considering unique patterns and including articles with outlets that are not present in the training set. This is crucial for assessing the models' generalisability and ensuring their robustness in real-world scenarios.
 
-Include more metadata through correct implementation may lead to better performance. Outlet information can be added as supplemental features, provided that contextual information remains the primary basis for generalization and classification. Additionally, incorporating sentiment analysis results as additional features can aid in detecting media bias within the text.
+Hierarchical methods have shown promising results and should be explored further for improved performance. Additionally, graph-based methods could be considered, as Aires et al. used information theory and community detection algorithms to identify political orientations \cite{aires-2020-information}. A similar approach could be applied to article-level media bias classification by encoding articles as nodes within a graph. This method would allow for more granular analysis and help define relationships between articles.
 
-Furthermore, the traditional approach of assigning only a single frame label to news articles remains overly simplistic and does not provide much explainability, given that a standard news article often incorporates multiple viewpoints, arguments, or facets, each potentially carrying distinct connotations or framing \cite{vallejo-2023-connecting}. Ultimately, the goal should also be for the model to provide a rationale for its classification decisions. This capability can be achieved through techniques related to question answering and reasoning in NLP, or Machine Reading Comprehension (MRC). These approaches enable the model to not only classify media bias but also explain the underlying reasons and evidence supporting its predictions. This enhances transparency and trust in the model's outputs, making it more useful for interpreting and verifying media bias classifications.
+Other metadata from articles, such as their publication dates, authors, and additional insights like sentiment analysis or Named Entity Recognition (NER), can be utilised to improve performance. However, it is arguably crucial that metadata should remain supplemental, while the primary basis for the classifier should continue to be the articles' titles and content.
 
-% Higher hierarchical models that 
+% Further pre-train BERT in the new domain...
 
-% pre-train BERT in the new domain...
-
-% Finally, more complex and global approaches such as graph-based methods can also be implemented to encode multiple articles and defining relationships between them. This would allow for a higher granularity and far more detailed representation of articles, allowing the model to generalise according to combined features of the corresponding articles.
 
 %%% Local Variables: 
 %%% mode: latex

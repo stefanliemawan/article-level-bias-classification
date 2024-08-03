@@ -11,46 +11,47 @@ A level-1 auxiliary file: chap-7.aux
 A level-1 auxiliary file: app-A.aux
 The style file: abbrv.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "krieger-2022-domain-bias"
 Warning--can't use both volume and number fields in mikolov-2014-doc2vec
-You've used 98 entries,
+You've used 101 entries,
             2118 wiz_defined-function locations,
-            1012 strings with 29006 characters,
-and the built_in function-call counts, 43450 in all, are:
-= -- 3784
-> -- 3488
-< -- 21
-+ -- 1379
-- -- 1267
-* -- 3506
-:= -- 7463
-add.period$ -- 301
-call.type$ -- 98
-change.case$ -- 901
+            1029 strings with 30205 characters,
+and the built_in function-call counts, 45161 in all, are:
+= -- 3930
+> -- 3623
+< -- 23
++ -- 1426
+- -- 1311
+* -- 3645
+:= -- 7743
+add.period$ -- 311
+call.type$ -- 101
+change.case$ -- 920
 chr.to.int$ -- 0
-cite$ -- 99
-duplicate$ -- 1170
-empty$ -- 2577
-format.name$ -- 1267
-if$ -- 8698
+cite$ -- 102
+duplicate$ -- 1227
+empty$ -- 2685
+format.name$ -- 1311
+if$ -- 9062
 int.to.chr$ -- 0
-int.to.str$ -- 98
-missing$ -- 54
-newline$ -- 481
-num.names$ -- 224
-pop$ -- 1100
+int.to.str$ -- 101
+missing$ -- 56
+newline$ -- 495
+num.names$ -- 234
+pop$ -- 1128
 preamble$ -- 1
-purify$ -- 800
+purify$ -- 816
 quote$ -- 0
-skip$ -- 966
+skip$ -- 1017
 stack$ -- 0
-substring$ -- 1567
-swap$ -- 303
-text.length$ -- 21
+substring$ -- 1662
+swap$ -- 328
+text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 390
+type$ -- 402
 warning$ -- 1
-while$ -- 284
-width$ -- 100
-write$ -- 1041
-(There was 1 warning)
+while$ -- 298
+width$ -- 104
+write$ -- 1075
+(There were 2 warnings)

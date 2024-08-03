@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{adfontes-methodology}
 {Ad Fontes Media}.
@@ -54,6 +54,15 @@ Allsides.
 {Amazon Web Services}.
 \newblock What is a neural network?, n.d.
 \newblock Accessed: 2024-07-26.
+
+\bibitem{baly-2020-we-can-detect-your-bias}
+R.~Baly, G.~Da~San~Martino, J.~Glass, and P.~Nakov.
+\newblock We can detect your bias: Predicting the political ideology of news articles.
+\newblock In B.~Webber, T.~Cohn, Y.~He, and Y.~Liu, editors, {\em Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, pages 4982--4991, Online, Nov. 2020. Association for Computational Linguistics.
+
+\bibitem{baly-2019-mt}
+R.~Baly, G.~Karadzhov, A.~Saleh, J.~Glass, and P.~Nakov.
+\newblock Multi-task ordinal regression for jointly predicting the trustworthiness and the leading political ideology of news media, 2019.
 
 \bibitem{barbera-2021-article-classification}
 P.~Barberá, A.~E. Boydstun, S.~Linn, R.~McMahon, and J.~Nagler.
@@ -193,6 +202,11 @@ C.~Hube and B.~Fetahu.
 S.~I. Khandve, V.~K. Wagh, A.~D. Wani, I.~M. Joshi, and R.~B. Joshi.
 \newblock Hierarchical neural network approaches for long document classification.
 \newblock In {\em 2022 14th International Conference on Machine Learning and Computing (ICMLC)}, ICMLC 2022. ACM, Feb. 2022.
+
+\bibitem{kim-johnson-2022-close}
+M.~Y. Kim and K.~M. Johnson.
+\newblock {CL}o{SE}: Contrastive learning of subframe embeddings for political bias classification of news media.
+\newblock In N.~Calzolari, C.-R. Huang, H.~Kim, J.~Pustejovsky, L.~Wanner, K.-S. Choi, P.-M. Ryu, H.-H. Chen, L.~Donatelli, H.~Ji, S.~Kurohashi, P.~Paggio, N.~Xue, S.~Kim, Y.~Hahm, Z.~He, T.~K. Lee, E.~Santus, F.~Bond, and S.-H. Na, editors, {\em Proceedings of the 29th International Conference on Computational Linguistics}, pages 2780--2793, Gyeongju, Republic of Korea, Oct. 2022. International Committee on Computational Linguistics.
 
 \bibitem{kulkarni-2018-multi-view}
 V.~Kulkarni, J.~Ye, S.~Skiena, and W.~Y. Wang.
@@ -344,6 +358,10 @@ W.~A. Qader, M.~M. Ameen, and B.~I. Ahmed.
 \newblock An overview of bag of words;importance, implementation, applications, and challenges.
 \newblock In {\em 2019 International Engineering Conference (IEC)}, pages 200--204, 2019.
 
+\bibitem{reimers-2019-sentencebert}
+N.~Reimers and I.~Gurevych.
+\newblock Sentence-bert: Sentence embeddings using siamese bert-networks, 2019.
+
 \bibitem{reuters-2023-false-info}
 {Reuters Institute for the Study of Journalism}.
 \newblock News consumers who saw false or misleading information about key topics in the last week in selected countries worldwide as of february 2023 [graph], June 14 2023.
@@ -411,10 +429,6 @@ A.~Tiedemann.
 M.~Uzair and N.~Jamil.
 \newblock Effects of hidden layers on the efficiency of neural networks.
 \newblock In {\em 2020 IEEE 23rd International Multitopic Conference (INMIC)}, pages 1--6, 2020.
-
-\bibitem{vallejo-2023-connecting}
-G.~Vallejo, T.~Baldwin, and L.~Frermann.
-\newblock Connecting the dots in news analysis: A cross-disciplinary survey of media bias and framing, 2023.
 
 \bibitem{van-den-berg-2020-context}
 E.~van~den Berg and K.~Markert.

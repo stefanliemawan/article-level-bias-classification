@@ -10,7 +10,9 @@ NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
 EPOCHS = 3
 DROPOUT_PROB = 0.2
-TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+# TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
+TF_MODEL_NAME = "mediabiasgroup/da-roberta-pt"
+
 POOLING_STRATEGY = "mean"
 
 try:
