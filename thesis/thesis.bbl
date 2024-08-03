@@ -358,10 +358,6 @@ W.~A. Qader, M.~M. Ameen, and B.~I. Ahmed.
 \newblock An overview of bag of words;importance, implementation, applications, and challenges.
 \newblock In {\em 2019 International Engineering Conference (IEC)}, pages 200--204, 2019.
 
-\bibitem{reimers-2019-sentencebert}
-N.~Reimers and I.~Gurevych.
-\newblock Sentence-bert: Sentence embeddings using siamese bert-networks, 2019.
-
 \bibitem{reuters-2023-false-info}
 {Reuters Institute for the Study of Journalism}.
 \newblock News consumers who saw false or misleading information about key topics in the last week in selected countries worldwide as of february 2023 [graph], June 14 2023.

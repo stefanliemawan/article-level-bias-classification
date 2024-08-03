@@ -13,45 +13,45 @@ The style file: abbrv.bst
 Database file #1: references.bib
 Warning--I didn't find a database entry for "krieger-2022-domain-bias"
 Warning--can't use both volume and number fields in mikolov-2014-doc2vec
-You've used 101 entries,
+You've used 100 entries,
             2118 wiz_defined-function locations,
-            1029 strings with 30205 characters,
-and the built_in function-call counts, 45161 in all, are:
-= -- 3930
-> -- 3623
+            1026 strings with 30087 characters,
+and the built_in function-call counts, 44928 in all, are:
+= -- 3910
+> -- 3610
 < -- 23
-+ -- 1426
-- -- 1311
-* -- 3645
-:= -- 7743
-add.period$ -- 311
-call.type$ -- 101
-change.case$ -- 920
++ -- 1421
+- -- 1307
+* -- 3635
+:= -- 7705
+add.period$ -- 309
+call.type$ -- 100
+change.case$ -- 915
 chr.to.int$ -- 0
-cite$ -- 102
-duplicate$ -- 1227
-empty$ -- 2685
-format.name$ -- 1311
-if$ -- 9062
+cite$ -- 101
+duplicate$ -- 1220
+empty$ -- 2663
+format.name$ -- 1307
+if$ -- 9012
 int.to.chr$ -- 0
-int.to.str$ -- 101
+int.to.str$ -- 100
 missing$ -- 56
-newline$ -- 495
-num.names$ -- 234
-pop$ -- 1128
+newline$ -- 491
+num.names$ -- 232
+pop$ -- 1118
 preamble$ -- 1
-purify$ -- 816
+purify$ -- 812
 quote$ -- 0
-skip$ -- 1017
+skip$ -- 1008
 stack$ -- 0
-substring$ -- 1662
-swap$ -- 328
+substring$ -- 1657
+swap$ -- 327
 text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 402
+type$ -- 398
 warning$ -- 1
-while$ -- 298
-width$ -- 104
-write$ -- 1075
+while$ -- 296
+width$ -- 103
+write$ -- 1067
 (There were 2 warnings)
