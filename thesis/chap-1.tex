@@ -5,7 +5,7 @@
 
 This thesis project is part of an Advanced Master of Artificial Intelligence programme—Speech and Language Technology, conducted in collaboration with the Media Bias Group \cite{media-bias-group}, who provided the topic and additional guidance along the project.
 
-\section{Motivation and Goals}
+\section{Motivation}
 
 Media bias is widespread in today's landscape, particularly on matters such as health, climate, and politics \cite{suarez-2021-prevalence-health-misinformation,wang-2024-health-misinformation,fleming-2023-climate-disinformation,tiedemann-2024-misinformation-democracy}. The existence of media bias in news sources can and has been used as a way to shape and influence public opinion \cite{aires-2020-information}. The advent of social media has exacerbated the spread of misinformation, allowing false information to easily and rapidly circulate while remain unchecked \cite{froehlich-2024-misinformation}. A survey by \cite{allcott-2017-fake-news-election} indicated that fake news on social media played a significant role in the election of President Trump in 2016. During the COVID-19 pandemic, numerous conspiracy theories gained widespread traction through the media, with substantial support from large groups of people. A 2020 Harvard survey revealed that nearly 20\% of people believed the pandemic was a ploy "to install tracking devices inside our bodies" \cite{enders-2020-covid19-misinformation}. Despite being a major societal issue, research on the spread of misinformation on social media platforms remains scarce \cite{muhammed-2022-disaster-of-misinformation}.
 
@@ -33,13 +33,17 @@ Existing works in media bias classification tend to have major drawbacks \cite{m
 
 While there are many studies focused on article-level political bias or ideology detection \cite{kulkarni-2018-multi-view,baly-2020-we-can-detect-your-bias,baly-2019-mt}, to my knowledge, there has been very little significant work on article-level media bias classification.
 
-Therefore, the primary goal of this project is to develop an effective article-level media bias classifier, by considering State-of-the-Art (SOTA) transformer-based approaches, as well as techniques that have been proven to be successful in document classification \cite{su-2021-classifying,wan-2019-long-length,park-2022-efficient,pappagari-2019-hierarchical} for the task of article-level media bias classification. Such classifier will aid readers to recognise potential biases in the information they consume, increase awareness of the dangers associated with media bias, promote media literacy, and enhance critical thinking skills, thereby enabling individuals to navigate information effectively in today's complex media landscape. To achieve this, the project will address the following research questions:
+\section{Goals}
+
+The primary goal of this project is to develop a novel approach for article-level media bias classification, by considering State-of-the-Art (SOTA) transformer-based approaches, as well as techniques that have been proven to be successful in document classification \cite{su-2021-classifying,wan-2019-long-length,park-2022-efficient,pappagari-2019-hierarchical}. To achieve this, the project will address the following research questions:
 \begin{enumerate}
+    \item What are the challenges and limitations of article-level bias classification, and how can they be mitigated?
     \item How can current media bias datasets be improved to better support article-level classification?
     \item What are the most effective methods to represent articles and preserve contextual information for media bias classification task?
     \item How can an effective article-level media bias classifier be trained and evaluated?
-    \item What are the challenges and limitations of article-level bias classification, and how can they be mitigated?
 \end{enumerate}
+
+This thesis project makes three main contributions: (1) it investigates the current state of article-level media bias classification, identifying gaps in research and key challenges; (2) it reconstructs the BAT dataset by crawling articles content, resulting in a dataset of 5,497 articles with an additional multi-class labels; and (3) it examines various natural language processing (NLP) techniques for article-level media bias classification, highlighting that hierarchical methods show significant promise, slightly outperforming fine-tuning Longformer.
 
 \section{About the Media Bias Group}
 
