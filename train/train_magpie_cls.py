@@ -5,7 +5,8 @@ import utils.functions as functions
 from transformers import AutoTokenizer
 from utils.chunk_model import ChunkModel
 
-CHUNK_SIZE = 156
+# CHUNK_SIZE = 156
+CHUNK_SIZE = 512
 NUM_TF_LAYERS = 2
 HIDDEN_DIM = 768
 EPOCHS = 3
@@ -13,7 +14,7 @@ DROPOUT_PROB = 0.2
 # TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
 TF_MODEL_NAME = "mediabiasgroup/da-roberta-pt"
 
-POOLING_STRATEGY = "mean"
+POOLING_STRATEGY = "cls"
 
 try:
     DATASET_VERSION = sys.argv[1]
@@ -221,3 +222,33 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.78      0.74      0.75       569
 
 # {'loss': 0.8838070034980774, 'precision': 0.782877512068557, 'recall': 0.7363796133567663, 'f1': 0.7532728105721062}
+
+
+# ==== DaROBERTA
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 156, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, NO DROPOUT,TRANSFORMER_MODEL_NAME mediabiasgroup/da-roberta-pt, mean pooling
+#               precision    recall  f1-score   support
+
+#            0       0.36      0.56      0.43        27
+#            1       0.30      0.37      0.33        54
+#            2       0.42      0.49      0.45       104
+#            3       0.91      0.80      0.85       384
+
+#     accuracy                           0.69       569
+#    macro avg       0.50      0.55      0.52       569
+# weighted avg       0.74      0.69      0.71       569
+
+# {'loss': 0.8882141709327698, 'precision': 0.7352668876885263, 'recall': 0.6924428822495606, 'f1': 0.7097492232222417}
+
+# vx + rescraped, warmup_steps: 162, title + content , CHUNK_SIZE 512, NUM_TF_LAYERS 2, HIDDEN_SIZE 768, EPOCHS 3, NO DROPOUT,TRANSFORMER_MODEL_NAME mediabiasgroup/da-roberta-pt, cls pooling
+#               precision    recall  f1-score   support
+
+#            0       0.43      0.74      0.54        27
+#            1       0.33      0.31      0.32        54
+#            2       0.42      0.54      0.47       104
+#            3       0.93      0.82      0.87       384
+
+#     accuracy                           0.71       569
+#    macro avg       0.53      0.60      0.55       569
+# weighted avg       0.76      0.71      0.73       569
+
+# {'loss': 0.8684646487236023, 'precision': 0.7550173414066603, 'recall': 0.7135325131810193, 'f1': 0.728339352290918}

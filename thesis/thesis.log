@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  3 AUG 2024 16:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  6 AUG 2024 04:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1642,36 +1642,36 @@ Package pdftex.def Info: images/media_bias_dataset_overview.png  used on input l
 
 ] [20]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 53.
+(Font)              <10> on input line 67.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 53.
+(Font)              <7> on input line 67.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 53.
+(Font)              <5> on input line 67.
  [21]
-<figures/tokens_count_vx_hist.png, id=609, 722.7pt x 433.62pt>
+<figures/tokens_count_vx_hist.png, id=608, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 148.
+Package pdftex.def Info: figures/tokens_count_vx_hist.png  used on input line 162.
 (pdftex.def)             Requested size: 195.02219pt x 117.01279pt.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-<figures/tokens_count_vx_per_class_hist.png, id=610, 722.7pt x 433.62pt>
+<figures/tokens_count_vx_per_class_hist.png, id=609, 722.7pt x 433.62pt>
 File: figures/tokens_count_vx_per_class_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_per_class_hist.png>
-Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 153.
+Package pdftex.def Info: figures/tokens_count_vx_per_class_hist.png  used on input line 167.
 (pdftex.def)             Requested size: 195.02219pt x 117.01279pt.
-<figures/reliability_score_hist.png, id=611, 722.7pt x 433.62pt>
+<figures/reliability_score_hist.png, id=610, 722.7pt x 433.62pt>
 File: figures/reliability_score_hist.png Graphic file (type png)
 <use figures/reliability_score_hist.png>
-Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 158.
+Package pdftex.def Info: figures/reliability_score_hist.png  used on input line 172.
 (pdftex.def)             Requested size: 195.02219pt x 117.01279pt.
-<figures/correlation_tokens_reliability_score.png, id=612, 722.7pt x 433.62pt>
+<figures/correlation_tokens_reliability_score.png, id=611, 722.7pt x 433.62pt>
 File: figures/correlation_tokens_reliability_score.png Graphic file (type png)
 <use figures/correlation_tokens_reliability_score.png>
-Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 163.
+Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used on input line 177.
 (pdftex.def)             Requested size: 195.02219pt x 117.01279pt.
-) [22] [23 <./figures/tokens_count_vx_hist.png> <./figures/tokens_count_vx_per_class_hist.png> <./figures/reliability_score_hist.png> <./figures/correlation_tokens_reliability_score.png>]
+ [22]) [23 <./figures/tokens_count_vx_hist.png> <./figures/tokens_count_vx_per_class_hist.png> <./figures/reliability_score_hist.png> <./figures/correlation_tokens_reliability_score.png>]
 \openout2 = `chap-4.aux'.
 
  (./chap-4.tex [24
@@ -1683,7 +1683,7 @@ Package pdftex.def Info: figures/correlation_tokens_reliability_score.png  used 
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 212.
  [29{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [30{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-<figures/class_weights.png, id=705, 722.7pt x 433.62pt>
+<figures/class_weights.png, id=707, 722.7pt x 433.62pt>
 File: figures/class_weights.png Graphic file (type png)
 <use figures/class_weights.png>
 Package pdftex.def Info: figures/class_weights.png  used on input line 288.
@@ -1692,6 +1692,10 @@ Package pdftex.def Info: figures/class_weights.png  used on input line 288.
 \openout2 = `chap-5.aux'.
 
  (./chap-5.tex
+
+LaTeX Warning: Float too large for page by 7.69872pt on input line 87.
+
+
 Underfull \vbox (badness 1308) has occurred while \output is active []
 
  [33
@@ -1726,22 +1730,22 @@ No file chap-7.tex.
 \openout2 = `app-A.aux'.
 
  (./app-A.tex
-<figures/tokens_count_vx_split_hist.png, id=768, 867.24pt x 867.24pt>
+<figures/tokens_count_vx_split_hist.png, id=770, 867.24pt x 867.24pt>
 File: figures/tokens_count_vx_split_hist.png Graphic file (type png)
 <use figures/tokens_count_vx_split_hist.png>
 Package pdftex.def Info: figures/tokens_count_vx_split_hist.png  used on input line 6.
 (pdftex.def)             Requested size: 358.19757pt x 358.20407pt.
-<figures/wordcloud_vx.png, id=769, 462.528pt x 346.896pt>
+<figures/wordcloud_vx.png, id=771, 462.528pt x 346.896pt>
 File: figures/wordcloud_vx.png Graphic file (type png)
 <use figures/wordcloud_vx.png>
 Package pdftex.def Info: figures/wordcloud_vx.png  used on input line 13.
 (pdftex.def)             Requested size: 278.59879pt x 208.95964pt.
-<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=770, 308.352pt x 243.7908pt>
+<images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg, id=772, 308.352pt x 243.7908pt>
 File: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg Graphic file (type jpg)
 <use images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg>
 Package pdftex.def Info: images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg  used on input line 23.
 (pdftex.def)             Requested size: 318.40121pt x 251.73972pt.
-<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=771, 1003.75pt x 745.78625pt>
+<images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png, id=773, 1003.75pt x 745.78625pt>
 File: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png Graphic file (type png)
 <use images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png>
 Package pdftex.def Info: images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png  used on input line 30.
@@ -1793,21 +1797,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 403--406
 
  (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: CBBE09FEB255E01D880563F9719A4B8A;3258.
+(rerunfilecheck)             Checksum: 2E60F548D95A6AC179DA13174FF376B9;3258.
  ) 
 Here is how much of TeX's memory you used:
- 30692 strings out of 476025
- 563784 string characters out of 5790016
- 1894388 words of memory out of 5000000
- 50019 multiletter control sequences out of 15000+600000
- 627334 words of font info for 233 fonts, out of 8000000 for 9000
+ 30702 strings out of 476025
+ 563907 string characters out of 5790016
+ 1897388 words of memory out of 5000000
+ 50020 multiletter control sequences out of 15000+600000
+ 627670 words of font info for 237 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,3281b,800s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on thesis.pdf (58 pages, 8594812 bytes).
+Output written on thesis.pdf (58 pages, 8597018 bytes).
 PDF statistics:
- 993 PDF objects out of 1000 (max. 8388607)
- 825 compressed objects within 9 object streams
- 240 named destinations out of 1000 (max. 500000)
+ 996 PDF objects out of 1000 (max. 8388607)
+ 828 compressed objects within 9 object streams
+ 241 named destinations out of 1000 (max. 500000)
  60756 words of extra memory for PDF output out of 61914 (max. 10000000)
 

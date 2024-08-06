@@ -83,17 +83,16 @@ model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"], test_metadata)
 
-# HM, v4
+# mediabiasgroup/magpie-babe-ft, dataset vx, CHUNK_SIZE 156, OVERLAP 0, NUM_TF_LAYERS 2, HIDDEN_DIM 768, EPOCHS 3, DROPOUT 0.2, title + content, warmup_steps 162, lr 1e-05
 #               precision    recall  f1-score   support
 
-#            0       0.39      0.26      0.31        27
-#            1       0.34      0.37      0.35        54
-#            2       0.47      0.15      0.23       104
-#            3       0.80      0.96      0.87       384
+#            0       0.46      0.63      0.53        27
+#            1       0.40      0.46      0.43        54
+#            2       0.39      0.51      0.44       104
+#            3       0.93      0.80      0.86       384
 
-#     accuracy                           0.72       569
-#    macro avg       0.50      0.43      0.44       569
-# weighted avg       0.68      0.72      0.68       569
+#     accuracy                           0.71       569
+#    macro avg       0.54      0.60      0.57       569
+# weighted avg       0.76      0.71      0.73       569
 
-# {'loss': 1.7457451820373535, 'precision': 0.6774153215903513, 'recall': 0.7205623901581723, 'f1': 0.6790453945644586}
-# so might
+# {'loss': 0.8577841520309448, 'precision': 0.7555730957707322, 'recall': 0.7100175746924429, 'f1': 0.727705275815567}

@@ -9,11 +9,11 @@ The political bias score measures the extent of political influence, ranging fro
 
 Ad Fontes rates articles using a politically balanced panel consisting of at least three analysts representing right-leaning, centrist, and left-leaning perspectives. The scores from each analyst are compared, and any discrepancies are discussed and adjusted if necessary, before averaging to obtain the final rating \cite{adfontes-methodology}. No further information can be found regarding their specific values and range of these rating, it can be safely assumed that this is an inherent part of their algorithms and methodology.
 
-The reliability score is selected as the label in this project because it measures truthfulness and original fact reporting. Articles with high reliability scores typically do not exhibit any textual-level biases, such as phrasing bias, spin bias, or statement bias, as described in Chapter \ref{cha:2}. An example of a highly-rated article can be seen in Figure \ref{fig:example-nonbiased-article-1}. The article reports only factual information regarding the event and includes statements from people related to the incident. It contains no journalist opinions or political innuendos. In contrast, an example of a low-rated article can be seen in Figure \ref{fig:example-biased-article-1}. The article refers to the event as "the most recent slap in the face," which exemplifies phrasing bias. Additionally, the author's negative view of the FBI is evident, indicating a statement bias.
+The reliability score is selected as the label in this project because it measures truthfulness and original fact reporting. Articles with high reliability scores typically do not exhibit any textual-level biases, such as phrasing bias, spin bias, or statement bias, as described in Chapter \ref{cha:2}.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{0.9\linewidth}
+    \begin{minipage}{1\linewidth}
         \begin{center}
             \small{\textbf{Trenton police officer takes own life in Plainsboro parking lot, officials say}}
         \end{center}
@@ -26,7 +26,20 @@ The reliability score is selected as the label in this project because it measur
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{0.9\linewidth}
+    \begin{minipage}{1\linewidth}
+        \begin{center}
+            \small{\textbf{Army Rejects Mike Flynn’s Call For Trump To Declare Martial Law And Overturn The Election}}
+        \end{center}
+        \scriptsize{
+            After Mike Flynn called for Trump to declare martial law and overturn the election, Army leadership flatly rejected the idea. The Army response to Flynn’s fascist idea was to reject it: The military has made it very clear that they will not be participating in any last-ditch attempts by Trump to destroy democracy to stay in power. Flynn’s idea that Trump should overturn the election shows that Trump and his associates have always been anti-democratic. They don’t respect democracy or view it as their role to uphold and promote democratic institutions in the United States. There is not going to be any declaration of martial law. Trump isn’t going to overturn the election. Trump is not going to get help from the military to stay in power. The soon to be former president was the face of the fascist threat, but he has converted the Republican Party into an anti-democratic movement for autocracy. Donald Trump lost, but the authoritarian impulse behind Trumpism still must be defeated for democracy in the United States to be saved.}
+    \end{minipage}
+    \caption{Example of a non-biased article, reliability score: 30.0}
+    \label{fig:example-mixed-biased-article-1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{1\linewidth}
         \begin{center}
             \small{\textbf{Is the FBI corrupt beyond repair?}}
         \end{center}
@@ -38,6 +51,7 @@ The reliability score is selected as the label in this project because it measur
     \label{fig:example-biased-article-1}
 \end{figure}
 
+An example of a highly-rated article can be seen in Figure \ref{fig:example-nonbiased-article-1}. The article reports only factual information regarding the event and includes statements from people related to the incident. It contains no journalist opinions or political innuendos. In contrast, an example of a low-rated article can be seen in Figure \ref{fig:example-biased-article-1}. The article refers to the event as "the most recent slap in the face," which exemplifies phrasing bias. Additionally, the author's negative view of the FBI is evident, indicating a statement bias. Lastly, Figure \ref{fig:example-mixed-biased-article-1} shows an article that is rated in the middle quartile with a reliability score of 30.0. The article uses strong language, such as "fascist," and makes a broad assumption, claiming that Trump is anti-democratic. While the points raised in the article may have elements of truth, the way they are presented lacks balance and neutrality.
 
 \section{Reconstruction}
 

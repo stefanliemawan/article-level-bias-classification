@@ -12,6 +12,7 @@ CHUNK_SIZE = 50
 OVERLAP = 0
 EPOCHS = 4
 DROPOUT_PROB = 0.2
+HIDDEN_DIM = 256
 TF_MODEL_NAME = "bert-base-cased"
 
 try:
@@ -131,3 +132,19 @@ valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
 model.predict(tokenised_dataset["test"])
+
+# bert-base-cased, dataset vx, CHUNK_SIZE 156, OVERLAP 0, HIDDEN_DIM 256, EPOCHS 3, DROPOUT 0.2, title + content
+# warmup_steps: 162, learning_rate: 1e-05
+
+#               precision    recall  f1-score   support
+
+#            0       1.00      0.00      0.00        27
+#            1       1.00      0.00      0.00        54
+#            2       1.00      0.00      0.00       104
+#            3       0.67      1.00      0.81       384
+
+#     accuracy                           0.67       569
+#    macro avg       0.92      0.25      0.20       569
+# weighted avg       0.78      0.67      0.54       569
+
+# {'loss': 1.375473141670227, 'precision': 0.7805788838062645, 'recall': 0.6748681898066784, 'f1': 0.5438601991306705}
