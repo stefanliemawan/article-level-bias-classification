@@ -5,23 +5,30 @@ import sys
 import numpy as np
 import pandas as pd
 import torch
+from torch import nn
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from utils import functions
+from utils.chunk_model import ChunkModel
 from utils.sliding_window_trainer import SlidingWindowTrainer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 MODEL_NAME = "bert-base-cased"
 
-WINDOW_SIZE = 156
-STRIDE = 0
+CHUNK_SIZE = 256
+OVERLAP = 0
+EPOCHS = 4
+
+POOLING_STRATEGY = "cls"
 
 try:
     DATASET_VERSION = sys.argv[1]
 except IndexError:
     DATASET_VERSION = "vx"
 
-print(f"WINDOW_SIZE: {WINDOW_SIZE},STRIDE: {STRIDE}")
+print(
+    f"WINDOW_SIZE: {CHUNK_SIZE},STRIDE: {OVERLAP}, POOLING_STRATEGY {POOLING_STRATEGY}"
+)
 print(f"MODEL: {MODEL_NAME}")
 print(f"dataset {DATASET_VERSION}")
 
@@ -37,88 +44,106 @@ train_df, test_df, valid_df = functions.generate_title_content_features(
 #     train_df, test_df, valid_df
 # )
 
-
 dataset = functions.create_dataset(train_df, test_df, valid_df)
 
 tokeniser = AutoTokenizer.from_pretrained(MODEL_NAME)
 
-# no stride and max chunks applied here
 tokenised_dataset = dataset.map(
     functions.tokenise_chunks,
     fn_kwargs={
         "tokeniser": tokeniser,
-        "chunk_size": WINDOW_SIZE,
+        "chunk_size": CHUNK_SIZE,
     },
 )
 
 print(tokenised_dataset)
 
-functions.print_class_distribution(tokenised_dataset)
+
+class Model(ChunkModel):
+    def __init__(
+        self,
+        tf_model_name,
+        hidden_dim,
+        num_classes,
+        train_labels,
+        dropout_prob=0,
+    ):
+        super(ChunkModel, self).__init__()
+        if platform.system() == "Darwin":
+            self.device = "mps"
+        elif torch.cuda.is_available():
+            self.device = "cuda"
+        else:
+            self.device = "cpu"
+
+        self.tf_model_name = tf_model_name
+        self.dropout_prob = dropout_prob
+        self.num_classes = num_classes
+
+        self.init_layers()
+        self.calculate_class_weights(train_labels)
+        self.init_loss_optimiser()
+
+    def init_layers(self):
+        self.tf_model = AutoModelForSequenceClassification.from_pretrained(
+            self.tf_model_name, num_labels=self.num_classes
+        )
+        self.tf_model = self.tf_model.to(self.device)
+
+    def forward(self, input_ids, attention_mask):
+        tf_model_output = self.tf_model(
+            input_ids=input_ids, attention_mask=attention_mask
+        )
+
+        logits = tf_model_output.logits
+
+        return logits
+
 
 num_labels = len(pd.unique(train_df["labels"]))
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_NAME, num_labels=num_labels
+train_labels = tokenised_dataset["train"]["labels"]
+model = Model(
+    tf_model_name=MODEL_NAME,
+    hidden_dim=None,
+    num_classes=num_labels,
+    train_labels=train_labels,
+    dropout_prob=0,
 )
+model = model.to(model.device)
+print(model)
 
-if platform.system() == "Darwin":
-    device = "mps"
-elif torch.cuda.is_available():
-    device = "cuda"
-else:
-    device = "cpu"
+train_dataloader = model.batchify(tokenised_dataset["train"], batch_size=8)
+valid_dataloader = model.batchify(tokenised_dataset["valid"], batch_size=8)
 
-model = model.to(device)
+model.fit(train_dataloader, valid_dataloader, epochs=EPOCHS)
 
-
-def collate_fn_pooled_tokens(features):
-    batch = {}
-
-    input_ids = [f["input_ids"] for f in features]
-    attention_mask = [f["attention_mask"] for f in features]
-    labels = torch.tensor([f["labels"] for f in features])
-
-    batch["input_ids"] = input_ids
-    batch["attention_mask"] = attention_mask
-    batch["labels"] = labels
-
-    return batch
+model.predict(tokenised_dataset["test"])
 
 
-functions.train(
-    tokenised_dataset,
-    model,
-    epochs=1,
-    trainer_class=SlidingWindowTrainer,
-    data_collator=collate_fn_pooled_tokens,
-)
-
-# vx + rescraped, title + content, bert-base-cased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
+# vx, bert-base-cased, WINDOW_SIZE: 512, STRIDE: 0, title + content, warmup_steps: 216, learning_rate: 1e-05, CLS pooling
 #               precision    recall  f1-score   support
 
-#            0       0.45      0.48      0.46        27
-#            1       0.39      0.52      0.45        54
-#            2       0.42      0.50      0.46       103
-#            3       0.91      0.81      0.86       384
+#            0       0.55      0.44      0.49        27
+#            1       0.42      0.56      0.48        54
+#            2       0.40      0.57      0.47       104
+#            3       0.92      0.79      0.85       384
 
-#     accuracy                           0.71       568
-#    macro avg       0.54      0.58      0.56       568
-# weighted avg       0.75      0.71      0.73       568
+#     accuracy                           0.71       569
+#    macro avg       0.57      0.59      0.57       569
+# weighted avg       0.76      0.71      0.73       569
 
+# {'loss': 0.8862332105636597, 'precision': 0.7628740574350716, 'recall': 0.7117750439367311, 'f1': 0.7301880244092894}
 
-# 100%|██████████| 71/71 [00:07<00:00,  9.68it/s]
-# {'eval_loss': 0.8890448808670044, 'eval_precision': 0.7472220951363592, 'eval_recall': 0.7112676056338029, 'eval_f1': 0.7257911489910044, 'eval_runtime': 7.4861, 'eval_samples_per_second': 75.874, 'eval_steps_per_second': 9.484, 'epoch': 4.0}
-
-# vx + rescraped, outlet + title + content, bert-base-cased, WINDOW_SIZE: 512,STRIDE: 256, MAX_CHUNKS: 3
+# vx, bert-base-cased, WINDOW_SIZE: 156, STRIDE: 0, title + content, warmup_steps: 216, learning_rate: 1e-05, mean pooling
 #               precision    recall  f1-score   support
 
-#            0       0.46      0.41      0.43        27
-#            1       0.41      0.48      0.44        54
-#            2       0.46      0.56      0.51       103
-#            3       0.91      0.84      0.87       384
+#            0       0.41      0.56      0.47        27
+#            1       0.43      0.52      0.47        54
+#            2       0.41      0.53      0.46       104
+#            3       0.92      0.80      0.85       384
 
-#     accuracy                           0.74       568
-#    macro avg       0.56      0.57      0.56       568
-# weighted avg       0.76      0.74      0.75       568
+#     accuracy                           0.71       569
+#    macro avg       0.54      0.60      0.56       569
+# weighted avg       0.76      0.71      0.73       569
 
-
-# {'eval_loss': 0.8257732391357422, 'eval_precision': 0.7585514237108042, 'eval_recall': 0.7359154929577465, 'eval_f1': 0.7451975162272549, 'eval_runtime': 7.4763, 'eval_samples_per_second': 75.973, 'eval_steps_per_second': 9.497, 'epoch': 4.0}
+# {'loss': 0.8757110238075256, 'precision': 0.755288078095832, 'recall': 0.7100175746924429, 'f1': 0.7274181581251454}

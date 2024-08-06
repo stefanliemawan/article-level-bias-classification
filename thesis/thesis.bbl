@@ -195,6 +195,11 @@ M.~Gruppi, B.~D. Horne, and S.~Adalı.
 S.~Guo and K.~Q. Zhu.
 \newblock Modeling multi-level context for informational bias detection by contrastive learning and sentential graph network, 2022.
 
+\bibitem{hochreiter-1997-lstm}
+S.~Hochreiter and J.~Schmidhuber.
+\newblock Long short-term memory.
+\newblock {\em Neural computation}, 9:1735--80, 12 1997.
+
 \bibitem{horych-2024-magpie}
 T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
 \newblock Magpie: Multi-task media-bias analysis generalization for pre-trained identification of expressions, 2024.
@@ -373,6 +378,12 @@ M.-C. Popescu, V.~E. Balas, L.~Perescu-Popescu, and N.~Mastorakis.
 W.~A. Qader, M.~M. Ameen, and B.~I. Ahmed.
 \newblock An overview of bag of words;importance, implementation, applications, and challenges.
 \newblock In {\em 2019 International Engineering Conference (IEC)}, pages 200--204, 2019.
+
+\bibitem{rahman-2023-lstm-networks}
+A.~A. Rahman.
+\newblock Lstm networks.
+\newblock \url{https://www.linkedin.com/pulse/lstm-networks-abdullah-al-rahman/}, 2023.
+\newblock [Online; accessed 16-July-2024].
 
 \bibitem{reuters-2023-false-info}
 {Reuters Institute for the Study of Journalism}.

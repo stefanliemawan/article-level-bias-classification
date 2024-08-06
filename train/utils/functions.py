@@ -1,5 +1,6 @@
 import re
 
+import nltk
 import numpy as np
 from datasets import Dataset, DatasetDict
 from imblearn.over_sampling import SMOTE
@@ -16,9 +17,8 @@ from transformers import TrainingArguments, default_data_collator
 
 from .standard_trainer import StandardTrainer
 
-# import nltk
-# nltk.download("stopwords")
-# nltk.download("wordnet")
+nltk.download("stopwords")
+nltk.download("wordnet")
 
 
 LEMMATISER = WordNetLemmatizer()

@@ -88,8 +88,16 @@ class BertWithAdditionalFeatures(BertPreTrainedModel):
         super().__init__(config, num_class)
         self.bert = BertModel(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
-        self.additional_features_layer = nn.Linear(2, config.hidden_size)
-        self.classifier = nn.Linear(config.hidden_size * 2, num_class)
+        # self.additional_features_layer = nn.Linear(2, config.hidden_size)
+        self.additional_features_layer = nn.Sequential(
+            nn.Linear(2, 256),
+            nn.ReLU(),
+            nn.Dropout(self.dropout_prob),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+        )
+
+        self.classifier = nn.Linear(config.hidden_size * 128, num_class)
 
     def forward(self, input_ids, attention_mask, additional_features):
         outputs = self.bert(input_ids, attention_mask=attention_mask)

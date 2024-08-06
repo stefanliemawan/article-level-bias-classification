@@ -193,7 +193,8 @@ Figure \ref{fig:chunk_bert_finetuning} illustrates the architecture of the chunk
 
 The chunking method bypasses the sequence length limitation of most LLMs such as BERT \cite{devlin-2019-bert}, allowing for full representation and processing of text input without any loss of information. In the implementation, a window size of 512 tokens is chosen with 256 stride. Fine-tuning is conducted over 4 epochs using a weighted loss function, a learning rate of 2e-5, and 500 linear warm-up steps.
 
-\subsection{Hierarchical transformer model}
+
+\subsection{Hierarchical Transformer}
 
 \begin{figure}[htbp]
     \centering
@@ -268,14 +269,75 @@ The chunking method bypasses the sequence length limitation of most LLMs such as
 
         \draw[arrow] (softmax) -- (pred);
     \end{tikzpicture}
-    \caption{CLS method architecture}
-    \label{fig:cls_method}
+    \caption{Hierarchical transformer model architecture.}
+    \label{fig:hi_model}
 \end{figure}
 
 
-Figure \ref{fig:cls_method} shows the full architecture of the hierarchical transformer model, similarly implemented by Su et al. \cite{su-2021-classifying} for classifying long clinical documents. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into two transformer layers. Afterwards, each chunk is pooled together, resulting in embedding of size \(d\), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class.
+Figure \ref{fig:hi_model} shows the full architecture of the hierarchical transformer model, similarly implemented by Su et al. \cite{su-2021-classifying} for classifying long clinical documents. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into two transformer layers. Afterwards, each chunk is pooled together, resulting in embedding of size \(d\), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class.
 
-Given that automated text classification of news articles has been shown to benefit from using segments instead of sentences as units of analysis \cite{barbera-2021-article-classification}, a segment-length window size is utilised instead of sentence-based splitting. Two different pre-trained models are experimented as the LLM encoder in this method: BERT \cite{devlin-2019-bert} and MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLU activation function \cite{agarap-2018-relu} and dropouts. Two pooling strategies are used for this method: CLS pooling with chunk size of 512 tokens and mean pooling with smaller chunk size of 156 tokens. Two transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warm-up steps (10\% of total training steps).
+Given that automated text classification of news articles has been shown to benefit from using segments instead of sentences as units of analysis \cite{barbera-2021-article-classification}, a segment-length window size is utilised instead of sentence-based splitting. Two different pre-trained models are experimented as the LLM encoder in this method: BERT \cite{devlin-2019-bert}, DA-RoBERTa \cite{krieger-2022-domain}, and MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLU activation function \cite{agarap-2018-relu} and dropouts. Two pooling strategies are used for this method: CLS pooling with chunk size of 512 tokens and mean pooling with smaller chunk size of 156 tokens. Two transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warm-up steps (10\% of total training steps). Additionally, two Bi-LSTM layers followed with a max-pooling layer were experimented with in place of the MLP, as similarly seen in \cite{khandve-2022-hierarchical-longdoc}
+
+
+% \subsection{Hierarchical Transformer with Metadata}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{tikzpicture}
+%         \tikzstyle{arrow} = [thick,->,>=stealth]
+%         \tikzstyle{chunk} = [rectangle, draw, fill=gray!20]
+%         \tikzstyle{label} = [text centered, font=\footnotesize]
+%         \tikzstyle{input} = [rectangle, draw, fill=brown!20]
+
+%         \node[input] (text_input) [draw] at (-5, 0) {Text Input};
+%         \node[input] (meta_input) [draw] at (5, 0) {Metadata Input};
+
+%         \node[chunk] (chunk1) [draw] at (-5, -1) {Chunk 1};
+%         \node[chunk] (chunk2) [draw] at (-5, -1.5) {Chunk 2};
+%         \node[chunk] (chunk3) [draw] at (-5, -2) {Chunk \(n\)};
+
+%         \draw[arrow] (text_input) -- (chunk1);
+
+%         \node (encoder) [draw, circle, fill=green!20] at (-5, -4) {LLM encoder};
+
+%         \draw[arrow] (chunk3) -- (encoder);
+
+%         \node[chunk] (embedding1) [draw] at (-5, -6) {Embeddings 1};
+%         \node[chunk] (embedding2) [draw] at (-5, -6.5) {Embeddings 2};
+%         \node[chunk] (embedding3) [draw] at (-5, -7) {Embeddings \(n\)};
+
+%         \draw[arrow] (encoder) -- (embedding1);
+
+%         \node (tf_layer1) [draw, rectangle, fill=green!20] at (-5, -8) {Transformer layer 1};
+%         \node (tf_layer2) [draw, rectangle, fill=green!20] at (-5, -8.5) {Transformer layer 2};
+
+%         \draw[arrow] (embedding3) -- (tf_layer1);
+
+%         \node[chunk] (pooled1) [draw] at (-5, -9.5) {Pooled emb 1};
+%         \node[chunk] (pooled2) [draw] at (-5, -10) {Pooled emb 2};
+%         \node[chunk] (pooled3) [draw] at (-5, -11) {Pooled emb \(n\)};
+        
+%         \draw[arrow] (tf_layer2) -- (pooled1);
+        
+%         \node (mlp_m) [draw, circle, fill=green!20] at (5, -6) {MLP};
+        
+%         \node (mlp) [draw, circle, fill=green!20] at (-5, -12) {MLP};
+        
+
+%         \draw[arrow] (pooled3) -- (mlp);
+
+%         \node (softmax) [draw, fill=cyan!20] at (-5, -13) {Softmax};
+
+%         \draw[arrow] (mlp) -- (softmax);
+
+%         \node (pred) [draw, fill=red!20] at (-5, -14) {Predicted class};
+
+%         \draw[arrow] (softmax) -- (pred);
+%     \end{tikzpicture}
+%     \caption{Hierarchical transformer with metadata architecture}
+%     \label{fig:hi_m_model}
+% \end{figure}
+
 
 \section{Training details}
 
