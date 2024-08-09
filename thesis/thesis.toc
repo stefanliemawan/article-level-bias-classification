@@ -26,20 +26,20 @@
 \contentsline {section}{\numberline {3.1}The BAT dataset}{21}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Reconstruction}{23}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Analysis}{24}{section.3.3}%
-\contentsline {chapter}{\chapternumberline {4}Methodology}{29}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Dataset split}{29}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Features and Baselines}{30}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Proposed methods}{30}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{32}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Fine-tuning}{32}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Chunked fine-tuning}{32}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Hierarchical Transformer}{33}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Training details}{35}{section.4.4}%
-\contentsline {chapter}{\chapternumberline {5}Evaluation}{37}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Title and Content as Features}{37}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Outlet as Additional Features}{39}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Failed Experiments}{40}{section.5.3}%
-\contentsline {chapter}{\chapternumberline {6}Conclusion}{43}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Future works}{44}{section.6.1}%
-\contentsline {appendix}{\chapternumberline {A}The First Appendix}{47}{appendix.A}%
-\contentsline {chapter}{Bibliography}{51}{appendix*.44}%
+\contentsline {chapter}{\chapternumberline {4}Methodology}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Dataset split}{27}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Features and Baselines}{28}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Proposed methods}{28}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}BoW + MLP}{30}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Fine-tuning}{30}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Chunked fine-tuning}{30}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Hierarchical Transformer}{31}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Training details}{33}{section.4.4}%
+\contentsline {chapter}{\chapternumberline {5}Evaluation}{35}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Title and Content as Features}{35}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Outlet as Additional Features}{37}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Failed Experiments}{38}{section.5.3}%
+\contentsline {chapter}{\chapternumberline {6}Conclusion}{41}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Future works}{42}{section.6.1}%
+\contentsline {appendix}{\chapternumberline {A}The First Appendix}{45}{appendix.A}%
+\contentsline {chapter}{Bibliography}{47}{appendix*.41}%
