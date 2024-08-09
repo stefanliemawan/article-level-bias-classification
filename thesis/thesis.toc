@@ -39,7 +39,8 @@
 \contentsline {section}{\numberline {5.1}Title and Content as Features}{35}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Outlet as Additional Features}{37}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Failed Experiments}{38}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Timings Evaluation}{39}{section.5.4}%
 \contentsline {chapter}{\chapternumberline {6}Conclusion}{41}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Future works}{42}{section.6.1}%
 \contentsline {appendix}{\chapternumberline {A}The First Appendix}{45}{appendix.A}%
-\contentsline {chapter}{Bibliography}{47}{appendix*.41}%
+\contentsline {chapter}{Bibliography}{47}{appendix*.42}%

@@ -262,6 +262,12 @@ J.~Liu, W.-C. Chang, Y.~Wu, and Y.~Yang.
 Q.~Liu, M.~J. Kusner, and P.~Blunsom.
 \newblock A survey on contextual embeddings, 2020.
 
+\bibitem{loria-2018-textblob}
+S.~Loria.
+\newblock Textblob: Simplified text processing.
+\newblock \url{https://textblob.readthedocs.io/}, 2018.
+\newblock Accessed: 2024-08-09.
+
 \bibitem{loshchilov-2019-adamw}
 I.~Loshchilov and F.~Hutter.
 \newblock Decoupled weight decay regularization, 2019.
@@ -466,6 +472,11 @@ G.~Van~Rossum and F.~L. Drake~Jr.
 \bibitem{vaswani-2023-attention}
 A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez, L.~Kaiser, and I.~Polosukhin.
 \newblock Attention is all you need, 2023.
+
+\bibitem{vscentrum}
+{Vlaams Supercomputer Centrum}.
+\newblock Home.
+\newblock Accessed: 2024-08-09.
 
 \bibitem{wan-2019-long-length}
 L.~Wan, G.~Papageorgiou, M.~Seddon, and M.~Bernardoni.

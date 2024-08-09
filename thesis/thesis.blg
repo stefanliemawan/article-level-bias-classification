@@ -12,45 +12,45 @@ A level-1 auxiliary file: app-A.aux
 The style file: abbrv.bst
 Database file #1: references.bib
 Warning--can't use both volume and number fields in mikolov-2014-doc2vec
-You've used 105 entries,
+You've used 107 entries,
             2118 wiz_defined-function locations,
-            1053 strings with 30866 characters,
-and the built_in function-call counts, 46390 in all, are:
-= -- 4053
-> -- 3678
+            1061 strings with 31035 characters,
+and the built_in function-call counts, 46809 in all, are:
+= -- 4093
+> -- 3692
 < -- 23
-+ -- 1449
-- -- 1329
-* -- 3730
-:= -- 7958
-add.period$ -- 327
-call.type$ -- 105
-change.case$ -- 941
++ -- 1455
+- -- 1333
+* -- 3741
+:= -- 8028
+add.period$ -- 334
+call.type$ -- 107
+change.case$ -- 949
 chr.to.int$ -- 0
-cite$ -- 106
-duplicate$ -- 1273
-empty$ -- 2783
-format.name$ -- 1329
-if$ -- 9318
+cite$ -- 108
+duplicate$ -- 1287
+empty$ -- 2827
+format.name$ -- 1333
+if$ -- 9410
 int.to.chr$ -- 0
-int.to.str$ -- 105
+int.to.str$ -- 107
 missing$ -- 60
-newline$ -- 518
-num.names$ -- 242
-pop$ -- 1144
+newline$ -- 529
+num.names$ -- 246
+pop$ -- 1163
 preamble$ -- 1
-purify$ -- 833
+purify$ -- 839
 quote$ -- 0
-skip$ -- 1044
+skip$ -- 1056
 stack$ -- 0
-substring$ -- 1725
-swap$ -- 333
+substring$ -- 1735
+swap$ -- 335
 text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 418
+type$ -- 426
 warning$ -- 1
-while$ -- 308
-width$ -- 108
-write$ -- 1125
+while$ -- 312
+width$ -- 110
+write$ -- 1146
 (There was 1 warning)

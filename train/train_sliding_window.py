@@ -147,3 +147,17 @@ model.predict(tokenised_dataset["test"])
 # weighted avg       0.76      0.71      0.73       569
 
 # {'loss': 0.8757110238075256, 'precision': 0.755288078095832, 'recall': 0.7100175746924429, 'f1': 0.7274181581251454}
+
+# vx, bert-base-cased, WINDOW_SIZE: 256,STRIDE: 0, POOLING_STRATEGY cls
+#               precision    recall  f1-score   support
+
+#            0       0.45      0.56      0.50        27
+#            1       0.41      0.54      0.46        54
+#            2       0.39      0.48      0.43       104
+#            3       0.91      0.80      0.85       384
+
+#     accuracy                           0.70       569
+#    macro avg       0.54      0.59      0.56       569
+# weighted avg       0.74      0.70      0.72       569
+
+# {'loss': 0.9027590751647949, 'precision': 0.7432669905182095, 'recall': 0.70298769771529, 'f1': 0.7189340771476121}

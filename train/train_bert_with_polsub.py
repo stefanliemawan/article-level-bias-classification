@@ -87,17 +87,20 @@ class BertWithAdditionalFeatures(BertPreTrainedModel):
     def __init__(self, config, num_class):
         super().__init__(config, num_class)
         self.bert = BertModel(config)
-        self.dropout = nn.Dropout(config.hidden_dropout_prob)
-        # self.additional_features_layer = nn.Linear(2, config.hidden_size)
-        self.additional_features_layer = nn.Sequential(
-            nn.Linear(2, 256),
+        self.dropout = nn.Dropout(0.2)
+
+        self.additional_features_layer = nn.Linear(2, 512)
+        self.classifier = nn.Linear(config.hidden_size * 512, num_class)
+
+        self.mlp = nn.Sequential(
+            nn.Linear(config.hidden_size * 512, 256),
             nn.ReLU(),
             nn.Dropout(self.dropout_prob),
-            nn.Linear(256, 128),
+            nn.Linear(256, 256),
             nn.ReLU(),
+            nn.Dropout(self.dropout_prob),
+            nn.Linear(256, num_class),
         )
-
-        self.classifier = nn.Linear(config.hidden_size * 128, num_class)
 
     def forward(self, input_ids, attention_mask, additional_features):
         outputs = self.bert(input_ids, attention_mask=attention_mask)
@@ -107,7 +110,7 @@ class BertWithAdditionalFeatures(BertPreTrainedModel):
         combined_output = torch.cat((pooled_output, additional_features_output), dim=1)
 
         combined_output = self.dropout(combined_output)
-        logits = self.classifier(combined_output)
+        logits = self.mlp(combined_output)
 
         return logits
 
