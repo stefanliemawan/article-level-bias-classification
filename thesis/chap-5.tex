@@ -4,7 +4,9 @@
 
 This chapter presents the results of the experiments, along with the findings and insights derived from the study. For every method, precision, recall, and F1 score is evaluated on both overall and per class performance.
 
-\section{Title and Content as Features}
+\section{Results}
+
+\subsection{Title and Content as Features}
 
 \begin{table}[htbp]
     \centering
@@ -94,11 +96,11 @@ Frequency-based approach with Bag-of-Words (BoW) performed generally decent. BoW
 
 BERT fine-tuning (BERT FT) outperformed all frequency-based methods, although only by a close margin compared to the BoW + MLP model. Bigbird fine-tuning (Bigbird FT) performed comparably to BERT-FT, while Longformer fine-tuning (Longformer FT) outperformed every fine-tuning methods by a large difference. This result suggests that a combination of global and local attention patterns, as used in Longformer, is more effective than the combination of global, local, and random attention patterns used in BigBird. The inclusion of random attention patterns in BigBird could potentially be detrimental to performance.
 
-Experiments with different pooling strategies and different chunk size concluded that mean-pooling works best with low chunk size (156 tokens) while CLS-pooling works better with longer window (512 tokens). BERT chunked-fine-tuning (BERT C-FT) outperformed both BERT and Bigbird fine-tuning, achieving more balanced scores on each class metrics, scoring above 0.4 F1. CLS-pooling is also slightly better than mean-pooling in the case of C-FT. Hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved comparable results to Longformer FT. Hi-BERT model performed worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLMs.
+Experiments with different pooling strategies and different chunk size concluded that mean-pooling works best with low chunk size (156 tokens) while CLS-pooling works better with longer window (512 tokens). BERT chunked-fine-tuning (BERT C-FT) outperformed both BERT and BigBird fine-tuning, achieving more balanced scores on each class metrics, scoring above 0.4 F1. CLS-pooling is also slightly better than mean-pooling in the case of C-FT. Hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved comparable results to Longformer FT. Hi-BERT model performed worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLMs.
 
 Hi-Da-RoBERTa performed worse than simply fine-tuning BERT.
 
-\section{Outlet as Additional Features}
+\subsection{Outlet as Additional Features}
 
 \begin{table}[htbp]
     \centering
@@ -170,7 +172,7 @@ The outlet majority baseline method achieved the highest result compared to othe
 
 Among the methods evaluated, Longformer FT achieved the best results overall, although its F1 score is slightly lower than its performance without the additional outlet metadata (see Table \ref{table:eval}). BERT FT achieved the highest overall precision score and a comparable F1 score to Longformer, with a particularly strong F1 score on the 'Problematic' class. BigBird FT scored the lowest overall. Notably, both BERT FT and BigBird FT showed the largest improvement due to the inclusion of outlet metadata.
 
-\section{Failed Experiments}
+\subsection{Failed Experiments}
 
 \begin{table}[htbp]
     \centering
@@ -218,8 +220,7 @@ Hi-MAGPIE with metadata is an attempt to incorporate metadata information (such 
 
 Lastly, I experimented with adding polarity and subjectivity scores from articles text as additional metadata (BERT-PolSub). The Python library Textblob \cite{loria-2018-textblob} is used to generate the both polarity and subjectivity scores. In this method, the first 512 tokens of the input text are fed into BERT, while both polarity and subjectivity scores are inputted into an MLP consisting of two linear layers. Similarly, the representations are then concatenated before being fed into a softmax layer.
 
-\section{Timings Evaluation}
-
+\section{Timings}
 
 \begin{table}[htbp]
     \centering

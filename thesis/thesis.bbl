@@ -181,6 +181,11 @@ J.~Gottfried and J.~Liedke.
 \newblock Technical report, Pew Research Center, 2021.
 \newblock [Online; accessed 29-April-2024].
 
+\bibitem{graves-2005-bilstm}
+A.~Graves, S.~Fern{\'a}ndez, and J.~Schmidhuber.
+\newblock Bidirectional lstm networks for improved phoneme classification and recognition.
+\newblock In W.~Duch, J.~Kacprzyk, E.~Oja, and S.~Zadro{\.{z}}ny, editors, {\em Artificial Neural Networks: Formal Models and Their Applications -- ICANN 2005}, pages 799--804, Berlin, Heidelberg, 2005. Springer Berlin Heidelberg.
+
 \bibitem{media-bias-group}
 M.~B. Group.
 \newblock Home - media bias group.
@@ -199,6 +204,11 @@ S.~Guo and K.~Q. Zhu.
 S.~Hochreiter and J.~Schmidhuber.
 \newblock Long short-term memory.
 \newblock {\em Neural computation}, 9:1735--80, 12 1997.
+
+\bibitem{horych-2024-promises}
+T.~Horych, C.~Mandl, T.~Ruas, A.~Greiner-Petter, B.~Gipp, A.~Aizawa, and T.~Spinde.
+\newblock The promises and pitfalls of llm annotations: A case study on media bias detection.
+\newblock Unpublished manuscript or forthcoming., 2024.
 
 \bibitem{horych-2024-magpie}
 T.~Horych, M.~Wessel, J.~P. Wahle, T.~Ruas, J.~Waßmuth, A.~Greiner-Petter, A.~Aizawa, B.~Gipp, and T.~Spinde.
@@ -261,6 +271,10 @@ J.~Liu, W.-C. Chang, Y.~Wu, and Y.~Yang.
 \bibitem{liu-2020-survey-contextual-embeddings}
 Q.~Liu, M.~J. Kusner, and P.~Blunsom.
 \newblock A survey on contextual embeddings, 2020.
+
+\bibitem{liu-2019-roberta}
+Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettlemoyer, and V.~Stoyanov.
+\newblock Roberta: A robustly optimized bert pretraining approach, 2019.
 
 \bibitem{loria-2018-textblob}
 S.~Loria.
@@ -360,6 +374,11 @@ T.~E. Patterson and W.~Donsbach.
 \newblock News decisions: Journalists as partisan actors.
 \newblock {\em Political Communication}, 13(4):455--468, 1996.
 
+\bibitem{pearson-1896}
+K.~Pearson.
+\newblock Mathematical contributions to the theory of evolution—on the reconstruction of the phylogenies of the existing species.
+\newblock {\em Philosophical Transactions of the Royal Society of London}, 187:71--110, 1896.
+
 \bibitem{pedregosa-2011-scikit-learn}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, et~al.
 \newblock Scikit-learn: Machine learning in python.
@@ -420,6 +439,11 @@ R.~S.
 SemiAnalysis.
 \newblock Gpt-4: Architecture \& infrastructure.
 \newblock \url{https://www.semianalysis.com/p/gpt-4-architecture-infrastructure}, Accessed: July 2024.
+
+\bibitem{spinde-newsunravel}
+T.~Spinde.
+\newblock Newsunravel: Creating a news-reading application that indicates linguistic media bias and collects feedback.
+\newblock Unpublished manuscript, 2024.
 
 \bibitem{spinde-2024-taxonomy}
 T.~Spinde, S.~Hinterreiter, F.~Haak, T.~Ruas, H.~Giese, N.~Meuschke, and B.~Gipp.

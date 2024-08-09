@@ -58,29 +58,51 @@
     In today's digital, information-rich society, media bias presents a significant challenge to the objectivity and credibility of news reporting. Media bias can shape perceptions, influence opinions, and affect understanding of various issues. Recognizing and addressing this bias is crucial for ensuring a well-informed and balanced perspective. Existing research on automatic media bias detection largely focuses on sentence-level analysis and produce binary outputs, thus this thesis aims to develop a system for detecting and classifying media bias at the article level with multi-class output. The BAT dataset \cite{spinde-2023-bat} was reconstructed by crawling article content and introducing four-class labels derived from reliability scores that measure the truthfulness of the articles. By leveraging state-of-the-art (SOTA) techniques and successful document classification methods, transformer-based approaches and hierarchical models were trained and evaluated using the reconstructed BAT dataset. These methods were also compared against an outlet majority baseline, which classifies articles based on the majority class of their outlet. The results indicate that hierarchical models achieved the best performance, with fine-tuning Longformer providing comparable results. Additionally, mean-pooling with smaller chunk sizes was found to outperform CLS-pooling.
 \end{abstract}
 
-% % A list of figures and tables is optional
-% %\listoffigures
-% %\listoftables
-% % If you only have a few figures and tables you can use the following instead
+% A list of figures and tables is optional
+\listoffigures
+\listoftables
+% If you only have a few figures and tables you can use the following instead
 % \listoffiguresandtables
-% % The list of symbols is also optional.
-% % This list must be created manually, e.g., as follows:
-% \chapter{List of Abbreviations and Symbols}
-% \section*{Abbreviations}
-% \begin{flushleft}
-%     \renewcommand{\arraystretch}{1.1}
-%     \begin{tabularx}{\textwidth}{@{}p{12mm}X@{}}
-%         LoG  & Laplacian-of-Gaussian      \\
-%         MSE  & Mean Square error          \\
-%         PSNR & Peak Signal-to-Noise ratio \\
-%     \end{tabularx}
-% \end{flushleft}
+% The list of symbols is also optional.
+% This list must be created manually, e.g., as follows:
+\chapter{List of Abbreviations}
+\section*{Abbreviations}
+\begin{flushleft}
+    \renewcommand{\arraystretch}{1.1}
+    \begin{tabularx}{\textwidth}{@{}p{30mm}X@{}}
+        AI         & Artificial Intelligence                                                                     \\
+        ANN        & Artificial Neural Networks                                                                  \\
+        BAT        & Bias And Twitter                                                                            \\
+        BERT       & Bidirectional Encoder Representations from Transformers                                     \\
+        Bi-LSTM    & Bidirectional Long Short-Term Memory                                                        \\
+        CNN        & Convolutional Neural Network                                                                \\
+        DA-RoBERTa & Domain-Adaptive-RoBERTa                                                                     \\
+        DocBERT    & Document BERT (BERT for Document Classification)                                            \\
+        FT         & Fine-tuning                                                                                 \\
+        GloVE      & Global Vectors for Word Representation                                                      \\
+        GPT        & Generative Pre-trained Transformer                                                          \\
+        LLM        & Large Language Model                                                                        \\
+        Longformer & The Long-Document Transformer                                                               \\
+        LSTM       & Long Short-Term Memory (LSTM)                                                               \\
+        MAGPIE     & Multi-Task Media-Bias Analysis Generalization for Pre-Trained Identification of Expressions \\
+        MLP        & MultiLayer Perceptron                                                                       \\
+        MBFC       & Media Bias/Fact Check                                                                       \\
+        NER        & Named Entity Recognition                                                                    \\
+        NLP        & Natural Language Processing                                                                 \\
+        ReLU       & Rectified Linear Unit                                                                       \\
+        RoBERTa    & Robustly Optimized BERT Approach                                                            \\
+        SOTA       & State-of-The-Art                                                                            \\
+        TF         & Term Frequency                                                                              \\
+        TF-IDF     & Term Frequency-Inverse Document Frequency                                                   \\
+        IDF        & Inverse Document Frequency                                                                  \\
+    \end{tabularx}
+\end{flushleft}
 % \section*{Symbols}
 % \begin{flushleft}
 %     \renewcommand{\arraystretch}{1.1}
 %     \begin{tabularx}{\textwidth}{@{}p{12mm}X@{}}
 %         42    & ``The Answer to the Ultimate Question of Life, the Universe,
-%         and Everything'' according to \cite{h2g2}                            \\
+%         and Everything'' according to                                        \\
 %         $c$   & Speed of light                                               \\
 %         $E$   & Energy                                                       \\
 %         $m$   & Mass                                                         \\

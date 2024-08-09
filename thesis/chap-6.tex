@@ -16,7 +16,9 @@ There are a couple of limitations with this project. The BAT dataset used is com
 
 \section{Future works}
 
-The BAT dataset requires more samples, particularly for the underrepresented classes, and necessitates further and thorough text cleaning of the crawled article contents. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Crowdsourcing is a promising alternative in this regard (cite). Additionally, evaluation can be improved by carefully crafting the test set by considering unique patterns and including articles with outlets that are not present in the training set. This is crucial for assessing the models' generalisability and ensuring their robustness in real-world scenarios.
+The BAT dataset requires more samples, particularly for the underrepresented classes, and necessitates further and thorough text cleaning of the crawled article contents. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Crowdsourcing \cite{spinde-newsunravel} and using LLMs to augment and annotate media bias datasets \cite{horych-2024-promises} are both promising approaches to solve the dataset problem.
+
+Additionally, evaluation can be improved by carefully crafting the test set by considering unique patterns and including articles with outlets that are not present in the training set. This is crucial for assessing the models' generalisability and ensuring their robustness in real-world scenarios.
 
 Hierarchical methods have shown promising results and should be explored further for improved performance. Additionally, graph-based methods could be considered, as Aires et al. used information theory and community detection algorithms to identify political orientations \cite{aires-2020-information}. A similar approach could be applied to article-level media bias classification by encoding articles as nodes within a graph. This method would allow for more granular analysis and help define relationships between articles.
 
