@@ -1,6 +1,8 @@
 \chapter{Dataset Reconstruction and Analysis}
 \label{cha:3}
 
+This chapter discusses the chosen dataset for this study, the BAT dataset. It includes details on the dataset's analysis, cleaning, and reconstruction through crawling article contents.
+
 \section{The BAT dataset} \label{bat-characteristics}
 
 The BAT dataset \cite{spinde-2023-bat} contains 6,345 rows of manually labelled news articles published by 255 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website. Articles in the dataset encompassed a wide range of topics such as COVID-19, politics, and lifestyle. This dataset was chosen for this project primarily because of its political bias and reliability scores, which provide a clear and useful label for classifying media bias at the article level.
@@ -154,39 +156,46 @@ To evaluate the effects of the noise-cleaning procedure, a simple BERT fine-tuni
 
 \section{Analysis}
 
-Most articles in the BAT dataset were written and published within the last six years, with only thirty-one articles published before 2019. Looking at these articles individually, they generally cover similar topics to those published after 2019 and therefore should not exhibit consequential differences in behaviour and characteristics.
+\begin{figure}[htbp]
+    \includegraphics[width=\linewidth]{figures/dates_hist.png}
+    \caption{Articles published date histogram.}
+    \label{fig:dates_hist}
+\end{figure}
+
+Most articles in the BAT dataset were written and published within the last six years, with only thirty-one articles published before 2019 (Figure \ref{fig:dates_hist}). Looking at these articles individually, they generally cover similar topics to those published after 2019 and therefore should not exhibit consequential differences in behaviour and characteristics.
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/tokens_count_vx_hist.png}
-        \caption{Articles token histogram.}
-        \label{fig:tokens_hist}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/tokens_count_vx_per_class_hist.png}
-        \caption{Average token count per class.}
-        \label{fig:tokens_per_class}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/reliability_score_hist.png}
-        \caption{Reliability score distribution}
-        \label{fig:reliability_score_hist}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/correlation_tokens_reliability_score.png}
-        \caption{Pearson correlation between reliability score and token count.}
-        \label{fig:pearson}
-    \end{subfigure}
-    \caption{Figures showing analysis of token count and reliability score of articles in the BAT dataset.}
-    \label{fig:token_reliability_figs}
+    \includegraphics[width=0.9\linewidth]{figures/token_count_vx_split_hist.png}
+    \caption{Articles tokens count distribution}
+    \label{fig:token_hist_split}
 \end{figure}
 
-Analysis of articles token count and reliability score can be seen in Figure \ref{fig:token_reliability_figs}. Note that sub-words are used as tokens in this analysis rather than whole words. The length of article content tokens ranges from 17 to 16,139, with an average length of 1,207.07 and a median value of 908 tokens. Only nine articles have more than 10,000 tokens, while 106 articles have fewer than 100 tokens. Furthermore, 1,209 articles contain 512 tokens or fewer, which is the maximum input length for BERT. Thus, when using BERT in its standard configuration, significant information loss is to be expected due to the token limit. Visualisation of the articles token count can be seen in Figure \ref{fig:tokens_hist}
+Analysis of articles token count can be seen in Figure \ref{fig:token_hist_split}. Note that sub-words are used as tokens in this analysis rather than whole words. The length of article content tokens ranges from 17 to 16,139, with an average length of 1,207.07 and a median value of 908 tokens. More than half of articles in the dataset have between 512 and 2,048 tokens. Only nine articles have more than 10,000 tokens, while 106 articles have fewer than 100 tokens. Furthermore, 1,209 articles contain 512 tokens or fewer, which is the maximum input length for BERT. Thus, when using BERT in its standard configuration, significant information loss is to be expected due to the token limit.
 
-Figure \ref{fig:reliability_score_hist} also shows that all classes have similar average token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. However, further analysis (Figure \ref{fig:pearson}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient of 0.02. This indicates that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/reliability_score_hist.png}
+    \caption{Reliability score distribution}
+    \label{fig:reliability_score_hist}
+\end{figure}
 
-The articles reliability scores range from 1.0 to 58.67, with the majority scoring between 20 and 50. No articles  exceed a score of 60, despite the highest possible score being 64. A histogram of the reliability scores is shown in Figure \ref{fig:reliability_score_hist}.
+The articles reliability scores range from 1.0 to 58.67, with the majority scoring between 40 and 50. No articles  exceed a score of 60, despite the highest possible score being 64. Thus, only several hundreds of articles are rated low. The full histogram of the reliability scores is shown in Figure \ref{fig:reliability_score_hist}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/token_count_vx_per_class_hist.png}
+    \caption{Average token count per class.}
+    \label{fig:avg_token_per_class}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/correlation_token_reliability_score.png}
+    \caption{Pearson correlation between reliability score and token count}
+    \label{fig:avg_token_pearson}
+\end{figure}
+
+Figure \ref{fig:avg_token_pearson} also shows that all classes have similar average token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. However, further analysis (Figure \ref{fig:avg_token_pearson}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient of 0.02. This indicates that the length of an article has no significant impact on its reliability score. In other words, longer articles are not necessarily more or less reliable than shorter ones based on the provided data.
 
 
 %%% Local Variables: 

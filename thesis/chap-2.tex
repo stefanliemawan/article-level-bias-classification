@@ -1,6 +1,9 @@
 \chapter{Background Information and Literature Review}
 \label{cha:2}
 
+This chapter provides background information on media bias, introduces general machine learning concepts, and covers relevant Natural Language Processing (NLP) techniques. Additionally, it related works on document classification and media bias classification are reviewed.
+
+
 \section{Media Bias}
 
 Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendency of news media to report in a way that reinforces a viewpoint, world-view, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts)". Media bias has existed and been researched since the 1950s \cite{white-1950-case-study-selection-news}.
@@ -27,7 +30,7 @@ Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \c
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png}
+    \includegraphics[width=0.7\linewidth]{images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png}
     \caption{The rate of news consumers witnessing false or misleading information on several recent key topics in February 2023 \cite{reuters-2023-false-info}}
     \label{fig:consumers-witnessing-false-information-on-certain-topics-worldwide-2023}
 \end{figure}
@@ -35,13 +38,21 @@ Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \c
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png}
+    \includegraphics[width=0.7\linewidth]{images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png}
     \caption{Frequency of seeing false or misleading information online in the United States as of April 2023, by age group \cite{yougov-2023-frequency}}
     \label{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}
 \end{figure}
 
+Media bias and misinformation are particularly prominent and visible within the United States, compared to other countries. Based on surveys from Reuters \cite{reuters-2023-false-info} and YouGov \cite{yougov-2023-frequency} (Figure \ref{fig:consumers-witnessing-false-information-on-certain-topics-worldwide-2023} and Figure \ref{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}), the United States is shown to have the highest rate of encountering false or misleading information related to politics, COVID-19, and climate change. Nearly half of the respondents reported seeing such information in the week prior to the survey, with most adults across all age groups reported seeing false or misleading information on a \textbf{daily} basis.
 
-Media bias and misinformation are particularly prominent and visible within the United States, compared to other countries. Based on surveys from Reuters \cite{reuters-2023-false-info} and YouGov \cite{yougov-2023-frequency} (Figure \ref{fig:consumers-witnessing-false-information-on-certain-topics-worldwide-2023} and Figure \ref{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}), the United States is shown to have the highest rate of encountering false or misleading information related to politics, COVID-19, and climate change. Nearly half of the respondents reported seeing such information in the week prior to the survey. Additionally, most adults across all age groups reported seeing false or misleading information on a \textbf{daily} basis.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/statistic_id657090_ability-to-recognize-false-information-and-news-in-the-us-2023.png}
+    \caption{Ability to recognise false information in the US \cite{yougov-2023-confidence}}
+    \label{fig:ability-to-recognize-false-information-and-news-in-the-us-2023}
+\end{figure}
+
+Another similar survey by YouGov \cite{yougov-2023-confidence} (Figure \ref{fig:ability-to-recognize-false-information-and-news-in-the-us-2023}) shows that as of April 2023, 25\% of respondents feel either only a little confident, not at all confident, or not sure in their ability to distinguish false news from real news in the US. These findings are alarming.
 
 Furthermore, Trust in news media in the US is at an all-time low, declining consistently and significantly over the past 20 years \cite{pew-2021-partisan-divides, gallup-knight-2020-american-views, reuters-2023-digital-news-report}. Approximately half of Americans believe that the media is significantly responsible for the political divisions within the United States, with a growing number of Americans losing faith in the media's objectivity and perceiving it as actively engaging in ideological wars \cite{gallup-knight-2020-american-views}. Reuters Institute also reported less than half of their respondents (40\%) generally trust the majority of news sources, with the US ranked on 29\textsuperscript{th} out of 40 countries (32\%) in terms of trust \cite{reuters-2023-digital-news-report,reuters-2023-trust} (full figure shown in Figure \ref{fig:trustworthiness-of-news-media-worldwide-2023}).
 
@@ -52,7 +63,7 @@ Furthermore, Trust in news media in the US is at an all-time low, declining cons
     \label{fig:trustworthiness-of-news-media-worldwide-2023}
 \end{figure}
 
-Given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is therefore both reasonable and practical for this project to focus on US-based articles and domains.
+Considering the magnitude of this problem in the US, and given that the majority of research and resources on media bias are typically focused on the US \cite{allsides, adfontes,rodrigo-2024-systematic-review-media-bias}, it is therefore both reasonable and practical for this project to focus on US-based articles and domains.
 
 
 % Panagopoulos' study \cite{panagopoulos-2020} revealed systemic biases leaning towards Democratic candidates during national and state levels pre-election polls conducted during the 2020 U.S. general election cycle. 
@@ -62,8 +73,6 @@ Given that the majority of research and resources on media bias are typically fo
 % Readers themselves are not exempt from bias, as they are known to prefer to pick, follow, and consume articles that align with their own beliefs and ideology, an issue known as filter bubble \cite{lim-2018-understanding} or selective exposure \cite{spinde-2024-taxonomy}. This incident reinforces existing biases and limits exposure to diverse perspectives, creating echo chambers that hinder critical thinking and informed decision-making. The combination of media bias and filter bubbles can distort reality, perpetuate misinformation, and deepen societal divisions.
 
 \section{Machine Learning Concepts and Techniques}
-
-This section introduces general machine learning concepts and techniques relevant to Natural Language Processing (NLP) and media bias classification, with a particular focus on article-level media bias classification.
 
 \subsection{Text Representation}
 

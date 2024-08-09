@@ -2,7 +2,7 @@
 \label{cha:5}
 
 
-For every method, precision, recall, and F1 score is evaluated on both overall and per class performance.
+This chapter presents the results of the experiments, along with the findings and insights derived from the study. For every method, precision, recall, and F1 score is evaluated on both overall and per class performance.
 
 \section{Title and Content as Features}
 
@@ -88,7 +88,9 @@ Frequency-based approach with Bag-of-Words (BoW) performed generally decent. BoW
 
 BERT fine-tuning (BERT FT) outperformed all frequency-based methods, although only by a close margin compared to the BoW + MLP model. BERT chunked-fine-tuning (BERT C-FT) method performed slightly better to the standard BERT fine-tuning and achieved a more balanced scores on each class metrics, mostly scoring above 0.4 F1. Bigbird fine-tuning (Bigbird FT) performed comparably to BERT-FT, while Longformer fine-tuning (Longformer FT) outperformed every fine-tuning methods by a large difference. This result suggests that a combination of global and local attention patterns, as used in Longformer, is more effective than the combination of global, local, and random attention patterns used in BigBird. The inclusion of random attention patterns in BigBird could potentially be detrimental to performance.
 
-Experiments with different pooling strategies and different chunk size for hierarchical methods concluded that mean-pooling works best with low chunk size (156 tokens) while CLS-pooling works better with longer window (512 tokens). Hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved comparable results to Longformer FT. Hierarchical model with BERT encoder performed worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLMs.
+Experiments with different pooling strategies and different chunk size for hierarchical methods concluded that mean-pooling works best with low chunk size (156 tokens) while CLS-pooling works better with longer window (512 tokens). Hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved comparable results to Longformer FT. Hi-BERT model performed worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLMs.
+
+Hi-Da-RoBERTa performed slightly worse than Hi-BERT...
 
 \section{Outlet as Additional Features}
 
@@ -187,26 +189,20 @@ Among the methods evaluated, Longformer FT achieved the best results overall, al
                                                               & Reliable           & 0.67               & 1.00            & 0.81        \\\cline{2-5}
                                                               & Overall            & 0.7805             & 0.6748          & 0.5438      \\
         \hline
-        % \multirow{5}{*}{Hi-MAGPIE with metadata, CLS-Pooling} & Problematic        & 0.46               & 0.63            & 0.53        \\
-        %                                                       & Questionable       & 0.40               & 0.46            & 0.43        \\
-        %                                                       & Generally Reliable & 0.39               & 0.51            & 0.44        \\
-        %                                                       & Reliable           & 0.93               & 0.80            & 0.86        \\\cline{2-5}
-        %                                                       & Overall            & 0.7555             & 0.7100          & 0.7277      \\
-        % \hline
+        \multirow{5}{*}{Hi-MAGPIE with metadata, CLS-Pooling} & Problematic        & 0.46               & 0.63            & 0.53        \\
+                                                              & Questionable       & 0.40               & 0.46            & 0.43        \\
+                                                              & Generally Reliable & 0.39               & 0.51            & 0.44        \\
+                                                              & Reliable           & 0.93               & 0.80            & 0.86        \\\cline{2-5}
+                                                              & Overall            & 0.7555             & 0.7100          & 0.7277      \\
+        \hline
     \end{longtable}
     \caption{Evaluation table, with title and content of articles as features}
     \label{table:eval_failed}
 \end{table}
 
-Table \ref{table:eval_failed} shows other experiments that yielded lower results.
+Table \ref{table:eval_failed} presents other experiments conducted in this study that produced unsatisfying results. TF-IDF + LR achieved slightly worse performance than BoW + LR (Table \ref{table:eval}) in F1 score. Although the F1 scores of 'Problematic' and 'Questionable' classes suffered greatly. A hypothesis on the low TF-IDF score might be attributed to word-level noises that could disrupt these words from being included in the TF-IDF vocabulary, despite their potential importance. GloVE embeddings combined with MLP, specifically the glove-6B-300d, achieved worse performance than both BoW and TF-IDF with logistic regression (LR). Hi-BERT-LSTM model is a hierarchical transformer model with a BERT encoder, but followed by two layers of Bi-LSTM layers and a max-pooling layer instead of MLP, as inspired by \cite{khandve-2022-hierarchical-longdoc}. However, as can be seen from Table \ref{table:eval_failed}, the model failed to produce any decent results in this study.
 
-TF-IDF + LR achieved slightly worse performance than BoW + LR (Table \ref{table:eval}) in F1 score. Although the F1 scores of 'Problematic' and 'Questionable' classes suffered greatly. A hypothesis on the low TF-IDF score might be attributed to word-level noises that could disrupt these words from being included in the TF-IDF vocabulary, despite their potential importance.
-
-GloVE, specifically the glove-6B-300d achieved worse performance than both BoW and TF-IDF.
-
-Hi-BERT-LSTM model is a hierarchical model with BERT encoder, but followed by two layers of Bi-LSTM layers and a max-pooling layer instead of MLP. Inspired by \cite{khandve-2022-hierarchical-longdoc}
-
-% Hi-MAGPIE with metadata is similar to Hi-MAGPIE model, but the outlet metadata is inputted into a single layer MLP, which then are concatenated with the sequence representation following the transformer encoder layers.
+Hi-MAGPIE with metadata is an attempt to incorporate metadata information (such as outlet) into the model. In this approach, the text input is processed by a hierarchical model similar to Hi-MAGPIE, while the metadata (e.g., outlet) is processed separately using a single-layer multi-layer perceptron (MLP). The representations from both the text and metadata are then concatenated and passed through two layers of MLP (as also seen in Hi-MAGPIE) followed by a softmax layer.
 
 %%% Local Variables: 
 %%% mode: latex

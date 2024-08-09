@@ -31,63 +31,63 @@ train_df = pd.read_csv(f"../dataset/{DATASET_VERSION}/train.csv", index_col=0)
 # MIN 7
 
 # vx
-# MEAN_TOKENS_COUNT 1184.8609899487958
-# MEDIAN_TOKENS_COUNT 885.0
-# MAX_TOKENS_COUNT 15530
-# MIN_TOKENS_COUNT 7
+# MEAN_TOKEN_COUNT 1184.8609899487958
+# MEDIAN_TOKEN_COUNT 885.0
+# MAX_TOKEN_COUNT 15530
+# MIN_TOKEN_COUNT 7
 
 # MAX_RELIABILITY 58.67
 # MIN_RELIABILITY 1.0
 
-# Number of rows with tokens count below 100: 106
-# Number of rows with tokens count below 512: 1206
+# Number of rows with token count below 100: 106
+# Number of rows with token count below 512: 1206
 
 # Number of rows with reliability_score below 10: 29
 
 
-def count_tokens(df):
+def count_token(df):
     tokeniser = BertTokenizer.from_pretrained("bert-base-cased")
-    df["tokens_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
+    df["token_count"] = df.apply(lambda x: len(tokeniser.encode(x["content"])), axis=1)
 
     df.to_csv(f"../dataset/scraped_clean_{DATASET_VERSION}.csv")
 
 
-def plot_tokens_count(df):
-    print("MEAN_TOKENS_COUNT", np.mean(df["tokens_count"].values))
-    print("MEDIAN_TOKENS_COUNT", np.median(df["tokens_count"].values))
-    print("MAX_TOKENS_COUNT", np.max(df["tokens_count"].values))
-    print("MIN_TOKENS_COUNT", np.min(df["tokens_count"].values))
+def plot_token_count(df):
+    print("MEAN_TOKEN_COUNT", np.mean(df["token_count"].values))
+    print("MEDIAN_TOKEN_COUNT", np.median(df["token_count"].values))
+    print("MAX_TOKEN_COUNT", np.max(df["token_count"].values))
+    print("MIN_TOKEN_COUNT", np.min(df["token_count"].values))
 
     plt.clf()
     plt.figure(figsize=(10, 6))
-    plt.hist(df["tokens_count"], bins=20, edgecolor="black")
+    plt.hist(df["token_count"], bins=20, edgecolor="black")
     # plt.xlim(0, 6000)
 
-    plt.xlabel("Tokens Count")
+    plt.xlabel("Token Count")
     plt.ylabel("Frequency")
-    plt.title("Tokens Count Distribution")
+    plt.title("Token Count Distribution")
 
-    plt.savefig(f"figures/tokens_count_{DATASET_VERSION}_hist.png")
+    plt.savefig(f"figures/token_count_{DATASET_VERSION}_hist.png")
 
-    print(df.sort_values(by=["tokens_count"], ascending=False).head(20))
-    print(df.sort_values(by=["tokens_count"], ascending=True).head(20))
+    print(df.sort_values(by=["token_count"], ascending=False).head(20))
+    print(df.sort_values(by=["token_count"], ascending=True).head(20))
 
-    count_below_100 = df[df["tokens_count"] < 100].shape[0]
-    print(f"Number of rows with tokens_count below 128: {count_below_100}")
+    count_below_100 = df[df["token_count"] < 100].shape[0]
+    print(f"Number of rows with token_count below 128: {count_below_100}")
 
-    count_below_512 = df[df["tokens_count"] < 512].shape[0]
-    print(f"Number of rows with tokens_count below 512: {count_below_512}")
+    count_below_512 = df[df["token_count"] < 512].shape[0]
+    print(f"Number of rows with token_count below 512: {count_below_512}")
 
-    count_above_10k = df[df["tokens_count"] > 10000].shape[0]
-    print(f"Number of rows with tokens_count below 10k: {count_above_10k}")
+    count_above_10k = df[df["token_count"] > 10000].shape[0]
+    print(f"Number of rows with token_count below 10k: {count_above_10k}")
 
 
-def plot_tokens_count_split(df):
+def plot_token_count_split(df):
 
-    range1 = df[(df["tokens_count"] >= 0) & (df["tokens_count"] < 512)]
-    range2 = df[(df["tokens_count"] >= 512) & (df["tokens_count"] < 2048)]
-    range3 = df[(df["tokens_count"] >= 2048) & (df["tokens_count"] < 4096)]
-    range4 = df[df["tokens_count"] >= 4096]
+    range1 = df[(df["token_count"] >= 0) & (df["token_count"] < 512)]
+    range2 = df[(df["token_count"] >= 512) & (df["token_count"] < 2048)]
+    range3 = df[(df["token_count"] >= 2048) & (df["token_count"] < 4096)]
+    range4 = df[df["token_count"] >= 4096]
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 12))
 
@@ -97,28 +97,28 @@ def plot_tokens_count_split(df):
             "color": "skyblue",
             "df": range1,
             "text_position": [0.4, 0.95],
-            "title": "Tokens Count 0-512",
+            "title": "Token Count 0-512",
         },
         {
             "ax_position": [0, 1],
             "color": "orange",
             "df": range2,
             "text_position": [0.6, 0.95],
-            "title": "Tokens Count 512-2048",
+            "title": "Token Count 512-2048",
         },
         {
             "ax_position": [1, 0],
             "color": "green",
             "df": range3,
             "text_position": [0.4, 0.95],
-            "title": "Tokens Count 2048-4096",
+            "title": "Token Count 2048-4096",
         },
         {
             "ax_position": [1, 1],
             "color": "red",
             "df": range4,
             "text_position": [0.6, 0.95],
-            "title": "Tokens Count > 4096",
+            "title": "Token Count > 4096",
         },
     ]
 
@@ -128,10 +128,10 @@ def plot_tokens_count_split(df):
         df_range = range["df"]
 
         axes[*ax_position].hist(
-            df_range["tokens_count"], bins=15, color=range["color"], edgecolor="black"
+            df_range["token_count"], bins=15, color=range["color"], edgecolor="black"
         )
         axes[*ax_position].set_title(range["title"])
-        axes[*ax_position].set_xlabel("Tokens Count")
+        axes[*ax_position].set_xlabel("Token Count")
         axes[*ax_position].set_ylabel("Frequency")
         axes[*ax_position].text(
             text_pos_x,
@@ -141,13 +141,13 @@ def plot_tokens_count_split(df):
             ha="center",
         )
 
-    plt.suptitle("Articles Tokens Count Distribution Across Ranges")
+    plt.suptitle("Articles Token Count Distribution Across Ranges")
     plt.tight_layout()
 
-    plt.savefig(f"figures/tokens_count_{DATASET_VERSION}_split_hist.png")
+    plt.savefig(f"figures/token_count_{DATASET_VERSION}_split_hist.png")
 
 
-def plot_tokens_count_per_class(df):
+def plot_token_count_per_class(df):
     plt.clf()
     plt.figure(figsize=(10, 6))
 
@@ -163,7 +163,7 @@ def plot_tokens_count_per_class(df):
         df["class"], categories=custom_sort_order, ordered=True
     )
 
-    average_token_count = df.groupby("class")["tokens_count"].mean()
+    average_token_count = df.groupby("class")["token_count"].mean()
 
     # Plotting the histogram of the average token counts
     average_token_count.plot(
@@ -174,14 +174,14 @@ def plot_tokens_count_per_class(df):
         width=0.8,
     )
     plt.xlabel("Class")
-    plt.ylabel("Average Tokens Count")
-    plt.title("Average Tokens Count by Class")
+    plt.ylabel("Average Token Count")
+    plt.title("Average Token Count by Class")
 
     plt.xticks(rotation=60, ha="right")
 
     plt.tight_layout()
 
-    plt.savefig(f"figures/tokens_count_{DATASET_VERSION}_per_class_hist.png")
+    plt.savefig(f"figures/token_count_{DATASET_VERSION}_per_class_hist.png")
 
 
 def plot_reliability_score(df):
@@ -237,24 +237,24 @@ def plot_dates(df):
     plt.savefig("figures/dates_hist.png")
 
 
-def plot_correlation_tokens_reliability(df):
-    correlation, p_value = stats.pearsonr(df["reliability_score"], df["tokens_count"])
+def plot_correlation_token_reliability(df):
+    correlation, p_value = stats.pearsonr(df["reliability_score"], df["token_count"])
     print(f"Pearson correlation coefficient: {correlation}")
     print(f"P-value: {p_value}")
 
     plt.figure(figsize=(10, 6))
-    sns.scatterplot(x="reliability_score", y="tokens_count", data=df)
+    sns.scatterplot(x="reliability_score", y="token_count", data=df)
     sns.regplot(
-        x="reliability_score", y="tokens_count", data=df, scatter=False, color="red"
+        x="reliability_score", y="token_count", data=df, scatter=False, color="red"
     )
 
     plt.title(
-        f"Reliability Score vs Tokens Count\nPearson correlation: {correlation:.2f}"
+        f"Reliability Score vs Token Count\nPearson correlation: {correlation:.2f}"
     )
     plt.xlabel("Reliability Score")
-    plt.ylabel("Tokens Count")
+    plt.ylabel("Token Count")
 
-    plt.savefig("figures/correlation_tokens_reliability_score.png")
+    plt.savefig("figures/correlation_token_reliability_score.png")
 
 
 def plot_correlation_bias_reliability(df):
@@ -330,17 +330,17 @@ def plot_class_weights(train_df):
     plt.savefig("figures/class_weight.png")
 
 
-# if "tokens_count" not in df:
-#     count_tokens(df)
+if "token_count" not in df:
+    count_token(df)
 
-# plot_tokens_count(df)
-# plot_tokens_count_split(df)
-plot_tokens_count_per_class(df)
-# plot_reliability_score(df)
-# plot_dates(df)
-# plot_correlation_tokens_reliability(df)
-# plot_correlation_bias_reliability(df)
-# plot_outlet_reliability_score(df)
-# plot_class_weights(train_df)
+plot_token_count(df)
+plot_token_count_split(df)
+plot_token_count_per_class(df)
+plot_reliability_score(df)
+plot_dates(df)
+plot_correlation_token_reliability(df)
+plot_correlation_bias_reliability(df)
+plot_outlet_reliability_score(df)
+plot_class_weights(train_df)
 
 # print(df[df["reliability_score"] < 10])
