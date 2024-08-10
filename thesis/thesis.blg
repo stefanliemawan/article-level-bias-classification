@@ -14,43 +14,43 @@ Database file #1: references.bib
 Warning--can't use both volume and number fields in mikolov-2014-doc2vec
 You've used 112 entries,
             2118 wiz_defined-function locations,
-            1088 strings with 32287 characters,
-and the built_in function-call counts, 48677 in all, are:
-= -- 4267
+            1092 strings with 32457 characters,
+and the built_in function-call counts, 48779 in all, are:
+= -- 4282
 > -- 3829
 < -- 24
-+ -- 1509
++ -- 1510
 - -- 1381
-* -- 3880
-:= -- 8359
-add.period$ -- 349
+* -- 3896
+:= -- 8376
+add.period$ -- 350
 call.type$ -- 112
 change.case$ -- 986
 chr.to.int$ -- 0
 cite$ -- 113
-duplicate$ -- 1340
-empty$ -- 2936
+duplicate$ -- 1344
+empty$ -- 2941
 format.name$ -- 1381
-if$ -- 9782
+if$ -- 9800
 int.to.chr$ -- 0
 int.to.str$ -- 112
-missing$ -- 62
-newline$ -- 553
+missing$ -- 63
+newline$ -- 554
 num.names$ -- 258
-pop$ -- 1199
+pop$ -- 1191
 preamble$ -- 1
 purify$ -- 871
 quote$ -- 0
 skip$ -- 1099
 stack$ -- 0
-substring$ -- 1815
+substring$ -- 1841
 swap$ -- 347
 text.length$ -- 24
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 446
 warning$ -- 1
-while$ -- 328
+while$ -- 330
 width$ -- 115
-write$ -- 1198
+write$ -- 1201
 (There was 1 warning)

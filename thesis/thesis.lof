@@ -13,20 +13,20 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Media bias types as defined in The Media Bias Taxonomy \cite {spinde-2024-taxonomy}\relax }}{6}{figure.caption.8}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Example of phrasing bias (top), spin bias (middle), and statement bias (bottom) \cite {allsides-media-bias-types}\relax }}{7}{figure.caption.9}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces The rate of news consumers witnessing false or misleading information on several recent key topics in February 2023 \cite {reuters-2023-false-info}\relax }}{8}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Frequency of seeing false or misleading information online in the United States as of April 2023, by age group \cite {yougov-2023-frequency}\relax }}{8}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces How often false or misleading information are seen online in the United States as of April 2023 \cite {yougov-2023-frequency}.\relax }}{8}{figure.caption.11}%
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Ability to recognise false information in the US \cite {yougov-2023-confidence}\relax }}{9}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Trustworthiness of news media worldwide by country, as of February 2023 \cite {reuters-2023-trust}\relax }}{9}{figure.caption.13}%
 \contentsline {figure}{\numberline {2.7}{\ignorespaces An illustration of how Bag-of-Words work \cite {rahul-2023-bow-medium}\relax }}{10}{figure.caption.14}%
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Word embeddings visualisation \cite {narayanan-2019-word-embeddings}\relax }}{11}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces An illustration of contextualised word embeddings. A language modelling component analyses the context of the target word (as shown in the figure) and generates its dynamic embedding. \cite {camacho-collados-2020-embeddings}\relax }}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces An illustration of contextualised word embeddings, a language model is used to analyse the context of the target word and creates a dynamic representation. \cite {camacho-collados-2020-embeddings}\relax }}{12}{figure.caption.16}%
 \contentsline {figure}{\numberline {2.10}{\ignorespaces MultiLayer Perceptron visualisation \cite {perez-enciso-2019-guide}\relax }}{12}{figure.caption.17}%
 \contentsline {figure}{\numberline {2.11}{\ignorespaces LSTM architecture \cite {rahman-2023-lstm-networks}\relax }}{13}{figure.caption.18}%
 \contentsline {figure}{\numberline {2.12}{\ignorespaces Transformer visualisation \cite {vaswani-2023-attention}\relax }}{14}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}\relax }}{15}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces MAGPIE containing a pre-trained representation of various biases \cite {horych-2024-magpie}.\relax }}{15}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Illustration of chunking\relax }}{16}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces An example of a hierarchical transformer model, Hi-Transformer \cite {wu-2021-hi-transformer}, to model long document by incorporating information on sentence and word level.\relax }}{17}{figure.caption.23}%
-\contentsline {figure}{\numberline {2.17}{\ignorespaces Overview of available media bias datasets \cite {rodrigo-2024-systematic-review-media-bias}\relax }}{18}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}\relax }}{16}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces MAGPIE containing a pre-trained representation of various biases \cite {horych-2024-magpie}.\relax }}{16}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Illustration of chunking\relax }}{17}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces An example of a hierarchical transformer model, Hi-Transformer \cite {wu-2021-hi-transformer}, to model long document by incorporating information on sentence and word level.\relax }}{18}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.17}{\ignorespaces Overview of available media bias datasets \cite {rodrigo-2024-systematic-review-media-bias}\relax }}{19}{figure.caption.24}%
 \addvspace {10pt}
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Example of a non-biased article, reliability score: 57.67\relax }}{22}{figure.caption.25}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Example of a non-biased article, reliability score: 30.0\relax }}{22}{figure.caption.26}%

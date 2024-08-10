@@ -15,13 +15,13 @@ Allsides \cite{allsides-2022-bias-definition} defines media bias as "The tendenc
     \label{fig:media-bias-taxonomy}
 \end{figure}
 
-Many works and authors have tried to categorise media bias based on its types and characteristics \cite{rodrigo-2024-systematic-review-media-bias,eberl-2017-bias-political,spinde-2024-taxonomy,allsides-media-bias-types}. This project will follow The Media Bias Taxonomy by Spinde et al. (Figure \ref{fig:media-bias-taxonomy}), primarily focusing on \textbf{Text-level Context Bias}, which pertains to the context of a text and the manner in which it is conveyed \cite{spinde-2024-taxonomy}.
+Many works and authors have attempted to categorise media bias based on its types and characteristics \cite{rodrigo-2024-systematic-review-media-bias,eberl-2017-bias-political,spinde-2024-taxonomy,allsides-media-bias-types}, each with their own interpretations. However, none of these categorisations align with each other, making a universally accepted characteristics of media bias difficult to achieve \cite{rodrigo-2024-systematic-review-media-bias}. Thus, this project will specifically follow media bias categorisation according to The Media Bias Taxonomy by Spinde et al. (Figure \ref{fig:media-bias-taxonomy}). Particularly, the main focus is on \textbf{text-level context bias}, which pertains to the context of a text and the manner in which it is conveyed \cite{spinde-2024-taxonomy}.
 
 \begin{figure}[htbp]
     \centering
-    \fbox{\includegraphics[width=0.95\linewidth]{images/phrasing_bias_example.png}}
-    \fbox{\includegraphics[width=0.95\linewidth]{images/spin_bias_example.png}}
-    \fbox{\includegraphics[width=0.95\linewidth]{images/statement_bias_example.png}}
+    \fbox{\includegraphics[width=0.9\linewidth]{images/phrasing_bias_example.png}}
+    \fbox{\includegraphics[width=0.9\linewidth]{images/spin_bias_example.png}}
+    \fbox{\includegraphics[width=0.9\linewidth]{images/statement_bias_example.png}}
     \caption{Example of phrasing bias (top), spin bias (middle), and statement bias (bottom) \cite{allsides-media-bias-types}}
     \label{fig:bias-examples}
 \end{figure}
@@ -39,7 +39,7 @@ Figure \ref{fig:bias-examples} shows examples taken from the Allsides website \c
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{images/statistic_id1462057_frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group.png}
-    \caption{Frequency of seeing false or misleading information online in the United States as of April 2023, by age group \cite{yougov-2023-frequency}}
+    \caption{How often false or misleading information are seen online in the United States as of April 2023 \cite{yougov-2023-frequency}.}
     \label{fig:frequency-of-seeing-false-information-online-in-the-us-2023-by-age-group}
 \end{figure}
 
@@ -83,13 +83,21 @@ Considering the magnitude of this problem in the United States, and given that t
     \label{fig:bow_illustration}
 \end{figure}
 
-\textbf{Bag-of-Words (BoW)} is one of the most straightforward techniques to represent text. It works by counting the occurrences of each word for each instance and ignoring the order of the words and grammatical structure \cite{qader-2019-bow}. A simple illustration is shown in Figure \ref{fig:bow_illustration}. The biggest advantage of this technique is that it is computationally cheap and conceptually simple. However, word order and semantics are completely disregarded, and it can be problematic when common words (like stop-words) dominate the representation.
+\textbf{Bag-of-Words (BoW)} is one of the most straightforward techniques to represent text. It works by counting the occurrences of each word for each instance and ignoring the order of the words and grammatical structure \cite{qader-2019-bow}. A simple illustration is shown in Figure \ref{fig:bow_illustration}. The biggest advantage of this technique lies in its conceptual simplicity and low computation cost. However, word order and semantics are completely disregarded, and it can be problematic when common words (like stop-words) dominate the representation.
 
-Thus, \textbf{Term Frequency-Inverse Document Frequency (TF-IDF)} can be considered an enhanced version of BoW. It evaluates the importance of a word in a document relative to a collection of documents (corpus). Term Frequency (TF) calculates the number of times a term appears in a document, normalized by the total number of terms in the document. Inverse Document Frequency (IDF) calculates how much information the word provides, i.e., if it is common or rare across all documents. These two calculations will give higher weights on rare and potentially more informative terms rather than frequent words.
+Thus, \textbf{Term Frequency-Inverse Document Frequency (TF-IDF)} can be considered an enhanced version of BoW. It evaluates the importance of a word in a document relative to a collection of documents (corpus). Term Frequency (TF) calculates the number of times a term appears in a document, normalised by the total number of terms in the document. Inverse Document Frequency (IDF) \cite{jones-2004-idf} calculates how much information a word provides by measuring its rarity across the entire corpus. Specifically, IDF is calculated as the logarithm of the total number of documents divided by the number of documents containing the term. The combination of TF and IDF helps to give higher weights to terms that are rare and potentially more informative in the context of a document, rather than to terms that are common across many documents. The TF-IDF formula is given by:
+\begin{equation}
+    \text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \text{IDF}(t, D)
+\end{equation}
+\begin{equation}
+    \text{TF}(t, d) = \frac{f(t, d)}{\sum_{t' \in d} f(t', d)}
+\end{equation}
+\begin{equation}
+    \text{IDF}(t, D) = \log \frac{|D|}{|\{d \in D \mid t \in d\}|}
+\end{equation}
+where \(\text{TF}(t, d)\) is the term frequency of the term \( t \) in document \( d \), and \(\text{IDF}(t, D)\) is the inverse document frequency of the term \( t \) in the document collection \( D \). Thus, \( f(t, d) \) denotes the frequency of term \( t \) in document \( d \), \( |D| \) is the total number of documents in the collection, and \( |\{d \in D \mid t \in d\}| \) is the number of documents containing the term \( t \).
 
-Embeddings represent knowledge through low-dimensional vectors that integrate easily into modern machine learning models, which have been a crucial topic in NLP \cite{camacho-collados-2020-embeddings}. This approach gained significant popularity with the introduction of \textit{word2vec} and \textbf{Global Vectors for Word Representation (GloVE)} \cite{pennington-2014-glove} as methods to generate word embeddings \cite{mikolov-2013-embeddings}, which map each word to a fixed vector (visualised in Figure \ref{fig:word-embeddings}). Embeddings can be extended further to encode sentences and documents instead of words (sentence embeddings and document embeddings). Paragraph vector, or \textit(doc2vec), is a continuation from word2vec, which learns fixed-length feature representations from text segments of varying lengths, including sentences, paragraphs, and documents \cite{mikolov-2014-doc2vec}. However, word embeddings and BoW have also been shown to perform better than paragraph vectors models for sentence classification \cite{white-2015-how-well-sentence-embeddings}.
-
-% OOV?
+Embeddings represent knowledge through low-dimensional vectors that integrate easily into modern machine learning models, which have been a crucial topic in NLP \cite{camacho-collados-2020-embeddings}. This approach gained significant popularity with the introduction of \textit{word2vec} and \textbf{Global Vectors for Word Representation (GloVE)} \cite{pennington-2014-glove} as methods to generate word embeddings \cite{mikolov-2013-embeddings}, which map each word to a fixed vector (visualised in Figure \ref{fig:word-embeddings}). Embeddings can be extended further to encode sentences and documents instead of words (sentence embeddings and document embeddings). Paragraph vector, or \textit(doc2vec), is a continuation from \textit{word2vec}, which learns fixed-length feature representations from text segments of varying lengths, including sentences, paragraphs, and documents \cite{mikolov-2014-doc2vec}. However, word embeddings and BoW have also been shown to perform better than paragraph vectors models for sentence classification \cite{white-2015-how-well-sentence-embeddings}.
 
 \begin{figure}[htbp]
     \centering
@@ -101,15 +109,13 @@ Embeddings represent knowledge through low-dimensional vectors that integrate ea
 
 Nevertheless, word embeddings have an important limitation. Since every word is mapped into a fixed single vector, word embeddings are considered static or non-contextualised, therefore, unable to distinguish between different meanings of a word \cite{camacho-collados-2020-embeddings}. Words such as 'break,' 'cut,' or 'duck' can have multiple meanings depending on their context, and thus require better modelling to achieve an accurate semantic representation. This problem is solved by contextualised word embeddings, which assign each word with a representation based on its context, allowing it to capture usage in different contexts and encode knowledge that can be transferred across languages \cite{liu-2020-survey-contextual-embeddings}. The embedding is typically encoded dynamically through the use of a pre-trained language model, illustrated in Figure \ref{fig:contextualised-word-embeddings}.
 
-\begin{comment}
-Sentence embeddings generated by pre-trained language models often fail to effectively capture the semantic meaning of sentences \cite{li-2020-sentence-embeddings-pretrained-language}
-\end{comment}
 
+% OOV?
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{images/contextualised_word_embeddings.png}
-    \caption{An illustration of contextualised word embeddings. A language modelling component analyses the context of the target word (as shown in the figure) and generates its dynamic embedding. \cite{camacho-collados-2020-embeddings}}
+    \caption{An illustration of contextualised word embeddings, a language model is used to analyse the context of the target word and creates a dynamic representation. \cite{camacho-collados-2020-embeddings}}
     \label{fig:contextualised-word-embeddings}
 \end{figure}
 
@@ -123,23 +129,20 @@ Sentence embeddings generated by pre-trained language models often fail to effec
     \label{fig:mlp}
 \end{figure}
 
-Neural Networks or Artificial Neural Networks (ANNs) saw a resurgence of interest after the development of back-propagation algorithm in 1986 \cite{rumelhart-1986-ann}, which made training multi-layer networks feasible and practical. A neural network consists of interconnected nodes called neurons arranged in layers, it utilises the back-propagation algorithm to learn from its errors and continuously improve its performance \cite{aws-neural-network}. These neurons are followed by an activation function, commonly the Rectified Linear Unit (ReLU), which introduces non-linearity into the model and allows the network to learn and represent complex patterns.
+Neural Networks or Artificial Neural Networks (ANNs) saw a resurgence of interest after the development of back-propagation algorithm in 1986 \cite{rumelhart-1986-ann}, which made training multi-layer networks feasible and practical. A neural network is composed of nodes, known as neurons, which are connected to each other and arranged in layers. The network uses the back-propagation algorithm to learn from errors and continuously enhance its performance, by minimising the discrepancy between the target output and the actual output using gradient descent \cite{popescue-2009-mlp}. Neurons are typically followed by an activation function, commonly the Rectified Linear Unit (ReLU), which is the component responsible for introducing non-linearity into the model and allows the network to learn and represent complex patterns.
 
-\textbf{A MultiLayer Perceptron (MLP)} is a fully connected ANN that consists of single or multiple hidden layers, illustrated in Figure \ref{fig:mlp}. Hidden layers refer to the collection of neurons that are between the input and output layers, transforming data from layer to layer \cite{uzair-2020-hidden-layers}. MLP is widely used due to its ability to introduce non-linearity into the model, allowing the network to approximate complex functions that are beyond the capability of simple linear models \cite{popescue-2009-mlp}.
+The weighted sum (\( \mathbf{z} \)) in a hidden layer of a neural network is computed as follows (Equation \eqref{eq:z}):
+\begin{equation}
+    \label{eq:z}
+    \mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}
+\end{equation} where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
 
-% \begin{comment}
-% The weighted sum (\( \mathbf{z} \)) in a hidden layer of a neural network is computed as follows (Equation \eqref{eq:z}):
+\begin{equation}
+    \label{eq:h}
+    \mathbf{h} = f(\mathbf{z})
+\end{equation}
 
-% \begin{equation}
-%     \label{eq:z}
-%     \mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}
-% \end{equation} where \( \mathbf{x} \) is the input vector, \( \mathbf{W} \) is the weight matrix, \( \mathbf{b} \) is the bias vector. After computing \( \mathbf{z} \), an activation function \( f \) is applied element-wise to produce the output \( \mathbf{h} \) (Equation \eqref{eq:h}):
-
-% \begin{equation}
-%     \label{eq:h}
-%     \mathbf{h} = f(\mathbf{z})
-% \end{equation}
-% \end{comment}
+\textbf{A MultiLayer Perceptron (MLP)} is a fully connected ANN that consists of single or multiple hidden layers, illustrated in Figure \ref{fig:mlp}. Hidden layers refer to the collection of neurons that are between the input and output layers, transforming data from layer to layer \cite{uzair-2020-hidden-layers}. MLP is widely used due to its ability to approximate complex functions that are beyond the capability of simple linear models \cite{popescue-2009-mlp}.
 
 \subsection{Long Short-Term Memory (LSTM)}
 
@@ -150,7 +153,9 @@ Neural Networks or Artificial Neural Networks (ANNs) saw a resurgence of interes
     \label{fig:lstm}
 \end{figure}
 
-LSTM \cite{hochreiter-1997-lstm} is a type of Recurrent Neural Network (RNN) architecture designed to address the vanishing gradient problem and capture long-term dependencies in sequential data. It incorporates two fundamental components: memory cells and gates. Memory cells maintain a cell state, which can store information over long sequences and allows the model to retain information for longer durations compared to traditional RNNs. Gates control the flow of information into and out of the memory cell, controlled by sigmoid and tanh activation functions, which regulate the information flow based on the input data and the current state. Figure \ref{fig:lstm} shows the full architecture of a LSTM block.
+effectively capture long-term dependencies in sequential data
+
+LSTM \cite{hochreiter-1997-lstm} is a type of Recurrent Neural Network (RNN) designed to overcome the vanishing gradient problem and model long-term dependencies in sequential data. It incorporates two fundamental components: memory cells and gates. Memory cells maintain a cell state, which can store information over long sequences and allows the model to retain information for longer durations compared to traditional RNNs. Gates control the flow of information into and out of the memory cell, controlled by sigmoid and tanh activation functions, which regulate the information flow based on the input data and the current state. Figure \ref{fig:lstm} shows the full architecture of a LSTM block.
 
 Bi-LSTM (Bidirectional Long Short-Term Memory) extends the LSTM (Long Short-Term Memory) by processing given input sequence in both forward and backward directions. A Bi-LSTM layer consists of two separate LSTM layers: one for the forward pass and another for the backward pass. The outputs from these two directions are then combined to form a single representation. This approach has been shown to be a powerful enhancement, outperforming regular LSTM \cite{graves-2005-bilstm}.
 
@@ -163,7 +168,25 @@ Bi-LSTM (Bidirectional Long Short-Term Memory) extends the LSTM (Long Short-Term
     \label{fig:transformer}
 \end{figure}
 
-The Transformer has become the preferred architecture in NLP, particularly for pre-trained models, due to its capabilities \cite{lin-2022-survey-transformers}. Its architecture relies entirely on attention mechanism to capture global dependencies across input and output sequences, allowing for unprecedented levels of parallelisation instead of sequential processing \cite{vaswani-2023-attention}.
+The Transformer has become the preferred architecture in NLP, particularly for pre-trained models, due to its capabilities \cite{lin-2022-survey-transformers}. Its architecture depends solely on attention mechanism to identify global dependencies across input and output sequences, allowing for unprecedented levels of parallelisation instead of sequential processing \cite{vaswani-2023-attention}.
+
+Attention is calculated by incorporating: \(\mathbf{Q}\) is the query matrix, \(\mathbf{K}\) is the key matrix, and \(\mathbf{V}\) is the value matrix, using the following formula \cite{vaswani-2023-attention}:
+
+\begin{equation}
+    \label{eq:attention}
+    \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left( \frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_k}} \right) \mathbf{V}
+\end{equation}
+Additionally, multi-head attention is typically implemented in transformer to enable the model to simultaneously attend to information from various representation subspaces at different positions \cite{vaswani-2023-attention}. This is defined as:
+\begin{equation}
+    \label{eq:multihead}
+    \text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O
+\end{equation}
+where each head is calculated as:
+\begin{equation}
+    \label{eq:head}
+    \text{head}_i = \text{Attention}(\mathbf{Q} \mathbf{W}^Q_i, \mathbf{K} \mathbf{W}^K_i, \mathbf{V} \mathbf{W}^V_i)
+\end{equation}
+
 
 \textbf{Large Language Models (LLMs)} are artificial neural networks that utilise the transformer architecture, designed to understand and generate human language. They are trained on vast amounts of diverse text data using unsupervised learning techniques, often containing millions or even billions of parameters. Two of the most popular and widely used LLMs are \textbf{Bidirectional Encoder Representations from Transformers (BERT)} \cite{devlin-2019-bert}, comprised of 110 million parameters, and Generative Pre-trained Transformer (GPT), particularly GPT-4 \cite{openai-2024-gpt4}, which is reported to have an astonishing 1.76 trillion parameters, based on a report by SemiAnalysis in 2023 \cite{semianalysis-gpt4}. Additionally, \textbf{RoBERTa} \cite{liu-2019-roberta} (Robustly Optimized BERT Approach) refines BERT's approach by optimising its training procedures, using larger datasets and increased computational resources. These improvements result in better performance across various benchmarks compared to BERT.
 
@@ -178,21 +201,6 @@ Transformers and LLMs have sparked a revolution in the domain of Artificial Inte
     \label{fig:bert_finetuning}
 \end{figure}
 
-% \begin{comment}
-% \begin{equation}
-%     \label{eq:attention}
-%     \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left( \frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_k}} \right) \mathbf{V}
-% \end{equation}
-
-% \begin{equation}
-%     \label{eq:multihead}
-%     \text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O
-% \end{equation}
-% where
-% \[
-%     \text{head}_i = \text{Attention}(\mathbf{Q} \mathbf{W}^Q_i, \mathbf{K} \mathbf{W}^K_i, \mathbf{V} \mathbf{W}^V_i)
-% \]
-% \end{comment}
 
 \subsection{MAGPIE and DA-RoBERTa}
 
@@ -203,7 +211,7 @@ Transformers and LLMs have sparked a revolution in the domain of Artificial Inte
     \label{fig:magpie}
 \end{figure}
 
-Multi-Task Media-Bias Analysis Generalization for Pre-Trained Identification of Expressions, or \textbf{MAGPIE} \cite{horych-2024-magpie}, is a large-scale, RoBERTa-based \cite{liu-2019-roberta}, multitask pre-training approach specifically designed for media bias detection, pre-fine-tuned on fifty-nine bias-related tasks covering a broad spectrum of biases. Pre-fine-tuning is a large-scale training phase situated between language model pre-training and fine-tuning. It involves extensive multitask learning (MTL) \cite{caruana-1997-mtl} and aims to foster the development of representations that generalise more effectively across various tasks \cite{aghajanyan-2021-muppet}. Pre-fine-tuning allows multitask-approach such as MAGPIE to generalise better on various tasks related to media bias, enabling better performance on these tasks compared to single-task RoBERTa approach \cite{horych-2024-magpie}.
+Multi-Task Media-Bias Analysis Generalization for Pre-Trained Identification of Expressions, or \textbf{MAGPIE} \cite{horych-2024-magpie}, is a large-scale, RoBERTa-based \cite{liu-2019-roberta}, multitask pre-training approach specifically designed for media bias detection, pre-fine-tuned on fifty-nine bias-related tasks covering a broad spectrum of biases. Pre-fine-tuning \cite{aghajanyan-2021-muppet} is a large-scale training phase that can be placed between language model pre-training and fine-tuning. It involves extensive multitask learning (MTL) \cite{caruana-1997-mtl} and aims to foster the development of representations that generalise more effectively across various tasks \cite{aghajanyan-2021-muppet}. Pre-fine-tuning allows multitask-approach such as MAGPIE to generalise better on various tasks related to media bias, enabling better performance on these tasks compared to single-task RoBERTa approach \cite{horych-2024-magpie}.
 
 \textbf{DA-RoBERTa} (Domain-Adaptive-RoBERTa) \cite{krieger-2022-domain} is another RoBERTa-based model, pre-trained and tailored for the media bias domain. The model training approach focuses on detecting biased word choices and identifying sentence-level bias \cite{krieger-2022-domain}.
 
@@ -283,7 +291,7 @@ Other datasets shown in Figure \ref{fig:media-bias-datasets-overview} either hav
 
 Past works on media bias classification typically use the BASIL dataset, operating on a sentence-level and outputting binary result (either biased or not) \cite{maab-2023-lexical-bias-detection, maab-2023-target-aware, guo-2022-modeling, van-den-berg-2020-context,lee-2021-unifying,lei-2022-sentence,lei-2024-event-relation,krieger-2022-domain}, complemented by the lack of appropriate and adequate datasets with article-level annotations \cite{demidov-2023-political-bias-classification}.
 
-Consequently, There are only a few existing works on article-level media bias classification, with most works focusing on detecting political bias (leaning-left, right, or centre) or ideology instead of purely media bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} proposed a method that incorporates cues from the title, link structure, and content of articles to predict political ideology. Baly et al. \cite{baly-2020-we-can-detect-your-bias} adversarial media adaptation approach to detect political bias in news articles. Kim and Johnson \cite{kim-johnson-2022-close} proposed an MTL model (CLoSE) that consisted of either a BERT-based or RoBERTa-based encoder, followed by a pooling layer to create a sentence embedding, which is then fed into a classifier to predict political bias. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} employed a Gaussian mixture model that exploits sentence-level bias information to detect article-level bias. Chen et al.'s definition and approach to media bias closely align with this project; however, it does not incorporate any transformer-based or state-of-the-art (SOTA) methods.
+Consequently, There are only a few existing works on article-level media bias classification, with most works focusing on detecting political bias (leaning-left, right, or centre) or ideology instead of purely media bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} proposed a method that incorporates cues from the title, link structure, and content of articles to predict political ideology. Baly et al. \cite{baly-2020-we-can-detect-your-bias} adversarial media adaptation approach to detect political bias in news articles. Kim and Johnson \cite{kim-johnson-2022-close} proposed an MTL model (CLoSE) made of either a BERT-based or RoBERTa-based encoder, followed by a pooling layer to create sentence embeddings, which are then fed into a classifier to predict political bias. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} employed a Gaussian mixture model that exploits sentence-level bias information to detect article-level bias. Chen et al.'s definition and approach to media bias closely align with this project; however, it does not incorporate any transformer-based or State-of-the-Art (SOTA) methods.
 
 
 % \begin{comment}
