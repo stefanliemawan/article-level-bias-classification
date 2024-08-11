@@ -7,49 +7,79 @@ This chapter discusses the chosen dataset for this study, the BAT dataset. It in
 
 The BAT (Bias And Twitter) dataset \cite{spinde-2023-bat} contains 6,345 rows of manually labelled news articles published by 321 English-speaking news outlets (US-based), originally scraped from Ad Fontes Media's website. Articles in the dataset encompassed a wide range of topics such as COVID-19, politics, and lifestyle. This dataset was chosen for this project primarily because of its political bias and reliability scores, which provide a clear and useful label for classifying media bias at the article level.
 
-The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right), reflecting the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting) \cite{adfontes-bias-reliability}. The reliability score evaluates articles based on original fact reporting, analysis, opinion, propaganda, and inaccurate/fabricated information, with scores above 40 generally considered good and scores below 24 typically seen as problematic, scores between 24 and 40 suggest a variety of factors, including a strong presence of opinion and analysis or significant variability in reliability across different articles \cite{adfontes-bias-reliability}.
-
-Ad Fontes rates articles using a politically balanced panel consisting of at least three analysts representing right-leaning, centrist, and left-leaning perspectives. The scores from each analyst are compared, and any discrepancies are discussed and adjusted if necessary, before averaging to obtain the final rating \cite{adfontes-methodology}. No further information can be found regarding their specific values and range of these rating, it can be safely assumed that this is an inherent part of their algorithms and methodology.
-
-The reliability score is selected as the label in this project because it measures truthfulness and original fact reporting. Articles with high reliability scores typically do not exhibit any textual-level biases, such as phrasing bias, spin bias, or statement bias, as described in Chapter \ref{cha:2}.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{1\linewidth}
+    \includegraphics[width=1\linewidth]{images/Media-Bias-Chart-12.0_Jan-2024-Licensed-scaled.jpg}
+    \caption{The Ad Fontes Media Bias Chart, showing how every outlet is aligned horizontally (political bias) and vertically (reliability) on their chart \cite{adfontes-media-bias-chart}}
+    \label{fig:adfontes-media-bias-chart}
+\end{figure}
+
+% Figure \ref{fig:adfontes-media-bias-chart} shows the Ad Fontes media Bias Chart
+
+The political bias score measures the extent of political influence, ranging from -42 (most extreme left) to +42 (most extreme right).
+The scores are defined based on current US elected officials' policy positions \cite{otero-2021-adfontes-methodology}
+
+The reliability score reflects the article's truthfulness, with values ranging from 0 (least reliable, containing inaccurate or fabricated information) to 64 (most reliable, original fact reporting) \cite{adfontes-bias-reliability}. Its range is explained as an arbitrarily made eight categories, each spanning 8 rating points, which they claim to "...provide sufficient levels of classification of the types of news sources we are rating and sufficient distinction within the categories." \cite{otero-2021-adfontes-methodology}
+
+In terms of the reliability score methodology,  there appears to be a discrepancy between the information on the Ad Fontes website \cite{adfontes-bias-reliability} and the Ad Fontes methodology paper \cite{otero-2021-adfontes-methodology}. According to the website, a reliability score of above 40 is generally considered reliable and scores below 24 are typically seen as problematic, while scores between 24 and 40 suggest a variety of factors, e.g. a strong presence of opinion and analysis \cite{adfontes-bias-reliability}. In contrast, the methodology paper provides the following explanations \cite{otero-2021-adfontes-methodology}:
+\begin{enumerate}
+    \item Content classified as primarily fact reporting is scored between 48 and 64 (generally between 48 and 56 as higher scores are reserved for widely corroborated content).
+    \item Content containing analysis scores between 32 and 48, with higher scores indicating well-argued analysis.
+    \item Content with opinions scores between 24 and 32, with higher scores indicating well-argued opinions.
+    \item Content scoring below 24 generally has reliability issues, with scores between 16 and 24 often suggesting that an integral element of the story was excluded.
+    \item Content scoring below 16 is considered entirely false or misleading.
+\end{enumerate}
+Figure \ref{fig:adfontes-methodology} visually illustrates these differences.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/ad_fontes_reliability_score_methodology.png}
+    \caption{Discrepancies in Ad Fontes methodology according to the website \cite{adfontes-bias-reliability} and paper \cite{otero-2021-adfontes-methodology}}
+    \label{fig:adfontes-methodology}
+\end{figure}
+
+Ad Fontes rates articles using a politically balanced panel consisting of at least three analysts representing right-leaning, centrist, and left-leaning perspectives. The scores from each analyst are compared, and any discrepancies are discussed and adjusted if necessary before averaging to obtain the final rating \cite{adfontes-methodology,otero-2021-adfontes-methodology}. As of 2021, all Ad Fontes analysts hold at least a bachelor's degree, with the majority having a graduate degree and either pursuing or holding a doctoral degree. Additionally, they have also completed over 20 hours of training in content analysis prior to contributing ratings \cite{otero-2021-adfontes-methodology}.
+
+The reliability score is selected as the label in this project because it measures truthfulness and original fact reporting. Articles with high-reliability scores typically do not exhibit any textual-level biases, such as phrasing bias, spin bias, or statement bias, as described in Chapter \ref{cha:2}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.9\linewidth}
         \begin{center}
             \small{\textbf{Trenton police officer takes own life in Plainsboro parking lot, officials say}}
         \end{center}
-        \scriptsize{
-            A veteran Trenton police officer took his own life in a parking lot Wednesday, officials said. Sgt. Daniel Pagnotta, a 21-year-veteran of the department, died this morning in Plainsboro, according to a city spokesman.“Beloved by everyone in the Trenton Police Department, he was devoted to Trenton and police work,” Mayor Reed Gusciora said in a statement. The statement described Pagnotta as a devoted husband and father of two who loved soccer and making people laugh. His father, also named Dan, is a retired Trenton police officer.“Dan was proud to continue a legacy of law enforcement in his family,” Gusciora said. “Dan and his family are on our minds and in our hearts. He will be dearly missed.”}
+        \scriptsize{\textit{
+                A veteran Trenton police officer took his own life in a parking lot Wednesday, officials said. Sgt. Daniel Pagnotta, a 21-year-veteran of the department, died this morning in Plainsboro, according to a city spokesman.“Beloved by everyone in the Trenton Police Department, he was devoted to Trenton and police work,” Mayor Reed Gusciora said in a statement. The statement described Pagnotta as a devoted husband and father of two who loved soccer and making people laugh. His father, also named Dan, is a retired Trenton police officer.“Dan was proud to continue a legacy of law enforcement in his family,” Gusciora said. “Dan and his family are on our minds and in our hearts. He will be dearly missed.”}}
     \end{minipage}
-    \caption{Example of a non-biased article, reliability score: 57.67}
+    \caption{Example of a highly-rated article, reliability score: 57.67 \cite{spinde-2023-bat}}
     \label{fig:example-nonbiased-article-1}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{1\linewidth}
+    \begin{minipage}{0.9\linewidth}
         \begin{center}
             \small{\textbf{Army Rejects Mike Flynn’s Call For Trump To Declare Martial Law And Overturn The Election}}
         \end{center}
-        \scriptsize{
-            After Mike Flynn called for Trump to declare martial law and overturn the election, Army leadership flatly rejected the idea. The Army response to Flynn’s fascist idea was to reject it: The military has made it very clear that they will not be participating in any last-ditch attempts by Trump to destroy democracy to stay in power. Flynn’s idea that Trump should overturn the election shows that Trump and his associates have always been anti-democratic. They don’t respect democracy or view it as their role to uphold and promote democratic institutions in the United States. There is not going to be any declaration of martial law. Trump isn’t going to overturn the election. Trump is not going to get help from the military to stay in power. The soon to be former president was the face of the fascist threat, but he has converted the Republican Party into an anti-democratic movement for autocracy. Donald Trump lost, but the authoritarian impulse behind Trumpism still must be defeated for democracy in the United States to be saved.}
+        \scriptsize{\textit{
+                After Mike Flynn called for Trump to declare martial law and overturn the election, Army leadership flatly rejected the idea. The Army response to Flynn’s fascist idea was to reject it: The military has made it very clear that they will not be participating in any last-ditch attempts by Trump to destroy democracy to stay in power. Flynn’s idea that Trump should overturn the election shows that Trump and his associates have always been anti-democratic. They don’t respect democracy or view it as their role to uphold and promote democratic institutions in the United States. There is not going to be any declaration of martial law. Trump isn’t going to overturn the election. Trump is not going to get help from the military to stay in power. The soon to be former president was the face of the fascist threat, but he has converted the Republican Party into an anti-democratic movement for autocracy. Donald Trump lost, but the authoritarian impulse behind Trumpism still must be defeated for democracy in the United States to be saved.}}
     \end{minipage}
-    \caption{Example of a non-biased article, reliability score: 30.0}
+    \caption{Example of an article with a reliability score of 30.0 \cite{spinde-2023-bat}}
     \label{fig:example-mixed-biased-article-1}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{1\linewidth}
+    \begin{minipage}{0.9\linewidth}
         \begin{center}
             \small{\textbf{Is the FBI corrupt beyond repair?}}
         \end{center}
-        \scriptsize{
-            Last week, the most recent slap in the face to the American people came in the form of a corrupt FBI lawyer getting a fine less than seatbelt ticket for falsifying documents to violate the civil rights of American citizens. Unfortunately, this is the latest in a laundry list of issues with the FBI. The most glaring problem with the FBI is its actions during the Russia Collusion hoax. The FBI allowed itself to become the enforcement arm of the Democratic Party. There is a slim chance the law enforcement agency did not know it was being used initially, but it had to know it was being used shortly after the 2016 election...
-        }
+        \scriptsize{\textit{
+                Last week, the most recent slap in the face to the American people came in the form of a corrupt FBI lawyer getting a fine less than seatbelt ticket for falsifying documents to violate the civil rights of American citizens. Unfortunately, this is the latest in a laundry list of issues with the FBI. The most glaring problem with the FBI is its actions during the Russia Collusion hoax. The FBI allowed itself to become the enforcement arm of the Democratic Party. There is a slim chance the law enforcement agency did not know it was being used initially, but it had to know it was being used shortly after the 2016 election...}}
     \end{minipage}
-    \caption{Example of a biased article, reliability score: 6.67}
+    \caption{Example of a low-rated article, reliability score: 6.67 \cite{spinde-2023-bat}}
     \label{fig:example-biased-article-1}
 \end{figure}
 
@@ -59,9 +89,9 @@ An example of a highly-rated article can be seen in Figure \ref{fig:example-nonb
 
 The original BAT dataset contains the titles and URLs of articles but missing the full content. Therefore, it is necessary to crawl the websites to retrieve the complete article content. To address this, a Python script was developed to iteratively visit each URL in the dataset and extract the textual content. The initial round yielded 5,270 articles from the original 6,345 articles, with substantial data loss attributed to unavailable websites, missing articles, and broken links. Additionally, some pages could not be crawled by the script due to structural differences and had to be manually copied and pasted.
 
-Subsequently, a second round of data retrieval was conducted by re-examining 1,075 articles that were not successfully crawled in the initial round. Each of these cases was individually investigated: missing articles were sought through public archives, broken links were repaired, using proxies to bypass geographical restrictions. Articles that were successfully retrieved were added to the dataset, resulting in an additional 226 articles. Thus, the final dataset contains 5,497 articles.
+Subsequently, a second round of data retrieval was conducted by re-examining 1,075 articles that were not successfully crawled in the initial round. Each of these cases was individually investigated: missing articles were sought through public archives, and broken links were repaired, using proxies to bypass geographical restrictions. Articles that were successfully retrieved were added to the dataset, resulting in an additional 226 articles. Thus, the final dataset contains 5,497 articles.
 
-The extracted text contains noise, which upon inspection is categorised into two different types: \textbf{word-level noise} and \textbf{phrase-level noise} as illustrated in Table \ref{table:conjoined_words} and Table \ref{table:noise_phrases}. Word-level noise includes typing errors and conjoined words, mostly attributed to word links or texts with unusual HTML format that are difficult to cleanly extract. Phrase-level noises are attributed to extraneous content such as author information, subscription prompts, and donation appeals within the article text.
+The extracted text contains noise, which upon inspection is categorised into two different types: \textbf{word-level noise} and \textbf{phrase-level noise} as illustrated in Table \ref{table:conjoined_words} and Table \ref{table:noise_phrases}. Word-level noise includes typing errors and conjoined words, mostly attributed to word links or texts with unusual HTML formats that are difficult to extract cleanly. Phrase-level noises are attributed to extraneous content such as author information, subscription prompts, and donation appeals within the article text.
 
 \begin{table}[htbp]
     \centering
@@ -87,7 +117,7 @@ The extracted text contains noise, which upon inspection is categorised into two
         haspreviously          & Postcolumnist & 2ndAmendment       \\
         \hline
     \end{tabular}
-    \caption{Example of word-level noise, over sixty-thousand occurrences are found within the dataset article contents}
+    \caption{Example of word-level noise, over sixty thousand occurrences are found within the dataset article contents}
     \label{table:conjoined_words}
 \end{table}
 
@@ -134,20 +164,20 @@ A total of 5,761 word-level noises were corrected, and 625 phrase-level noises w
     \begin{tabular}{| c | c | c | c | c |}
         \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\\cline{1-5}
 
-        \multirow{5}{*}{BERT FT, before noise cleaning}   & Problematic        & 0.43               & 0.37            & 0.40        \\
+        \multirow{5}{*}{BERT FT, before noise-cleaning}   & Problematic        & 0.43               & 0.37            & 0.40        \\
                                                           & Questionable       & 0.33               & 0.39            & 0.36        \\
                                                           & Generally Reliable & 0.39               & 0.53            & 0.45        \\
                                                           & Reliable           & 0.91               & 0.81            & 0.86        \\\cline{2-5}
                                                           & Overall            & 0.7379             & 0.6994          & 0.7147      \\
         \hline
-        \multirow{5}{*}{BERT FT, after noise cleaning}    & Problematic        & 0.43               & 0.44            & 0.44        \\
+        \multirow{5}{*}{BERT FT, after noise-cleaning}    & Problematic        & 0.43               & 0.44            & 0.44        \\
                                                           & Questionable       & 0.29               & 0.39            & 0.33        \\
                                                           & Generally Reliable & 0.44               & 0.48            & 0.46        \\
                                                           & Reliable           & 0.90               & 0.83            & 0.86        \\\cline{2-5}
                                                           & Overall            & 0.7359             & 0.7065          & 0.7193      \\
         \hline
     \end{tabular}
-    \caption{Performance before and after noise cleaning of BERT fine-tuning}
+    \caption{Performance before and after noise-cleaning of BERT fine-tuning}
     \label{table:noise_performance_comparison}
 \end{table}
 
@@ -172,7 +202,7 @@ Most articles in the BAT dataset were written and published within the last six 
     \label{fig:token_hist_split}
 \end{figure}
 
-Analysis of articles token count can be seen in Figure \ref{fig:token_hist_split}. Note that sub-words are used as tokens in this analysis rather than whole words. The length of article content tokens ranges from 17 to 16,139, with an average length of 1,207.07 and a median value of 908 tokens. More than half of articles in the dataset have between 512 and 2,048 tokens. Only nine articles have more than 10,000 tokens, while 106 articles have fewer than 100 tokens. Furthermore, 1,209 articles contain 512 tokens or fewer, which is the maximum input length for BERT. Thus, when using BERT in its standard configuration, significant information loss is to be expected due to the token limit.
+Analysis of articles' token count can be seen in Figure \ref{fig:token_hist_split}. Note that sub-words are used as tokens in this analysis rather than whole words. The length of article content tokens ranges from 17 to 16,139, with an average length of 1,207.07 and a median value of 908 tokens. More than half of the articles in the dataset have between 512 and 2,048 tokens. Only nine articles have more than 10,000 tokens, while 106 articles have fewer than 100 tokens. Furthermore, 1,209 articles contain 512 tokens or fewer, which is the maximum input length for BERT. Thus, when using BERT in its standard configuration, significant information loss is to be expected due to the token limit.
 
 \begin{figure}[htbp]
     \centering
@@ -196,9 +226,9 @@ Analysis of articles token count can be seen in Figure \ref{fig:token_hist_split
     \label{fig:reliability_token_analysis}
 \end{figure}
 
-The articles reliability scores range from 1.0 to 58.67, with the majority scoring between 40 and 50. No articles  exceed a score of 60, despite the highest possible score being 64. Thus, only several hundreds of articles are rated low. The full histogram of the reliability scores is shown in Figure \ref{fig:reliability_score_hist}.
+The articles' reliability scores range from 1.0 to 58.67, with the majority scoring between 40 and 50. No articles exceed a score of 60, despite the highest possible score being 64. Thus, only several hundred articles are rated low. The full histogram of the reliability scores is shown in Figure \ref{fig:reliability_score_hist}.
 
-Figure \ref{fig:avg_token_per_class} also shows that all classes have similar average token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. However, further analysis (Figure \ref{fig:pearson}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient  \cite{pearson-1896} of 0.02. The Pearson correlation coefficient \cite{pearson-1896} is a statistical measure used to assess the strength and direction of the linear relationship between two variables. The extremely low value indicates that the length of an article has no significant impact on its reliability score. In other words, based on the provided data, longer articles are not necessarily more or less reliable than shorter ones.
+Figure \ref{fig:avg_token_per_class} also shows that all classes have a similar average token count, close to the overall average. The 'Problematic' and 'Questionable' classes, being the two most biased, have lower average token count than the other two classes. However, further analysis (Figure \ref{fig:pearson}) reveals that there is virtually no linear relationship between token count and reliability score, with a Pearson correlation coefficient  \cite{pearson-1896} of 0.02. The Pearson correlation coefficient \cite{pearson-1896} is a statistical measure used to quantify the linear relationship between two variables. The extremely low value indicates that the length of an article has no significant impact on its reliability score. In other words, based on the provided data, longer articles are not necessarily more or less reliable than shorter ones.
 
 
 %%% Local Variables: 

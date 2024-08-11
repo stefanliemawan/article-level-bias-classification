@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  10 AUG 2024 06:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.14)  11 AUG 2024 09:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1275,118 +1275,154 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@cntb=\count361
 \multirow@dima=\skip196
 \bigstrutjot=\dimen311
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
- (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count362
-\float@exts=\toks46
-\float@box=\box70
-\@float@everytoks=\toks47
-\@floatcapt=\box71
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count362
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks48
-\c@algorithm=\count363
+\algocf@hangindent=\skip197
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count363
+LaTeX Info: Redefining \checkoddpage on input line 45.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip198
+\skiplinenumber=\skip199
+\skiprule=\skip256
+\skiphlne=\skip257
+\skiptext=\skip258
+\skiplength=\skip259
+\algomargin=\skip260
+\skipalgocfslide=\skip261
+\algowidth=\dimen312
+\inoutsize=\dimen313
+\inoutindent=\dimen314
+\interspacetitleruled=\dimen315
+\interspacealgoruled=\dimen316
+\interspacetitleboxruled=\dimen317
+\algocf@ruledwidth=\skip262
+\algocf@inoutbox=\box70
+\algocf@inputbox=\box71
+\AlCapSkip=\skip263
+\AlCapHSkip=\skip264
+\algoskipindent=\skip265
+\algocf@nlbox=\box72
+\algocf@hangingbox=\box73
+\algocf@untilbox=\box74
+\algocf@skipuntil=\skip266
+\algocf@capbox=\box75
+\algocf@lcaptionbox=\skip267
+\algoheightruledefault=\skip268
+\algoheightrule=\skip269
+\algotitleheightruledefault=\skip270
+\algotitleheightrule=\skip271
+\c@algocfline=\count364
+\c@algocfproc=\count365
+\c@algocf=\count366
+\algocf@algoframe=\box76
+\algocf@algobox=\box77
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
  (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count364
-\c@ALG@rem=\count365
-\c@ALG@nested=\count366
-\ALG@tlm=\skip197
-\ALG@thistlm=\skip198
-\c@ALG@Lnr=\count367
-\c@ALG@blocknr=\count368
-\c@ALG@storecount=\count369
-\c@ALG@tmpcounter=\count370
-\ALG@tmplength=\skip199
+\c@ALG@line=\count367
+\c@ALG@rem=\count368
+\c@ALG@nested=\count369
+\ALG@tlm=\skip272
+\ALG@thistlm=\skip273
+\c@ALG@Lnr=\count370
+\c@ALG@blocknr=\count371
+\c@ALG@storecount=\count372
+\c@ALG@tmpcounter=\count373
+\ALG@tmplength=\skip274
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip256
-\LTright=\skip257
-\LTpre=\skip258
-\LTpost=\skip259
-\LTchunksize=\count371
-\LTcapwidth=\dimen312
-\LT@head=\box72
-\LT@firsthead=\box73
-\LT@foot=\box74
-\LT@lastfoot=\box75
-\LT@gbox=\box76
-\LT@cols=\count372
-\LT@rows=\count373
-\c@LT@tables=\count374
-\c@LT@chunks=\count375
-\LT@p@ftn=\toks49
+\LTleft=\skip275
+\LTright=\skip276
+\LTpre=\skip277
+\LTpost=\skip278
+\LTchunksize=\count374
+\LTcapwidth=\dimen318
+\LT@head=\box78
+\LT@firsthead=\box79
+\LT@foot=\box80
+\LT@lastfoot=\box81
+\LT@gbox=\box82
+\LT@cols=\count375
+\LT@rows=\count376
+\c@LT@tables=\count377
+\c@LT@chunks=\count378
+\LT@p@ftn=\toks46
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/02/19 v1.6 Sub-captions (AR)
  (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/03/12 v3.6j Customizing captions (AR)
  (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
-\caption@tempdima=\dimen313
-\captionmargin=\dimen314
-\caption@leftmargin=\dimen315
-\caption@rightmargin=\dimen316
-\caption@width=\dimen317
-\caption@indent=\dimen318
-\caption@parindent=\dimen319
-\caption@hangindent=\dimen320
+\caption@tempdima=\dimen319
+\captionmargin=\dimen320
+\caption@leftmargin=\dimen321
+\caption@rightmargin=\dimen322
+\caption@width=\dimen323
+\caption@indent=\dimen324
+\caption@parindent=\dimen325
+\caption@hangindent=\dimen326
 Package caption Info: memoir document class detected.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption-memoir.sto
 File: caption-memoir.sto 2022/03/02 v2.2b Adaption of the caption package to the memoir document class (AR)
 ))
-\c@caption@flags=\count376
-\c@continuedfloat=\count377
+\c@caption@flags=\count379
+\c@continuedfloat=\count380
 Package caption Info: changepage package is loaded.
-\caption@adjustwidth@hsize=\dimen321
-\caption@adjustwidth@linewidth=\dimen322
-Package caption Info: float package is loaded.
+\caption@adjustwidth@hsize=\dimen327
+\caption@adjustwidth@linewidth=\dimen328
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 ))
 Package caption Info: New subtype `subfigure' on input line 239.
-\c@subfigure=\count378
+\c@subfigure=\count381
 Package caption Info: New subtype `subtable' on input line 239.
-\c@subtable=\count379
+\c@subtable=\count382
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 46.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 47.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count380
-\l__pdf_internal_box=\box77
+\l__color_backend_stack_int=\count383
+\l__pdf_internal_box=\box83
 ) (./thesis.aux (./chap-1.aux) (./chap-2.aux) (./chap-3.aux) (./chap-4.aux) (./chap-5.aux) (./chap-6.aux) (./chap-7.aux) (./app-A.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 
 ******************************************************
@@ -1410,43 +1446,43 @@ Sidefootvsep and sidefootheight: 13.6pt and 594.32022pt
 
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count381
-\scratchdimen=\dimen323
-\scratchbox=\box78
-\nofMPsegments=\count382
-\nofMParguments=\count383
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count384
-\MPscratchDim=\dimen324
-\MPnumerator=\count385
-\makeMPintoPDFobject=\count386
-\everyMPtoPDFconversion=\toks51
+\scratchcounter=\count384
+\scratchdimen=\dimen329
+\scratchbox=\box84
+\nofMPsegments=\count385
+\nofMParguments=\count386
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count387
+\MPscratchDim=\dimen330
+\MPnumerator=\count388
+\makeMPintoPDFobject=\count389
+\everyMPtoPDFconversion=\toks48
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 46.
-Package microtype Info: Applying patch `item' on input line 46.
-Package microtype Info: Applying patch `toc' on input line 46.
-Package microtype Info: Applying patch `eqnum' on input line 46.
-Package microtype Info: Applying patch `footnote' on input line 46.
-Package microtype Info: Applying patch `verbatim' on input line 46.
+LaTeX Info: Redefining \microtypecontext on input line 47.
+Package microtype Info: Applying patch `item' on input line 47.
+Package microtype Info: Applying patch `toc' on input line 47.
+Package microtype Info: Applying patch `eqnum' on input line 47.
+Package microtype Info: Applying patch `footnote' on input line 47.
+Package microtype Info: Applying patch `verbatim' on input line 47.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 46.
+LaTeX Info: Redefining \showhyphens on input line 47.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-Package hyperref Info: Link coloring ON on input line 46.
+Package hyperref Info: Link coloring ON on input line 47.
  (./thesis.out) (./thesis.out)
 \@outlinefile=\write5
 \openout5 = `thesis.out'.
@@ -1460,21 +1496,21 @@ Package microtype Info: Loading generic protrusion settings for font family
 <logokul.pdf, id=119, 159.33528pt x 56.90298pt>
 File: logokul.pdf Graphic file (type pdf)
 <use logokul.pdf>
-Package pdftex.def Info: logokul.pdf  used on input line 46.
+Package pdftex.def Info: logokul.pdf  used on input line 47.
 (pdftex.def)             Requested size: 159.33487pt x 56.90283pt.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <12> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 46.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `T1/kulemtfpf/b/n' in size <14.4> not available
-(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 46.
+(Font)              Font shape `T1/kulemtfpf/bx/n' tried instead on input line 47.
  [-1
 
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc} </Users/stefanliemawan/Library/texmf/tex/latex/kulemt/logokul.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 46.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 47.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 46.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 47.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1514,7 +1550,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 ] [2
 
-] (./thesis.lof [3
+] (./thesis.lof
+Underfull \vbox (badness 1038) has occurred while \output is active []
+
+ [3
 
 
 ])
@@ -1529,7 +1568,7 @@ Package microtype Info: Character `029' is missing
 \openout2 = `chap-1.aux'.
 
  (./chap-1.tex
-<images/the-economist-biased-article.png, id=340, 722.7pt x 984.67876pt>
+<images/the-economist-biased-article.png, id=355, 722.7pt x 984.67876pt>
 File: images/the-economist-biased-article.png Graphic file (type png)
 <use images/the-economist-biased-article.png>
 Package pdftex.def Info: images/the-economist-biased-article.png  used on input line 14.
@@ -1542,31 +1581,10 @@ Package pdftex.def Info: images/the-economist-biased-article.png  used on input 
 \openout2 = `chap-2.aux'.
 
  (./chap-2.tex
-<images/bias-types-taxonomy.png, id=439, 929.4725pt x 598.235pt>
+<images/bias-types-taxonomy.png, id=453, 929.4725pt x 598.235pt>
 File: images/bias-types-taxonomy.png Graphic file (type png)
 <use images/bias-types-taxonomy.png>
 Package pdftex.def Info: images/bias-types-taxonomy.png  used on input line 13.
 (pdftex.def)             Requested size: 358.19757pt x 230.54483pt.
-<images/phrasing_bias_example.png, id=449, 887.315pt x 175.65625pt>
-File: images/phrasing_bias_example.png Graphic file (type png)
-<use images/phrasing_bias_example.png>
-Package pdftex.def Info: images/phrasing_bias_example.png  used on input line 22.
-(pdftex.def)             Requested size: 358.19757pt x 70.90988pt.
-<images/spin_bias_example.png, id=450, 958.58125pt x 450.68375pt>
-File: images/spin_bias_example.png Graphic file (type png)
-<use images/spin_bias_example.png>
-Package pdftex.def Info: images/spin_bias_example.png  used on input line 23.
-(pdftex.def)             Requested size: 358.19757pt x 168.40768pt.
-<images/statement_bias_example.png, id=451, 982.67125pt x 284.06125pt>
-File: images/statement_bias_example.png Graphic file (type png)
-<use images/statement_bias_example.png>
-Package pdftex.def Info: images/statement_bias_example.png  used on input line 24.
-(pdftex.def)             Requested size: 358.19757pt x 103.54495pt.
- [5
-
-
-
-
-]
-<images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-2023.png, id=474, 1003.75pt x 745.78625pt>
-File: images/statistic_id1317019_consumers-witnessing-false-information-on-certain-topics-worldwide-
+<images/phrasing_bias_example.png, id=463, 887.315pt x 175.65625pt>
+File: images/phrasing_bias_

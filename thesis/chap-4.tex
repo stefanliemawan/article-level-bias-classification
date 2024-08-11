@@ -6,11 +6,11 @@ This chapter details the preparation of the dataset for training, including the 
 
 \section{Dataset split}
 
-The dataset reliability scores are divided into 4 classes, in alignment with the evaluation criteria set forth by Ad Fontes \cite{adfontes-bias-reliability}, as also previously described in Section \ref{bat-characteristics}. Scores below 24 will be grouped as 'Problematic' while scores above 40 will be regarded as 'Reliable'. As scores between 24 and 40 is described to suggest a variety of factor, this range is equally split into half, the lower-half (24-32) as 'Questionable', and the higher-half with (31-40) as 'Generally Reliable'. The full class split is shown in Table \ref{table:label_split}.
+The dataset reliability scores are divided into 4 classes, in alignment with the evaluation criteria set forth by Ad Fontes \cite{adfontes-bias-reliability,otero-2021-adfontes-methodology}, as also previously described in Section \ref{bat-characteristics}. Scores below 24 will be grouped as 'Problematic' while scores above 40 will be regarded as 'Reliable'. As scores between 24 and 40 are described to suggest a variety of factors, this range is equally split into half, the lower half (24-32) as 'Questionable', and the higher half (32-40) as 'Generally Reliable'. The full class split is shown in Table \ref{table:label_split}.
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{| l | l |}
+    \begin{tabular}{| l | r |}
         \hline
         Class              & Range         \\
         \hline
@@ -26,7 +26,7 @@ The dataset reliability scores are divided into 4 classes, in alignment with the
 
 As can be seen in Table \ref{table:dataset_split}, the dataset is highly imbalanced with over half of the articles rated within the 'Reliable' class. The class percentage is as follows: Problematic: 6.34\%, Questionable: 13.37\%, Generally Reliable: 23.01\%, Reliable: 57.28\%.
 
-The dataset is split into train, test, and validation sets, distributed as seen in Table \ref{table:dataset_split}. The split is done in a manner that ensure that articles from different outlets are distributed equally across the three sets. A significant drawback of this balanced approach is that neither the test set nor the validation set contains articles from unseen outlets. This limitation could potentially introduce bias in the performance evaluation and test metrics, as models trained on this dataset are not exposed to articles from outlets not seen in the training set. Ideally, a test set should contain information not included in the training set to better assess model performance. However, given the imbalance within the dataset, it is preferable to make full use of the available data by exposing models to as many patterns as possible. Additionally, since new outlets are rarely introduced in real life, it may instead be advantageous to slightly overfit models to patterns of existing outlets.
+The dataset is split into train, test, and validation sets, distributed as seen in Table \ref{table:dataset_split}. The split is done in a manner to ensure that articles from different outlets are distributed equally across the three sets. A significant drawback of this balanced approach is that neither the test set nor the validation set contains articles from unseen outlets. This limitation could potentially introduce bias in the performance evaluation and test metrics, as models trained on this dataset are not exposed to articles from outlets not seen in the training set. Ideally, a test set should contain information not included in the training set to better assess model performance. However, given the imbalance within the dataset, it is preferable to make full use of the available data by exposing models to as many patterns as possible. Additionally, since new outlets are rarely introduced in real life, it may instead be advantageous to slightly overfit models to patterns of existing outlets.
 
 \begin{table}[htbp]
     \centering
@@ -55,7 +55,7 @@ As baselines, traditional frequency-based encoding methods such as Bag-of-Words 
 
 Additionally, an \textbf{outlet majority baseline} is implemented as a comparison to analyse the influence of including outlet information as an additional feature. This baseline method predicts the class of an article based on the most frequently occurring class among articles from the same outlet. Specifically, if an article comes from outlet A, and the majority of articles from outlet A are classified as class X, then the article from outlet A is also classified as class X. An illustration can be seen in Figure \ref{fig:majority_baseline}.
 
-For baselines and frequency-based approaches (BoW and TF-IDF), tokenisation is done on the word-level, whereas transformer-approaches will utilise sub-word tokenisation as implemented in BERT \cite{devlin-2019-bert}. No additional text preprocessing is performed for any of the methods.
+For baselines and frequency-based approaches (BoW and TF-IDF), tokenisation is done on the word level, whereas transformer approaches will apply sub-word tokenisation as implemented in BERT \cite{devlin-2019-bert}. No additional text preprocessing is performed for any of the methods.
 
 
 \begin{figure}[htbp]
@@ -105,7 +105,7 @@ For baselines and frequency-based approaches (BoW and TF-IDF), tokenisation is d
 
 \section{Proposed methods}
 
-In this section, various methods to classify media bias at the article-level are described. These methods are based on three main concepts: (1) frequency-based techniques, (2) transformer-based approaches for handling longer sequences, and (3) methods from past works that have been proven successful in document classification and media bias detection.
+In this section, various methods to classify media bias at the article level are described. These methods are based on three main concepts: (1) frequency-based techniques, (2) transformer-based approaches for handling longer sequences, and (3) methods from past works that have been proven successful in document classification and media bias detection.
 
 
 \subsection{BoW + MLP}
@@ -130,11 +130,11 @@ In this section, various methods to classify media bias at the article-level are
     \label{fig:bow_mlp_architecture}
 \end{figure}
 
-As the name suggests, the BoW + MLP method combines Bag-of-Words encoding method with a neural network. Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of this method. First, the text input is encoded using the Bag-of-Words (BoW) method, resulting in a vector representing the frequency of each word. This vector is then passed through a dense layer with a ReLU activation function, followed by a dropout layer. Finally, the output is processed through a softmax function to produce the prediction probabilities. The network is trained for 10 epochs with a learning rate of 2e-5. The size for the dense layer is set to 128 with a dropout probability of 0.2, no warm-up steps are applied.
+As the name suggests, the BoW + MLP method combines Bag-of-Words encoding method with a neural network. Figure \ref{fig:bow_mlp_architecture} shows the simple diagram of this method. First, the text input is encoded using the Bag-of-Words (BoW) method, resulting in a vector representing the frequency of each word. This vector is then passed through a dense layer with a ReLU activation function, followed by a dropout layer. Finally, the output is processed through a softmax function to produce the prediction probabilities.
 
 \subsection{Fine-tuning}
 
-A standard fine-tuning operation is performed as described in the original BERT paper \cite{devlin-2019-bert}. Input texts are tokenised on the sub-words level and fed into a pre-trained (BERT-like) model, which are then fine-tuned for a specific downstream task. Three pre-trained models are evaluated in this method: BERT \cite{devlin-2019-bert}, Longformer \cite{beltagy-2020-longformer}, and BigBird \cite{zaheer-2021-bigbird}. For BERT, only the first 512 tokens are fed into the model, due to its token limitations, while both Longformer and BigBird allows for up to 4096 tokens. Training is performed over 4 epochs with 2e-5 learning rate and 500 linear warm-up steps.
+A standard fine-tuning operation is performed as described in the original BERT paper \cite{devlin-2019-bert}. Input texts are tokenised on the sub-words level and fed into a pre-trained (BERT-like) model, which is then fine-tuned for a specific downstream task. Three pre-trained models are evaluated in this method: BERT \cite{devlin-2019-bert}, Longformer \cite{beltagy-2020-longformer}, and BigBird \cite{zaheer-2021-bigbird}. For BERT, only the first 512 tokens are fed into the model, due to its token limitations, while both Longformer and BigBird allow for up to 4096 tokens.
 
 \subsection{Chunked fine-tuning}
 
@@ -194,7 +194,7 @@ A standard fine-tuning operation is performed as described in the original BERT 
 
 Figure \ref{fig:chunk_bert_finetuning} illustrates the architecture of the chunked fine-tuning for LLMs. Input texts are tokenised and segmented into separate chunks containing parts of text input. Chunks have a fixed linear size, with the final chunk padded accordingly. A 'CLS' token is inserted at the beginning of each chunk, acting as a summary representation of the entire chunk sequence, and a 'SEP' token is inserted at the end of each chunk. Chunks are then stacked together and fed into the model as mini-batches for the fine-tuning process. The logits (output scores) produced by each chunk are then averaged to produce the final logits of the full sequence. Finally, a softmax operation is applied to the final logits to obtain the class probabilities.
 
-The chunking method bypasses the sequence length limitation of most LLMs such as BERT \cite{devlin-2019-bert}, allowing for full representation and processing of text input without any loss of information. In the implementation, a window size of 512 tokens is chosen with 256 stride. Fine-tuning is conducted over 4 epochs using a weighted loss function, a learning rate of 2e-5, and 500 linear warm-up steps.
+The chunking method bypasses the sequence length limitation of most LLMs such as BERT \cite{devlin-2019-bert}, allowing for full representation and processing of text input without any loss of information.
 
 
 \subsection{Hierarchical Transformer}
@@ -277,15 +277,15 @@ The chunking method bypasses the sequence length limitation of most LLMs such as
 \end{figure}
 
 
-Figure \ref{fig:hi_model} shows the full architecture of the hierarchical transformer model, similarly implemented by Su et al. \cite{su-2021-classifying} for classifying long clinical documents. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into two transformer layers. Afterwards, each chunk is pooled together, resulting in embedding of size \(d\), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class.
+Figure \ref{fig:hi_model} shows the full architecture of the hierarchical transformer model, similarly implemented by Su et al. \cite{su-2021-classifying} for classifying long clinical documents. This method begins by similarly segmenting the input text into smaller chunks. These chunks are encoded into a higher dimensional feature space by feeding them into a pre-trained Large Language Model (LLM) and extracting the last hidden state, also known as \textit{feature-based approach} as described in \cite{sun-2020-fine-tune}. Subsequently, the encoded chunks are then passed into two transformer layers. Afterward, each chunk is pooled together, resulting in an embedding of size \(d\), serving as a concise summary of the entire chunk sequence. This summary representation is then processed through a Multi-Layer Perceptron (MLP). Lastly, a softmax operation will be applied to the output of the MLP layer to determine the final output class.
 
-Given that automated text classification of news articles has been shown to benefit from using segments instead of sentences as units of analysis \cite{barbera-2021-article-classification}, a segment-length window size is utilised instead of sentence-based splitting. Two different pre-trained models are experimented as the LLM encoder in this method: BERT \cite{devlin-2019-bert}, DA-RoBERTa \cite{krieger-2022-domain}, and MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLU activation function \cite{agarap-2018-relu} and dropouts. Two pooling strategies are used for this method: CLS pooling with chunk size of 512 tokens and mean pooling with smaller chunk size of 156 tokens. Two transformer layers are used, and 0.2 probability is applied to the dropout layer. Training is done over 3 epochs with weighted loss, 1e-5 learning rate and 162 warm-up steps (10\% of total training steps).
+Given that automated text classification of news articles has been shown to benefit from using segments instead of sentences as units of analysis \cite{barbera-2021-article-classification}, a segment-length window size is preferred over sentence-based splitting. Two different pre-trained models are experimented with as the LLM encoder in this method: BERT \cite{devlin-2019-bert}, DA-RoBERTa \cite{krieger-2022-domain}, and MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLU activation function \cite{agarap-2018-relu} and dropouts.
 
 \section{Training details}
 
-All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and transformers \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model utilised in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words \cite{devlin-2019-bert}. The AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. The batch size is set to 8 for all deep learning methods.
+All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and transformers \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model used in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words \cite{devlin-2019-bert}. The AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. The batch size is set to 8 for all deep learning methods.
 
-Additionally, \textbf{weighted loss} is applied for every method. Weighted loss addresses the problem of training models on an imbalanced dataset by assigning higher weights to classes with fewer instances and lower weights to classes with more instances. This adjustment ensures that the model pays more attention to correctly predicting the minority class, thereby improving overall performance metrics. Using weighted loss during training is preferred over oversampling the minority class. Oversampling can generate synthetic examples that may not accurately represent real-world articles, potentially leading to less robust model performance \cite{alkhawaldeh-2023-challenges}. Additionally, undersampling is also not ideal due to the small size of the dataset and the significant disparity between the majority and minority classes. The weighted loss is gained by calculating class weights (as seen in Figure \ref{fig:class_weights}) through the scikit-learn library \cite{pedregosa-2011-scikit-learn}, which are then inserted into the loss function.
+Additionally, \textbf{weighted loss} is applied for every method. Weighted loss addresses the problem of training models on an imbalanced dataset by assigning higher weights to classes with fewer instances and lower weights to classes with more instances. This adjustment ensures that the model pays more attention to correctly predicting the minority class, thereby improving overall performance metrics. Using weighted loss during training is preferred over oversampling the minority class. Oversampling can generate synthetic examples that may not accurately represent real-world articles, potentially leading to less robust model performance \cite{alkhawaldeh-2023-challenges}. Additionally, undersampling is also not ideal due to the small size of the dataset and the significant disparity between the majority and minority classes. The weighted loss is gained by calculating class weights (as shown in Figure \ref{fig:class_weights}) using the scikit-learn library \cite{pedregosa-2011-scikit-learn}, which are then incorporated into the loss function.
 
 \begin{figure}[htbp]
     \centering
@@ -295,6 +295,26 @@ Additionally, \textbf{weighted loss} is applied for every method. Weighted loss 
 \end{figure}
 
 
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{| l | r | r | r | r |}
+        \hline                            \textbf{Method} & \textbf{Epochs} & \textbf{Learning Rate} & \textbf{Warmup Steps} \\
+        \hline
+        BoW + MLP                                         & 10              & 2e-5                   & 0                     \\
+        \hline
+        Fine-tuning                                       & 4               & 2e-5                   & 500                   \\
+        \hline
+        Chunked-fine-tuning                               & 4               & 2e-5                   & 216                   \\
+        \hline
+        Hierarchical models                               & 3               & 1e-5                   & 162                   \\
+        \hline
+    \end{tabular}
+    \caption{Epochs, learning rate, and warmup steps for proposed methods.}
+    \label{table:hyperparameters}
+\end{table}
+
+Table \ref{table:hyperparameters} presents the hyperparameters for each method. In the case of CLS-pooling, the chunk size is set to 512 tokens, whereas the mean-pooling method uses a chunk size is set to 156 tokens. These settings are applied to all chunk-based methods. Additionally, the BoW + MLP method uses a dense layer with 128 units, while the hierarchical models include 768 units in each dense layer throughout their architecture. Both methods apply a dropout probability of 0.2.
 
 %%% Local Variables: 
 %%% mode: latex
