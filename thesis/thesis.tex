@@ -46,17 +46,14 @@
 %\includeonly{chap-n}
 \begin{document}
 
-% \begin{preface}
-%     I would like to thank everybody who kept me busy the last year,
-%     especially my promoter and my assistants. I would also like to thank the
-%     jury for reading the text. My sincere gratitude also goes to my wive and
-%     the rest of my family.
-% \end{preface}
+\begin{preface}
+    I would like to thank my supervisor, Dr. Miryam de Lhoneux, for agreeing to oversee this project. Her support, guidance, and impeccable ability to respond to emails quickly have been a wonderful blessing. I would also like to thank Dr. Timo Spinde and The Media Bias Group for introducing the topic and allowing me to be a part of the network.
+\end{preface}
 
 \tableofcontents*
 
 \begin{abstract}
-    In today's digital, information-rich society, media bias presents a significant challenge to the objectivity and credibility of news reporting. Media bias can shape perceptions, influence opinions, and affect understanding of various issues. Recognizing and addressing this bias is crucial for ensuring a well-informed and balanced perspective. Existing research on automatic media bias detection largely focuses on sentence-level analysis and produce binary outputs, thus this thesis aims to develop a system for detecting and classifying media bias at the article level with multi-class output. The BAT dataset \cite{spinde-2023-bat} was reconstructed by crawling article content and introducing four-class labels derived from reliability scores that measure the truthfulness of the articles. By leveraging State-of-the-Art (SOTA) techniques and successful document classification methods, transformer-based approaches and hierarchical models were trained and evaluated using the reconstructed BAT dataset. These methods were also compared against an outlet majority baseline, which classifies articles based on the majority class of their outlet. The results indicate that hierarchical models achieved the best performance, with fine-tuning Longformer providing comparable results. Additionally, mean-pooling with smaller chunk sizes was found to outperform CLS-pooling.
+    In today's digital, information-rich society, media bias presents a significant challenge to the objectivity and credibility of news reporting. Media bias can shape perceptions, influence opinions, and affect understanding of various issues. Recognising and addressing this bias is crucial for ensuring a well-informed and balanced perspective. Existing research on automatic media bias detection largely focuses on sentence-level analysis and produces binary outputs, thus this thesis aims to develop a system for detecting and classifying media bias at the article level with multi-class output. The BAT dataset \cite{spinde-2023-bat} was reconstructed by crawling article content and introducing four class labels derived from reliability scores that measure the truthfulness of the articles. By leveraging State-of-the-Art (SOTA) techniques and successful document classification methods, transformer-based approaches and hierarchical models are trained and evaluated using the reconstructed BAT dataset. The performances of these methods are compared under two different feature sets: one using only the articles' titles and content, and another incorporating outlet metadata as an additional feature. The results indicate that hierarchical models achieve the best performance, with fine-tuning Longformer \cite{beltagy-2020-longformer} provides comparable results. Additionally, mean-pooling with smaller chunk sizes was found to outperform CLS-pooling. Including outlet metadata as an additional feature generally improved performance across most fine-tuning methods.
 \end{abstract}
 
 % A list of figures and tables is optional

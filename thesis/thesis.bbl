@@ -422,6 +422,10 @@ A.~A. Rahman.
 \newblock \url{https://www.linkedin.com/pulse/lstm-networks-abdullah-al-rahman/}, 2023.
 \newblock [Online; accessed 16-July-2024].
 
+\bibitem{reimers-2019-sentencebert}
+N.~Reimers and I.~Gurevych.
+\newblock Sentence-bert: Sentence embeddings using siamese bert-networks, 2019.
+
 \bibitem{reuters-2023-false-info}
 {Reuters Institute for the Study of Journalism}.
 \newblock News consumers who saw false or misleading information about key topics in the last week in selected countries worldwide as of february 2023 [graph], June 14 2023.

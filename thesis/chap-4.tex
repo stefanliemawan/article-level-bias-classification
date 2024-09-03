@@ -105,7 +105,7 @@ For baselines and frequency-based approaches (BoW and TF-IDF), tokenisation is d
 
 \section{Proposed methods}
 
-In this section, various methods to classify media bias at the article level are described. These methods are based on three main concepts: (1) frequency-based techniques, (2) transformer-based approaches for handling longer sequences, and (3) methods from past works that have been proven successful in document classification and media bias detection.
+In this section, various methods to classify media bias at the article level are described. These methods are based on three main concepts: (1) frequency-based techniques (BoW), (2) transformer-based approaches for handling longer sequences (fine-tuning approaches), and (3) methods from past works that have been proven successful in document classification and media bias detection (hierarchical models).
 
 
 \subsection{BoW + MLP}
@@ -126,7 +126,7 @@ In this section, various methods to classify media bias at the article level are
         \draw[arrow] (softmax.east) -- (pred.west);
 
     \end{tikzpicture}
-    \caption{BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.}
+    \caption{BoW + MLP architecture. The input article is encoded as a bag of words, then fed into a single linear multilayer perceptron before softmax operation.}
     \label{fig:bow_mlp_architecture}
 \end{figure}
 
@@ -198,6 +198,8 @@ The chunking method bypasses the sequence length limitation of most LLMs such as
 
 
 \subsection{Hierarchical Transformer}
+
+Hierarchical methods have been effectively implemented for long document classification \cite{wu-2021-hi-transformer,kulkarni-2018-multi-view,su-2021-classifying,khandve-2022-hierarchical-longdoc,pappagari-2019-hierarchical,yang-2016-han}. Thus, it seems like a promising approach to experiment with similar methods on article-level media bias classification.
 
 \begin{figure}[htbp]
     \centering
@@ -281,9 +283,15 @@ Figure \ref{fig:hi_model} shows the full architecture of the hierarchical transf
 
 Given that automated text classification of news articles has been shown to benefit from using segments instead of sentences as units of analysis \cite{barbera-2021-article-classification}, a segment-length window size is preferred over sentence-based splitting. Two different pre-trained models are experimented with as the LLM encoder in this method: BERT \cite{devlin-2019-bert}, DA-RoBERTa \cite{krieger-2022-domain}, and MAGPIE \cite{horych-2024-magpie}. The MLP consists of two linear layers with ReLU activation function \cite{agarap-2018-relu} and dropouts.
 
+For hierarchical models that incorporate outlet metadata as an additional feature, the architecture is slightly modified. In fine-tuning methods, metadata can simply be appended to the sequence and processed together with the text. However, in chunk-based systems, this would mean that the metadata is available to only one chunk and might be lost as it progresses through the model. To address this, the text input and metadata are processed separately.
+
+The article's text is similarly processed by an LLM encoder and two transformer layers. Meanwhile, the metadata is processed by a single-layer MLP. Both representations from the text and metadata are then concatenated and passed through a final two-layer MLP (as used in the normal hierarchical architecture, see Figure \ref{fig:hi_model}), followed by a softmax layer.
+
 \section{Training details}
 
 All methods are implemented in Python 3.12.0 \cite{van-1995-python} using the PyTorch \cite{paszke-2017-pytorch} and transformers \cite{wolf-2020-huggingface} package from HuggingFace. The BERT model used in these methods is the 'bert-base-cased' instead of the 'bert-base-uncased' to account for distinctions in capitalised words \cite{devlin-2019-bert}. The AdamW \cite{loshchilov-2019-adamw} optimiser and Cross Entropy Loss is used in all cases. The batch size is set to 8 for all deep learning methods.
+
+Local model training was conducted on a MacBook Air running macOS Sonoma 14.4.1 with an M2 chip and 16GB of memory. Additionally, training for larger models was performed using the Vlaamse Supercomputer Centrum (VSC) \cite{vscentrum} remote framework, utilising a single node of H100 GPU with 18 cores.
 
 Additionally, \textbf{weighted loss} is applied for every method. Weighted loss addresses the problem of training models on an imbalanced dataset by assigning higher weights to classes with fewer instances and lower weights to classes with more instances. This adjustment ensures that the model pays more attention to correctly predicting the minority class, thereby improving overall performance metrics. Using weighted loss during training is preferred over oversampling the minority class. Oversampling can generate synthetic examples that may not accurately represent real-world articles, potentially leading to less robust model performance \cite{alkhawaldeh-2023-challenges}. Additionally, undersampling is also not ideal due to the small size of the dataset and the significant disparity between the majority and minority classes. The weighted loss is gained by calculating class weights (as shown in Figure \ref{fig:class_weights}) using the scikit-learn library \cite{pedregosa-2011-scikit-learn}, which are then incorporated into the loss function.
 
@@ -314,7 +322,7 @@ Additionally, \textbf{weighted loss} is applied for every method. Weighted loss 
     \label{table:hyperparameters}
 \end{table}
 
-Table \ref{table:hyperparameters} presents the hyperparameters for each method. In the case of CLS-pooling, the chunk size is set to 512 tokens, whereas the mean-pooling method uses a chunk size is set to 156 tokens. These settings are applied to all chunk-based methods. Additionally, the BoW + MLP method uses a dense layer with 128 units, while the hierarchical models include 768 units in each dense layer throughout their architecture. Both methods apply a dropout probability of 0.2.
+Table \ref{table:hyperparameters} presents the hyperparameters for each method. In the case of CLS-pooling, the chunk size is set to 512 tokens, whereas the mean-pooling method uses a chunk size of 156 tokens. These settings are applied to all chunk-based methods. Additionally, the BoW + MLP method uses a dense layer with 128 units, while the hierarchical models include 768 units in each dense layer throughout their architecture. Both methods apply a dropout probability of 0.2. In the case of hierarchical models with metadata, 384 units are used for the linear layers associated with the metadata.
 
 %%% Local Variables: 
 %%% mode: latex

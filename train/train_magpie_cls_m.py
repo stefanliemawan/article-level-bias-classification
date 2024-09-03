@@ -9,8 +9,8 @@ from utils.chunk_model_m import ChunkModelM
 
 CHUNK_SIZE = 156
 NUM_TF_LAYERS = 2
-HIDDEN_DIM = 384
-METADATA_HIDDEN_DIM = 128
+HIDDEN_DIM = 768
+METADATA_HIDDEN_DIM = 384
 EPOCHS = 3
 DROPOUT_PROB = 0.2
 TF_MODEL_NAME = "mediabiasgroup/magpie-babe-ft"
@@ -96,3 +96,17 @@ model.predict(tokenised_dataset["test"], test_metadata)
 # weighted avg       0.76      0.71      0.73       569
 
 # {'loss': 0.8577841520309448, 'precision': 0.7555730957707322, 'recall': 0.7100175746924429, 'f1': 0.727705275815567}
+
+
+#               precision    recall  f1-score   support
+
+#            0       0.34      0.52      0.41        27
+#            1       0.25      0.35      0.29        54
+#            2       0.36      0.43      0.39       104
+#            3       0.91      0.77      0.83       384
+
+#     accuracy                           0.66       569
+#    macro avg       0.46      0.52      0.48       569
+# weighted avg       0.72      0.66      0.68       569
+
+# {'loss': 1.0456678867340088, 'precision': 0.7174708098708271, 'recall': 0.655536028119508, 'f1': 0.6801864348941431}

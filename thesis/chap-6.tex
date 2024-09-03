@@ -1,32 +1,50 @@
 \chapter{Conclusion}
 \label{cha:6}
 
-This study shows how current State-of-the-ART (SOTA) NLP techniques, and particularly document classification techniques perform on article-level media bias classification using the BAT dataset.
+\section{Key Findings}
 
-Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance. Transformer-based approaches and hierarchical models, while expected to perform much better, have only shown slight to moderate improvements. Nevertheless, hierarchical models with MAGPIE encoder and mean-pooling with 156 chunk size perform the best. The performance difference between using BERT and MAGPIE as encoders for a feature-based approach highlights that models specifically trained for media bias tasks outperform general large language models (LLMs). Fine-tuning Longformer with the first 4096 tokens also yields comparable results and should therefore be used if a more straightforward approach is preferred.
+The experiments show how transformer-based and hierarchical approaches perform on article-level media bias classification using the BAT dataset. Frequency-based methods such as Bag-of-Words (BoW) and TF-IDF combined with logistic regression have demonstrated decent overall performance. Transformer-based approaches and hierarchical models, while expected to perform much better, have only shown low to moderate improvements.
 
-Furthermore, the experiments revealed that mean-pooling performs better with smaller chunk sizes, while CLS-pooling is more effective with larger chunk sizes. Regardless, mean-pooling with smaller chunk sizes still outperforms CLS-pooling across all chunk sizes. This finding is somewhat consistent with other research showing mean-pooling superiority over CLS-pooling \cite{rodrigo-2024-systematic-review-media-bias}.
+Nevertheless, hierarchical models with MAGPIE encoder and mean-pooling with 156 chunk size perform the best. The performance difference between using BERT and MAGPIE as encoders for a feature-based approach highlights that models specifically trained for media bias tasks outperform general large language models (LLMs). Fine-tuning Longformer with the first 4096 tokens also yields comparable results and should therefore be used if a more straightforward approach is preferred. This finding also complements the results of Khandve et al. \cite{khandve-2022-hierarchical-longdoc}, which show that Longformer performs consistently well on most long document classification datasets.
 
-Incorporating outlet information leads to performance improvement in almost all fine-tuning methods. Although the outlet majority baseline achieves the highest recall and F1 score, relying solely on outlet information as a classifier is not an optimal solution. This method disregards the article's content and stereotypes outlets based on their perceived bias. Additionally, over time it may become problematic as outlets change and evolve.
+Furthermore, the experiments revealed that mean-pooling performs better with smaller chunk sizes, while CLS-pooling is more effective with larger chunk sizes. Regardless, mean-pooling with smaller chunk sizes still outperforms CLS-pooling across all explored chunk sizes. This finding is somewhat consistent with other research showing mean-pooling superiority over CLS-pooling \cite{rodrigo-2024-systematic-review-media-bias,reimers-2019-sentencebert}, particularly on sentences. However, whether this holds for sequences longer than 512 tokens needs to be further examined.
 
-There are a couple of limitations to this project. The BAT dataset used is completely curated through Ad Fontes Media \cite{adfontes}, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects trained models. Additionally, since no other work has used the BAT dataset, comparing results with other studies is practically impossible. These factors should be considered when interpreting the results.
+Incorporating outlet information leads to performance improvement in almost all fine-tuning methods. While the outlet-majority baseline achieved the highest recall and F1 score, relying solely on outlet information as a classifier is not an optimal solution. This approach entirely disregards the article's content and can lead to stereotyping outlets based on their perceived bias. Moreover, it may become problematic as time progresses since outlets can evolve and change.
 
-% The low-performance gains from transformer models may be partly attributed to the presence of noise in article contents, as they disrupt the context from being effectively used. Frequency-based methods are not affected as much since they only count words and neglect the context.
+\section{Discussion}
 
-% It can be hypothesised that addressing these issues by cleaning the data might lead to significant performance improvements for context-reliant approaches, allowing them to moderately outperform conventional methods. 
+\subsection{Dataset}
+
+In this study, key research gaps in article-level media bias classification are identified. A major bottleneck in this domain is the evident lack of large, well-annotated datasets \cite{rodrigo-2024-systematic-review-media-bias}.
+
+The BAT dataset strongly requires more articles, particularly biased examples and underrepresented classes. This expansion is crucial to enhance trained models' performance further. Additionally, thorough text cleaning of the crawled article contents is necessary to ensure the dataset's validity and robustness. This process may require significant human intervention. Once the dataset is enlarged, it could also be beneficial to expand the class labels to an eight-class system, with each class covering a span of 8 reliability scores, to mimic precisely the categorisation laid in the Ad Fontes methodology paper \cite{otero-2021-adfontes-methodology}.
+
+A limitation of the BAT dataset is that it is completely curated through Ad Fontes Media \cite{adfontes}, with article selection and annotations performed by their team. This introduces an inherent bias in the dataset, which subsequently affects trained models.  Future work should also aim to include more diverse and independently compiled articles to mitigate this bias. Crowdsourcing \cite{spinde-newsunravel} and using LLMs to augment and annotate media bias datasets \cite{horych-2024-promises} are both promising approaches to solving the dataset problem. Additionally, expanding the domain of study beyond the US would be highly beneficial. The Media Bias/Fact Check website \cite{mbfc} in the United Kingdom could be a valuable starting point for acquiring another perspective on media bias.
+
+Finally, evaluation can be improved by carefully crafting the test set by considering unique patterns and including articles with outlets that are not present in the training set. This is essential for assessing the models' generalisability and ensuring their robustness in real-world scenarios.
+
+\subsection{Methods}
+
+Hierarchical methods have shown promising results and warrant further exploration to enhance performance. Additionally, experimenting with global and local attention mechanisms (as in the Longformer architecture \cite{beltagy-2020-longformer}) as well as new pooling strategies, could provide valuable insights and potential improvements.
+
+Graph-based methods could be considered, as Aires et al. used information theory and community detection algorithms to identify political orientations \cite{aires-2020-information}. This has been done recently on sentence-level media bias analysis \cite{lei-2024-event-relation} and shows good promise. A similar approach could be applied to article-level media bias classification by encoding articles as nodes within a graph. This method would allow for more granular analysis and help define relationships between articles.
+
+However, comparing results with other studies is challenging due to the lack of work that uses the BAT dataset. This further highlights the need for further development and improvement of the BAT dataset. Nevertheless, this limitation should be considered when interpreting the results.
+
+Other metadata from articles, such as their publication dates and authors, as well as additional insights like sentiment analysis or Named Entity Recognition (NER), could be further exploited to improve performance. However, it is arguably crucial that metadata information remain supplemental, while the primary basis for the classifier should continue to be the articles' titles and content. Furthermore, metadata needs to be carefully handled to be integrated correctly with articles' representation to increase overall performance.
+
+Developing a Large Language Model (LLM) pre-trained on a large article-level media bias dataset could significantly benefit media bias classification research. The NELA-GT-2022 dataset \cite{gruppi-2023-nela-gt-2022}, which contains 1,778,361 articles, appears to be an excellent choice for this purpose. The pre-trained model could then be fine-tuned on more specific datasets to enhance its performance on various media bias tasks. This approach has the potential to substantially improve results across multiple media bias classification challenges.
 
 
-\section{Future works}
+\section{Concluding Remarks}
 
-The BAT dataset requires more samples, particularly for the underrepresented classes, and necessitates further and thorough text cleaning of the crawled article contents. Future work should also aim to include more diverse and independently curated articles to mitigate underlying biases within the dataset. Crowdsourcing \cite{spinde-newsunravel} and using LLMs to augment and annotate media bias datasets \cite{horych-2024-promises} are both promising approaches to solve the dataset problem.
+This thesis project introduces a novel approach for article-level media bias classification using the BAT dataset. The dataset was redeveloped by crawling article content and adding multi-class labels based on reliability scores. I experimented with State-of-the-Art (SOTA) transformer models (BERT, BigBird, Longformer) with a particular focus on handling longer sequences, as well as proven long document classification techniques such as hierarchical models.
 
-Additionally, evaluation can be improved by carefully crafting the test set by considering unique patterns and including articles with outlets that are not present in the training set. This is crucial for assessing the models' generalisability and ensuring their robustness in real-world scenarios.
+The results indicate that fine-tuning Longformer and using hierarchical models with a chunk size of 156 sub-words and a mean-pooling strategy achieve excellent performance. Additionally, incorporating outlet metadata is shown to enhance performance, although it is imperative to handle this metadata meticulously to prevent models from becoming overly reliant on it.
 
-Hierarchical methods have shown promising results and should be explored further for improved performance. Additionally, graph-based methods could be considered, as Aires et al. used information theory and community detection algorithms to identify political orientations \cite{aires-2020-information}. A similar approach could be applied to article-level media bias classification by encoding articles as nodes within a graph. This method would allow for more granular analysis and help define relationships between articles.
+I hope my contributions will offer valuable resources for other researchers and pave the way for future work in this area. The reconstructed BAT dataset will be shared with the Media Bias Group \cite{media-bias-group}, and the code for this project is available on GitHub:
 
-Other metadata from articles, such as their publication dates, authors, and additional insights like sentiment analysis or Named Entity Recognition (NER), can be further exploited to improve performance. However, it is arguably crucial that metadata information remain supplemental, while the primary basis for the classifier should continue to be the articles titles and content. Furthermore, metadata needs to be carefully handled to be integrated correctly with articles representation to increase overall performance.
-
-% Further pre-train BERT in the new domain...
+{\footnotesize \url{https://github.com/stefanliemawan/article-level-bias-classification}}
 
 
 %%% Local Variables: 

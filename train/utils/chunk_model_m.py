@@ -63,7 +63,10 @@ class ChunkModelM(nn.Module):
             ),
             nn.ReLU(),
             nn.Dropout(self.dropout_prob),
-            nn.Linear(hidden_dim + metadata_hidden_dim, num_classes),
+            nn.Linear(hidden_dim + metadata_hidden_dim, 512),
+            nn.ReLU(),
+            nn.Dropout(self.dropout_prob),
+            nn.Linear(512, num_classes),
         )
 
     def init_loss_optimiser(self):

@@ -8,40 +8,41 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {1.1}{\ignorespaces A recent article from The Economist \cite {economist-2024-incels} portraying gender discrimination with a negatively framed headline\relax }}{2}{figure.caption.7}%
 \addvspace {10pt}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Media bias types as defined in The Media Bias Taxonomy \cite {spinde-2024-taxonomy}\relax }}{6}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Example of phrasing bias (top), spin bias (middle), and statement bias (bottom) \cite {allsides-media-bias-types}\relax }}{7}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces The rate of news consumers witnessing false or misleading information on several recent key topics in February 2023 \cite {reuters-2023-false-info}\relax }}{8}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces How often false or misleading information is seen online in the United States as of April 2023 \cite {yougov-2023-frequency}.\relax }}{8}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Ability to recognise false information in the US \cite {yougov-2023-confidence}\relax }}{9}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Trustworthiness of news media worldwide by country, as of February 2023 \cite {reuters-2023-trust}\relax }}{9}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces An illustration of how Bag-of-Words work \cite {rahul-2023-bow-medium}\relax }}{10}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Word embeddings visualisation \cite {narayanan-2019-word-embeddings}\relax }}{11}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces An illustration of contextualised word embeddings, a language model is used to analyse the context of the target word and creates a dynamic representation. \cite {camacho-collados-2020-embeddings}\relax }}{12}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces MultiLayer Perceptron visualisation \cite {perez-enciso-2019-guide}\relax }}{12}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces LSTM architecture \cite {rahman-2023-lstm-networks}\relax }}{13}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Transformer visualisation \cite {vaswani-2023-attention}\relax }}{15}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}\relax }}{16}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces MAGPIE containing a pre-trained representation of various biases \cite {horych-2024-magpie}.\relax }}{16}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Illustration of chunking\relax }}{17}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces An example of a hierarchical transformer model, Hi-Transformer \cite {wu-2021-hi-transformer}, to model long document by incorporating information on sentence and word level.\relax }}{18}{figure.caption.23}%
-\contentsline {figure}{\numberline {2.17}{\ignorespaces Overview of available media bias datasets \cite {rodrigo-2024-systematic-review-media-bias}\relax }}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces A recent article from The Economist \cite {economist-2024-incels} portraying gender discrimination with a negatively framed headline\relax }}{2}{figure.caption.8}%
 \addvspace {10pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces The Ad Fontes Media Bias Chart, showing how every outlet is aligned horizontally (political bias) and vertically (reliability) on their chart \cite {adfontes-media-bias-chart}\relax }}{22}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Discrepancies in Ad Fontes methodology according to the website \cite {adfontes-bias-reliability} and paper \cite {otero-2021-adfontes-methodology}\relax }}{23}{figure.caption.26}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Example of a highly-rated article, reliability score: 57.67 \cite {spinde-2023-bat}\relax }}{23}{figure.caption.27}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Example of an article with a reliability score of 30.0 \cite {spinde-2023-bat}\relax }}{24}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Example of a low-rated article, reliability score: 6.67 \cite {spinde-2023-bat}\relax }}{24}{figure.caption.29}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Articles published date distribution.\relax }}{26}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Articles tokens count distribution\relax }}{27}{figure.caption.34}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Reliability score and token count analysis.\relax }}{28}{figure.caption.35}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Media bias types as defined in The Media Bias Taxonomy \cite {spinde-2024-taxonomy}\relax }}{6}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Example of phrasing bias (top), spin bias (middle), and statement bias (bottom) \cite {allsides-media-bias-types}\relax }}{7}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces The rate of news consumers witnessing false or misleading information on several recent key topics in February 2023 \cite {reuters-2023-false-info}\relax }}{8}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces How often false or misleading information is seen online in the United States as of April 2023 \cite {yougov-2023-frequency}.\relax }}{8}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ability to recognise false information in the US \cite {yougov-2023-confidence}\relax }}{9}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Trustworthiness of news media worldwide by country, as of February 2023 \cite {reuters-2023-trust}\relax }}{9}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces An illustration of how Bag-of-Words work \cite {rahul-2023-bow-medium}\relax }}{10}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Word embeddings visualisation \cite {narayanan-2019-word-embeddings}\relax }}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces An illustration of contextualised word embeddings, a language model is used to analyse the context of the target word and creates a dynamic representation. \cite {camacho-collados-2020-embeddings}\relax }}{12}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces MultiLayer Perceptron visualisation \cite {perez-enciso-2019-guide}\relax }}{12}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces LSTM architecture \cite {rahman-2023-lstm-networks}\relax }}{13}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Transformer visualisation \cite {vaswani-2023-attention}\relax }}{15}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces BERT pre-training and fine-tuning procedures \cite {devlin-2019-bert}\relax }}{16}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces MAGPIE containing a pre-trained representation of various biases \cite {horych-2024-magpie}.\relax }}{16}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Illustration of chunking\relax }}{17}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces An example of a hierarchical transformer model, Hi-Transformer \cite {wu-2021-hi-transformer}, to model long document by incorporating information on sentence and word level.\relax }}{18}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.17}{\ignorespaces Overview of available media bias datasets \cite {rodrigo-2024-systematic-review-media-bias}\relax }}{20}{figure.caption.25}%
 \addvspace {10pt}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A\relax }}{31}{figure.caption.38}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces BoW + MLP architecture. The input article is encoded as a bag of words, then feed into a single linear multilayer perceptron before softmax operation.\relax }}{32}{figure.caption.39}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Chunked fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.\relax }}{33}{figure.caption.40}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Hierarchical transformer model architecture.\relax }}{34}{figure.caption.41}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Class weights in the training set\relax }}{35}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The Ad Fontes Media Bias Chart, showing how every outlet is aligned horizontally (political bias) and vertically (reliability) on their chart \cite {adfontes-media-bias-chart}\relax }}{24}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Discrepancies in Ad Fontes methodology according to the website \cite {adfontes-bias-reliability} and paper \cite {otero-2021-adfontes-methodology}\relax }}{25}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Example of a highly-rated article, reliability score: 57.67 \cite {spinde-2023-bat}\relax }}{25}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Example of an article with a reliability score of 30.0 \cite {spinde-2023-bat}\relax }}{26}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Example of a low-rated article, reliability score: 6.67 \cite {spinde-2023-bat}\relax }}{26}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Articles published date distribution.\relax }}{28}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Articles tokens count distribution\relax }}{29}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Reliability score and token count analysis.\relax }}{30}{figure.caption.36}%
+\addvspace {10pt}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Majority baseline based on outlet, every article here will be predicted as X since X is the most frequently observed class in outlet A\relax }}{33}{figure.caption.39}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces BoW + MLP architecture. The input article is encoded as a bag of words, then fed into a single linear multilayer perceptron before softmax operation.\relax }}{34}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Chunked fine-tuning. The input article is split into chunks, each chunk is processed by the model as a mini batch, and the resulting logits are pooled before applying softmax operation.\relax }}{35}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Hierarchical transformer model architecture.\relax }}{36}{figure.caption.42}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Class weights in the training set\relax }}{38}{figure.caption.43}%
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

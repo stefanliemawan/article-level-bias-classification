@@ -109,7 +109,6 @@ Embeddings represent knowledge through low-dimensional vectors that integrate ea
 
 Nevertheless, word embeddings have an important limitation. Since every word is mapped into a fixed single vector, word embeddings are considered static or non-contextualised, therefore, unable to distinguish between different meanings of a word \cite{camacho-collados-2020-embeddings}. Words such as 'break,' 'cut,' or 'duck' can have multiple meanings depending on their context, and thus require better modelling to achieve an accurate semantic representation. This problem is solved by contextualised word embeddings, which assign each word with a representation based on its context, allowing it to capture usage in different contexts and encode knowledge that can be transferred across languages \cite{liu-2020-survey-contextual-embeddings}. The embedding is typically encoded dynamically through the use of a pre-trained language model, illustrated in Figure \ref{fig:contextualised-word-embeddings}.
 
-
 % OOV?
 
 \begin{figure}[htbp]
@@ -142,7 +141,7 @@ The weighted sum (\( \mathbf{z} \)) in a hidden layer of a neural network is com
     \mathbf{h} = f(\mathbf{z})
 \end{equation}
 
-\textbf{A MultiLayer Perceptron (MLP)} is a fully connected ANN that consists of single or multiple hidden layers, illustrated in Figure \ref{fig:mlp}. Hidden layers refer to the collection of neurons that are between the input and output layers, transforming data from layer to layer \cite{uzair-2020-hidden-layers}. MLP is widely used due to its ability to approximate complex functions that are beyond the capability of simple linear models \cite{popescue-2009-mlp}.
+\textbf{A MultiLayer Perceptron (MLP)} is a fully connected ANN that consists of single or multiple hidden layers, illustrated in Figure \ref{fig:mlp}. Hidden layers refer to the collection of neurons between the input and output layers, transforming data from layer to layer \cite{uzair-2020-hidden-layers}. MLP is widely used due to its ability to approximate complex functions that are beyond the capability of simple linear models \cite{popescue-2009-mlp}.
 
 \subsection{Long Short-Term Memory (LSTM)}
 
@@ -243,7 +242,11 @@ Unfortunately, both MAGPIE and DA-RoBERTa are trained for sentence-level bias an
 \end{figure}
 
 
-\textbf{Chunking} is a technique used to break down text into smaller, more manageable units. This technique can be applied to segment documents into smaller paragraphs or sentences, as illustrated in Figure \ref{fig:chunking}, facilitating more efficient processing and analysis. \textbf{Hierarchical models} \cite{sun-2020-fine-tune} incorporate multiple levels of abstraction or granularity to capture complex relationships within data. These models are particularly useful when dealing with structured data that naturally fall into a hierarchical organisation, such as documents composed of paragraphs and sentences. Furthermore, \textbf{hierarchical transformer model} is a variant of the transformer architecture that incorporates hierarchical structures to handle long sequences more efficiently. These models process data at different levels, such as sentences within paragraphs, to capture hierarchical relationships. Figure \ref{fig:hi_transformer} shows an example of a hierarchical transformer model used to produce document embeddings by harnessing sentence-level and word-level information \cite{wu-2021-hi-transformer}.
+\textbf{Chunking} is a technique used to break down text into smaller, more manageable units. This technique can be applied to segment documents into smaller paragraphs or sentences, as illustrated in Figure \ref{fig:chunking}, facilitating more efficient processing and analysis. After the process of chunking, a pooling operation is typically performed to retain information from the whole sequence. Commonly used pooling strategies include max-pooling, where only the maximum values are taken; \textbf{mean-pooling}, where the mean over all the representations of chunks is calculated; and \textbf{CLS-pooling}, where only the CLS representation (in BERT-like models) is retained while others are discarded.
+
+\textbf{Hierarchical models} \cite{sun-2020-fine-tune} incorporate multiple levels of abstraction or granularity to capture complex relationships within data. These models are particularly useful when dealing with structured data that naturally fall into a hierarchical organisation, such as documents composed of paragraphs and sentences. Furthermore, \textbf{hierarchical transformer model} is a variant of the transformer architecture that incorporates hierarchical structures to handle long sequences more efficiently. These models process data at different levels, such as sentences within paragraphs, to capture hierarchical relationships. Figure \ref{fig:hi_transformer} shows an example of a hierarchical transformer model used to produce document embeddings by harnessing sentence-level and word-level information \cite{wu-2021-hi-transformer}.
+
+
 
 \begin{figure}[htbp]
     \centering
@@ -293,15 +296,13 @@ Past works on media bias classification typically use the BASIL dataset, operati
 
 Consequently, There are only a few existing works on article-level media bias classification, with most works focusing on detecting political bias (leaning-left, right, or centre) or ideology instead of purely media bias. Kulkarni et al. \cite{kulkarni-2018-multi-view} proposed a method that incorporates cues from the title, link structure, and content of articles to predict political ideology. Baly et al. \cite{baly-2020-we-can-detect-your-bias} adversarial media adaptation approach to detect political bias in news articles. Kim and Johnson \cite{kim-johnson-2022-close} proposed an MTL model (CLoSE) made of either a BERT-based or RoBERTa-based encoder, followed by a pooling layer to create sentence embeddings, which are then fed into a classifier to predict political bias. Chen et al. \cite{chen-2020-detecting-media-bias-gaussian} employed a Gaussian mixture model that exploits sentence-level bias information to detect article-level bias. Chen et al.'s definition and approach to media bias closely align with this project; however, it does not incorporate any transformer-based or State-of-the-Art (SOTA) methods.
 
+\section{Key Takeaways}
 
-% \begin{comment}
-% Furthermore, annotating media bias is not a straightforward task. Traditionally, this is done by hiring experts and journalists to manually read and determine how biased the content is. Here it is important to use multiple annotators to minimise introducing another form of bias towards the dataset. This comes with its own set of challenges as annotators might not always agree on biased text \cite{lim-2018-understanding}. As with \cite{spinde-2021-babe}, annotations are generally compiled and majority-voted to achieve the final annotation given a particular text. Moreover, annotators' personal background moderately influenced their decisions and should be taken into consideration when building datasets, along with other factors such as topics, reading news habits, and honest mistakes \cite{spinde-2021-bias-words}. Clearly, this is not a cheap procedure and can act as a bottleneck when building a reliable media bias dataset.
+While the NELA-GT-2022 \cite{gruppi-2023-nela-gt-2022} dataset contains significantly more articles than the BAT dataset \cite{spinde-2023-bat}, the lack of clarity in the labels of NELA-GT-2022 poses a major problem. Therefore, the BAT dataset is considered a more favourable option.
 
-% Alternatively, organisations such as Allsides \cite{allsides} and Ad Fontes \cite{adfontes} have their own experts and annotations which can be crawled and exploited. Several papers and datasets \cite{spinde-2023-bat,chen-2020-nlpcss,kulkarni-2018-multi-view} have utilised this approach. However, since these datasets depend on manual labelling from third-party organisations, the selection of articles likely also introduces bias into the dataset \cite{spinde-2023-bat}.
+Although research in article-level media bias classification is currently limited, this chapter has reviewed several promising approaches from previous works in document classification that could be applied to this task. Combined with State-of-the-Art (SOTA) NLP techniques, these approaches could provide valuable insights into their effectiveness for article-level media bias classification.
 
-% \end{comment}
-
-
+The next chapter will provide a detailed discussion of the BAT dataset, while Chapter 4 will explore the proposed methods based on these promising approaches.
 
 %%% Local Variables: 
 %%% mode: latex

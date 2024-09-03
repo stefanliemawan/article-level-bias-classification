@@ -92,13 +92,13 @@ This chapter presents the results of the experiments, along with the findings an
 
 Table \ref{table:eval} presents the results of all methods given the title and content of articles as features. Looking at the per-class metrics, it is evident that \textbf{the overall scores are heavily influenced by the performance of the 'Reliable' class due to its large support}. Underrepresented classes such as 'Problematic' and 'Questionable' suffered the most, achieving below 0.50 F1 scores on most methods. This outcome is expected given the highly imbalanced class distribution. Although weighted loss was applied to mitigate this issue, it appears to be insufficient.
 
-Frequency-based approach with Bag-of-Words (BoW) performed generally decently. BoW combined with a linear regression classifier (BoW + LR) reached an F1 score of 0.68.  Naturally, replacing the linear regression with a single layer of multilayer perceptron (BoW + MLP) improved the performance on all metrics.
+Frequency-based approach with Bag-of-Words (BoW) performs generally well. BoW combined with a linear regression classifier (BoW + LR) reached an F1 score of 0.68.  Naturally, replacing the linear regression with a single layer of multilayer perceptron (BoW + MLP) improved the performance on all metrics.
 
-BERT fine-tuning (BERT FT) outperformed all frequency-based methods, although only by a close margin compared to the BoW + MLP model. Bigbird fine-tuning (Bigbird FT) performed comparably to BERT-FT, while Longformer fine-tuning (Longformer FT) outperformed every fine-tuning method by a large difference. This result suggests that a combination of global and local attention patterns, as used in Longformer, is more effective than the combination of global, local, and random attention patterns used in BigBird. The inclusion of random attention patterns in BigBird could potentially be detrimental to performance.
+BERT fine-tuning (BERT FT) outperforms all frequency-based methods, although only by a close margin compared to the BoW + MLP model. Bigbird fine-tuning (Bigbird FT) performs comparably to BERT-FT, while Longformer fine-tuning (Longformer FT) outperforms every fine-tuning method by a 0.03 difference. This result suggests that a combination of global and local attention patterns, as used in Longformer, is more effective than the combination of global, local, and random attention patterns used in BigBird. The inclusion of random attention patterns in BigBird could potentially be detrimental to performance.
 
-Experiments with different pooling strategies and different chunk sizes concluded that mean-pooling works best with a low chunk size (156 tokens) while CLS-pooling works better with a longer window (512 tokens). BERT chunked-fine-tuning (BERT C-FT) outperformed both BERT and BigBird fine-tuning, achieving more balanced scores on each class metric, scoring above 0.4 F1. CLS-pooling is also slightly better than mean-pooling in the case of C-FT. The hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performed best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on the overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved results comparable to those of Longformer FT. The Hi-BERT model performed worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLM.
+Experiments with different pooling strategies and different chunk sizes concluded that mean-pooling works best with a low chunk size (156 tokens) while CLS-pooling works better with a longer window (512 tokens). BERT chunked-fine-tuning (BERT C-FT) outperforms both BERT and BigBird fine-tuning, achieving more balanced scores on each class metric, scoring above 0.4 F1. CLS-pooling is also slightly better than mean-pooling in the case of C-FT. The hierarchical model with MAGPIE encoder (Hi-MAGPIE) and mean-pooling strategy performs best with a high F1 score of 0.7554. Hi-MAGPIE with CLS-pooling also resulted similarly with the highest precision, albeit slightly weaker on the overall F1 score and 'Problematic' and 'Questionable' classes. Both Hi-MAGPIE methods achieved results comparable to those of Longformer FT. The Hi-BERT model performs worse than the Hi-MAGPIE counterpart on both pooling strategies. This result shows that MAGPIE, which is trained for media bias tasks, is a better encoder for article-level media bias classification compared to BERT, which is more of a general LLM.
 
-Hi-Da-RoBERTa performed worse than simply fine-tuning BERT.
+Hi-Da-RoBERTa with mean pooling performs worse than simply fine-tuning BERT. This could highlight that domain-adaptive methods may not be a good approach for pre-training models for article-level media bias classification.
 
 \subsection{Outlet as Additional Features}
 
@@ -137,30 +137,12 @@ Hi-Da-RoBERTa performed worse than simply fine-tuning BERT.
                                                           & Reliable           & 0.91               & 0.85            & 0.88            \\\cline{2-5}
                                                           & Overall            & 0.7676             & 0.7434          & 0.7529          \\
         \hline
-        % \multirow{5}{*}{Hi-BERT, CLS-Pooling}             & Problematic        & 0.37               & 0.59            & 0.46            \\
-        %                                                   & Questionable       & 0.32               & 0.43            & 0.37            \\
-        %                                                   & Generally Reliable & 0.40               & 0.47            & 0.43            \\
-        %                                                   & Reliable           & 0.92               & 0.79            & 0.85            \\\cline{2-5}
-        %                                                   & Overall            & 0.7384             & 0.6871          & 0.7071          \\
-        % \hline
-        % \multirow{5}{*}{Hi-BERT, Mean-Pooling}            & Problematic        & 0.40                & 0.63             & 0.49             \\
-        %                                                   & Questionable       & 0.42                & 0.46             & 0.44             \\
-        %                                                   & Generally Reliable & 0.43                & 0.56             & 0.49             \\
-        %                                                   & Reliable           & 0.92                & 0.80             & 0.86             \\\cline{2-5}
-        %                                                   & Overall            & 0.7602                & 0.7152             & 0.7320             \\
-        % \hline
-        % \multirow{5}{*}{Hi-MAGPIE, CLS-Pooling}           & Problematic        & 0.42               & 0.52            & 0.47            \\
-        %                                                   & Questionable       & 0.35               & 0.43            & 0.38            \\
-        %                                                   & Generally Reliable & 0.43               & 0.55            & 0.48            \\
-        %                                                   & Reliable           & 0.93               & 0.82            & 0.87            \\\cline{2-5}
-        %                                                   & Overall            & 0.76034            & 0.7170          & 0.7342          \\
-        % \hline
-        % \multirow{5}{*}{Hi-MAGPIE, Mean-Pooling}          & Problematic        & 0.42               & 0.59            & 0.49            \\
-        %                                                   & Questionable       & 0.35               & 0.41            & 0.38            \\
-        %                                                   & Generally Reliable & 0.42               & 0.56            & 0.48            \\
-        %                                                   & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
-        %                                                   & Overall            & 0.7591             & 0.7117          & 0.7298          \\
-        % \hline
+        \multirow{5}{*}{Hi-MAGPIE, Mean-Pooling}           & Problematic        & 0.46               & 0.63            & 0.53            \\
+                                                          & Questionable       & 0.40               & 0.46            & 0.43            \\
+                                                          & Generally Reliable & 0.39               & 0.51            & 0.44            \\
+                                                          & Reliable           & 0.93               & 0.80            & 0.86            \\\cline{2-5}
+                                                          & Overall            & 0.7555             & 0.7100          & 0.7277          \\
+        \hline
     \end{tabular}
     \caption{Evaluation table, with outlet information as additional features (outlet + title + content)}
     \label{table:eval-outlet}
@@ -168,9 +150,11 @@ Hi-Da-RoBERTa performed worse than simply fine-tuning BERT.
 
 Table \ref{table:eval-outlet} presents the results of the outlet majority baseline compared with fine-tuning methods given articles outlet information as an additional feature alongside the title and content. For FT implementations, outlet information is appended to the beginning of the title and content, forming a single input sequence. Hierarchical and chunked-fine-tuning methods are not implemented here, as they rely on chunking input sequences and therefore require a more sophisticated approach to effectively handle metadata.
 
-The outlet majority baseline method achieved the highest result compared to other methods. Thus, \textbf{relying solely on outlet information outperformed other methods on overall recall and F1 scores}. This result highlights the significant influence of outlet information in classifying media bias in regard to this specific dataset and circumstances. However, despite the strong performance on these metrics, relying solely on outlet information is not a comprehensive solution, as will be discussed further in the next chapter.
+The outlet majority baseline method achieved the highest result compared to other methods. Thus, \textbf{relying solely on outlet information outperforms other methods on overall recall and F1 scores}. This result highlights the significant influence of outlet information in classifying media bias in regard to this specific dataset and circumstances. However, despite the strong performance on these metrics, relying solely on outlet information is not a comprehensive solution, as will be discussed further in the next chapter.
 
 Among the methods evaluated, Longformer FT achieved the best results overall, although its F1 score is slightly lower than its performance without the additional outlet metadata (see Table \ref{table:eval}). BERT FT achieved the highest overall precision score and a comparable F1 score to Longformer, with a particularly strong F1 score on the 'Problematic' class. BigBird FT scored the lowest overall. Notably, both BERT FT and BigBird FT showed the largest improvement due to the inclusion of outlet metadata.
+
+Hi-MAGPIE, when including outlet metadata, seems to perform worse than without it. This indicates that the proposed architecture is not effective in enabling the model to generalise outlet information and incorporate it into sequential information for an overall performance increase.
 
 \subsection{Failed Experiments}
 
@@ -178,45 +162,41 @@ Among the methods evaluated, Longformer FT achieved the best results overall, al
     \centering
     \scriptsize
     \begin{longtable}{| c | l | r | r | r |}
-        \hline                            \textbf{Method}     & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\\cline{1-5}
-        \multirow{5}{*}{TF-IDF + LR}                          & Problematic        & 1.00               & 0.11            & 0.20        \\
-                                                              & Questionable       & 0.47               & 0.17            & 0.25        \\
-                                                              & Generally Reliable & 0.36               & 0.31            & 0.33        \\
-                                                              & Reliable           & 0.79               & 0.94            & 0.86        \\\cline{2-5}
-                                                              & Overall            & 0.6904             & 0.7117          & 0.6725      \\
+        \hline                            \textbf{Method} & \textbf{Class}     & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\\cline{1-5}
+        \multirow{5}{*}{TF-IDF + LR}                      & Problematic        & 1.00               & 0.11            & 0.20        \\
+                                                          & Questionable       & 0.47               & 0.17            & 0.25        \\
+                                                          & Generally Reliable & 0.36               & 0.31            & 0.33        \\
+                                                          & Reliable           & 0.79               & 0.94            & 0.86        \\\cline{2-5}
+                                                          & Overall            & 0.6904             & 0.7117          & 0.6725      \\
         \hline
-        \multirow{5}{*}{GloVE + MLP}                          & Problematic        & 0.67               & 0.15            & 0.24        \\
-                                                              & Questionable       & 0.31               & 0.22            & 0.26        \\
-                                                              & Generally Reliable & 0.29               & 0.13            & 0.18        \\
-                                                              & Reliable           & 0.76               & 0.93            & 0.84        \\\cline{2-5}
-                                                              & Overall            & 0.6231             & 0.6836          & 0.6335      \\
+        \multirow{5}{*}{GloVE + MLP}                      & Problematic        & 0.67               & 0.15            & 0.24        \\
+                                                          & Questionable       & 0.31               & 0.22            & 0.26        \\
+                                                          & Generally Reliable & 0.29               & 0.13            & 0.18        \\
+                                                          & Reliable           & 0.76               & 0.93            & 0.84        \\\cline{2-5}
+                                                          & Overall            & 0.6231             & 0.6836          & 0.6335      \\
         \hline
-        \multirow{5}{*}{Hi-BERT-LSTM, Max-Pooling}            & Problematic        & 1.00               & 0.00            & 0.00        \\
-                                                              & Questionable       & 1.00               & 0.00            & 0.00        \\
-                                                              & Generally Reliable & 1.00               & 0.00            & 0.00        \\
-                                                              & Reliable           & 0.67               & 1.00            & 0.81        \\\cline{2-5}
-                                                              & Overall            & 0.7805             & 0.6748          & 0.5438      \\
+        \multirow{5}{*}{Hi-BERT-LSTM, Max-Pooling}        & Problematic        & 1.00               & 0.00            & 0.00        \\
+                                                          & Questionable       & 1.00               & 0.00            & 0.00        \\
+                                                          & Generally Reliable & 1.00               & 0.00            & 0.00        \\
+                                                          & Reliable           & 0.67               & 1.00            & 0.81        \\\cline{2-5}
+                                                          & Overall            & 0.7805             & 0.6748          & 0.5438      \\
         \hline
-        \multirow{5}{*}{Hi-MAGPIE with metadata, CLS-Pooling} & Problematic        & 0.46               & 0.63            & 0.53        \\
-                                                              & Questionable       & 0.40               & 0.46            & 0.43        \\
-                                                              & Generally Reliable & 0.39               & 0.51            & 0.44        \\
-                                                              & Reliable           & 0.93               & 0.80            & 0.86        \\\cline{2-5}
-                                                              & Overall            & 0.7555             & 0.7100          & 0.7277      \\
-        \hline
-        \multirow{5}{*}{BERT-PolSub}                          & Problematic        & 0.41               & 0.33            & 0.37        \\
-                                                              & Questionable       & 0.30               & 0.59            & 0.40        \\
-                                                              & Generally Reliable & 0.35               & 0.33            & 0.34        \\
-                                                              & Reliable           & 0.90               & 0.80            & 0.85        \\\cline{2-5}
-                                                              & Overall            & 0.7182             & 0.6731          & 0.6888      \\
+        \multirow{5}{*}{BERT-PolSub}                      & Problematic        & 0.41               & 0.33            & 0.37        \\
+                                                          & Questionable       & 0.30               & 0.59            & 0.40        \\
+                                                          & Generally Reliable & 0.35               & 0.33            & 0.34        \\
+                                                          & Reliable           & 0.90               & 0.80            & 0.85        \\\cline{2-5}
+                                                          & Overall            & 0.7182             & 0.6731          & 0.6888      \\
         \hline
     \end{longtable}
     \caption{Evaluation table, with title and content of articles as features}
     \label{table:eval_failed}
 \end{table}
 
-Table \ref{table:eval_failed} presents other experiments conducted in this study that produced unsatisfying results. TF-IDF + LR achieved slightly worse performance than BoW + LR (Table \ref{table:eval}) in the F1 score. Although the F1 scores of 'Problematic' and 'Questionable' classes suffered greatly. A hypothesis on the low TF-IDF score might be attributed to word-level noises that could disrupt these words from being included in the TF-IDF vocabulary, despite their potential importance. GloVE embeddings combined with MLP, specifically the glove-6B-300d, achieved worse performance than both BoW and TF-IDF with logistic regression (LR). Hi-BERT-LSTM model is a hierarchical transformer model with a BERT encoder, but followed by two layers of Bi-LSTM layers and a max-pooling layer instead of MLP, as inspired by \cite{khandve-2022-hierarchical-longdoc}. However, as can be seen from Table \ref{table:eval_failed}, the model failed to produce any decent results in this study.
+Table \ref{table:eval_failed} presents other experiments conducted in this study that produced unsatisfying results.
 
-Hi-MAGPIE with metadata is an attempt to incorporate metadata information (such as outlet) into the model. In this approach, the text input is processed by a hierarchical model similar to Hi-MAGPIE, while the metadata (e.g., outlet) is processed separately using a single-layer multi-layer perceptron (MLP). The representations from both the text and metadata are then concatenated and passed through two layers of MLP (as also seen in Hi-MAGPIE) followed by a softmax layer.
+TF-IDF + LR achieved slightly worse performance than BoW + LR (Table \ref{table:eval}) in the F1 score. Although the F1 scores of 'Problematic' and 'Questionable' classes suffered greatly. A hypothesis on the low TF-IDF score might be attributed to word-level noises that could disrupt these words from being included in the TF-IDF vocabulary, despite their potential importance. GloVE embeddings combined with MLP, specifically the glove-6B-300d, achieved worse performance than both BoW and TF-IDF with logistic regression (LR).
+
+Hi-BERT-LSTM model is a hierarchical transformer model with a BERT encoder, but followed by two layers of Bi-LSTM layers and a max-pooling layer (instead of transformer layers and MLP), as implemented by Khandve et al. \cite{khandve-2022-hierarchical-longdoc}. However, as can be seen from Table \ref{table:eval_failed}, the model failed to produce any decent results in this study.
 
 Lastly, I experimented with adding polarity and subjectivity scores from articles' text as additional metadata (BERT-PolSub). The Python library Textblob \cite{loria-2018-textblob} is used to generate both polarity and subjectivity scores. In this method, the first 512 tokens of the input text are fed into BERT, while both polarity and subjectivity scores are inputted into an MLP consisting of two linear layers. Similarly, the representations are then concatenated before being fed into a softmax layer.
 
@@ -250,7 +230,7 @@ Lastly, I experimented with adding polarity and subjectivity scores from article
     \label{table:eval_timings}
 \end{table}
 
-Table \ref{table:eval_timings} shows the timings it took to run the proposed methods. Hierarchical models include Hi-BERT, Hi-MAGPIE, and Hi-Da-RoBERTa. The walltime is calculated by the Vlaams Supercomputer Centrum (VSC) framework \cite{vscentrum} described below:
+Table \ref{table:eval_timings} shows the timings it took to run the proposed methods. Hierarchical models include Hi-BERT, Hi-MAGPIE, and Hi-Da-RoBERTa. The walltime is calculated by the Vlaams Supercomputer Centrum (VSC) framework \cite{vscentrum}, described below:
 
 \[
     \text{walltime}_{\text{job}} \geq \frac{N \cdot \text{walltime}_{\text{work item}}}{\text{nodes} \cdot \text{ntasks-per-node}}
